@@ -1,0 +1,357 @@
+{
+  "leyes": {
+    "total_periodo": 556,
+    "por_periodo_parlamentario": {
+      "2026-2027": 30,
+      "2025-2026": 174,
+      "2024-2025": 201,
+      "2023-2024": 151
+    },
+    "fecha_sancion_min": "2023-07-12",
+    "fecha_sancion_max": "2026-08-31",
+    "numeros_de_ley_distintos": 541,
+    "total_historico_api": 4368,
+    "historico_con_fecha_sancion_mal_formada": 2,
+    "con_fecha_sancion_en_periodo_segun_listado_general": 556,
+    "con_fecha_en_periodo_pero_ausentes_de_ley_periodo": 0,
+    "numeros_de_ley_repetidos": {
+      "7519": 2,
+      "7544": 2,
+      "7572": 2,
+      "7617": 2,
+      "7675": 2,
+      "7683": 2,
+      "7300": 2,
+      "7322": 4,
+      "7427": 2,
+      "7508": 2,
+      "7081": 3,
+      "7280": 2
+    },
+    "campos_vacios_o_mal_formados": {},
+    "iniciativa": {
+      "PODER EJECUTIVO": 168,
+      "PARLAMENTARIA": 383,
+      "CORTE SUPREMA DE JUSTICIA": 5
+    },
+    "origen": {
+      "CAMARA DE SENADORES": 280,
+      "CAMARA DE DIPUTADOS": 276
+    },
+    "tipo_promulgacion": {
+      "NORMAL": 463,
+      "AUTOMÁTICA": 93
+    },
+    "tipo_proyecto": {
+      "PROYECTO DE LEY": 556
+    },
+    "acapite_longitud": {
+      "min": 84,
+      "max": 1224,
+      "mediana": 330,
+      "mas_de_300_caracteres": 317,
+      "incluye_presentado_por": 383,
+      "empieza_con_proyecto_de_ley": 166
+    },
+    "ids_ley_ordenados_igual_que_fecha_sancion": {
+      "pares_consecutivos": 555,
+      "inversiones": 194
+    }
+  },
+  "legisladores_vigentes": {
+    "total": 127,
+    "por_camara": {
+      "CAMARA DE DIPUTADOS": 80,
+      "CAMARA DE SENADORES": 47
+    },
+    "por_camara_y_tipo": {
+      "CAMARA DE SENADORES / VITALICIO": 2,
+      "CAMARA DE SENADORES / TITULAR": 37,
+      "CAMARA DE SENADORES / SUPLENTE": 8,
+      "CAMARA DE DIPUTADOS / TITULAR": 78,
+      "CAMARA DE DIPUTADOS / SUPLENTE": 2
+    },
+    "periodo_legislativo": {
+      "2023-2028": 127
+    },
+    "activo": {
+      "True": 127
+    },
+    "partido": {
+      "Asociación Nacional Republicana ANR": 77,
+      "Partido Liberal Radical Auténtico PLRA": 33,
+      "Movimiento Conciencia Democrática Nacional": 5,
+      "Partido Cruzada Nacional": 3,
+      "Partido Encuentro Nacional PEN": 2,
+      "Partido Democrático Progresista PDP": 1,
+      "Partido Participación Ciudadana": 1,
+      "Independiente A": 1,
+      "Partido País Solidario PPS": 1,
+      "INDEPENDIENTE": 1,
+      "Partido Patria Querida PPQ": 1,
+      "CRUZADA NACIONAL": 1
+    },
+    "bancada": {
+      "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"": 35,
+      "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO (ANR) - \"A\"": 12,
+      "BANCADA DEL PARTIDO LIBERAL RADICAL AUTÉNTICO PLRA - A": 10,
+      "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - B": 9,
+      "BANCADA DEL PARTIDO LIBERAL RADICAL AUTÉNTICO PLRA - PL": 8,
+      "BANCADA DEL PARTIDO LIBERAL RADICAL AUTÉNTICO PLRA - C": 5,
+      "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - C \"COLORADO AÑETETÉ\"": 5,
+      "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO (ANR) - INDEPENDIENTE \"A\"": 3,
+      "PARTIDO LIBERAL RADICAL AUTENTICO (PLRA) \"A\"": 3,
+      "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO (ANR) - INDEPENDIENTE \"B\"": 3,
+      "BANCADA DEL MOVIMIENTO CONCIENCIA DEMOCRÁTICA NACIONAL -YO CREO": 3,
+      "(vacío)": 2,
+      "PARTIDO LIBERAL RADICAL AUTENTICO (PLRA) \"B\"": 2,
+      "BANCADA INDEPENDIENTE": 2,
+      "CRUZADA NACIONAL": 2,
+      "ASOCIACIÓN NACIONAL REPUBLICANA - \"11 DE SETIEMBRE\"": 2,
+      "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO (ANR) - BERNARDINO CABALLERO": 2,
+      "CONCIENCIA DEMOCRÁTICA NACIONAL - \"YO CREO\"": 2,
+      "PARTIDO LIBERAL RADICAL AUTÉNTICO (PLRA) – ELIGIO AYALA": 1,
+      "PARTIDO LIBERAL RADICAL AUTÉNTICO (PLRA) - 18 DE OCTUBRE": 1,
+      "PARTIDO LIBERAL RADICAL AUTÉNTICO (PLRA) - VERDADERO LIBERALISMO": 1,
+      "PARTIDO DEMOCRÁTICO PROGRESISTA (PDP)": 1,
+      "PARTIDO ENCUENTRO NACIONAL (PEN)": 1,
+      "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO (ANR) - ACCIÓN CIUDADANA": 1,
+      "PARTIDO LIBERAL RADICAL AUTÉNTICO (PLRA) \"E\"": 1,
+      "PARTIDO PARTICIPACIÓN CIUDADANA (PPC)": 1,
+      "LIBERAL INDEPENDIENTE": 1,
+      "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO - INDEPENDIENTE": 1,
+      "ASOCIACIÓN NACIONAL REPUBLICANA - INDEPENDIENTE \"RR\" (RENOVACIÓN REPUBLICANA)": 1,
+      "PARTIDO LIBERAL RADICAL AUTÉNTICO (PLRA) \"D\"": 1,
+      "ASOCIACIÓN NACIONAL REPUBLICANA (ANR) - AÑETETE": 1,
+      "PARTIDO ENCUENTRO NACIONAL \"PEN\"": 1,
+      "BANCADA PAIS SOLIDARIO": 1,
+      "BANCADA DEL PARTIDO PATRIA QUERIDA - PPQ": 1,
+      "PARTIDO CRUZADA NACIONAL \"CN\"": 1
+    },
+    "sin_departamento": 0,
+    "sin_bancada": 2,
+    "sin_foto": 0,
+    "listado_historico_total": 1019,
+    "listado_historico_por_periodo": {
+      "2023-2028": 143,
+      "2018-2023": 151,
+      "2013-2018": 135,
+      "2008-2013": 139,
+      "2003-2008": 136,
+      "1998-2003": 139,
+      "1993-1998": 131,
+      "1989-1993": 43,
+      "1968-1989": 2
+    },
+    "campos": [
+      "activo",
+      "apellidos",
+      "appURL",
+      "bancada",
+      "camaraParlamentario",
+      "cargoBancada",
+      "departamento",
+      "emailParlamentario",
+      "fotoURL",
+      "idLegislador",
+      "nombres",
+      "partidoPolitico",
+      "periodoLegislativo",
+      "telefonoParlamentario",
+      "tipoParlamentario"
+    ]
+  },
+  "autores": {
+    "leyes_iniciativa_parlamentaria": 383,
+    "leyes_parlamentarias_sin_autores": 0,
+    "registros_de_autoria": 1386,
+    "autores_distintos": 257,
+    "registros_de_autor_legislador_vigente": 993,
+    "registros_de_autor_de_periodo_anterior": 346,
+    "registros_de_autor_fuera_del_listado_de_legisladores": 0,
+    "leyes_iniciativa_ejecutivo": 168,
+    "leyes_con_ministerios": 164,
+    "ejemplo_ministerios": [
+      "MINISTERIO DE RELACIONES EXTERIORES"
+    ],
+    "leyes_ejecutivo_con_autores_legisladores": 0
+  },
+  "adjuntos": {
+    "leyes_con_pdf_de_la_ley": 555,
+    "leyes_sin_adjuntos": 1,
+    "tipos": {
+      "INICIATIVA (application/pdf)": 639,
+      "LEY (application/pdf)": 554,
+      "SANCIÓN COMPLETA (application/msword)": 504,
+      "INICIATIVA (application/vnd.openxmlformats-officedocument.wordprocessingml.document)": 351,
+      "INICIATIVA (application/msword)": 183,
+      "INICIATIVA (image/jpeg)": 146,
+      "INICIATIVA (application/octet-stream)": 61,
+      "SANCIÓN COMPLETA (application/vnd.openxmlformats-officedocument.wordprocessingml.document)": 43,
+      "INICIATIVA (application/vnd.openxmlformats-officedocument.spreadsheetml.sheet)": 40,
+      "SANCIÓN COMPLETA (application/pdf)": 32,
+      "INICIATIVA (application/vnd.ms-excel)": 8,
+      "INICIATIVA (application/x-zip-compressed)": 6,
+      "INICIATIVA (application/vnd.ms-word.document.macroEnabled.12)": 1,
+      "SANCIÓN COMPLETA (application/x-zip-compressed)": 1,
+      "LEY (application/x-zip-compressed)": 1
+    }
+  },
+  "votaciones": {
+    "total_api": 2745,
+    "por_anio_de_tramite": {
+      "2017": 1,
+      "2018": 178,
+      "2019": 202,
+      "2020": 224,
+      "2021": 397,
+      "2022": 413,
+      "2023": 460,
+      "2024": 400,
+      "2025": 291,
+      "2026": 179
+    },
+    "del_periodo_2023_2028": 1165,
+    "del_periodo_por_camara": {
+      "CAMARA DE SENADORES": 300,
+      "CAMARA DE DIPUTADOS": 865
+    },
+    "del_periodo_por_tipo_proyecto": {
+      "PROYECTO DE LEY": 1004,
+      "RESOLUCIONES UNICAMERALES - (Art. 107-CS y 104-CD REGLAMENTO INTERNO)": 72,
+      "ACUERDO CONSTITUCIONAL (Art. 224. C.N.)": 22,
+      "DECLARACIONES UNICAMERALES - (Art. 108-CS y 104-CD REGLAMENTO INTERNO)": 17,
+      "DESIGNACIONES": 14,
+      "INTERVENCIÓN - GOBIERNOS DEPARTAMENTALES Y MUNICIPALES (Art. 165/222 C.N. - LEY 317/94)": 9,
+      "PEDIDO DE INFORMES (Art. 192 CN)": 9,
+      "CITACIÓN E INTERPELACIÓN (Art., 193, 194 CN - Ley 164/93)": 7,
+      "RESOLUCIONES BICAMERALES - SIMPLE": 7,
+      "RESOLUCIONES BICAMERALES - CONTRALOR (ART.281. CN)": 2
+    },
+    "del_periodo_por_clase_de_votacion": {
+      "CAMARA DE DIPUTADOS / 3.º/4.º trámite (modificaciones o ratificación)": 144,
+      "CAMARA DE DIPUTADOS / en general y en particular": 134,
+      "CAMARA DE DIPUTADOS / en general": 442,
+      "CAMARA DE DIPUTADOS / en particular": 18,
+      "CAMARA DE DIPUTADOS / objeción del Ejecutivo": 54,
+      "CAMARA DE DIPUTADOS / sin etapa explícita": 73,
+      "CAMARA DE SENADORES / 3.º/4.º trámite (modificaciones o ratificación)": 61,
+      "CAMARA DE SENADORES / en general y en particular": 4,
+      "CAMARA DE SENADORES / en general": 89,
+      "CAMARA DE SENADORES / en particular": 10,
+      "CAMARA DE SENADORES / objeción del Ejecutivo": 24,
+      "CAMARA DE SENADORES / sin etapa explícita": 112
+    },
+    "registros_por_votacion_frecuencia": {
+      "43": 4,
+      "44": 9,
+      "45": 287,
+      "79": 3,
+      "80": 862
+    },
+    "votos_individuales_del_periodo": 82680,
+    "sentidos": {
+      "SI": 39533,
+      "NO": 11024,
+      "ABSTENCIÓN/BLANCO": 1838,
+      "AUSENTE": 28881,
+      "NO VOTA": 950,
+      "MOCIÓN 1": 297,
+      "MOCIÓN 2": 147,
+      "MOCIÓN 3": 10
+    },
+    "sentidos_por_camara_pct": {
+      "CAMARA DE SENADORES": {
+        "SI": 47.3,
+        "AUSENTE": 23.3,
+        "NO": 17.1,
+        "NO VOTA": 7.0,
+        "ABSTENCIÓN/BLANCO": 2.8,
+        "MOCIÓN 1": 1.4,
+        "MOCIÓN 2": 1.0,
+        "MOCIÓN 3": 0.1
+      },
+      "CAMARA DE DIPUTADOS": {
+        "SI": 47.9,
+        "AUSENTE": 37.2,
+        "NO": 12.6,
+        "ABSTENCIÓN/BLANCO": 2.1,
+        "MOCIÓN 1": 0.1,
+        "MOCIÓN 2": 0.0
+      }
+    },
+    "pares_id_sentido": {
+      "272 = SI": 39533,
+      "273 = NO": 11024,
+      "274 = ABSTENCIÓN/BLANCO": 1838,
+      "275 = AUSENTE": 28881,
+      "276 = NO VOTA": 950,
+      "281 = MOCIÓN 1": 297,
+      "282 = MOCIÓN 2": 147,
+      "283 = MOCIÓN 3": 10
+    },
+    "votos_sin_legislador": 0,
+    "votaciones_con_legislador_repetido": 0,
+    "votaciones_donde_totales_no_cuadran_con_registros": 13,
+    "votaciones_con_menos_registros_que_miembros": 16,
+    "votacion_por_legislador_registros_por_respuesta": {
+      "1": 127
+    },
+    "ids_vistos_en_votaciones_por_legislador": 1,
+    "ids_por_legislador_ausentes_del_listado_general": 0
+  },
+  "leyes_y_votaciones": {
+    "con_al_menos_una_votacion": 458,
+    "con_alguna_votacion_en_CAMARA DE DIPUTADOS": 441,
+    "votaciones_previas_al_periodo": 54,
+    "con_votacion_en_1_camara(s)": 375,
+    "con_votacion_dentro_del_periodo": 443,
+    "con_alguna_votacion_en_CAMARA DE SENADORES": 100,
+    "con_votacion_en_2_camara(s)": 83,
+    "con_votacion_en_general_en_ambas_camaras": 37,
+    "numeros_de_ley_con_al_menos_una_votacion": 446,
+    "numeros_de_ley_sin_votacion": 95,
+    "sin_ninguna_votacion_nominal": 98,
+    "votaciones_enlazadas_a_leyes_del_periodo": 696,
+    "con_votacion_en_general_por_camara": {
+      "CAMARA DE DIPUTADOS": 421,
+      "CAMARA DE SENADORES": 53
+    },
+    "tramites_de_plenario_en_esas_leyes_por_camara": {
+      "CAMARA DE SENADORES": 1156,
+      "CAMARA DE DIPUTADOS": 799
+    },
+    "votaciones_cuyo_idTramitacion_no_figura_en_el_proyecto": 0,
+    "sin_votacion_por_iniciativa": {
+      "PODER EJECUTIVO": 33,
+      "PARLAMENTARIA": 64,
+      "CORTE SUPREMA DE JUSTICIA": 1
+    }
+  },
+  "test_afinidad": {
+    "CAMARA DE DIPUTADOS / cualquier votación de proyecto de ley y minoría >= 10%": 69,
+    "CAMARA DE DIPUTADOS / minoría >= 10%": 33,
+    "CAMARA DE DIPUTADOS / minoría >= 25%": 14,
+    "CAMARA DE DIPUTADOS / proyecto de ley y minoría >= 10%": 33,
+    "CAMARA DE SENADORES / cualquier votación de proyecto de ley y minoría >= 10%": 111,
+    "CAMARA DE SENADORES / minoría >= 10%": 55,
+    "CAMARA DE SENADORES / minoría >= 25%": 29,
+    "CAMARA DE SENADORES / proyecto de ley y minoría >= 10%": 48
+  },
+  "sesiones": {
+    "por_periodo_y_camara": {
+      "2023-2024 / CAMARA DE DIPUTADOS": 62,
+      "2023-2024 / CAMARA DE SENADORES": 65,
+      "2024-2025 / CAMARA DE DIPUTADOS": 78,
+      "2024-2025 / CAMARA DE SENADORES": 57,
+      "2025-2026 / CAMARA DE DIPUTADOS": 69,
+      "2025-2026 / CAMARA DE SENADORES": 58,
+      "2026-2027 / CAMARA DE DIPUTADOS": 30,
+      "2026-2027 / CAMARA DE SENADORES": 18
+    },
+    "con_hora_fin_anterior_a_inicio": 14
+  },
+  "codificacion": {
+    "caracteres_de_reemplazo_en_cache": 0
+  }
+}

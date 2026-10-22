@@ -1,0 +1,200 @@
+{
+  "numero_de_ley_con_varios_registros": [
+    [
+      {
+        "idLey": 146264,
+        "numeroLey": "7519",
+        "idProyecto": 118479,
+        "expedienteCamara": "S-199013"
+      },
+      {
+        "idLey": 145783,
+        "numeroLey": "7519",
+        "idProyecto": 135992,
+        "expedienteCamara": "S-2401483"
+      }
+    ],
+    [
+      {
+        "idLey": 145844,
+        "numeroLey": "7544",
+        "idProyecto": 144675,
+        "expedienteCamara": "S-2502470"
+      },
+      {
+        "idLey": 145843,
+        "numeroLey": "7544",
+        "idProyecto": 143952,
+        "expedienteCamara": "S-2502388"
+      }
+    ],
+    [
+      {
+        "idLey": 146095,
+        "numeroLey": "7572",
+        "idProyecto": 145241,
+        "expedienteCamara": "S-2502561"
+      },
+      {
+        "idLey": 146094,
+        "numeroLey": "7572",
+        "idProyecto": 137607,
+        "expedienteCamara": "S-2401575"
+      }
+    ]
+  ],
+  "fecha_sancion_mal_formada_historico": [
+    {
+      "idLey": 135144,
+      "numeroLey": "4678",
+      "fechaSancion": "29/11/0012"
+    },
+    {
+      "idLey": 136726,
+      "numeroLey": "5543",
+      "fechaSancion": "26/11/0215"
+    }
+  ],
+  "ley_parlamentaria_sin_autores": [],
+  "totales_no_cuadran": [
+    {
+      "idVotacion": 104665,
+      "suma_totales": 22,
+      "registros": 80
+    },
+    {
+      "idVotacion": 105305,
+      "suma_totales": 20,
+      "registros": 80
+    },
+    {
+      "idVotacion": 105835,
+      "suma_totales": 12,
+      "registros": 45
+    },
+    {
+      "idVotacion": 105935,
+      "suma_totales": 3,
+      "registros": 45
+    },
+    {
+      "idVotacion": 106195,
+      "suma_totales": 14,
+      "registros": 45
+    },
+    {
+      "idVotacion": 106299,
+      "suma_totales": 14,
+      "registros": 45
+    },
+    {
+      "idVotacion": 106445,
+      "suma_totales": 6,
+      "registros": 45
+    },
+    {
+      "idVotacion": 106895,
+      "suma_totales": 18,
+      "registros": 45
+    },
+    {
+      "idVotacion": 106975,
+      "suma_totales": 16,
+      "registros": 45
+    },
+    {
+      "idVotacion": 107106,
+      "suma_totales": 13,
+      "registros": 45
+    }
+  ],
+  "menos_registros_que_miembros": [
+    {
+      "idVotacion": 104206,
+      "camara": "CAMARA DE SENADORES",
+      "registros": 43,
+      "miembros": 45
+    },
+    {
+      "idVotacion": 104207,
+      "camara": "CAMARA DE SENADORES",
+      "registros": 43,
+      "miembros": 45
+    },
+    {
+      "idVotacion": 104208,
+      "camara": "CAMARA DE SENADORES",
+      "registros": 43,
+      "miembros": 45
+    },
+    {
+      "idVotacion": 104210,
+      "camara": "CAMARA DE SENADORES",
+      "registros": 43,
+      "miembros": 45
+    },
+    {
+      "idVotacion": 104218,
+      "camara": "CAMARA DE SENADORES",
+      "registros": 44,
+      "miembros": 45
+    },
+    {
+      "idVotacion": 104240,
+      "camara": "CAMARA DE SENADORES",
+      "registros": 44,
+      "miembros": 45
+    },
+    {
+      "idVotacion": 104425,
+      "camara": "CAMARA DE SENADORES",
+      "registros": 44,
+      "miembros": 45
+    },
+    {
+      "idVotacion": 104427,
+      "camara": "CAMARA DE SENADORES",
+      "registros": 44,
+      "miembros": 45
+    },
+    {
+      "idVotacion": 104429,
+      "camara": "CAMARA DE SENADORES",
+      "registros": 44,
+      "miembros": 45
+    },
+    {
+      "idVotacion": 104431,
+      "camara": "CAMARA DE SENADORES",
+      "registros": 44,
+      "miembros": 45
+    }
+  ],
+  "sesion_hora_fin_anterior_a_inicio": [
+    {
+      "idSesion": 112622,
+      "horaInicio": "09:00",
+      "horaFin": "00:00"
+    },
+    {
+      "idSesion": 112652,
+      "horaInicio": "09:00",
+      "horaFin": "00:00"
+    },
+    {
+      "idSesion": 112192,
+      "horaInicio": "14:00",
+      "horaFin": "11:48"
+    },
+    {
+      "idSesion": 112322,
+      "horaInicio": "10:00",
+      "horaFin": "09:54"
+    },
+    {
+      "idSesion": 112362,
+      "horaInicio": "10:00",
+      "horaFin": "09:49"
+    }
+  ]
+}
