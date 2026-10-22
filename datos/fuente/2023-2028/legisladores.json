@@ -1,0 +1,2862 @@
+[
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "silvio-adalberto-ovelar-benitez",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Ovelar Benítez",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101339",
+    "bancada": "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO (ANR) - \"A\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101339.jpg",
+    "idLegislador": 101339,
+    "nombres": "Silvio Adalberto",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "enrique-salyn-concepcion-buzarquis-caceres",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Buzarquis Cáceres",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101340",
+    "bancada": "PARTIDO LIBERAL RADICAL AUTÉNTICO (PLRA) - VERDADERO LIBERALISMO",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "LIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101340.jpg",
+    "idLegislador": 101340,
+    "nombres": "Enrique Salyn Concepción",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "derlis-hernan-maidana-zarza",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Maidana Zarza",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101341",
+    "bancada": "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO (ANR) - \"A\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101341.jpg",
+    "idLegislador": 101341,
+    "nombres": "Derlis Hernán",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "juan-carlos-baruja-fernandez",
+      "vigente": false
+    },
+    "activo": false,
+    "apellidos": "Baruja Fernández",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101342",
+    "bancada": "",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101342.jpg",
+    "idLegislador": 101342,
+    "nombres": "Juan Carlos",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "sergio-roberto-rojas-sosa",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Rojas Sosa",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101343",
+    "bancada": "PARTIDO LIBERAL RADICAL AUTÉNTICO (PLRA) \"D\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "LIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101343.jpg",
+    "idLegislador": 101343,
+    "nombres": "Sergio Roberto",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "ramona-yolanda-paredes",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Paredes",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101344",
+    "bancada": "CRUZADA NACIONAL",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "LIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101344.jpg",
+    "idLegislador": 101344,
+    "nombres": "Ramona Yolanda",
+    "partidoPolitico": "Partido Cruzada Nacional",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "luis-alberto-pettengill-vacca",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Pettengill Vacca",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101345",
+    "bancada": "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO (ANR) - INDEPENDIENTE \"B\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "SECRETARIO",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101345.jpg",
+    "idLegislador": 101345,
+    "nombres": "Luis Alberto",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "derlis-ariel-alejandro-osorio-nunes",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Osorio Nunes",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101346",
+    "bancada": "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO (ANR) - BERNARDINO CABALLERO",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "VICELIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101346.jpg",
+    "idLegislador": 101346,
+    "nombres": "Derlis Ariel Alejandro",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "edgar-idalino-lopez-ruiz",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "López Ruíz",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101347",
+    "bancada": "PARTIDO LIBERAL RADICAL AUTÉNTICO (PLRA) \"E\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "LIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101347.jpg",
+    "idLegislador": 101347,
+    "nombres": "Edgar Idalino",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "oscar-ruben-salomon-fernandez",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Salomón Fernández",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101348",
+    "bancada": "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO (ANR) - INDEPENDIENTE \"B\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "VICELIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101348.jpg",
+    "idLegislador": 101348,
+    "nombres": "Oscar Rubén",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "regina-lizarella-valiente-de-rodriguez",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Valiente de Rodríguez",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101349",
+    "bancada": "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO (ANR) - \"A\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "VICELIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101349.jpg",
+    "idLegislador": 101349,
+    "nombres": "Regina Lizarella",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "celeste-josefina-amarilla-vda-de-boccia",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Amarilla Vda. de Boccia",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101350",
+    "bancada": "PARTIDO LIBERAL RADICAL AUTENTICO (PLRA) \"A\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101350.jpg",
+    "idLegislador": 101350,
+    "nombres": "Celeste Josefina",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "rafael-esquivel",
+      "vigente": false
+    },
+    "activo": false,
+    "apellidos": "Esquivel",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101351",
+    "bancada": "",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/noimage.jpg",
+    "idLegislador": 101351,
+    "nombres": "Rafael",
+    "partidoPolitico": "Partido Cruzada Nacional",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "lilian-graciela-samaniego-gonzalez",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Samaniego González",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101352",
+    "bancada": "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO (ANR) - INDEPENDIENTE \"A\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101352.jpg",
+    "idLegislador": 101352,
+    "nombres": "Lilian Graciela",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "kattya-mabel-gonzalez-villanueva",
+      "vigente": false
+    },
+    "activo": false,
+    "apellidos": "González Villanueva",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101353",
+    "bancada": "PARTIDO ENCUENTRO NACIONAL (PEN)",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "LIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101353.jpg",
+    "idLegislador": 101353,
+    "nombres": "Kattya Mabel",
+    "partidoPolitico": "Partido Encuentro Nacional PEN",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "carlos-nunez-aguero",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Núñez Agüero",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101354",
+    "bancada": "ASOCIACIÓN NACIONAL REPUBLICANA - \"11 DE SETIEMBRE\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "VICELIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101354.jpg",
+    "idLegislador": 101354,
+    "nombres": "Carlos",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "ever-federico-villalba-benitez",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Villalba Benítez",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101355",
+    "bancada": "PARTIDO LIBERAL RADICAL AUTENTICO (PLRA) \"A\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "VICELIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101355.jpg",
+    "idLegislador": 101355,
+    "nombres": "Ever Federico",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "mario-alberto-varela-cardozo",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Varela Cardozo",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101356",
+    "bancada": "ASOCIACIÓN NACIONAL REPUBLICANA (ANR) - AÑETETE",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "LIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101356.jpg",
+    "idLegislador": 101356,
+    "nombres": "Mario Alberto",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "arnaldo-samaniego-gonzalez",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Samaniego González",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101357",
+    "bancada": "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO (ANR) - INDEPENDIENTE \"A\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "VICELIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101357.jpg",
+    "idLegislador": 101357,
+    "nombres": "Arnaldo",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "eduardo-hirohito-nakayama-rojas",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Nakayama Rojas",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101358",
+    "bancada": "LIBERAL INDEPENDIENTE",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "LIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101358.jpg",
+    "idLegislador": 101358,
+    "nombres": "Eduardo Hirohito",
+    "partidoPolitico": "Independiente A",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "jose-daniel-oviedo-antunez",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Oviedo Antúnez",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101359",
+    "bancada": "CONCIENCIA DEMOCRÁTICA NACIONAL - \"YO CREO\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "VICELIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101359.jpg",
+    "idLegislador": 101359,
+    "nombres": "José Daniel",
+    "partidoPolitico": "Movimiento Conciencia Democrática Nacional",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "carlos-alcibiades-gimenez-diaz",
+      "vigente": false
+    },
+    "activo": false,
+    "apellidos": "Giménez Díaz",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101360",
+    "bancada": "",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101360.jpg",
+    "idLegislador": 101360,
+    "nombres": "Carlos Alcibiades",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "basilio-gustavo-nunez-gimenez",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Núñez Giménez",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101361",
+    "bancada": "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO (ANR) - \"A\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101361.jpg",
+    "idLegislador": 101361,
+    "nombres": "Basilio Gustavo",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "rafael-augusto-filizzola-serra",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Filizzola Serra",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101362",
+    "bancada": "PARTIDO DEMOCRÁTICO PROGRESISTA (PDP)",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "LIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101362.jpg",
+    "idLegislador": 101362,
+    "nombres": "Rafael Augusto",
+    "partidoPolitico": "Partido Democrático Progresista PDP",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "natalicio-esteban-chase-acosta",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Chase Acosta",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101363",
+    "bancada": "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO (ANR) - \"A\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "LIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101363.jpg",
+    "idLegislador": 101363,
+    "nombres": "Natalicio Esteban",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "colym-gregorio-soroka-benitez",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Soroka Benítez",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101364",
+    "bancada": "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO (ANR) - BERNARDINO CABALLERO",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "LIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101364.jpg",
+    "idLegislador": 101364,
+    "nombres": "Colym Gregorio",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "hermelinda-alvarenga-de-ortega",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Alvarenga de Ortega",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101365",
+    "bancada": "PARTIDO LIBERAL RADICAL AUTENTICO (PLRA) \"B\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "LIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101365.jpg",
+    "idLegislador": 101365,
+    "nombres": "Hermelinda",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "zenaida-concepcion-delgado-benitez",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Delgado Benítez",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101366",
+    "bancada": "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO (ANR) - \"A\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101366.jpg",
+    "idLegislador": 101366,
+    "nombres": "Zenaida Concepción",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "erico-galeano-segovia",
+      "vigente": false
+    },
+    "activo": false,
+    "apellidos": "Galeano Segovia",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101367",
+    "bancada": "ASOCIACIÓN NACIONAL REPUBLICANA - \"11 DE SETIEMBRE\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101367.jpg",
+    "idLegislador": 101367,
+    "nombres": "Erico",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "jose-gregorio-ledesma-narvaez",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Ledesma Narváez",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101368",
+    "bancada": "PARTIDO LIBERAL RADICAL AUTENTICO (PLRA) \"A\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "LIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101368.jpg",
+    "idLegislador": 101368,
+    "nombres": "José Gregorio",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "hernan-david-rivas-roman",
+      "vigente": false
+    },
+    "activo": false,
+    "apellidos": "Rivas Román",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101369",
+    "bancada": "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO (ANR) - \"A\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101369.jpg",
+    "idLegislador": 101369,
+    "nombres": "Hernán David",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "patrick-paul-kemper-thiede",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Kemper Thiede",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101370",
+    "bancada": "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO (ANR) - ACCIÓN CIUDADANA",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "LIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101370.jpg",
+    "idLegislador": 101370,
+    "nombres": "Patrick Paul",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "enrique-riera-escudero",
+      "vigente": false
+    },
+    "activo": false,
+    "apellidos": "Riera Escudero",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101371",
+    "bancada": "",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101371.jpg",
+    "idLegislador": 101371,
+    "nombres": "Enrique",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "orlando-penner-durksen",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Penner Dürksen",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101372",
+    "bancada": "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO - INDEPENDIENTE",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "LIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101372.jpg",
+    "idLegislador": 101372,
+    "nombres": "Orlando",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "dionisio-oswaldo-amarilla-guirland",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Amarilla Guirland",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101373",
+    "bancada": "PARTIDO LIBERAL RADICAL AUTÉNTICO (PLRA) – ELIGIO AYALA",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "LIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101373.jpg",
+    "idLegislador": 101373,
+    "nombres": "Dionisio Oswaldo",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "pedro-alejandro-diaz-veron",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Díaz Verón",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101374",
+    "bancada": "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO (ANR) - \"A\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101374.jpg",
+    "idLegislador": 101374,
+    "nombres": "Pedro Alejandro",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "norma-beatriz-aquino-luraghi",
+      "vigente": false
+    },
+    "activo": false,
+    "apellidos": "Aquino Luraghi",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101375",
+    "bancada": "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO (ANR) - \"A\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101375.jpg",
+    "idLegislador": 101375,
+    "nombres": "Norma Beatriz",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "ernesto-javier-zacarias-irun",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Zacarías Irún",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101376",
+    "bancada": "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO (ANR) - \"A\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101376.jpg",
+    "idLegislador": 101376,
+    "nombres": "Ernesto Javier",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "lider-santiago-amarilla-rios",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Amarilla Ríos",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101377",
+    "bancada": "PARTIDO LIBERAL RADICAL AUTÉNTICO (PLRA) - 18 DE OCTUBRE",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "LIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101377.jpg",
+    "idLegislador": 101377,
+    "nombres": "Lider Santiago",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "juan-eudes-afara-maciel",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Afara Maciel",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101378",
+    "bancada": "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO (ANR) - INDEPENDIENTE \"A\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "LIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101378.jpg",
+    "idLegislador": 101378,
+    "nombres": "Juan Eudes",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "esperanza-martinez-de-portillo",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Martínez de Portillo",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101379",
+    "bancada": "PARTIDO PARTICIPACIÓN CIUDADANA (PPC)",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "LIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101379.jpg",
+    "idLegislador": 101379,
+    "nombres": "Esperanza",
+    "partidoPolitico": "Partido Participación Ciudadana",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "blanca-margarita-ovelar-de-duarte",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Ovelar de Duarte",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101380",
+    "bancada": "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO (ANR) - INDEPENDIENTE \"B\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "LIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101380.jpg",
+    "idLegislador": 101380,
+    "nombres": "Blanca Margarita",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "lourdes-noelia-cabrera-petters",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Cabrera Petters",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101381",
+    "bancada": "PARTIDO LIBERAL RADICAL AUTENTICO (PLRA) \"B\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101381.jpg",
+    "idLegislador": 101381,
+    "nombres": "Lourdes Noelia",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "gustavo-alfredo-leite-gusinky",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Leite Gusinky",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101382",
+    "bancada": "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO (ANR) - \"A\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101382.jpg",
+    "idLegislador": 101382,
+    "nombres": "Gustavo Alfredo",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "antonio-ruben-velazquez-chamorro",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Velázquez Chamorro",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101383",
+    "bancada": "CONCIENCIA DEMOCRÁTICA NACIONAL - \"YO CREO\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "LIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101383.jpg",
+    "idLegislador": 101383,
+    "nombres": "Antonio Rubén",
+    "partidoPolitico": "Movimiento Conciencia Democrática Nacional",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "raul-luis-latorre-martinez",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "LATORRE MARTÍNEZ",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101385",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "CAPITAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101385.jpg",
+    "idLegislador": 101385,
+    "nombres": "RAÚL LUIS",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "daniel-fernando-centurion-gonzalez",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "CENTURIÓN GONZÁLEZ",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101386",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - C \"COLORADO AÑETETÉ\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "LIDER",
+    "departamento": "CAPITAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101386.jpg",
+    "idLegislador": 101386,
+    "nombres": "DANIEL FERNANDO",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "mauricio-fabian-espinola-nunez",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "ESPÍNOLA NÚÑEZ",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101387",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - C \"COLORADO AÑETETÉ\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "CAPITAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101387.jpg",
+    "idLegislador": 101387,
+    "nombres": "MAURICIO FABIAN",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "hilda-maria-del-rocio-vallejo-avalos",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "VALLEJO ÁVALOS",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101389",
+    "bancada": "BANCADA DEL PARTIDO PATRIA QUERIDA - PPQ",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "LIDER",
+    "departamento": "CAPITAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101389.jpg",
+    "idLegislador": 101389,
+    "nombres": "HILDA MARÍA DEL ROCÍO",
+    "partidoPolitico": "Partido Patria Querida PPQ",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "jose-ramon-rodriguez-maciel",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "RODRÍGUEZ MACIEL",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101390",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "CAPITAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101390.jpg",
+    "idLegislador": 101390,
+    "nombres": "JOSÉ RAMÓN",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "yamil-esgaib-mansia",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "ESGAIB MANSIA",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101391",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "VICELIDER",
+    "departamento": "CAPITAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101391.jpg",
+    "idLegislador": 101391,
+    "nombres": "YAMIL",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "hector-ruben-figueredo-notario",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "FIGUEREDO NOTARIO",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101392",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "VICELIDER",
+    "departamento": "PARAGUARÍ",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101392.jpg",
+    "idLegislador": 101392,
+    "nombres": "HÉCTOR RUBEN",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "virina-mauricia-villanueva-vda-de-pena",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "VILLANUEVA VDA DE PEÑA",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101393",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "CONCEPCION",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101393.jpg",
+    "idLegislador": 101393,
+    "nombres": "VIRINA MAURICIA",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "bettina-rosmary-aguilera-paniagua",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "AGUILERA PANIAGUA",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101394",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "ALTO PARANÁ",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101394.jpg",
+    "idLegislador": 101394,
+    "nombres": "BETTINA ROSMARY",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "emilio-pavon-doldan",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "PAVON DOLDAN",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101395",
+    "bancada": "BANCADA DEL PARTIDO LIBERAL RADICAL AUTÉNTICO PLRA - PL",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "CONCEPCION",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101395.jpg",
+    "idLegislador": 101395,
+    "nombres": "EMILIO",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "arturo-rene-urbieta-cuevas",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "URBIETA CUEVAS",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101396",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "CONCEPCION",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101396.jpg",
+    "idLegislador": 101396,
+    "nombres": "ARTURO RENE",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "leonardo-saiz-arce",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "SAIZ ARCE",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101397",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "SAN PEDRO",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101397.jpg",
+    "idLegislador": 101397,
+    "nombres": "LEONARDO",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "guillermo-ariel-rodriguez-dure",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "RODRÍGUEZ DÚRE",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101399",
+    "bancada": "BANCADA DEL MOVIMIENTO CONCIENCIA DEMOCRÁTICA NACIONAL -YO CREO",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "ALTO PARANÁ",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101399.jpg",
+    "idLegislador": 101399,
+    "nombres": "GUILLERMO ARIEL",
+    "partidoPolitico": "Movimiento Conciencia Democrática Nacional",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "miguel-martinez-nunez",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "MÁRTINEZ NÚÑEZ",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101402",
+    "bancada": "BANCADA DEL PARTIDO LIBERAL RADICAL AUTÉNTICO PLRA - PL",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "SECRETARIO",
+    "departamento": "ALTO PARANÁ",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101402.jpg",
+    "idLegislador": 101402,
+    "nombres": "MIGUEL",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "liz-cristina-acosta-britez",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "ACOSTA BRITEZ",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101403",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "ALTO PARANÁ",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101403.jpg",
+    "idLegislador": 101403,
+    "nombres": "LIZ CRISTINA",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "walter-hugo-garcia-mendez",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "GARCIA MENDEZ",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101404",
+    "bancada": "BANCADA DEL MOVIMIENTO CONCIENCIA DEMOCRÁTICA NACIONAL -YO CREO",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "ALTO PARANÁ",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101404.jpg",
+    "idLegislador": 101404,
+    "nombres": "WALTER HUGO",
+    "partidoPolitico": "Movimiento Conciencia Democrática Nacional",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "maria-rocio-abed-de-zacarias",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "ABED DE ZACARÍAS",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101405",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "ALTO PARANÁ",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101405.jpg",
+    "idLegislador": 101405,
+    "nombres": "MARÍA ROCÍO",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "juan-manuel-anazco-vera",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "AÑAZCO VERA",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101406",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - B",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "VICELIDER",
+    "departamento": "CENTRAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101406.jpg",
+    "idLegislador": 101406,
+    "nombres": "JUAN MANUEL",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "carmen-dejesus-gimenez-de-ovando",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "GIMENEZ DE OVANDO",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101407",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "SAN PEDRO",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101407.jpg",
+    "idLegislador": 101407,
+    "nombres": "CARMEN DEJESÚS",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "francisco-osvaldo-manuel-petersen-veiluva",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "PETERSEN VEILUVA",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101408",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - B",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "BOQUERÓN",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101408.jpg",
+    "idLegislador": 101408,
+    "nombres": "FRANCISCO OSVALDO MANUEL",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "jose-domingo-adorno-mazacotte",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "ADORNO MAZACOTTE",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101409",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "ALTO PARAGUAY",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101409.jpg",
+    "idLegislador": 101409,
+    "nombres": "JOSÉ DOMINGO",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "maria-ida-cattebeke-de-ortiz",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "CATTEBEKE DE ORTÍZ",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101410",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "PTE. HAYES",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101410.jpg",
+    "idLegislador": 101410,
+    "nombres": "MARÍA IDA",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "ruben-antonio-roussillon-blaires",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "ROUSSILLON BLAIRES",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101411",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - B",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "LIDER",
+    "departamento": "PTE. HAYES",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101411.jpg",
+    "idLegislador": 101411,
+    "nombres": "RUBEN ANTONIO",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "benjamin-cantero-ramirez",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "CANTERO RAMÍREZ",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101412",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "CANINDEYÚ",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101412.jpg",
+    "idLegislador": 101412,
+    "nombres": "BENJAMÍN",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "maria-cristina-villalba-de-abente",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "VILLALBA DE ABENTE",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101413",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "CANINDEYÚ",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101413.jpg",
+    "idLegislador": 101413,
+    "nombres": "MARÍA CRISTINA",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "juan-manuel-acevedo-ayala",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "ACEVEDO AYALA",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101414",
+    "bancada": "BANCADA DEL PARTIDO LIBERAL RADICAL AUTÉNTICO PLRA - A",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "AMAMBAY",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101414.jpg",
+    "idLegislador": 101414,
+    "nombres": "JUAN MANUEL",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "eulalio-gomes",
+      "vigente": false
+    },
+    "activo": false,
+    "apellidos": "GOMES",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101415",
+    "bancada": "",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "",
+    "departamento": "AMAMBAY",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101415.jpg",
+    "idLegislador": 101415,
+    "nombres": "EULALIO",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "luis-federico-benitez-cuevas",
+      "vigente": false
+    },
+    "activo": false,
+    "apellidos": "BENÍTEZ CUEVAS",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101416",
+    "bancada": "",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "",
+    "departamento": "ÑEEMBUCÚ",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101416.jpg",
+    "idLegislador": 101416,
+    "nombres": "LUIS FEDERICO",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "raul-antonio-benitez-talavera",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "BENÍTEZ TALAVERA",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101417",
+    "bancada": "PARTIDO ENCUENTRO NACIONAL \"PEN\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "LIDER",
+    "departamento": "CENTRAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101417.jpg",
+    "idLegislador": 101417,
+    "nombres": "RAÚL ANTONIO",
+    "partidoPolitico": "Partido Encuentro Nacional PEN",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "patricia-alexandra-zena-oviedo",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "ZENA OVIEDO",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101418",
+    "bancada": "PARTIDO CRUZADA NACIONAL \"CN\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "LIDER",
+    "departamento": "CENTRAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101418.jpg",
+    "idLegislador": 101418,
+    "nombres": "PATRICIA ALEXANDRA",
+    "partidoPolitico": "CRUZADA NACIONAL",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "pedro-ortiz-torres",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "ORTÍZ TORRES",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101420",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "CENTRAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101420.jpg",
+    "idLegislador": 101420,
+    "nombres": "PEDRO",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "diego-crispin-candia-melgarejo",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "CANDIA MELGAREJO",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101421",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "CENTRAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101421.jpg",
+    "idLegislador": 101421,
+    "nombres": "DIEGO CRISPIN",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "jorge-sebastian-barressi-mancia",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "BARRESSI MANCIA",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101423",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "SAN PEDRO",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101423.jpg",
+    "idLegislador": 101423,
+    "nombres": "JORGE SEBASTIAN",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "hugo-joel-meza",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "MEZA",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101424",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - B",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "CORDILLERA",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101424.jpg",
+    "idLegislador": 101424,
+    "nombres": "HUGO JOEL",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "roberto-eudez-gonzalez-segovia",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "GONZÁLEZ SEGOVIA",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101425",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - C \"COLORADO AÑETETÉ\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "VICELIDER",
+    "departamento": "CORDILLERA",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101425.jpg",
+    "idLegislador": 101425,
+    "nombres": "ROBERTO EUDEZ",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "edgar-milciades-chavez-brizuela",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "CHÁVEZ BRIZUELA",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101426",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "GUAIRÁ",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101426.jpg",
+    "idLegislador": 101426,
+    "nombres": "EDGAR MILCIADES",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "rodrigo-daniel-gamarra-krayacich",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "GAMARRA KRAYACICH",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101427",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "VICELIDER",
+    "departamento": "CENTRAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101427.jpg",
+    "idLegislador": 101427,
+    "nombres": "RODRIGO DANIEL",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "leidy-paola-galeano-chavez",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "GALEANO CHÁVEZ",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101428",
+    "bancada": "BANCADA DEL MOVIMIENTO CONCIENCIA DEMOCRÁTICA NACIONAL -YO CREO",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "LIDER",
+    "departamento": "CENTRAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101428.jpg",
+    "idLegislador": 101428,
+    "nombres": "LEIDY PAOLA",
+    "partidoPolitico": "Movimiento Conciencia Democrática Nacional",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "nestor-david-castellano-escobar",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "CASTELLANO ESCOBAR",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101429",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "CENTRAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101429.jpg",
+    "idLegislador": 101429,
+    "nombres": "NÉSTOR DAVID",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "orlando-gabriel-arevalo-zielanko",
+      "vigente": false
+    },
+    "activo": false,
+    "apellidos": "AREVALO ZIELANKO",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101430",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "CENTRAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101430.jpg",
+    "idLegislador": 101430,
+    "nombres": "ORLANDO GABRIEL",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "ruben-isaac-rubin-orrego",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "RUBIN ORREGO",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101431",
+    "bancada": "BANCADA INDEPENDIENTE",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "LIDER",
+    "departamento": "CENTRAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101431.jpg",
+    "idLegislador": 101431,
+    "nombres": "RUBEN ISAAC",
+    "partidoPolitico": "INDEPENDIENTE",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "gloria-maria-johana-vega-insfran",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "VEGA INSFRAN",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101434",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "CENTRAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101434.jpg",
+    "idLegislador": 101434,
+    "nombres": "GLORIA MARÍA JOHANA",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "jatar-eduardo-fernandez-safuan",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "FERNÁNDEZ SAFUAN",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101435",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - B",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "CENTRAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101435.jpg",
+    "idLegislador": 101435,
+    "nombres": "JATAR EDUARDO",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "carlos-alberto-nunez-salinas",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "NÚÑEZ SALINAS",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101436",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - B",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "CENTRAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101436.jpg",
+    "idLegislador": 101436,
+    "nombres": "CARLOS ALBERTO",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "jazmin-narvaez-osorio",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "NARVAEZ OSORIO",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101437",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "CENTRAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101437.jpg",
+    "idLegislador": 101437,
+    "nombres": "JAZMIN",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "roya-nigsa-torres-baez",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "TORRES BAÉZ",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101438",
+    "bancada": "BANCADA DEL PARTIDO LIBERAL RADICAL AUTÉNTICO PLRA - A",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "ALTO PARANÁ",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101438.jpg",
+    "idLegislador": 101438,
+    "nombres": "ROYA NIGSA",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "marcelo-rafael-salinas-gonzalez",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "SALINAS GONZÁLEZ",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101439",
+    "bancada": "BANCADA DEL PARTIDO LIBERAL RADICAL AUTÉNTICO PLRA - A",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "LIDER",
+    "departamento": "CENTRAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101439.jpg",
+    "idLegislador": 101439,
+    "nombres": "MARCELO RAFAEL",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "dalia-marlene-estigarribia",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "ESTIGARRIBIA",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101440",
+    "bancada": "BANCADA DEL PARTIDO LIBERAL RADICAL AUTÉNTICO PLRA - A",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "SECRETARIA",
+    "departamento": "CENTRAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101440.jpg",
+    "idLegislador": 101440,
+    "nombres": "DALIA MARLENE",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "rodrigo-daniel-blanco-amarilla",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "BLANCO AMARILLA",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101441",
+    "bancada": "BANCADA DEL PARTIDO LIBERAL RADICAL AUTÉNTICO PLRA - A",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "CENTRAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101441.jpg",
+    "idLegislador": 101441,
+    "nombres": "RODRIGO DANIEL",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "luis-federico-franco-alfaro",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "FRANCO ALFARO",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101442",
+    "bancada": "BANCADA DEL PARTIDO LIBERAL RADICAL AUTÉNTICO PLRA - PL",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "VICELIDER",
+    "departamento": "CENTRAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101442.jpg",
+    "idLegislador": 101442,
+    "nombres": "LUIS FEDERICO",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "pedro-jose-gomez-silva",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "GÓMEZ SILVA",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101443",
+    "bancada": "BANCADA DEL PARTIDO LIBERAL RADICAL AUTÉNTICO PLRA - PL",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "CENTRAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101443.jpg",
+    "idLegislador": 101443,
+    "nombres": "PEDRO JOSÉ",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "adrian-dario-billy-vaesken-vazquez",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "VAESKEN VÁZQUEZ",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101444",
+    "bancada": "BANCADA DEL PARTIDO LIBERAL RADICAL AUTÉNTICO PLRA - C",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "VICELIDER",
+    "departamento": "CENTRAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101444.jpg",
+    "idLegislador": 101444,
+    "nombres": "ADRIÁN DARÍO (BILLY)",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "diosnel-aguilera-rojas",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "AGUILERA ROJAS",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101445",
+    "bancada": "BANCADA DEL PARTIDO LIBERAL RADICAL AUTÉNTICO PLRA - C",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "ÑEEMBUCÚ",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101445.jpg",
+    "idLegislador": 101445,
+    "nombres": "DIOSNEL",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "cleto-marcelino-gimenez-gimenez",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "GIMENEZ GIMENEZ",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101446",
+    "bancada": "BANCADA DEL PARTIDO LIBERAL RADICAL AUTÉNTICO PLRA - A",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "CANINDEYÚ",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101446.jpg",
+    "idLegislador": 101446,
+    "nombres": "CLETO MARCELINO",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "johanna-paola-ortega-ghiringhelli",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "ORTEGA GHIRINGHELLI",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101447",
+    "bancada": "BANCADA PAIS SOLIDARIO",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "LIDER",
+    "departamento": "CAPITAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101447.jpg",
+    "idLegislador": 101447,
+    "nombres": "JOHANNA PAOLA",
+    "partidoPolitico": "Partido País Solidario PPS",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "ariel-villagra-sosa",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "VILLAGRA SOSA",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101448",
+    "bancada": "BANCADA DEL PARTIDO LIBERAL RADICAL AUTÉNTICO PLRA - A",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "SAN PEDRO",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101448.jpg",
+    "idLegislador": 101448,
+    "nombres": "ARIEL",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "pastor-alberto-vera-bejarano",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "VERA BEJARANO",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101449",
+    "bancada": "BANCADA DEL PARTIDO LIBERAL RADICAL AUTÉNTICO PLRA - A",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "SAN PEDRO",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101449.jpg",
+    "idLegislador": 101449,
+    "nombres": "PASTOR ALBERTO",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "graciela-aguilera-ruiz-diaz",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "AGUILERA RUIZ DIAZ",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101450",
+    "bancada": "BANCADA DEL PARTIDO LIBERAL RADICAL AUTÉNTICO PLRA - PL",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "CORDILLERA",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101450.jpg",
+    "idLegislador": 101450,
+    "nombres": "GRACIELA",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "carlos-maria-lopez-lopez",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "LÓPEZ LÓPEZ",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101451",
+    "bancada": "BANCADA DEL PARTIDO LIBERAL RADICAL AUTÉNTICO PLRA - PL",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "LIDER",
+    "departamento": "CORDILLERA",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101451.jpg",
+    "idLegislador": 101451,
+    "nombres": "CARLOS MARÍA",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "maria-constancia-benitez-de-benitez",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "BENÍTEZ DE BENÍTEZ",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101452",
+    "bancada": "BANCADA DEL PARTIDO LIBERAL RADICAL AUTÉNTICO PLRA - C",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "LIDER",
+    "departamento": "GUAIRÁ",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101452.jpg",
+    "idLegislador": 101452,
+    "nombres": "MARÍA CONSTANCIA",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "alejandro-dario-aguilera-elizaur",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "AGUILERA ELIZAUR",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101453",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "VICELIDER",
+    "departamento": "GUAIRÁ",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101453.jpg",
+    "idLegislador": 101453,
+    "nombres": "ALEJANDRO DARÍO",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "miguel-angel-del-puerto-silva",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "DEL PUERTO SILVA",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101454",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "LIDER",
+    "departamento": "CAAGUAZÚ",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101454.jpg",
+    "idLegislador": 101454,
+    "nombres": "MIGUEL ANGEL",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "alejo-rios-medina",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "RIOS MEDINA",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101455",
+    "bancada": "BANCADA DEL PARTIDO LIBERAL RADICAL AUTÉNTICO PLRA - PL",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "CAAGUAZÚ",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101455.jpg",
+    "idLegislador": 101455,
+    "nombres": "ALEJO",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "derlis-manuel-rodriguez-baez",
+      "vigente": false
+    },
+    "activo": false,
+    "apellidos": "RODRÍGUEZ BAEZ",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101456",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "CAAGUAZÚ",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101456.jpg",
+    "idLegislador": 101456,
+    "nombres": "DERLIS MANUEL",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "enrique-antonio-concepcion-buzarquis-caceres",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "BUZARQUIS CÁCERES",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101457",
+    "bancada": "BANCADA DEL PARTIDO LIBERAL RADICAL AUTÉNTICO PLRA - C",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "CAAGUAZÚ",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101457.jpg",
+    "idLegislador": 101457,
+    "nombres": "ENRIQUE ANTONIO CONCEPCIÓN",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "edgar-gustavo-olmedo-silva",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "OLMEDO SILVA",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101458",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - B",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "CAAGUAZÚ",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101458.jpg",
+    "idLegislador": 101458,
+    "nombres": "EDGAR GUSTAVO",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "carlos-marcial-godoy-garcia",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "GODOY GARCIA",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101459",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "CAAGUAZÚ",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101459.jpg",
+    "idLegislador": 101459,
+    "nombres": "CARLOS MARCIAL",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "avelino-davalos-estigarribia",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "DÁVALOS ESTIGARRIBIA",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101460",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "CAAZAPÁ",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101460.jpg",
+    "idLegislador": 101460,
+    "nombres": "AVELINO",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "juan-ramon-maciel-merlo",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "MACIEL MERLO",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101461",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - C \"COLORADO AÑETETÉ\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "CAAZAPÁ",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101461.jpg",
+    "idLegislador": 101461,
+    "nombres": "JUAN RAMÓN",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "walter-enrique-harms-cespedes",
+      "vigente": false
+    },
+    "activo": false,
+    "apellidos": "HARMS CÉSPEDES",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101462",
+    "bancada": "",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "",
+    "departamento": "ITAPÚA",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101462.jpg",
+    "idLegislador": 101462,
+    "nombres": "WALTER ENRIQUE",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "carlos-alberto-pereira-rieve",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "PEREIRA RIEVE",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101463",
+    "bancada": "BANCADA DEL PARTIDO LIBERAL RADICAL AUTÉNTICO PLRA - PL",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "ITAPÚA",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101463.jpg",
+    "idLegislador": 101463,
+    "nombres": "CARLOS ALBERTO",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "christian-gabriel-brunaga-rotela",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "BRUNAGA ROTELA",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101464",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "ITAPÚA",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101464.jpg",
+    "idLegislador": 101464,
+    "nombres": "CHRISTIAN GABRIEL",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "german-solinger-santander",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "SOLINGER SANTANDER",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101465",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "ITAPÚA",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101465.jpg",
+    "idLegislador": 101465,
+    "nombres": "GERMAN",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "del-pilar-vazquez-cabrera",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "VÁZQUEZ CABRERA",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101466",
+    "bancada": "BANCADA DEL PARTIDO LIBERAL RADICAL AUTÉNTICO PLRA - A",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "LIDER",
+    "departamento": "ITAPÚA",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101466.jpg",
+    "idLegislador": 101466,
+    "nombres": "DEL PILAR",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "cesar-ladislao-cerini-benitez",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "CERINI BENÍTEZ",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101467",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "ITAPÚA",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101467.jpg",
+    "idLegislador": 101467,
+    "nombres": "CÉSAR LADISLAO",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "carlos-maria-arrechea-ortiz",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "ARRECHEA ORTIZ",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101468",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - B",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "MISIONES",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101468.jpg",
+    "idLegislador": 101468,
+    "nombres": "CARLOS MARIA",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "arnaldo-agustin-valdez-noguera",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "VALDEZ NOGUERA",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101469",
+    "bancada": "BANCADA DEL PARTIDO LIBERAL RADICAL AUTÉNTICO PLRA - C",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "SECRETARIO",
+    "departamento": "MISIONES",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101469.jpg",
+    "idLegislador": 101469,
+    "nombres": "ARNALDO AGUSTÍN",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "esteban-martin-samaniego-alvarez",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "SAMANIEGO ÁLVAREZ",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101470",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "PARAGUARÍ",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101470.jpg",
+    "idLegislador": 101470,
+    "nombres": "ESTEBAN MARTIN",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "jorge-ramon-avalos-marino",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "ÁVALOS MARIÑO",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101471",
+    "bancada": "BANCADA DEL PARTIDO LIBERAL RADICAL AUTÉNTICO PLRA - A",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "VICELIDER",
+    "departamento": "PARAGUARÍ",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101471.jpg",
+    "idLegislador": 101471,
+    "nombres": "JORGE RAMÓN",
+    "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "luis-maria-gonzalez-vaesken",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "GONZÁLEZ VAESKEN",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101474",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - C \"COLORADO AÑETETÉ\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "ALTO PARANÁ",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101474.jpg",
+    "idLegislador": 101474,
+    "nombres": "LUIS MARÍA",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "antonio-carlos-barrios-fernandez",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Barrios Fernández",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101475",
+    "bancada": "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO (ANR) - \"A\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "VICELIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101475.jpg",
+    "idLegislador": 101475,
+    "nombres": "Antonio Carlos",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "SUPLENTE"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "javier-odilon-vera-medina",
+      "vigente": false
+    },
+    "activo": false,
+    "apellidos": "Vera Medina",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101476",
+    "bancada": "",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101476.jpg",
+    "idLegislador": 101476,
+    "nombres": "Javier Odilón",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "ramon-catalino-retamozo-delgado",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Retamozo Delgado",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101477",
+    "bancada": "ASOCIACIÓN NACIONAL REPUBLICANA - INDEPENDIENTE \"RR\" (RENOVACIÓN REPUBLICANA)",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101477.jpg",
+    "idLegislador": 101477,
+    "nombres": "Ramón Catalino",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "SUPLENTE"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "maria-fabiana-souto-de-alliana",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "SOUTO DE ALLIANA",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101480",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "ÑEEMBUCÚ",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101480.jpg",
+    "idLegislador": 101480,
+    "nombres": "MARÍA FABIANA",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "SUPLENTE"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "juan-carlos-luis-galaverna-ortega",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Galaverna Ortega",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101484",
+    "bancada": "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO (ANR) - \"A\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "VICELIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101484.jpg",
+    "idLegislador": 101484,
+    "nombres": "Juan Carlos Luis",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "SUPLENTE"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "julio-rolando-gonzalez-gimenez",
+      "vigente": false
+    },
+    "activo": false,
+    "apellidos": "GONZÁLEZ GIMENEZ",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101494",
+    "bancada": "",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "",
+    "departamento": "CAPITAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101494.jpg",
+    "idLegislador": 101494,
+    "nombres": "JULIO ROLANDO",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "sebastian-emilio-remesowski-squef",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "REMESOWSKI SQUEF",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101504",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "ITAPÚA",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101504.jpg",
+    "idLegislador": 101504,
+    "nombres": "SEBASTIÁN EMILIO",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "ignacio-iramain-chilavert",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Iramain Chilavert",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101514",
+    "bancada": "PARTIDO ENCUENTRO NACIONAL (PEN)",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "LIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101514.jpg",
+    "idLegislador": 101514,
+    "nombres": "Ignacio",
+    "partidoPolitico": "Partido Encuentro Nacional PEN",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "SUPLENTE"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "juan-carlos-wasmosy-monti",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Wasmosy Monti",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101524",
+    "bancada": "",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101524.jpg",
+    "idLegislador": 101524,
+    "nombres": "Juan Carlos",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "VITALICIO"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "mario-abdo-benitez",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Abdo Benítez",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101534",
+    "bancada": "",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101534.jpg",
+    "idLegislador": 101534,
+    "nombres": "Mario",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "VITALICIO"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "santiago-alfredo-benitez-caceres",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Benítez Cáceres",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101554",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - B",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "AMAMBAY",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101554.jpg",
+    "idLegislador": 101554,
+    "nombres": "Santiago Alfredo",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "SUPLENTE"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "saul-gonzalez-rojas",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "González Rojas",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101564",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "CENTRAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101564.jpg",
+    "idLegislador": 101564,
+    "nombres": "Saúl",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "alfonso-noria-duarte",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Noria Duarte",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101574",
+    "bancada": "ASOCIACIÓN NACIONAL REPUBLICANA - \"11 DE SETIEMBRE\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "LIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101574.jpg",
+    "idLegislador": 101574,
+    "nombres": "Alfonso",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "SUPLENTE"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "david-manuel-jara-espinoza",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Jara Espinoza",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101584",
+    "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+    "camaraParlamentario": "CAMARA DE DIPUTADOS",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "CAAGUAZÚ",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101584.jpg",
+    "idLegislador": 101584,
+    "nombres": "David Manuel",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "TITULAR"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "walter-janusz-ricardo-kobylanski-brandhuber",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Kobylanski Brandhuber",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101594",
+    "bancada": "BANCADA INDEPENDIENTE",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "LIDER",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101594.jpg",
+    "idLegislador": 101594,
+    "nombres": "Walter Janusz Ricardo",
+    "partidoPolitico": "Partido Cruzada Nacional",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "SUPLENTE"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "gladys-lucia-mendoza-de-esparza",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Mendoza de Esparza",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101595",
+    "bancada": "CRUZADA NACIONAL",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101595.jpg",
+    "idLegislador": 101595,
+    "nombres": "Gladys Lucía",
+    "partidoPolitico": "Partido Cruzada Nacional",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "SUPLENTE"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "guadalupe-aveiro-solis",
+      "vigente": true
+    },
+    "activo": true,
+    "apellidos": "Aveiro Solis",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101604",
+    "bancada": "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO (ANR) - \"A\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101604.jpg",
+    "idLegislador": 101604,
+    "nombres": "Guadalupe",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "SUPLENTE"
+  },
+  {
+    "_propio": {
+      "fuenteRegistro": "legislador?idCamara=A",
+      "slug": "carlos-augusto-liseras-osorio",
+      "vigente": false
+    },
+    "activo": false,
+    "apellidos": "Liseras Osorio",
+    "appURL": "https://silpy.congreso.gov.py/legislador/101614",
+    "bancada": "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO (ANR) - \"A\"",
+    "camaraParlamentario": "CAMARA DE SENADORES",
+    "cargoBancada": "MIEMBRO",
+    "departamento": "NACIONAL",
+    "fotoURL": "https://silpy.congreso.gov.py/images/101614.jpg",
+    "idLegislador": 101614,
+    "nombres": "Carlos Augusto",
+    "partidoPolitico": "Asociación Nacional Republicana ANR",
+    "periodoLegislativo": "2023-2028",
+    "tipoParlamentario": "SUPLENTE"
+  }
+]

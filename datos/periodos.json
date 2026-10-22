@@ -1,0 +1,36 @@
+{
+  "periodos": [
+    {
+      "fechaFin": "2028-06-30",
+      "fechaInicio": "2023-07-01",
+      "id": "2023-2028",
+      "periodosParlamentarios": [
+        {
+          "fechaFin": "2024-06-30",
+          "fechaInicio": "2023-07-01",
+          "idPeriodoParlamentario": 100217,
+          "periodoParlamentario": "2023-2024"
+        },
+        {
+          "fechaFin": "2025-06-30",
+          "fechaInicio": "2024-07-01",
+          "idPeriodoParlamentario": 100237,
+          "periodoParlamentario": "2024-2025"
+        },
+        {
+          "fechaFin": "2026-06-30",
+          "fechaInicio": "2025-07-01",
+          "idPeriodoParlamentario": 100257,
+          "periodoParlamentario": "2025-2026"
+        },
+        {
+          "fechaFin": "2027-06-30",
+          "fechaInicio": "2026-07-01",
+          "idPeriodoParlamentario": 100267,
+          "periodoParlamentario": "2026-2027"
+        }
+      ],
+      "vigente": true
+    }
+  ]
+}

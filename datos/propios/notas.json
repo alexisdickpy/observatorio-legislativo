@@ -1,0 +1,140 @@
+{
+  "notas": [
+    {
+      "detalle": "La API no devolvió adjuntos para el proyecto 139001.",
+      "entidad": "ley",
+      "id": 145703,
+      "origen": "importador",
+      "periodoLegislativo": "2023-2028",
+      "tipo": "proyecto_sin_adjuntos"
+    },
+    {
+      "detalle": "Tiene 43 votos individuales y la cámara tiene 45 miembros con voto.",
+      "entidad": "votacion",
+      "id": 104206,
+      "origen": "importador",
+      "periodoLegislativo": "2023-2028",
+      "tipo": "menos_votos_que_miembros"
+    },
+    {
+      "detalle": "Tiene 43 votos individuales y la cámara tiene 45 miembros con voto.",
+      "entidad": "votacion",
+      "id": 104207,
+      "origen": "importador",
+      "periodoLegislativo": "2023-2028",
+      "tipo": "menos_votos_que_miembros"
+    },
+    {
+      "detalle": "Tiene 43 votos individuales y la cámara tiene 45 miembros con voto.",
+      "entidad": "votacion",
+      "id": 104208,
+      "origen": "importador",
+      "periodoLegislativo": "2023-2028",
+      "tipo": "menos_votos_que_miembros"
+    },
+    {
+      "detalle": "Tiene 43 votos individuales y la cámara tiene 45 miembros con voto.",
+      "entidad": "votacion",
+      "id": 104210,
+      "origen": "importador",
+      "periodoLegislativo": "2023-2028",
+      "tipo": "menos_votos_que_miembros"
+    },
+    {
+      "detalle": "Tiene 44 votos individuales y la cámara tiene 45 miembros con voto.",
+      "entidad": "votacion",
+      "id": 104218,
+      "origen": "importador",
+      "periodoLegislativo": "2023-2028",
+      "tipo": "menos_votos_que_miembros"
+    },
+    {
+      "detalle": "Tiene 44 votos individuales y la cámara tiene 45 miembros con voto.",
+      "entidad": "votacion",
+      "id": 104240,
+      "origen": "importador",
+      "periodoLegislativo": "2023-2028",
+      "tipo": "menos_votos_que_miembros"
+    },
+    {
+      "detalle": "Tiene 44 votos individuales y la cámara tiene 45 miembros con voto.",
+      "entidad": "votacion",
+      "id": 104425,
+      "origen": "importador",
+      "periodoLegislativo": "2023-2028",
+      "tipo": "menos_votos_que_miembros"
+    },
+    {
+      "detalle": "Tiene 44 votos individuales y la cámara tiene 45 miembros con voto.",
+      "entidad": "votacion",
+      "id": 104427,
+      "origen": "importador",
+      "periodoLegislativo": "2023-2028",
+      "tipo": "menos_votos_que_miembros"
+    },
+    {
+      "detalle": "Tiene 44 votos individuales y la cámara tiene 45 miembros con voto.",
+      "entidad": "votacion",
+      "id": 104429,
+      "origen": "importador",
+      "periodoLegislativo": "2023-2028",
+      "tipo": "menos_votos_que_miembros"
+    },
+    {
+      "detalle": "Tiene 44 votos individuales y la cámara tiene 45 miembros con voto.",
+      "entidad": "votacion",
+      "id": 104431,
+      "origen": "importador",
+      "periodoLegislativo": "2023-2028",
+      "tipo": "menos_votos_que_miembros"
+    },
+    {
+      "detalle": "Tiene 79 votos individuales y la cámara tiene 80 miembros con voto.",
+      "entidad": "votacion",
+      "id": 104505,
+      "origen": "importador",
+      "periodoLegislativo": "2023-2028",
+      "tipo": "menos_votos_que_miembros"
+    },
+    {
+      "detalle": "Tiene 79 votos individuales y la cámara tiene 80 miembros con voto.",
+      "entidad": "votacion",
+      "id": 104506,
+      "origen": "importador",
+      "periodoLegislativo": "2023-2028",
+      "tipo": "menos_votos_que_miembros"
+    },
+    {
+      "detalle": "Tiene 79 votos individuales y la cámara tiene 80 miembros con voto.",
+      "entidad": "votacion",
+      "id": 104507,
+      "origen": "importador",
+      "periodoLegislativo": "2023-2028",
+      "tipo": "menos_votos_que_miembros"
+    },
+    {
+      "detalle": "Tiene 44 votos individuales y la cámara tiene 45 miembros con voto.",
+      "entidad": "votacion",
+      "id": 107726,
+      "origen": "importador",
+      "periodoLegislativo": "2023-2028",
+      "tipo": "menos_votos_que_miembros"
+    },
+    {
+      "detalle": "Tiene 44 votos individuales y la cámara tiene 45 miembros con voto.",
+      "entidad": "votacion",
+      "id": 108335,
+      "origen": "importador",
+      "periodoLegislativo": "2023-2028",
+      "tipo": "menos_votos_que_miembros"
+    },
+    {
+      "detalle": "Tiene 44 votos individuales y la cámara tiene 45 miembros con voto.",
+      "entidad": "votacion",
+      "id": 109375,
+      "origen": "importador",
+      "periodoLegislativo": "2023-2028",
+      "tipo": "menos_votos_que_miembros"
+    }
+  ]
+}
