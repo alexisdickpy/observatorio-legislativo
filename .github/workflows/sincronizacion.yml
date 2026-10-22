@@ -1,0 +1,123 @@
+# Sincronización automática de datos/ con la API del Congreso.
+#
+# - Lunes a sábado, incremental: leyes del período completas, votaciones nuevas y detalle
+#   solo de los proyectos nuevos (unas 20 consultas). Reutiliza las respuestas guardadas en la
+#   caché de GitHub Actions; si la caché no está, descarga todo.
+# - Domingos, completa: vuelve a descargar todo (unas 1.160 consultas) para detectar
+#   correcciones en registros que ya existían.
+# - También se puede lanzar a mano desde la pestaña Actions ("Run workflow").
+#
+# Si la API falla o devuelve datos incompletos, no se confirma ningún dato: el sitio sigue con
+# la última copia válida, el error queda anotado en datos/sincronizaciones.json y la ejecución
+# se marca como fallida (GitHub avisa por correo).
+
+name: Sincronización de datos
+
+on:
+  schedule:
+    - cron: "23 7 * * 1-6" # incremental: lunes a sábado, 04:23 en Paraguay (UTC-3)
+    - cron: "41 6 * * 0" # completa: domingos, 03:41 en Paraguay
+  workflow_dispatch:
+    inputs:
+      modo:
+        description: "Modo de la sincronización"
+        type: choice
+        options: [incremental, completo]
+        default: incremental
+      permitir_disminucion:
+        description: "Aceptar que alguna cantidad baje más de un 5 % (solo si se comprobó que la baja es real)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sincronizacion
+  cancel-in-progress: false
+
+jobs:
+  sincronizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Recuperar las respuestas guardadas de la API
+        uses: actions/cache/restore@v6
+        with:
+          path: tmp/importador/crudo
+          key: crudo-${{ github.run_id }}
+          restore-keys: crudo-
+
+      - name: Importar
+        id: importar
+        continue-on-error: true
+        env:
+          MODO: ${{ github.event.schedule == '41 6 * * 0' && 'completo' || inputs.modo || 'incremental' }}
+          PERMITIR: ${{ inputs.permitir_disminucion && '--permitir-disminucion' || '' }}
+        run: |
+          set -o pipefail
+          mkdir -p tmp
+          python3 -m importador --modo "$MODO" $PERMITIR 2>&1 | tee tmp/resumen.txt
+
+      - name: Resumen
+        if: ${{ !cancelled() }}
+        run: |
+          {
+            echo '```'
+            sed -n '/=== Resumen/,$p;/ERROR/p;/AVISO/p' tmp/resumen.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Guardar las respuestas de la API para la próxima ejecución
+        if: ${{ !cancelled() && hashFiles('tmp/importador/crudo/*.json') != '' }}
+        uses: actions/cache/save@v6
+        with:
+          path: tmp/importador/crudo
+          key: crudo-${{ github.run_id }}-${{ github.run_attempt }}
+
+      - name: Confirmar en main
+        if: ${{ !cancelled() }}
+        env:
+          RESULTADO: ${{ steps.importar.outcome }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ "$RESULTADO" = "success" ]; then
+            git add datos
+          else
+            # Ante un error no se confirma ningún dato, solo la anotación del error.
+            git add datos/sincronizaciones.json
+          fi
+          if git diff --cached --quiet; then
+            echo "Nada que confirmar."
+            exit 0
+          fi
+          python3 - > tmp/mensaje.txt <<'PY'
+          import json
+          r = json.load(open("datos/sincronizaciones.json", encoding="utf-8"))["sincronizaciones"][0]
+          if r["resultado"] != "correcta":
+              print(f"Sincronización {r['modo']}: error, datos sin cambios\n\n{r['error']}")
+          else:
+              datos = [a for a in r["archivosModificados"]]
+              print(f"Sincronización {r['modo']}: " + ("datos actualizados" if datos else "sin novedades"))
+              if datos:
+                  print()
+                  for entidad, c in r["cambios"].items():
+                      print(f"{entidad}: {c['agregados']} agregados, {c['modificados']} modificados, {c['eliminados']} eliminados")
+                  if r["leyesNuevas"]:
+                      print("Leyes nuevas: " + ", ".join(l["numeroLey"] for l in r["leyesNuevas"]))
+          PY
+          git commit -q -F tmp/mensaje.txt
+          for intento in 1 2 3; do
+            git push && exit 0
+            git pull --rebase
+          done
+          exit 1
+
+      - name: Marcar la ejecución como fallida
+        if: ${{ steps.importar.outcome == 'failure' }}
+        run: |
+          echo "::error::La sincronización falló. No se confirmó ningún dato: el sitio sigue con la última copia válida. El detalle está en el paso Importar y en datos/sincronizaciones.json."
+          exit 1
