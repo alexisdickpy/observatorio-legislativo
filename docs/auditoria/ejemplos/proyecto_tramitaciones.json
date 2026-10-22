@@ -1,0 +1,83 @@
+{
+  "idProyecto": 150168,
+  "appURL": "https://silpy.congreso.gov.py/expediente/150168",
+  "acapite": "Mensaje del Poder Ejecutivo N.º 349.- Ministerio de Relaciones Exteriores, de fecha 27 de noviembre de 2025, por el cual remite el Proyecto de Ley “ACUERDO MERCOSUR DE COPRODUCCIÓN CINEMATOGRÁFICA Y AUDIOVISUAL”, suscrito el 7 de julio de 2024. ",
+  "expedienteCamara": "S-2503085",
+  "fechaIngresoExpediente": "27/11/2025",
+  "origenProyecto": "CAMARA DE SENADORES",
+  "tipoProyecto": "PROYECTO DE LEY",
+  "descripcionEtapa": "TRAMITACIÓN TERMINADA",
+  "descripcionSubEtapa": "/",
+  "iniciativa": "PODER EJECUTIVO",
+  "urgencia": "ORDINARIO",
+  "estadoProyecto": "PUBLICADO",
+  "autores": [],
+  "ministerios": [
+    "MINISTERIO DE RELACIONES EXTERIORES"
+  ],
+  "tramitaciones": [
+    {
+      "idTramitacion": 400776,
+      "numeroSesion": "",
+      "descripcionEtapa": "Primer trámite constitucional",
+      "descripcionSubEtapa": "Ingreso de Expediente",
+      "fechaTramite": "27/11/2025",
+      "camaraTramite": "CAMARA DE SENADORES",
+      "resultadoTramite": ""
+    },
+    {
+      "idTramitacion": 400778,
+      "numeroSesion": "145",
+      "descripcionEtapa": "Primer trámite constitucional",
+      "descripcionSubEtapa": "Entrada de Expediente",
+      "fechaTramite": "03/12/2025",
+      "camaraTramite": "CAMARA DE SENADORES",
+      "resultadoTramite": "PASA A COMISIÓN: Educación y Cultura - Industria y Comercio - Relaciones Exteriores y Asuntos Internacionales - Asuntos Constitucionales, Defensa Nacional y Fuerza Pública",
+      "idSesion": {
+        "idSesion": 111502,
+        "fechaSesion": "03/12/2025",
+        "horaInicio": "09:35",
+        "horaFin": "16:02",
+        "numeroSesion": "145",
+        "tipoSesion": "ORDINARIA",
+        "periodoParlamentarioDTO": {
+          "idPeriodoParlamentario": 100257,
+          "periodoParlamentario": "2025-2026",
+          "fechaInicio": "01/07/2025",
+          "fechaTermino": "30/06/2026",
+          "idPeriodoLegislativo": 100536,
+          "periodoLegislativo": "2023-2028"
+        },
+        "camaraSesion": "CAMARA DE SENADORES",
+        "appURL": "https://silpy.congreso.gov.py/sesion/111502"
+      }
+    },
+    {
+      "idTramitacion": 409913,
+      "numeroSesion": "",
+      "descripcionEtapa": "Primer trámite constitucional",
+      "descripcionSubEtapa": "Dictamen de Comisión",
+      "fechaTramite": "09/03/2026",
+      "camaraTramite": "CAMARA DE SENADORES",
+      "resultadoTramite": "Educación y Cultura"
+    }
+  ],
+  "adjuntosIniciativa": [
+    {
+      "idAdjunto": 188498,
+      "tipoAdjunto": "ANTECEDENTE",
+      "tipoArchivo": "application/pdf",
+      "infoAdjunto": "INICIATIVA",
+      "idProyecto": 150168,
+      "appURL": "https://datosv2.congreso.gov.py/opendata/descarga?id=iniciativa-188498"
+    },
+    {
+      "idAdjunto": 188499,
+      "tipoAdjunto": "PROYECTO",
+      "tipoArchivo": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "infoAdjunto": "INICIATIVA",
+      "idProyecto": 150168,
+      "appURL": "https://datosv2.congreso.gov.py/opendata/descarga?id=iniciativa-188499"
+    }
+  ]
+}

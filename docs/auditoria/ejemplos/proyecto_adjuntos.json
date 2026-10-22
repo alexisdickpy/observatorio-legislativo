@@ -1,0 +1,26 @@
+[
+  {
+    "idAdjunto": 188498,
+    "tipoAdjunto": "ANTECEDENTE",
+    "tipoArchivo": "application/pdf",
+    "infoAdjunto": "INICIATIVA",
+    "idProyecto": 150168,
+    "appURL": "https://datosv2.congreso.gov.py/opendata/descarga?id=iniciativa-188498"
+  },
+  {
+    "idAdjunto": 188499,
+    "tipoAdjunto": "PROYECTO",
+    "tipoArchivo": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "infoAdjunto": "INICIATIVA",
+    "idProyecto": 150168,
+    "appURL": "https://datosv2.congreso.gov.py/opendata/descarga?id=iniciativa-188499"
+  },
+  {
+    "idAdjunto": 146644,
+    "tipoAdjunto": "LEY",
+    "tipoArchivo": "application/pdf",
+    "infoAdjunto": "LEY",
+    "idProyecto": 150168,
+    "appURL": "https://datosv2.congreso.gov.py/opendata/descarga?id=ley-146644"
+  }
+]

@@ -1,0 +1,24 @@
+{
+  "idLey": 146644,
+  "appURL": "https://silpy.congreso.gov.py/ley/146644",
+  "numeroLey": "7689",
+  "fechaSancion": "06/07/2026",
+  "fechaPromulgacion": "31/07/2026",
+  "fechaPublicacion": "04/08/2026",
+  "observacionDecreto": "",
+  "tipoPromulgacion": "NORMAL",
+  "proyecto": {
+    "idProyecto": 150168,
+    "appURL": "https://silpy.congreso.gov.py/expediente/150168",
+    "acapite": "Mensaje del Poder Ejecutivo N.º 349.- Ministerio de Relaciones Exteriores, de fecha 27 de noviembre de 2025, por el cual remite el Proyecto de Ley “ACUERDO MERCOSUR DE COPRODUCCIÓN CINEMATOGRÁFICA Y AUDIOVISUAL”, suscrito el 7 de julio de 2024. ",
+    "expedienteCamara": "S-2503085",
+    "fechaIngresoExpediente": "27/11/2025",
+    "origenProyecto": "CAMARA DE SENADORES",
+    "tipoProyecto": "PROYECTO DE LEY",
+    "descripcionEtapa": "TRAMITACIÓN TERMINADA",
+    "descripcionSubEtapa": "/",
+    "iniciativa": "PODER EJECUTIVO",
+    "urgencia": "ORDINARIO",
+    "estadoProyecto": "PUBLICADO"
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "idVotacion": 108906,
+  "descripcion": "Consideración del Proyecto de Ley, “ACUERDO MERCOSUR DE COPRODUCCIÓN CINEMATOGRÁFICA Y\nAUDIOVISUAL”.",
+  "observacion": "(Si) Aprobación en general y en particular (No) Rechazo Resultado: Aprobado en general y en particular",
+  "tramitacion": {
+    "idTramitacion": 427517,
+    "numeroSesion": "76",
+    "descripcionEtapa": "Segundo trámite constitucional",
+    "descripcionSubEtapa": "Discusión Plenario",
+    "fechaTramite": "06/07/2026",
+    "camaraTramite": "CAMARA DE DIPUTADOS",
+    "resultadoTramite": "APROBADO",
+    "idSesion": {
+      "idSesion": 112192,
+      "fechaSesion": "06/07/2026",
+      "horaInicio": "14:00",
+      "horaFin": "11:48",
+      "numeroSesion": "76",
+      "tipoSesion": "EXTRAORDINARIA",
+      "periodoParlamentarioDTO": {
+        "idPeriodoParlamentario": 100267,
+        "periodoParlamentario": "2026-2027",
+        "fechaInicio": "01/07/2026",
+        "fechaTermino": "30/06/2027",
+        "idPeriodoLegislativo": 100536,
+        "periodoLegislativo": "2023-2028"
+      },
+      "camaraSesion": "CAMARA DE DIPUTADOS",
+      "appURL": "https://silpy.congreso.gov.py/sesion/112192"
+    }
+  },
+  "proyecto": {
+    "idProyecto": 150168,
+    "appURL": "https://silpy.congreso.gov.py/expediente/150168",
+    "acapite": "Mensaje del Poder Ejecutivo N.º 349.- Ministerio de Relaciones Exteriores, de fecha 27 de noviembre de 2025, por el cual remite el Proyecto de Ley “ACUERDO MERCOSUR DE COPRODUCCIÓN CINEMATOGRÁFICA Y AUDIOVISUAL”, suscrito el 7 de julio de 2024. ",
+    "expedienteCamara": "S-2503085",
+    "fechaIngresoExpediente": "27/11/2025",
+    "origenProyecto": "CAMARA DE SENADORES",
+    "tipoProyecto": "PROYECTO DE LEY",
+    "descripcionEtapa": "TRAMITACIÓN TERMINADA",
+    "descripcionSubEtapa": "/",
+    "iniciativa": "PODER EJECUTIVO",
+    "urgencia": "ORDINARIO",
+    "estadoProyecto": "PUBLICADO"
+  },
+  "appURL": "https://silpy.congreso.gov.py/votacion/108906",
+  "totalSI": 57,
+  "totalNO": 0,
+  "totalAbstencion": 0,
+  "totalAusente": 23,
+  "totalNoVota": 0,
+  "votaciones": [
+    {
+      "idDetalleVotacion": 313226,
+      "idVotacion": 108906,
+      "observacion": "",
+      "legislador": {
+        "idLegislador": 101405,
+        "apellidos": "ABED DE ZACARÍAS",
+        "nombres": "MARÍA ROCÍO",
+        "camaraParlamentario": "CAMARA DE DIPUTADOS",
+        "departamento": "ALTO PARANÁ",
+        "partidoPolitico": "Asociación Nacional Republicana ANR",
+        "periodoLegislativo": "2023-2028",
+        "tipoParlamentario": "TITULAR",
+        "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+        "cargoBancada": "MIEMBRO",
+        "appURL": "https://silpy.congreso.gov.py/legislador/101405",
+        "fotoURL": "https://silpy.congreso.gov.py/images/101405.jpg",
+        "activo": true
+      },
+      "sentidoVotacion": "SI",
+      "idSentidoVotacion": 272
+    },
+    {
+      "idDetalleVotacion": 313227,
+      "idVotacion": 108906,
+      "observacion": "",
+      "legislador": {
+        "idLegislador": 101414,
+        "apellidos": "ACEVEDO AYALA",
+        "nombres": "JUAN MANUEL",
+        "camaraParlamentario": "CAMARA DE DIPUTADOS",
+        "departamento": "AMAMBAY",
+        "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
+        "periodoLegislativo": "2023-2028",
+        "tipoParlamentario": "TITULAR",
+        "bancada": "BANCADA DEL PARTIDO LIBERAL RADICAL AUTÉNTICO PLRA - A",
+        "cargoBancada": "MIEMBRO",
+        "appURL": "https://silpy.congreso.gov.py/legislador/101414",
+        "fotoURL": "https://silpy.congreso.gov.py/images/101414.jpg",
+        "activo": true
+      },
+      "sentidoVotacion": "SI",
+      "idSentidoVotacion": 272
+    },
+    {
+      "idDetalleVotacion": 313228,
+      "idVotacion": 108906,
+      "observacion": "",
+      "legislador": {
+        "idLegislador": 101403,
+        "apellidos": "ACOSTA BRITEZ",
+        "nombres": "LIZ CRISTINA",
+        "camaraParlamentario": "CAMARA DE DIPUTADOS",
+        "departamento": "ALTO PARANÁ",
+        "partidoPolitico": "Asociación Nacional Republicana ANR",
+        "periodoLegislativo": "2023-2028",
+        "tipoParlamentario": "TITULAR",
+        "bancada": "BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A \"HONOR COLORADO\"",
+        "cargoBancada": "MIEMBRO",
+        "appURL": "https://silpy.congreso.gov.py/legislador/101403",
+        "fotoURL": "https://silpy.congreso.gov.py/images/101403.jpg",
+        "activo": true
+      },
+      "sentidoVotacion": "AUSENTE",
+      "idSentidoVotacion": 275
+    }
+  ]
+}

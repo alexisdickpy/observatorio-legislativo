@@ -1,0 +1,37 @@
+[
+  {
+    "idDetalleVotacion": 100160,
+    "idVotacion": 100040,
+    "proyecto": {
+      "idProyecto": 110897,
+      "appURL": "https://silpy.congreso.gov.py/expediente/110897",
+      "acapite": "Proyecto de Ley \"De transparencia de la cadena de suministro de tabaco y sus productos\", presentado por los Senadores Emilia Alfaro de Franco, Esperanza Martínez, Desirée Masi, Adolfo Ferreiro, Carlos Filizzola, Eduarto Petta San Martín, Luis Castiglioni, Carlos Amarilla, Arnoldo Wiens, Mario Abdo Benitez, Miguel López Perito, Enrique Bacchetta, Miguel Abdón Saguier, Silvio Ovelar, Roberto Acevedo y Arnaldo Giuzzio.",
+      "expedienteCamara": "S-177715",
+      "fechaIngresoExpediente": "18/10/2017",
+      "origenProyecto": "CAMARA DE SENADORES",
+      "tipoProyecto": "PROYECTO DE LEY",
+      "descripcionEtapa": "TRAMITACIÓN TERMINADA",
+      "descripcionSubEtapa": "/",
+      "iniciativa": "PARLAMENTARIA",
+      "urgencia": "ORDINARIO",
+      "estadoProyecto": "PUBLICADO"
+    },
+    "legislador": {
+      "idLegislador": 100081,
+      "apellidos": "Abdo Benítez",
+      "nombres": "Mario",
+      "camaraParlamentario": "CAMARA DE SENADORES",
+      "departamento": "NACIONAL",
+      "partidoPolitico": "Asociación Nacional Republicana ANR",
+      "periodoLegislativo": "2013-2018",
+      "tipoParlamentario": "TITULAR",
+      "bancada": "ASOCIACIÓN NACIONAL REPUBLICANA PARTIDO COLORADO (ANR) - \"A\"",
+      "cargoBancada": "MIEMBRO",
+      "appURL": "https://silpy.congreso.gov.py/legislador/100081",
+      "fotoURL": "https://silpy.congreso.gov.py/images/100081.jpg",
+      "activo": true
+    },
+    "sentidoVotacion": "SI",
+    "idSentidoVotacion": 272
+  }
+]
