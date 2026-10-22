@@ -1,0 +1,32 @@
+# Secretos y configuración local
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Node
+node_modules/
+dist/
+.astro/
+
+# Datos crudos temporales (los datos publicables tendrán su propia carpeta)
+tmp/
+*.log
+
+# Sistema y editores
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Archivos de trabajo locales que no deben publicarse
+CLAUDE.md
+CLAUDE.local.md
+.claude/
+privado/
