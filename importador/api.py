@@ -12,6 +12,7 @@ Los nombres de archivo siguen el mismo formato que la caché de la auditoría
 (scripts/auditoria/api.py), así que esa caché también sirve como carpeta de crudos.
 """
 
+import http.client
 import json
 import time
 import urllib.error
@@ -162,7 +163,9 @@ class Cliente:
                 if e.code == 404 and cuerpo.strip().startswith(b"{"):
                     break
                 ultimo_error = e
-            except (urllib.error.URLError, TimeoutError, ConnectionError) as e:
+            # OSError cubre URLError, TimeoutError y ConnectionError; HTTPException, las
+            # respuestas cortadas a mitad de camino (IncompleteRead).
+            except (OSError, http.client.HTTPException) as e:
                 ultimo_error = e
             time.sleep(2 * (intento + 1))
         else:

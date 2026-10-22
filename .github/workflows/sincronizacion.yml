@@ -100,9 +100,9 @@ jobs:
           if r["resultado"] != "correcta":
               print(f"Sincronización {r['modo']}: error, datos sin cambios\n\n{r['error']}")
           else:
-              datos = [a for a in r["archivosModificados"]]
-              print(f"Sincronización {r['modo']}: " + ("datos actualizados" if datos else "sin novedades"))
-              if datos:
+              cambio = bool(r["archivosModificados"])
+              print(f"Sincronización {r['modo']}: " + ("datos actualizados" if cambio else "sin novedades"))
+              if cambio:
                   print()
                   for entidad, c in r["cambios"].items():
                       print(f"{entidad}: {c['agregados']} agregados, {c['modificados']} modificados, {c['eliminados']} eliminados")
