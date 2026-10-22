@@ -1,0 +1,1434 @@
+{
+  "personas": [
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101444,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "ADRIÁN DARÍO (BILLY) VAESKEN VÁZQUEZ",
+      "slug": "adrian-dario-billy-vaesken-vazquez"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101453,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "ALEJANDRO DARÍO AGUILERA ELIZAUR",
+      "slug": "alejandro-dario-aguilera-elizaur"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101455,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "ALEJO RIOS MEDINA",
+      "slug": "alejo-rios-medina"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101574,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Alfonso Noria Duarte",
+      "slug": "alfonso-noria-duarte"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101475,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Antonio Carlos Barrios Fernández",
+      "slug": "antonio-carlos-barrios-fernandez"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101383,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Antonio Rubén Velázquez Chamorro",
+      "slug": "antonio-ruben-velazquez-chamorro"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101448,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "ARIEL VILLAGRA SOSA",
+      "slug": "ariel-villagra-sosa"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101469,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "ARNALDO AGUSTÍN VALDEZ NOGUERA",
+      "slug": "arnaldo-agustin-valdez-noguera"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101357,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Arnaldo Samaniego González",
+      "slug": "arnaldo-samaniego-gonzalez"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101396,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "ARTURO RENE URBIETA CUEVAS",
+      "slug": "arturo-rene-urbieta-cuevas"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101460,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "AVELINO DÁVALOS ESTIGARRIBIA",
+      "slug": "avelino-davalos-estigarribia"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101361,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Basilio Gustavo Núñez Giménez",
+      "slug": "basilio-gustavo-nunez-gimenez"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101412,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "BENJAMÍN CANTERO RAMÍREZ",
+      "slug": "benjamin-cantero-ramirez"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101394,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "BETTINA ROSMARY AGUILERA PANIAGUA",
+      "slug": "bettina-rosmary-aguilera-paniagua"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101380,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Blanca Margarita Ovelar de Duarte",
+      "slug": "blanca-margarita-ovelar-de-duarte"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101436,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "CARLOS ALBERTO NÚÑEZ SALINAS",
+      "slug": "carlos-alberto-nunez-salinas"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101463,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "CARLOS ALBERTO PEREIRA RIEVE",
+      "slug": "carlos-alberto-pereira-rieve"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101360,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Carlos Alcibiades Giménez Díaz",
+      "slug": "carlos-alcibiades-gimenez-diaz"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101614,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Carlos Augusto Liseras Osorio",
+      "slug": "carlos-augusto-liseras-osorio"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101459,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "CARLOS MARCIAL GODOY GARCIA",
+      "slug": "carlos-marcial-godoy-garcia"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101468,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "CARLOS MARIA ARRECHEA ORTIZ",
+      "slug": "carlos-maria-arrechea-ortiz"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101451,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "CARLOS MARÍA LÓPEZ LÓPEZ",
+      "slug": "carlos-maria-lopez-lopez"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101354,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Carlos Núñez Agüero",
+      "slug": "carlos-nunez-aguero"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101407,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "CARMEN DEJESÚS GIMENEZ DE OVANDO",
+      "slug": "carmen-dejesus-gimenez-de-ovando"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101350,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Celeste Josefina Amarilla Vda. de Boccia",
+      "slug": "celeste-josefina-amarilla-vda-de-boccia"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101467,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "CÉSAR LADISLAO CERINI BENÍTEZ",
+      "slug": "cesar-ladislao-cerini-benitez"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101464,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "CHRISTIAN GABRIEL BRUNAGA ROTELA",
+      "slug": "christian-gabriel-brunaga-rotela"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101446,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "CLETO MARCELINO GIMENEZ GIMENEZ",
+      "slug": "cleto-marcelino-gimenez-gimenez"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101364,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Colym Gregorio Soroka Benítez",
+      "slug": "colym-gregorio-soroka-benitez"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101440,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "DALIA MARLENE ESTIGARRIBIA",
+      "slug": "dalia-marlene-estigarribia"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101386,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "DANIEL FERNANDO CENTURIÓN GONZÁLEZ",
+      "slug": "daniel-fernando-centurion-gonzalez"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101584,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "David Manuel Jara Espinoza",
+      "slug": "david-manuel-jara-espinoza"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101466,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "DEL PILAR VÁZQUEZ CABRERA",
+      "slug": "del-pilar-vazquez-cabrera"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101346,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Derlis Ariel Alejandro Osorio Nunes",
+      "slug": "derlis-ariel-alejandro-osorio-nunes"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101341,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Derlis Hernán Maidana Zarza",
+      "slug": "derlis-hernan-maidana-zarza"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101456,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "DERLIS MANUEL RODRÍGUEZ BAEZ",
+      "slug": "derlis-manuel-rodriguez-baez"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101421,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "DIEGO CRISPIN CANDIA MELGAREJO",
+      "slug": "diego-crispin-candia-melgarejo"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101373,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Dionisio Oswaldo Amarilla Guirland",
+      "slug": "dionisio-oswaldo-amarilla-guirland"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101445,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "DIOSNEL AGUILERA ROJAS",
+      "slug": "diosnel-aguilera-rojas"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101458,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "EDGAR GUSTAVO OLMEDO SILVA",
+      "slug": "edgar-gustavo-olmedo-silva"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101347,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Edgar Idalino López Ruíz",
+      "slug": "edgar-idalino-lopez-ruiz"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101426,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "EDGAR MILCIADES CHÁVEZ BRIZUELA",
+      "slug": "edgar-milciades-chavez-brizuela"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101358,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Eduardo Hirohito Nakayama Rojas",
+      "slug": "eduardo-hirohito-nakayama-rojas"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101395,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "EMILIO PAVON DOLDAN",
+      "slug": "emilio-pavon-doldan"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101457,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "ENRIQUE ANTONIO CONCEPCIÓN BUZARQUIS CÁCERES",
+      "slug": "enrique-antonio-concepcion-buzarquis-caceres"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101371,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Enrique Riera Escudero",
+      "slug": "enrique-riera-escudero"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101340,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Enrique Salyn Concepción Buzarquis Cáceres",
+      "slug": "enrique-salyn-concepcion-buzarquis-caceres"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101367,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Erico Galeano Segovia",
+      "slug": "erico-galeano-segovia"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101376,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Ernesto Javier Zacarías Irún",
+      "slug": "ernesto-javier-zacarias-irun"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101379,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Esperanza Martínez de Portillo",
+      "slug": "esperanza-martinez-de-portillo"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101470,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "ESTEBAN MARTIN SAMANIEGO ÁLVAREZ",
+      "slug": "esteban-martin-samaniego-alvarez"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101415,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "EULALIO GOMES",
+      "slug": "eulalio-gomes"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101355,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Ever Federico Villalba Benítez",
+      "slug": "ever-federico-villalba-benitez"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101408,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "FRANCISCO OSVALDO MANUEL PETERSEN VEILUVA",
+      "slug": "francisco-osvaldo-manuel-petersen-veiluva"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101465,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "GERMAN SOLINGER SANTANDER",
+      "slug": "german-solinger-santander"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101595,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Gladys Lucía Mendoza de Esparza",
+      "slug": "gladys-lucia-mendoza-de-esparza"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101434,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "GLORIA MARÍA JOHANA VEGA INSFRAN",
+      "slug": "gloria-maria-johana-vega-insfran"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101450,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "GRACIELA AGUILERA RUIZ DIAZ",
+      "slug": "graciela-aguilera-ruiz-diaz"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101604,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Guadalupe Aveiro Solis",
+      "slug": "guadalupe-aveiro-solis"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101399,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "GUILLERMO ARIEL RODRÍGUEZ DÚRE",
+      "slug": "guillermo-ariel-rodriguez-dure"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101382,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Gustavo Alfredo Leite Gusinky",
+      "slug": "gustavo-alfredo-leite-gusinky"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101392,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "HÉCTOR RUBEN FIGUEREDO NOTARIO",
+      "slug": "hector-ruben-figueredo-notario"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101365,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Hermelinda Alvarenga de Ortega",
+      "slug": "hermelinda-alvarenga-de-ortega"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101369,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Hernán David Rivas Román",
+      "slug": "hernan-david-rivas-roman"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101389,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "HILDA MARÍA DEL ROCÍO VALLEJO ÁVALOS",
+      "slug": "hilda-maria-del-rocio-vallejo-avalos"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101424,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "HUGO JOEL MEZA",
+      "slug": "hugo-joel-meza"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101514,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Ignacio Iramain Chilavert",
+      "slug": "ignacio-iramain-chilavert"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101435,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "JATAR EDUARDO FERNÁNDEZ SAFUAN",
+      "slug": "jatar-eduardo-fernandez-safuan"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101476,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Javier Odilón Vera Medina",
+      "slug": "javier-odilon-vera-medina"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101437,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "JAZMIN NARVAEZ OSORIO",
+      "slug": "jazmin-narvaez-osorio"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101447,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "JOHANNA PAOLA ORTEGA GHIRINGHELLI",
+      "slug": "johanna-paola-ortega-ghiringhelli"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101471,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "JORGE RAMÓN ÁVALOS MARIÑO",
+      "slug": "jorge-ramon-avalos-marino"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101423,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "JORGE SEBASTIAN BARRESSI MANCIA",
+      "slug": "jorge-sebastian-barressi-mancia"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101359,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "José Daniel Oviedo Antúnez",
+      "slug": "jose-daniel-oviedo-antunez"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101409,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "JOSÉ DOMINGO ADORNO MAZACOTTE",
+      "slug": "jose-domingo-adorno-mazacotte"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101368,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "José Gregorio Ledesma Narváez",
+      "slug": "jose-gregorio-ledesma-narvaez"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101390,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "JOSÉ RAMÓN RODRÍGUEZ MACIEL",
+      "slug": "jose-ramon-rodriguez-maciel"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101342,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Juan Carlos Baruja Fernández",
+      "slug": "juan-carlos-baruja-fernandez"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101484,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Juan Carlos Luis Galaverna Ortega",
+      "slug": "juan-carlos-luis-galaverna-ortega"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101524,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Juan Carlos Wasmosy Monti",
+      "slug": "juan-carlos-wasmosy-monti"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101378,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Juan Eudes Afara Maciel",
+      "slug": "juan-eudes-afara-maciel"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101414,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "JUAN MANUEL ACEVEDO AYALA",
+      "slug": "juan-manuel-acevedo-ayala"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101406,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "JUAN MANUEL AÑAZCO VERA",
+      "slug": "juan-manuel-anazco-vera"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101461,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "JUAN RAMÓN MACIEL MERLO",
+      "slug": "juan-ramon-maciel-merlo"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101494,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "JULIO ROLANDO GONZÁLEZ GIMENEZ",
+      "slug": "julio-rolando-gonzalez-gimenez"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101353,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Kattya Mabel González Villanueva",
+      "slug": "kattya-mabel-gonzalez-villanueva"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101428,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "LEIDY PAOLA GALEANO CHÁVEZ",
+      "slug": "leidy-paola-galeano-chavez"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101397,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "LEONARDO SAIZ ARCE",
+      "slug": "leonardo-saiz-arce"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101377,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Lider Santiago Amarilla Ríos",
+      "slug": "lider-santiago-amarilla-rios"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101352,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Lilian Graciela Samaniego González",
+      "slug": "lilian-graciela-samaniego-gonzalez"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101403,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "LIZ CRISTINA ACOSTA BRITEZ",
+      "slug": "liz-cristina-acosta-britez"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101381,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Lourdes Noelia Cabrera Petters",
+      "slug": "lourdes-noelia-cabrera-petters"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101345,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Luis Alberto Pettengill Vacca",
+      "slug": "luis-alberto-pettengill-vacca"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101416,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "LUIS FEDERICO BENÍTEZ CUEVAS",
+      "slug": "luis-federico-benitez-cuevas"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101442,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "LUIS FEDERICO FRANCO ALFARO",
+      "slug": "luis-federico-franco-alfaro"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101474,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "LUIS MARÍA GONZÁLEZ VAESKEN",
+      "slug": "luis-maria-gonzalez-vaesken"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101439,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "MARCELO RAFAEL SALINAS GONZÁLEZ",
+      "slug": "marcelo-rafael-salinas-gonzalez"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101452,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "MARÍA CONSTANCIA BENÍTEZ DE BENÍTEZ",
+      "slug": "maria-constancia-benitez-de-benitez"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101413,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "MARÍA CRISTINA VILLALBA DE ABENTE",
+      "slug": "maria-cristina-villalba-de-abente"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101480,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "MARÍA FABIANA SOUTO DE ALLIANA",
+      "slug": "maria-fabiana-souto-de-alliana"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101410,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "MARÍA IDA CATTEBEKE DE ORTÍZ",
+      "slug": "maria-ida-cattebeke-de-ortiz"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101405,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "MARÍA ROCÍO ABED DE ZACARÍAS",
+      "slug": "maria-rocio-abed-de-zacarias"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101534,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Mario Abdo Benítez",
+      "slug": "mario-abdo-benitez"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101356,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Mario Alberto Varela Cardozo",
+      "slug": "mario-alberto-varela-cardozo"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101387,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "MAURICIO FABIAN ESPÍNOLA NÚÑEZ",
+      "slug": "mauricio-fabian-espinola-nunez"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101454,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "MIGUEL ANGEL DEL PUERTO SILVA",
+      "slug": "miguel-angel-del-puerto-silva"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101402,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "MIGUEL MÁRTINEZ NÚÑEZ",
+      "slug": "miguel-martinez-nunez"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101363,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Natalicio Esteban Chase Acosta",
+      "slug": "natalicio-esteban-chase-acosta"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101429,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "NÉSTOR DAVID CASTELLANO ESCOBAR",
+      "slug": "nestor-david-castellano-escobar"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101375,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Norma Beatriz Aquino Luraghi",
+      "slug": "norma-beatriz-aquino-luraghi"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101430,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "ORLANDO GABRIEL AREVALO ZIELANKO",
+      "slug": "orlando-gabriel-arevalo-zielanko"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101372,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Orlando Penner Dürksen",
+      "slug": "orlando-penner-durksen"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101348,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Oscar Rubén Salomón Fernández",
+      "slug": "oscar-ruben-salomon-fernandez"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101449,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "PASTOR ALBERTO VERA BEJARANO",
+      "slug": "pastor-alberto-vera-bejarano"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101418,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "PATRICIA ALEXANDRA ZENA OVIEDO",
+      "slug": "patricia-alexandra-zena-oviedo"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101370,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Patrick Paul Kemper Thiede",
+      "slug": "patrick-paul-kemper-thiede"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101374,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Pedro Alejandro Díaz Verón",
+      "slug": "pedro-alejandro-diaz-veron"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101443,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "PEDRO JOSÉ GÓMEZ SILVA",
+      "slug": "pedro-jose-gomez-silva"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101420,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "PEDRO ORTÍZ TORRES",
+      "slug": "pedro-ortiz-torres"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101362,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Rafael Augusto Filizzola Serra",
+      "slug": "rafael-augusto-filizzola-serra"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101351,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Rafael Esquivel",
+      "slug": "rafael-esquivel"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101477,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Ramón Catalino Retamozo Delgado",
+      "slug": "ramon-catalino-retamozo-delgado"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101344,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Ramona Yolanda Paredes",
+      "slug": "ramona-yolanda-paredes"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101417,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "RAÚL ANTONIO BENÍTEZ TALAVERA",
+      "slug": "raul-antonio-benitez-talavera"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101385,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "RAÚL LUIS LATORRE MARTÍNEZ",
+      "slug": "raul-luis-latorre-martinez"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101349,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Regina Lizarella Valiente de Rodríguez",
+      "slug": "regina-lizarella-valiente-de-rodriguez"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101425,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "ROBERTO EUDEZ GONZÁLEZ SEGOVIA",
+      "slug": "roberto-eudez-gonzalez-segovia"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101441,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "RODRIGO DANIEL BLANCO AMARILLA",
+      "slug": "rodrigo-daniel-blanco-amarilla"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101427,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "RODRIGO DANIEL GAMARRA KRAYACICH",
+      "slug": "rodrigo-daniel-gamarra-krayacich"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101438,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "ROYA NIGSA TORRES BAÉZ",
+      "slug": "roya-nigsa-torres-baez"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101411,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "RUBEN ANTONIO ROUSSILLON BLAIRES",
+      "slug": "ruben-antonio-roussillon-blaires"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101431,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "RUBEN ISAAC RUBIN ORREGO",
+      "slug": "ruben-isaac-rubin-orrego"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101554,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Santiago Alfredo Benítez Cáceres",
+      "slug": "santiago-alfredo-benitez-caceres"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101564,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Saúl González Rojas",
+      "slug": "saul-gonzalez-rojas"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101504,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "SEBASTIÁN EMILIO REMESOWSKI SQUEF",
+      "slug": "sebastian-emilio-remesowski-squef"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101343,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Sergio Roberto Rojas Sosa",
+      "slug": "sergio-roberto-rojas-sosa"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101339,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Silvio Adalberto Ovelar Benítez",
+      "slug": "silvio-adalberto-ovelar-benitez"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101393,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "VIRINA MAURICIA VILLANUEVA VDA DE PEÑA",
+      "slug": "virina-mauricia-villanueva-vda-de-pena"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101462,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "WALTER ENRIQUE HARMS CÉSPEDES",
+      "slug": "walter-enrique-harms-cespedes"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101404,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "WALTER HUGO GARCIA MENDEZ",
+      "slug": "walter-hugo-garcia-mendez"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101594,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Walter Janusz Ricardo Kobylanski Brandhuber",
+      "slug": "walter-janusz-ricardo-kobylanski-brandhuber"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101391,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "YAMIL ESGAIB MANSIA",
+      "slug": "yamil-esgaib-mansia"
+    },
+    {
+      "legisladores": [
+        {
+          "idLegislador": 101366,
+          "periodoLegislativo": "2023-2028"
+        }
+      ],
+      "nombre": "Zenaida Concepción Delgado Benítez",
+      "slug": "zenaida-concepcion-delgado-benitez"
+    }
+  ]
+}

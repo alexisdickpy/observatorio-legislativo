@@ -215,7 +215,7 @@ Las direcciones dependen solo de identificadores que no cambian con el diseño n
 
 | Página | URL | Identificador |
 |---|---|---|
-| Ley | `/leyes/{número}/` | Número de ley: correlativo nacional, no se reinicia por legislatura (a confirmar en #3 contra el histórico de 4.368 registros). Los registros repetidos de un mismo número se agrupan en la misma página. |
+| Ley | `/leyes/{número}/` | Número de ley: correlativo nacional, no se reinicia por legislatura (confirmado en #3: ninguno de los 541 números del período figura en otra legislatura entre los 4.368 registros del histórico; el importador lo vuelve a verificar en cada ejecución). Los registros repetidos de un mismo número se agrupan en la misma página. |
 | Legislador | `/legisladores/{slug}/` | Slug propio de la persona, por ejemplo `juan-perez`, guardado en `datos/propios/personas.json`. **No** se usa `idLegislador`, porque cambia en cada legislatura. Una vez asignado, el slug no cambia aunque la fuente corrija la escritura del nombre. |
 | Votación | `/votaciones/{idVotacion}/` | `idVotacion` de la API, único en todo el histórico. |
 | Listados | `/leyes/`, `/legisladores/`, `/buscar/` | Fijos |

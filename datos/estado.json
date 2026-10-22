@@ -1,0 +1,26 @@
+{
+  "fuente": {
+    "cita": "Origen de los datos: Datos Abiertos Poder Legislativo",
+    "licencia": "CC BY 4.0",
+    "nombre": "Datos Abiertos Poder Legislativo",
+    "url": "https://datosv2.congreso.gov.py/web/api"
+  },
+  "periodos": {
+    "2023-2028": {
+      "cantidades": {
+        "autores": 1386,
+        "legisladores": 143,
+        "legisladoresVigentes": 127,
+        "leyes": 556,
+        "numerosDeLey": 541,
+        "tramitaciones": 13601,
+        "votaciones": 1165,
+        "votos": 82680
+      },
+      "ultimaComprobacion": "2026-10-22T19:56:08Z",
+      "ultimaModificacion": "2026-10-22T19:55:45Z"
+    }
+  },
+  "ultimaComprobacion": "2026-10-22T19:56:08Z",
+  "ultimaModificacion": "2026-10-22T19:55:45Z"
+}
