@@ -8,7 +8,7 @@ from pathlib import Path
 
 from importador.api import ErrorAPI
 from importador.escribir import json_bytes
-from importador.importar import importar
+from importador.importar import DatosIncompletos, importar
 from importador.pruebas.test_transformar import ejemplo
 
 PERIODOS = {"periodos": [{"id": "2023-2028", "fechaInicio": "2023-07-01", "fechaFin": "2028-06-30",
@@ -37,12 +37,12 @@ class ApiSimulada:
             "votacion": [votacion],
         }
 
-    def datos(self, ruta, params=None):
+    def datos(self, ruta, params=None, reutilizable=False):
         if params:
             ruta += "?" + "&".join(f"{k}={v}" for k, v in params.items())
         return copy.deepcopy(self.rutas.get(ruta, []))
 
-    def paginar(self, ruta, tam_pagina):
+    def paginar(self, ruta, tam_pagina, reutilizable=False, clave=None):
         yield from self.datos(ruta)
 
 
@@ -74,13 +74,53 @@ class Importar(unittest.TestCase):
         resultado = self.correr(ahora="2026-10-23T12:00:00Z")
         despues = self.foto()
         self.assertEqual(resultado["cambiados"], [])
-        estado = Path("estado.json")
-        self.assertEqual({k: v for k, v in antes.items() if k != estado},
-                         {k: v for k, v in despues.items() if k != estado})
+        # Solo cambian la fecha de comprobación y el registro de sincronizaciones.
+        meta = {Path("estado.json"), Path("sincronizaciones.json")}
+        self.assertEqual({k: v for k, v in antes.items() if k not in meta},
+                         {k: v for k, v in despues.items() if k not in meta})
         self.assertEqual(len(self.leer("fuente/2023-2028/leyes.json")), 1)
         estado = self.leer("estado.json")
         self.assertEqual(estado["ultimaComprobacion"], "2026-10-23T12:00:00Z")
         self.assertEqual(estado["ultimaModificacion"], "2026-10-22T12:00:00Z")
+        registro = self.leer("sincronizaciones.json")["sincronizaciones"]
+        self.assertEqual([r["fecha"] for r in registro], ["2026-10-23T12:00:00Z", "2026-10-22T12:00:00Z"])
+        self.assertEqual(registro[0]["cambios"]["leyes"], {"agregados": 0, "modificados": 0, "eliminados": 0})
+        self.assertEqual(registro[0]["leyesNuevas"], [])
+        self.assertEqual(registro[0]["archivosModificados"], [])
+
+    def test_registro_detecta_leyes_nuevas_y_modificadas(self):
+        self.correr()
+        api = ApiSimulada()
+        nueva = copy.deepcopy(api.rutas["ley/periodo/100267"][0])
+        nueva.update(idLey=999999, numeroLey="9999", fechaSancion="20/10/2026")
+        api.rutas["ley/periodo/100267"].append(nueva)
+        api.rutas["ley/periodo/100267"][0]["observacionDecreto"] = "Corregido por la fuente"
+        resultado = self.correr(api, ahora="2026-10-23T12:00:00Z")
+        self.assertEqual(resultado["cambios"]["leyes"], {"agregados": [999999], "modificados": [146644], "eliminados": []})
+        ultima = self.leer("sincronizaciones.json")["sincronizaciones"][0]
+        self.assertEqual(ultima["resultado"], "correcta")
+        self.assertEqual(ultima["leyesNuevas"], [{"idLey": 999999, "numeroLey": "9999", "fechaSancion": "2026-10-20"}])
+        self.assertIn("fuente/2023-2028/leyes.json", ultima["archivosModificados"])
+
+    def test_muchos_menos_registros_no_escribe_nada(self):
+        self.correr()
+        estado = self.leer("estado.json")
+        estado["periodos"]["2023-2028"]["cantidades"]["votos"] = 1000  # la vez anterior había muchos más
+        (self.salida / "estado.json").write_bytes(json_bytes(estado))
+        antes = self.foto()
+        with self.assertRaises(DatosIncompletos):
+            self.correr(ahora="2026-10-23T12:00:00Z")
+        self.assertEqual(self.foto(), antes)
+
+    def test_permitir_disminucion(self):
+        self.correr()
+        estado = self.leer("estado.json")
+        estado["periodos"]["2023-2028"]["cantidades"]["votos"] = 1000
+        (self.salida / "estado.json").write_bytes(json_bytes(estado))
+        resultado = importar(ApiSimulada(), self.salida, ahora="2026-10-23T12:00:00Z", progreso=silencio,
+                             permitir_disminucion=True)
+        self.assertTrue(any("votos: 1000 → 3" in a for a in resultado["avisos"]))
+        self.assertEqual(self.leer("estado.json")["periodos"]["2023-2028"]["cantidades"]["votos"], 3)
 
     def test_archivos_y_enlaces(self):
         resultado = self.correr()

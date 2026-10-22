@@ -1,0 +1,20 @@
+name: Pruebas
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+    paths: ["importador/**", ".github/workflows/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  importador:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - name: Pruebas del importador
+        run: python3 -m unittest discover -s importador/pruebas -t . -v

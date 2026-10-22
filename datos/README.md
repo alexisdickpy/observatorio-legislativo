@@ -11,7 +11,8 @@ No editar estos archivos a mano, salvo las notas manuales de `propios/notas.json
 | Archivo | Contenido |
 |---|---|
 | `periodos.json` | Períodos legislativos incluidos, con sus fechas y sus períodos parlamentarios anuales en la API. |
-| `estado.json` | Última comprobación de la fuente, última vez que cambiaron los datos y cantidades por período. |
+| `estado.json` | Última comprobación correcta de la fuente, última vez que cambiaron los datos y cantidades por período. Una sincronización fallida no lo modifica. |
+| `sincronizaciones.json` | Registro de las últimas 90 sincronizaciones, de la más nueva a la más vieja: fecha, modo (`incremental` o `completo`), resultado (`correcta` o `error`), consultas, cantidades, leyes, votaciones y legisladores agregados, modificados y eliminados, leyes nuevas y archivos modificados. Las anteriores quedan en el historial de Git. |
 | `fuente/{período}/leyes.json` | Un registro por ley sancionada en el período, con su proyecto, ministerios y archivos adjuntos. |
 | `fuente/{período}/tramitaciones.json` | Las tramitaciones del proyecto de cada ley (`idProyecto` + `tramitacion`). |
 | `fuente/{período}/votaciones.json` | Votaciones nominales del período, sin los votos individuales. |

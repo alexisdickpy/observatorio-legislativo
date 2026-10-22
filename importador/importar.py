@@ -4,18 +4,22 @@ Uso (desde la raíz del repositorio):
     python -m importador                     # período vigente según datos/periodos.json
     python -m importador --periodo 2023-2028
     python -m importador --sin-red           # repite la importación con los crudos guardados
+    python -m importador --modo incremental  # sincronización diaria: solo lo nuevo
 
-La descarga completa hace unas 1.200 consultas y tarda entre 10 y 20 minutos.
+La descarga completa hace unas 1.160 consultas y tarda unos 40 minutos. La incremental
+reutiliza las respuestas guardadas de lo que no cambia y hace unas 20 consultas.
 """
 
 import argparse
+import json
 import sys
 import time
+import traceback
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
-from .api import BASE, Cliente, ErrorAPI
+from .api import BASE, Cliente, ErrorAPI, ListadoCambiado
 from .escribir import csv_bytes, escribir_si_cambia, json_bytes, leer_json
 from .fechas import a_iso
 from .personas import asignar
@@ -40,6 +44,15 @@ FUENTE = {
     "licencia": "CC BY 4.0",
     "cita": "Origen de los datos: Datos Abiertos Poder Legislativo",
 }
+# Si alguna cantidad baja más que esto respecto de la importación anterior, se asume que la
+# API devolvió datos incompletos y no se escribe nada.
+DISMINUCION_MAXIMA = 0.05
+# Ejecuciones que se conservan en datos/sincronizaciones.json (las anteriores quedan en el historial de Git).
+REGISTROS_MAXIMOS = 90
+
+
+class DatosIncompletos(ErrorAPI):
+    """La API respondió, pero con muchos menos registros que la vez anterior."""
 
 
 def elegir_periodo(periodos, id_periodo):
@@ -79,7 +92,38 @@ def clave_nota(n):
             n.get("ruta") or "", n["detalle"])
 
 
-def importar(cliente, salida, id_periodo=None, ahora=None, progreso=print):
+def verificar_cantidades(anteriores, cantidades, permitir_disminucion):
+    """Lanza DatosIncompletos si alguna cantidad cayó más de DISMINUCION_MAXIMA. Devuelve las bajas."""
+    bajas = [f"{clave}: {anteriores[clave]} → {valor}" for clave, valor in cantidades.items()
+             if anteriores.get(clave) and valor < anteriores[clave] * (1 - DISMINUCION_MAXIMA)]
+    if bajas and not permitir_disminucion:
+        raise DatosIncompletos(
+            f"Muchos menos registros que en la importación anterior ({'; '.join(bajas)}). "
+            "Si la baja es real, repetir con --permitir-disminucion.")
+    return bajas
+
+
+def comparar(anteriores, nuevos, clave):
+    """Identificadores agregados, modificados y eliminados entre dos listas de registros."""
+    def canonico(registro):
+        return json.dumps(registro, ensure_ascii=False, sort_keys=True)
+    previos = {r[clave]: canonico(r) for r in anteriores or []}
+    actuales = {r[clave]: canonico(r) for r in nuevos}
+    return {
+        "agregados": sorted(set(actuales) - set(previos)),
+        "modificados": sorted(k for k in set(actuales) & set(previos) if actuales[k] != previos[k]),
+        "eliminados": sorted(set(previos) - set(actuales)),
+    }
+
+
+def registrar(salida, entrada):
+    """Agrega una ejecución al principio de datos/sincronizaciones.json."""
+    ruta = Path(salida) / "sincronizaciones.json"
+    anteriores = (leer_json(ruta) or {"sincronizaciones": []})["sincronizaciones"]
+    escribir_si_cambia(ruta, json_bytes({"sincronizaciones": ([entrada] + anteriores)[:REGISTROS_MAXIMOS]}))
+
+
+def importar(cliente, salida, id_periodo=None, ahora=None, progreso=print, permitir_disminucion=False):
     salida = Path(salida)
     ahora = ahora or datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
     avisos = []
@@ -117,8 +161,8 @@ def importar(cliente, salida, id_periodo=None, ahora=None, progreso=print):
     proyectos = sorted({l["proyecto"]["idProyecto"] for l, _ in leyes_api})
     detalle = {}
     for i, id_proyecto in enumerate(proyectos, 1):
-        tramitaciones = cliente.datos(f"proyecto/{id_proyecto}/tramitaciones")
-        adjuntos = cliente.datos(f"proyecto/{id_proyecto}/adjuntos")
+        tramitaciones = cliente.datos(f"proyecto/{id_proyecto}/tramitaciones", reutilizable=True)
+        adjuntos = cliente.datos(f"proyecto/{id_proyecto}/adjuntos", reutilizable=True)
         detalle[id_proyecto] = (tramitaciones[0] if tramitaciones else None, adjuntos[0] if adjuntos else None)
         if i % 100 == 0 or i == len(proyectos):
             progreso(f"  detalle de proyectos: {i}/{len(proyectos)}")
@@ -144,7 +188,7 @@ def importar(cliente, salida, id_periodo=None, ahora=None, progreso=print):
     votaciones, filas_votos, embebidos = [], [], {}
     fuera_del_periodo = defaultdict(list)
     total_votaciones_api = 0
-    for votacion in cliente.paginar("votacion", 100):
+    for votacion in cliente.paginar("votacion", 100, reutilizable=True, clave="idVotacion"):
         total_votaciones_api += 1
         if periodo_parlamentario_de_votacion(votacion) in ids_parlamentarios_set:
             registro, filas, legisladores = transformar_votacion(votacion, nombre, notas)
@@ -235,9 +279,31 @@ def importar(cliente, salida, id_periodo=None, ahora=None, progreso=print):
     nuevas = [dict(n, origen="importador", periodoLegislativo=nombre) for n in notas.lista]
     todas_las_notas = sorted(conservadas + nuevas, key=clave_nota)
 
+    # --- Protección contra datos incompletos ---------------------------------------------
+    cantidades = {
+        "leyes": len(leyes),
+        "numerosDeLey": len({l[PROPIO]["numeroLey"] for l in leyes}),
+        "tramitaciones": len(tramitaciones_salida),
+        "votaciones": len(votaciones),
+        "votos": len(filas_votos),
+        "legisladores": len(legisladores),
+        "legisladoresVigentes": len(ids_vigentes),
+        "autores": len(autores),
+    }
+    ruta_estado = salida / "estado.json"
+    estado = leer_json(ruta_estado) or {}
+    anteriores = estado.get("periodos", {}).get(nombre, {}).get("cantidades", {})
+    for baja in verificar_cantidades(anteriores, cantidades, permitir_disminucion):
+        avisos.append(f"Disminución aceptada con --permitir-disminucion: {baja}")
+
     # --- Escritura ---------------------------------------------------------------------
     filas_votos.sort(key=lambda f: (f["idVotacion"], f["idDetalleVotacion"] is None, f["idDetalleVotacion"] or 0))
     carpeta = salida / "fuente" / nombre
+    cambios = {
+        "leyes": comparar(leer_json(carpeta / "leyes.json"), leyes, "idLey"),
+        "votaciones": comparar(leer_json(carpeta / "votaciones.json"), votaciones, "idVotacion"),
+        "legisladores": comparar(leer_json(carpeta / "legisladores.json"), legisladores, "idLegislador"),
+    }
     archivos = {
         carpeta / "leyes.json": json_bytes(leyes),
         carpeta / "tramitaciones.json": json_bytes(tramitaciones_salida),
@@ -251,18 +317,6 @@ def importar(cliente, salida, id_periodo=None, ahora=None, progreso=print):
     }
     cambiados = [ruta for ruta, contenido in archivos.items() if escribir_si_cambia(ruta, contenido)]
 
-    cantidades = {
-        "leyes": len(leyes),
-        "numerosDeLey": len({l[PROPIO]["numeroLey"] for l in leyes}),
-        "tramitaciones": len(tramitaciones_salida),
-        "votaciones": len(votaciones),
-        "votos": len(filas_votos),
-        "legisladores": len(legisladores),
-        "legisladoresVigentes": len(ids_vigentes),
-        "autores": len(autores),
-    }
-    ruta_estado = salida / "estado.json"
-    estado = leer_json(ruta_estado) or {}
     estado_periodo = estado.setdefault("periodos", {}).setdefault(nombre, {})
     # Sin red no se consultó la fuente: no cuenta como comprobación.
     if not getattr(cliente, "sin_red", False) or "ultimaComprobacion" not in estado_periodo:
@@ -274,6 +328,26 @@ def importar(cliente, salida, id_periodo=None, ahora=None, progreso=print):
     estado["ultimaModificacion"] = max(p["ultimaModificacion"] for p in estado["periodos"].values())
     estado["fuente"] = FUENTE
     escribir_si_cambia(ruta_estado, json_bytes(estado))
+
+    cambiados = [str(r.relative_to(salida)).replace("\\", "/") for r in cambiados]
+    por_id = {l["idLey"]: l for l in leyes}
+    # Base para los avisos de "nueva ley sancionada" (Fase 3).
+    leyes_nuevas = [{"idLey": i, "numeroLey": por_id[i][PROPIO]["numeroLey"],
+                     "fechaSancion": por_id[i][PROPIO]["fechaSancion"]}
+                    for i in cambios["leyes"]["agregados"]]
+    # Sin red no se consultó la fuente: no es una sincronización.
+    if not getattr(cliente, "sin_red", False):
+        registrar(salida, {
+            "fecha": ahora,
+            "periodo": nombre,
+            "modo": "incremental" if getattr(cliente, "incremental", False) else "completo",
+            "resultado": "correcta",
+            "consultas": cliente.consultas,
+            "cantidades": cantidades,
+            "cambios": {entidad: {k: len(ids) for k, ids in c.items()} for entidad, c in cambios.items()},
+            "leyesNuevas": leyes_nuevas,
+            "archivosModificados": cambiados,
+        })
 
     return {
         "periodo": nombre,
@@ -287,8 +361,11 @@ def importar(cliente, salida, id_periodo=None, ahora=None, progreso=print):
         "notasPorTipo": dict(sorted(notas.por_tipo().items())),
         "slugsNuevos": len(slugs_nuevos),
         "avisos": avisos,
-        "cambiados": [str(r.relative_to(salida)).replace("\\", "/") for r in cambiados],
+        "cambios": cambios,
+        "leyesNuevas": leyes_nuevas,
+        "cambiados": cambiados,
         "consultas": cliente.consultas,
+        "reutilizadas": getattr(cliente, "reutilizadas", 0),
     }
 
 
@@ -308,17 +385,30 @@ def imprimir_resumen(r, segundos):
     for tipo, n in r["notasPorTipo"].items():
         print(f"  {tipo}: {n}")
     print(f"Personas nuevas con slug: {r['slugsNuevos']}")
+    print("Cambios respecto de la copia anterior:")
+    for entidad, c in r["cambios"].items():
+        print(f"  {entidad}: {len(c['agregados'])} agregados, {len(c['modificados'])} modificados, "
+              f"{len(c['eliminados'])} eliminados")
+    for ley in r["leyesNuevas"]:
+        print(f"  ley nueva: {ley['numeroLey']} (idLey {ley['idLey']}, sanción {ley['fechaSancion']})")
     for aviso in r["avisos"]:
         print(f"AVISO: {aviso}")
     print("Archivos modificados:" if r["cambiados"] else "Archivos modificados: ninguno (la fuente no cambió)")
     for ruta in r["cambiados"]:
         print(f"  {ruta}")
-    print(f"Consultas a la API: {r['consultas']} · duración: {segundos:.0f} s")
+    print(f"Consultas a la API: {r['consultas']} · respuestas guardadas reutilizadas: {r['reutilizadas']} "
+          f"· duración: {segundos:.0f} s")
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(prog="python -m importador", description=__doc__.splitlines()[0])
     parser.add_argument("--periodo", help="período legislativo de datos/periodos.json (por defecto, el vigente)")
+    parser.add_argument("--modo", choices=("completo", "incremental"), default="completo",
+                        help="completo: descarga todo; incremental: reutiliza las respuestas guardadas del detalle "
+                             "de los proyectos ya conocidos y de las votaciones anteriores (por defecto, completo)")
+    parser.add_argument("--permitir-disminucion", action="store_true",
+                        help=f"aceptar que alguna cantidad baje más de un {DISMINUCION_MAXIMA:.0%} "
+                             "respecto de la importación anterior")
     parser.add_argument("--salida", default=RAIZ / "datos", type=Path, help="carpeta de datos (por defecto datos/)")
     parser.add_argument("--crudo", default=RAIZ / "tmp" / "importador" / "crudo", type=Path,
                         help="carpeta de respuestas crudas de la API (por defecto tmp/importador/crudo/)")
@@ -326,12 +416,29 @@ def main(argv=None):
     args = parser.parse_args(argv)
 
     inicio = time.monotonic()
-    cliente = Cliente(args.crudo, sin_red=args.sin_red)
+    cliente = Cliente(args.crudo, sin_red=args.sin_red, incremental=args.modo == "incremental")
     try:
-        resultado = importar(cliente, args.salida, args.periodo)
-    except (ErrorAPI, ValueError) as e:
+        try:
+            resultado = importar(cliente, args.salida, args.periodo, permitir_disminucion=args.permitir_disminucion)
+        except ListadoCambiado as e:
+            print(f"AVISO: {e}. Se repite la importación en modo completo.", file=sys.stderr)
+            cliente.pasar_a_completo()
+            resultado = importar(cliente, args.salida, args.periodo, permitir_disminucion=args.permitir_disminucion)
+    except Exception as e:  # cualquier falla queda anotada en el registro de sincronizaciones
+        if not isinstance(e, (ErrorAPI, ValueError)):
+            traceback.print_exc()
         print(f"ERROR: {e}", file=sys.stderr)
         print("No se modificó ningún archivo de datos.", file=sys.stderr)
+        if not args.sin_red:
+            registrar(args.salida, {
+                "fecha": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+                "periodo": args.periodo,
+                "modo": "incremental" if cliente.incremental else "completo",
+                "resultado": "error",
+                "consultas": cliente.consultas,
+                "error": f"{type(e).__name__}: {e}",
+            })
+            print("El error quedó anotado en datos/sincronizaciones.json.", file=sys.stderr)
         return 1
     imprimir_resumen(resultado, time.monotonic() - inicio)
     return 0
