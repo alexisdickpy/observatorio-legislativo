@@ -1,0 +1,42 @@
+{
+  "sincronizaciones": [
+    {
+      "archivosModificados": [
+        "fuente/2023-2028/votaciones.json"
+      ],
+      "cambios": {
+        "legisladores": {
+          "agregados": 0,
+          "eliminados": 0,
+          "modificados": 0
+        },
+        "leyes": {
+          "agregados": 0,
+          "eliminados": 0,
+          "modificados": 0
+        },
+        "votaciones": {
+          "agregados": 0,
+          "eliminados": 0,
+          "modificados": 4
+        }
+      },
+      "cantidades": {
+        "autores": 1386,
+        "legisladores": 143,
+        "legisladoresVigentes": 127,
+        "leyes": 556,
+        "numerosDeLey": 541,
+        "tramitaciones": 13601,
+        "votaciones": 1165,
+        "votos": 82680
+      },
+      "consultas": 1157,
+      "fecha": "2026-10-22T22:01:11Z",
+      "leyesNuevas": [],
+      "modo": "incremental",
+      "periodo": "2023-2028",
+      "resultado": "correcta"
+    }
+  ]
+}
