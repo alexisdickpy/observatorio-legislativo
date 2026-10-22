@@ -172,6 +172,7 @@ observatorio-legislativo/
 │   ├── fuente/               # Valores oficiales, tal como los publica el Congreso
 │   │   └── 2023-2028/
 │   │       ├── leyes.json
+│   │       ├── tramitaciones.json   # Agregado en #3: separa el 80 % del peso de leyes.json
 │   │       ├── votaciones.json
 │   │       ├── votos.csv
 │   │       ├── legisladores.json
