@@ -49,8 +49,8 @@ Los valores oficiales se muestran tal como los publica el Congreso. Las fechas I
 Preparada por `src/lib/ficha.js`:
 
 - **Autores:** del registro de autor de la API, con su partido, bancada y cámara. Para los de otra legislatura (`_propio.delPeriodo = false`) se indica también la legislatura.
-- **Votaciones:** las de `_propio.idVotaciones`. Arriba, un índice de la más reciente a la más antigua; luego una sección por cámara (primero la que votó más recientemente), también de la más reciente a la más antigua. Cada votación tiene un ancla `#votacion-{idVotacion}`.
+- **Votaciones:** las de `_propio.idVotaciones`. Arriba, un índice de la más reciente a la más antigua; luego una sección por cámara (primero la Cámara de Senadores, la cámara alta), cada una de la más reciente a la más antigua. Cada votación tiene un ancla `#votacion-{idVotacion}`.
 - **Categorías de voto** oficiales, sin fusionar. Los totales son los que publica el Congreso; las categorías sin total publicado (`MOCIÓN 1`, `MOCIÓN 2`…) se cuentan desde los votos individuales y se señalan como recuento propio.
-- **Desglose por partido y bancada** con el partido y la bancada de `legisladores.json`, que la API da por período (la ficha lo avisa). Los porcentajes se calculan sobre todos los legisladores del grupo registrados en la votación, incluidos `AUSENTE` y `NO VOTA`, y siempre muestran el denominador: "12 de 30 (40%)".
+- **Desglose por partido y bancada** con el partido y la bancada de `legisladores.json`, que la API da por período (la ficha lo avisa). Los porcentajes se calculan sobre los legisladores del grupo que figuran en la lista oficial de la votación (`votos.csv`: incluye suplentes en ejercicio, `AUSENTE` y `NO VOTA`; los senadores vitalicios no figuran), y siempre muestran el denominador: "12 de 30 (40%)".
 - **Votaciones de otra legislatura** (`_propio.idVotacionesOtrosPeriodos`) y **no resueltas** (`idVotacionesNoResueltas`): se avisan con enlace a SILpy.
 - Las secciones de votaciones no entran en el índice de búsqueda (`data-pagefind-ignore`).

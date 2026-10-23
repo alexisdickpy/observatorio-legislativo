@@ -51,6 +51,10 @@ const sinDato = "Sin dato";
   }
   {v.notas.map((n: string) => <p class="nota chico lectura">Nota del Observatorio: {n}</p>)}
 
+  <p class="chico texto-suave lectura">
+    En cada partido y bancada, el total ("de …") son sus legisladores que figuran en la lista oficial
+    de esta votación, incluidos los suplentes en ejercicio y los ausentes.
+  </p>
   <TablaDesglose titulo="Por partido" grupo="Partido" categorias={v.categorias} filas={v.porPartido} />
 
   <details>

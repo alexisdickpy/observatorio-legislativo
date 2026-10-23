@@ -18,7 +18,7 @@ const sinDato = "Sin dato";
   {
     d.ministerios.length > 0 && (
       <div>
-        <dt>{d.ministerios.length > 1 ? "Ministerios" : "Ministerio"}</dt>
+        <dt>{d.ministerios.length > 1 ? "Ministerios autores" : "Ministerio autor"}</dt>
         <dd>{d.ministerios.join(" · ")}</dd>
       </div>
     )
@@ -26,10 +26,8 @@ const sinDato = "Sin dato";
 </dl>
 {
   d.autores.length === 0 ? (
-    <p class="texto-suave">
-      Legisladores autores: {sinDato}. La API no registra legisladores autores para este
-      proyecto{d.ministerios.length > 0 && "; en SILpy figura como autor el ministerio indicado arriba"}.
-    </p>
+    // Sin legisladores autores: si hay ministerio, ya figura arriba como autor del proyecto.
+    d.ministerios.length === 0 && <p class="texto-suave">Autores: {sinDato}</p>
   ) : (
     <ul class="autores">
       {d.autores.map((a: any) => (

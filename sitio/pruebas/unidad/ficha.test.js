@@ -55,17 +55,20 @@ test("ley 7235: iniciativa del Poder Ejecutivo, sin autores y diez votaciones po
   assert.deepEqual(d.ministerios, ["MINISTERIO DE ECONOMÍA Y FINANZAS"]);
   assert.deepEqual(d.autores, []);
   assert.equal(d.votaciones.cantidad, 10);
-  // Primero la cámara que votó más recientemente; dentro, de la más reciente a la más antigua.
+  // Primero la Cámara de Senadores, aunque Diputados votó después; el índice sigue por fecha.
   assert.deepEqual(
     d.votaciones.camaras.map((c) => [c.camara, c.votaciones.length]),
     [
-      ["CAMARA DE DIPUTADOS", 1],
       ["CAMARA DE SENADORES", 9],
+      ["CAMARA DE DIPUTADOS", 1],
     ],
   );
   const fechas = d.votaciones.indice.map((v) => v.fechaIso);
   assert.deepEqual(fechas, [...fechas].sort().reverse());
-  const diputados = d.votaciones.camaras[0].votaciones[0];
+  assert.equal(d.votaciones.indice[0].camara, "CAMARA DE DIPUTADOS");
+  const senado = d.votaciones.camaras[0].votaciones.map((v) => v.fechaIso);
+  assert.deepEqual(senado, [...senado].sort().reverse());
+  const diputados = d.votaciones.camaras[1].votaciones[0];
   assert.equal(diputados.id, 104525);
   assert.equal(diputados.etapa, "Segundo trámite constitucional");
   assert.equal(diputados.resultado, "APROBADO");
@@ -119,14 +122,24 @@ test("ley 7322: cada registro tiene sus propias votaciones", () => {
   assert.equal(new Set(ids).size, ids.length);
 });
 
-test("agrupar por cámara con la misma fecha: la de mayor id primero", () => {
+test("agrupar por cámara: Senadores primero; a igual fecha, la de mayor id primero", () => {
   const v = (id, fechaIso, camara) => ({ id, fechaIso, camara });
-  const r = agruparPorCamara([v(1, "2024-01-01", "A"), v(3, "2024-01-01", "B"), v(2, "2024-01-01", "A")]);
+  const D = "CAMARA DE DIPUTADOS";
+  const S = "CAMARA DE SENADORES";
+  const r = agruparPorCamara([v(1, "2024-01-01", S), v(4, "2024-02-01", D), v(2, "2024-01-01", S)]);
   assert.deepEqual(
     r.map((c) => [c.camara, c.votaciones.map((x) => x.id)]),
     [
-      ["B", [3]],
-      ["A", [2, 1]],
+      [S, [2, 1]],
+      [D, [4]],
     ],
   );
+});
+
+test("en el Senado, solo los 45 miembros con voto que figuran en cada votación (sin vitalicios)", () => {
+  for (const { d } of todos()) {
+    for (const v of d.votaciones.indice.filter((x) => x.camara === "CAMARA DE SENADORES")) {
+      assert.ok(v.registrados <= 45, `Votación ${v.id}: ${v.registrados}`);
+    }
+  }
 });

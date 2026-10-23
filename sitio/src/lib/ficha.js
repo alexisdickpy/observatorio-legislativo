@@ -4,8 +4,8 @@
 // Criterios (ver docs/decisiones/0001-arquitectura.md y el alcance acordado en #7):
 // - Todos los textos que se muestran son los oficiales, sin cambios. Los valores vacíos de la
 //   fuente se devuelven como null para que la página diga "Sin dato".
-// - Votaciones: las enlazadas en _propio.idVotaciones. Se agrupan por cámara (primero la que votó
-//   más recientemente) y, dentro de cada cámara, van de la más reciente a la más antigua.
+// - Votaciones: las enlazadas en _propio.idVotaciones. Se agrupan por cámara (primero la Cámara de
+//   Senadores, la cámara alta) y, dentro de cada cámara, van de la más reciente a la más antigua.
 // - Categorías de voto oficiales, sin fusionar. Los totales son los que publica el Congreso; las
 //   categorías sin total publicado (MOCIÓN 1, 2…) se cuentan desde los votos individuales y se
 //   señalan como recuento propio.
@@ -173,14 +173,20 @@ function prepararVotacion(v, i) {
 const masRecientePrimero = (a, b) =>
   (b.fechaIso ?? "").localeCompare(a.fechaIso ?? "") || b.id - a.id;
 
-/** Agrupa por cámara: primero la cámara con la votación más reciente. */
+/** Orden de las cámaras: primero la cámara alta. Las demás, por nombre. */
+const ORDEN_CAMARAS = ["CAMARA DE SENADORES", "CAMARA DE DIPUTADOS"];
+const posicionCamara = (c) => (ORDEN_CAMARAS.includes(c) ? ORDEN_CAMARAS.indexOf(c) : ORDEN_CAMARAS.length);
+
+/** Agrupa por cámara (Senadores, luego Diputados); dentro, de la más reciente a la más antigua. */
 export function agruparPorCamara(votaciones) {
   const camaras = new Map();
   for (const v of [...votaciones].sort(masRecientePrimero)) {
     if (!camaras.has(v.camara)) camaras.set(v.camara, []);
     camaras.get(v.camara).push(v);
   }
-  return [...camaras.entries()].map(([camara, lista]) => ({ camara, votaciones: lista }));
+  return [...camaras.entries()]
+    .map(([camara, lista]) => ({ camara, votaciones: lista }))
+    .sort((a, b) => posicionCamara(a.camara) - posicionCamara(b.camara) || porNombre(a.camara ?? "", b.camara ?? ""));
 }
 
 /** Detalle de un registro de ley ya preparado por catalogo.js ({ periodo, idLey }). */
