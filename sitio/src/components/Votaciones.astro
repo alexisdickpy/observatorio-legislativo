@@ -30,7 +30,7 @@ const plural = (n: number, uno: string, varios: string) => `${n} ${n === 1 ? uno
           <a href={rutas.metodologia(rutas.anclasMetodologia.afiliacion)}>Más información</a> ·
           <a href={rutas.metodologia(rutas.anclasMetodologia.categorias)}>Qué significa cada categoría de voto</a>
         </p>
-        <p class="chico texto-suave">De la más reciente a la más antigua:</p>
+        <p class="chico texto-suave">Índice de las votaciones, de la más reciente a la más antigua.</p>
         <ol class="indice chico">
           {vs.indice.map((v: any) => (
             <li>
@@ -59,7 +59,7 @@ const plural = (n: number, uno: string, varios: string) => `${n} ${n === 1 ? uno
       <div class="aviso lectura">
         <p>
           Esta ley tuvo{vs.cantidad > 0 && " además"} {plural(vs.otrosPeriodos.length, "votación nominal", "votaciones nominales")}{" "}
-          en otra legislatura, que este sitio todavía no incluye. Se pueden ver en SILpy:
+          en otra legislatura, que este sitio todavía no incluye. Se pueden ver en SILpy.
         </p>
         <ul>
           {vs.otrosPeriodos.map((o: any) => (
@@ -77,7 +77,7 @@ const plural = (n: number, uno: string, varios: string) => `${n} ${n === 1 ? uno
         <p>
           El proyecto tiene además {plural(vs.noResueltas.length, "votación", "votaciones")} cuyo trámite
           no figura entre las tramitaciones publicadas, por lo que no se pudo confirmar que correspondan
-          a esta ley. Se pueden ver en SILpy:
+          a esta ley. Se pueden ver en SILpy.
         </p>
         <ul>
           {vs.noResueltas.map((o: any) => (

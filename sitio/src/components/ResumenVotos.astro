@@ -13,15 +13,15 @@ const { votos: v, periodo } = Astro.props;
 
 <div class="resumen-votos">
   <p class="chico texto-suave lectura">
-    Sobre las {v.total} votaciones nominales de leyes sancionadas del período {periodo} en cuya lista
-    oficial figura:
+    Sus votos en las {v.total} votaciones nominales de leyes sancionadas del período {periodo} en cuya
+    lista oficial figura.
   </p>
   <BarraVotos barra={v.barra} />
   <ul class="totales">
     {v.totales.map((t: any) => <li class={t.cantidad ? undefined : "texto-suave"}><span class={`cuadro ${t.clase}`}></span><span class="categoria">{t.categoria}</span> {t.texto}</li>)}
   </ul>
   <p class="lectura">
-    <strong>Ausencias en votaciones nominales:</strong> {v.ausencias.texto}.
+    <strong>Ausencias en votaciones nominales</strong> {v.ausencias.texto}
   </p>
   <p class="chico lectura">
     <a href={rutas.metodologia(rutas.anclasMetodologia.votosLegislador)}>Cómo se calcula este resumen</a> ·

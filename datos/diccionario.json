@@ -1,5 +1,5 @@
 {
-  "introduccion": "Describe cada campo de los archivos de `datos/`. El mismo nombre sirve para el JSON y para la columna del CSV: los objetos anidados se nombran con puntos (`proyecto.acapite`) y `[]` indica un elemento de una lista de objetos, que solo está en el JSON. En el CSV, las listas de valores se separan con ` | `, los valores verdadero/falso son `true`/`false` y un valor nulo queda vacío. `*` reemplaza una parte variable del nombre.\n\n**Origen.** `oficial`: valor tal como lo publica la API del Congreso, sin cambios. `propio`: lo calcula o agrega este proyecto; siempre está dentro de `_propio` (o en `propios/`). Los criterios están en la [metodología](../docs/metodologia.md).\n\n**Formatos.** Cada tabla de `fuente/{período}/` está en JSON y en CSV (UTF-8 con BOM, separado por comas). En Excel, si las columnas no se separan solas: *Datos → Desde texto/CSV*.",
+  "introduccion": "Describe cada campo de los archivos de `datos/`. El mismo nombre sirve para el JSON y para la columna del CSV. Los objetos anidados se nombran con puntos (`proyecto.acapite`) y `[]` indica un elemento de una lista de objetos, que solo está en el JSON. En el CSV, las listas de valores se separan con ` | `, los valores verdadero/falso son `true`/`false` y un valor nulo queda vacío. `*` reemplaza una parte variable del nombre.\n\n**Origen.** `oficial` es un valor tal como lo publica la API del Congreso, sin cambios. `propio` es lo que calcula o agrega este proyecto, y siempre está dentro de `_propio` (o en `propios/`). Los criterios están en la [metodología](../docs/metodologia.md).\n\n**Formatos.** Cada tabla de `fuente/{período}/` está en JSON y en CSV (UTF-8 con BOM, separado por comas). En Excel, si las columnas no se separan solas, se puede usar *Datos → Desde texto/CSV*.",
   "tablas": {
     "leyes": {
       "descripcion": "Un registro por ley sancionada en el período, con su proyecto, ministerios y archivos adjuntos.",
@@ -114,7 +114,7 @@
           "campo": "proyecto.iniciativa",
           "origen": "oficial",
           "tipo": "texto",
-          "descripcion": "Quién presentó el proyecto: PARLAMENTARIA, PODER EJECUTIVO o CORTE SUPREMA DE JUSTICIA."
+          "descripcion": "Quién presentó el proyecto (PARLAMENTARIA, PODER EJECUTIVO o CORTE SUPREMA DE JUSTICIA)."
         },
         {
           "campo": "proyecto.origenProyecto",
@@ -132,7 +132,7 @@
           "campo": "proyecto.urgencia",
           "origen": "oficial",
           "tipo": "texto",
-          "descripcion": "Tipo de tratamiento: ORDINARIO, DE URGENCIA, etc."
+          "descripcion": "Tipo de tratamiento, por ejemplo ORDINARIO o DE URGENCIA."
         },
         {
           "campo": "proyecto.ministerios",
@@ -172,7 +172,7 @@
           "campo": "proyecto.archivosAdjuntos[].tipoAdjunto",
           "origen": "oficial",
           "tipo": "texto",
-          "descripcion": "Tipo: LEY (texto de la ley), PROYECTO o ANTECEDENTE.",
+          "descripcion": "Tipo de documento, que puede ser LEY (texto de la ley), PROYECTO o ANTECEDENTE.",
           "soloJSON": true
         },
         {
@@ -210,7 +210,7 @@
           "campo": "_propio.idVotaciones",
           "origen": "propio",
           "tipo": "lista de enteros",
-          "descripcion": "Votaciones nominales del período enlazadas con la ley: su proyecto coincide y su trámite figura entre las tramitaciones del proyecto. En el CSV, separadas por ` | `."
+          "descripcion": "Votaciones nominales del período enlazadas con la ley porque su proyecto coincide y su trámite figura entre las tramitaciones del proyecto. En el CSV, separadas por ` | `."
         },
         {
           "campo": "_propio.idVotacionesNoResueltas",
@@ -522,7 +522,7 @@
           "campo": "proyecto.iniciativa",
           "origen": "oficial",
           "tipo": "texto",
-          "descripcion": "Quién presentó el proyecto: PARLAMENTARIA, PODER EJECUTIVO o CORTE SUPREMA DE JUSTICIA."
+          "descripcion": "Quién presentó el proyecto (PARLAMENTARIA, PODER EJECUTIVO o CORTE SUPREMA DE JUSTICIA)."
         },
         {
           "campo": "proyecto.origenProyecto",
@@ -540,7 +540,7 @@
           "campo": "proyecto.urgencia",
           "origen": "oficial",
           "tipo": "texto",
-          "descripcion": "Tipo de tratamiento: ORDINARIO, DE URGENCIA, etc."
+          "descripcion": "Tipo de tratamiento, por ejemplo ORDINARIO o DE URGENCIA."
         },
         {
           "campo": "tramitacion.camaraTramite",
@@ -702,7 +702,7 @@
           "campo": "_propio.enlaceLey",
           "origen": "propio",
           "tipo": "texto",
-          "descripcion": "Estado del enlace con una ley: `resuelto`, `no_resuelto` o `sin_ley` (el proyecto no tiene ley sancionada en el período)."
+          "descripcion": "Estado del enlace con una ley, que puede ser `resuelto`, `no_resuelto` o `sin_ley` (el proyecto no tiene ley sancionada en el período)."
         },
         {
           "campo": "_propio.idLeyes",
@@ -758,7 +758,7 @@
           "campo": "idSentidoVotacion",
           "origen": "oficial",
           "tipo": "entero",
-          "descripcion": "Código del sentido del voto: 272 SI, 273 NO, 274 ABSTENCIÓN/BLANCO, 275 AUSENTE, 276 NO VOTA, 281-283 MOCIÓN 1-3."
+          "descripcion": "Código del sentido del voto (272 SI, 273 NO, 274 ABSTENCIÓN/BLANCO, 275 AUSENTE, 276 NO VOTA, 281-283 MOCIÓN 1-3)."
         },
         {
           "campo": "sentidoVotacion",
@@ -809,7 +809,7 @@
           "campo": "camaraParlamentario",
           "origen": "oficial",
           "tipo": "texto",
-          "descripcion": "Cámara: CAMARA DE SENADORES o CAMARA DE DIPUTADOS."
+          "descripcion": "Cámara (CAMARA DE SENADORES o CAMARA DE DIPUTADOS)."
         },
         {
           "campo": "cargoBancada",
@@ -839,7 +839,7 @@
           "campo": "idLegislador",
           "origen": "oficial",
           "tipo": "entero",
-          "descripcion": "Identificador oficial. Cambia en cada legislatura: no identifica a una persona entre períodos."
+          "descripcion": "Identificador oficial. Cambia en cada legislatura, así que no identifica a una persona entre períodos."
         },
         {
           "campo": "nombres",
@@ -875,7 +875,7 @@
           "campo": "_propio.fuenteRegistro",
           "origen": "propio",
           "tipo": "texto",
-          "descripcion": "De dónde se tomó el registro: el listado histórico (`legislador?idCamara=A`), el de vigentes (`legislador/camara/{S|D}`) o, si no figura en ninguno, el voto que lo incluye (`votacion`)."
+          "descripcion": "De dónde se tomó el registro. Puede ser el listado histórico (`legislador?idCamara=A`), el de vigentes (`legislador/camara/{S|D}`) o, si no figura en ninguno, el voto que lo incluye (`votacion`)."
         },
         {
           "campo": "_propio.slug",
@@ -932,7 +932,7 @@
           "campo": "legislador.camaraParlamentario",
           "origen": "oficial",
           "tipo": "texto",
-          "descripcion": "Cámara: CAMARA DE SENADORES o CAMARA DE DIPUTADOS."
+          "descripcion": "Cámara (CAMARA DE SENADORES o CAMARA DE DIPUTADOS)."
         },
         {
           "campo": "legislador.cargoBancada",
@@ -956,7 +956,7 @@
           "campo": "legislador.idLegislador",
           "origen": "oficial",
           "tipo": "entero",
-          "descripcion": "Identificador oficial. Cambia en cada legislatura: no identifica a una persona entre períodos."
+          "descripcion": "Identificador oficial. Cambia en cada legislatura, así que no identifica a una persona entre períodos."
         },
         {
           "campo": "legislador.nombres",
@@ -1003,7 +1003,7 @@
       ]
     },
     "personas": {
-      "descripcion": "Capa propia: identificador estable de cada persona y sus `idLegislador` por período.",
+      "descripcion": "Capa propia con el identificador estable de cada persona y sus `idLegislador` por período.",
       "archivos": [
         "propios/personas.json"
       ],
@@ -1037,7 +1037,7 @@
       ]
     },
     "notas": {
-      "descripcion": "Capa propia: problemas detectados en la fuente (fechas mal formadas, totales que no coinciden, votos faltantes, etc.).",
+      "descripcion": "Capa propia con los problemas detectados en la fuente (fechas mal formadas, totales que no coinciden, votos faltantes, etc.).",
       "archivos": [
         "propios/notas.json"
       ],
@@ -1052,7 +1052,7 @@
           "campo": "entidad",
           "origen": "propio",
           "tipo": "texto",
-          "descripcion": "Qué tipo de registro afecta: ley, votacion, legislador…"
+          "descripcion": "Qué tipo de registro afecta (ley, votacion, legislador…)."
         },
         {
           "campo": "id",

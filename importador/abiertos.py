@@ -132,8 +132,9 @@ def diccionario_md(diccionario, estado):
     for tabla, t in diccionario["tablas"].items():
         cantidad = sum(p.get("cantidades", {}).get(tabla, 0) for p in periodos.values())
         lineas += [f"## {tabla}", "", t["descripcion"].strip(), ""]
-        lineas.append("Archivos: " + ", ".join(f"`{a}`" for a in t["archivos"])
-                      + (f" · {cantidad} registros en total." if cantidad else "."))
+        archivos = [f"`{a}`" for a in t["archivos"]]
+        lista = archivos[0] if len(archivos) == 1 else ", ".join(archivos[:-1]) + " y " + archivos[-1]
+        lineas.append(f"Se publica en {lista}" + (f", con {cantidad} registros en total." if cantidad else "."))
         lineas += ["", "| Campo | Origen | Tipo | Descripción |", "|---|---|---|---|"]
         for c in t["campos"]:
             descripcion = c["descripcion"].replace("|", "\\|")

@@ -26,7 +26,7 @@ const sinDato = "Sin dato";
   {v.descripcion && <p class="lectura">{v.descripcion}</p>}
   {v.observacion && <p class="lectura chico">Observación: {v.observacion}</p>}
 
-  <p class="chico texto-suave">Totales sobre {v.registrados} legisladores registrados en la votación:</p>
+  <p class="chico texto-suave">Totales sobre los {v.registrados} legisladores registrados en la votación.</p>
   <BarraVotos barra={v.barraTotal} />
   <ul class="totales">
     {
@@ -40,7 +40,7 @@ const sinDato = "Sin dato";
   {
     v.hayRecuentoPropio && (
       <p class="chico texto-suave lectura">
-        * El Congreso no publica un total para esta categoría: es un recuento propio de los votos
+        * El Congreso no publica un total para esta categoría. Es un recuento propio de los votos
         individuales.
       </p>
     )
@@ -48,12 +48,12 @@ const sinDato = "Sin dato";
   {
     !v.totalesCoinciden && (
       <p class="nota chico lectura">
-        Nota del Observatorio: los totales publicados no coinciden con el recuento de los votos
-        individuales ({v.recalculados.map((r: any) => `${r.categoria}: ${r.cantidad}`).join(" · ")}).
+        <strong>Nota del Observatorio.</strong> Los totales publicados no coinciden con el recuento de
+        los votos individuales ({v.recalculados.map((r: any) => `${r.categoria} ${r.cantidad}`).join(" · ")}).
       </p>
     )
   }
-  {v.notas.map((n: string) => <p class="nota chico lectura">Nota del Observatorio: {n}</p>)}
+  {v.notas.map((n: string) => <p class="nota chico lectura"><strong>Nota del Observatorio.</strong> {n}</p>)}
 
   <p class="chico texto-suave lectura">
     En cada partido y bancada, el total ("de …") son sus legisladores que figuran en la lista oficial

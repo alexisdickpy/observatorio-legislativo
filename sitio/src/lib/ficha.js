@@ -71,7 +71,7 @@ export function barra(categorias, celdas) {
       categoria: c.categoria,
       clase: claseDeCategoria(c.categoria),
       ancho: Math.round(c.porcentaje * 10000) / 100,
-      texto: `${c.categoria}: ${c.texto}`,
+      texto: `${c.categoria} ${c.texto}`,
     }));
   return { segmentos, etiqueta: segmentos.map((x) => x.texto).join("; ") };
 }

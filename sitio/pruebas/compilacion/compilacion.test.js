@@ -145,7 +145,7 @@ test("todas las páginas tienen el pie común: aviso, enlaces, licencias y firma
     const html = texto(url);
     for (const buscado of [
       "sin vínculo con el Congreso",
-      "este sitio no corrige los valores oficiales",
+      "con sus posibles errores. Este sitio no corrige los valores oficiales.",
       "Desarrollado por Alexis Dick con asistencia de IA.",
       `href="${rutas.metodologia()}"`,
       `href="${rutas.privacidad()}"`,
@@ -267,5 +267,20 @@ test("sin herramientas de seguimiento con cookies", () => {
     for (const rastreador of ["googletagmanager", "google-analytics", "gtag(", "facebook.net", "hotjar"]) {
       assert.ok(!html.includes(rastreador), `${rastreador} en ${url}`);
     }
+  }
+});
+
+test("los textos propios de las páginas generales no usan dos puntos", () => {
+  // Solo páginas sin valores oficiales; la cita obligatoria se mantiene textual.
+  const { cita } = estado().fuente;
+  const urls = [rutas.inicio(), rutas.metodologia(), rutas.privacidad(), rutas.datosAbiertos(), rutas.buscar()];
+  for (const url of urls) {
+    const visible = leer(url)
+      .replace(/<(script|style)[\s\S]*?<\/\1>/g, " ")
+      .replace(/<[^>]+>/g, " ")
+      .replaceAll(cita, " ")
+      .replace(/\s+/g, " ");
+    const encontrado = visible.match(/.{0,40}[\p{L})*]: .{0,20}/u);
+    assert.ok(!encontrado, `Dos puntos en ${url}, en «${encontrado?.[0]}»`);
   }
 });

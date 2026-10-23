@@ -10,17 +10,17 @@
 
 La última comprobación de la fuente (aunque no haya cambios) figura en [`estado.json`](estado.json).
 
-Describe cada campo de los archivos de `datos/`. El mismo nombre sirve para el JSON y para la columna del CSV: los objetos anidados se nombran con puntos (`proyecto.acapite`) y `[]` indica un elemento de una lista de objetos, que solo está en el JSON. En el CSV, las listas de valores se separan con ` | `, los valores verdadero/falso son `true`/`false` y un valor nulo queda vacío. `*` reemplaza una parte variable del nombre.
+Describe cada campo de los archivos de `datos/`. El mismo nombre sirve para el JSON y para la columna del CSV. Los objetos anidados se nombran con puntos (`proyecto.acapite`) y `[]` indica un elemento de una lista de objetos, que solo está en el JSON. En el CSV, las listas de valores se separan con ` | `, los valores verdadero/falso son `true`/`false` y un valor nulo queda vacío. `*` reemplaza una parte variable del nombre.
 
-**Origen.** `oficial`: valor tal como lo publica la API del Congreso, sin cambios. `propio`: lo calcula o agrega este proyecto; siempre está dentro de `_propio` (o en `propios/`). Los criterios están en la [metodología](../docs/metodologia.md).
+**Origen.** `oficial` es un valor tal como lo publica la API del Congreso, sin cambios. `propio` es lo que calcula o agrega este proyecto, y siempre está dentro de `_propio` (o en `propios/`). Los criterios están en la [metodología](../docs/metodologia.md).
 
-**Formatos.** Cada tabla de `fuente/{período}/` está en JSON y en CSV (UTF-8 con BOM, separado por comas). En Excel, si las columnas no se separan solas: *Datos → Desde texto/CSV*.
+**Formatos.** Cada tabla de `fuente/{período}/` está en JSON y en CSV (UTF-8 con BOM, separado por comas). En Excel, si las columnas no se separan solas, se puede usar *Datos → Desde texto/CSV*.
 
 ## leyes
 
 Un registro por ley sancionada en el período, con su proyecto, ministerios y archivos adjuntos.
 
-Archivos: `fuente/{período}/leyes.json`, `fuente/{período}/leyes.csv` · 556 registros en total.
+Se publica en `fuente/{período}/leyes.json` y `fuente/{período}/leyes.csv`, con 556 registros en total.
 
 | Campo | Origen | Tipo | Descripción |
 |---|---|---|---|
@@ -41,22 +41,22 @@ Archivos: `fuente/{período}/leyes.json`, `fuente/{período}/leyes.csv` · 556 r
 | `proyecto.fechaIngresoExpediente` | oficial | fecha (texto dd/mm/aaaa) | Fecha de ingreso del expediente. |
 | `proyecto._propio.fechaIngresoExpediente` | propio | fecha (aaaa-mm-dd) | Fecha anterior en formato ISO. Vacía si el texto oficial no es una fecha válida (el caso queda en `propios/notas.json`). |
 | `proyecto.idProyecto` | oficial | entero | Identificador oficial del proyecto. |
-| `proyecto.iniciativa` | oficial | texto | Quién presentó el proyecto: PARLAMENTARIA, PODER EJECUTIVO o CORTE SUPREMA DE JUSTICIA. |
+| `proyecto.iniciativa` | oficial | texto | Quién presentó el proyecto (PARLAMENTARIA, PODER EJECUTIVO o CORTE SUPREMA DE JUSTICIA). |
 | `proyecto.origenProyecto` | oficial | texto | Cámara de origen del proyecto. |
 | `proyecto.tipoProyecto` | oficial | texto | Tipo de proyecto (proyecto de ley, resolución, declaración…). |
-| `proyecto.urgencia` | oficial | texto | Tipo de tratamiento: ORDINARIO, DE URGENCIA, etc. |
+| `proyecto.urgencia` | oficial | texto | Tipo de tratamiento, por ejemplo ORDINARIO o DE URGENCIA. |
 | `proyecto.ministerios` | oficial | lista de textos | Ministerios que remiten el proyecto (iniciativas del Poder Ejecutivo). En el CSV, separados por ` \| `. |
 | `proyecto.archivosAdjuntos[].appURL` | oficial | URL | Descarga del archivo adjunto. *Solo en el JSON.* |
 | `proyecto.archivosAdjuntos[].idAdjunto` | oficial | entero | Identificador oficial del adjunto. *Solo en el JSON.* |
 | `proyecto.archivosAdjuntos[].idProyecto` | oficial | entero | Proyecto al que pertenece el adjunto. *Solo en el JSON.* |
 | `proyecto.archivosAdjuntos[].infoAdjunto` | oficial | texto | Descripción del adjunto. *Solo en el JSON.* |
-| `proyecto.archivosAdjuntos[].tipoAdjunto` | oficial | texto | Tipo: LEY (texto de la ley), PROYECTO o ANTECEDENTE. *Solo en el JSON.* |
+| `proyecto.archivosAdjuntos[].tipoAdjunto` | oficial | texto | Tipo de documento, que puede ser LEY (texto de la ley), PROYECTO o ANTECEDENTE. *Solo en el JSON.* |
 | `proyecto.archivosAdjuntos[].tipoArchivo` | oficial | texto | Formato del archivo (por ejemplo, application/pdf). *Solo en el JSON.* |
 | `_propio.fechaPromulgacion` | propio | fecha (aaaa-mm-dd) | Fecha anterior en formato ISO. Vacía si el texto oficial no es una fecha válida (el caso queda en `propios/notas.json`). |
 | `_propio.fechaPublicacion` | propio | fecha (aaaa-mm-dd) | Fecha anterior en formato ISO. Vacía si el texto oficial no es una fecha válida (el caso queda en `propios/notas.json`). |
 | `_propio.fechaSancion` | propio | fecha (aaaa-mm-dd) | Fecha anterior en formato ISO. Vacía si el texto oficial no es una fecha válida (el caso queda en `propios/notas.json`). |
 | `_propio.idPeriodoParlamentario` | propio | entero | Período parlamentario anual en cuyo listado (`ley/periodo/{id}`) figura la ley. |
-| `_propio.idVotaciones` | propio | lista de enteros | Votaciones nominales del período enlazadas con la ley: su proyecto coincide y su trámite figura entre las tramitaciones del proyecto. En el CSV, separadas por ` \| `. |
+| `_propio.idVotaciones` | propio | lista de enteros | Votaciones nominales del período enlazadas con la ley porque su proyecto coincide y su trámite figura entre las tramitaciones del proyecto. En el CSV, separadas por ` \| `. |
 | `_propio.idVotacionesNoResueltas` | propio | lista de enteros | Votaciones del mismo proyecto cuyo trámite no figura en las tramitaciones publicadas. No se asume el enlace. |
 | `_propio.idVotacionesOtrosPeriodos` | propio | lista de enteros | Votaciones del mismo proyecto que pertenecen a otra legislatura. |
 | `_propio.numeroLey` | propio | texto | Número de ley sin espacios alrededor. Agrupa los registros de una misma ley y forma su URL. |
@@ -66,7 +66,7 @@ Archivos: `fuente/{período}/leyes.json`, `fuente/{período}/leyes.csv` · 556 r
 
 Un registro por trámite del proyecto de cada ley.
 
-Archivos: `fuente/{período}/tramitaciones.json`, `fuente/{período}/tramitaciones.csv` · 13601 registros en total.
+Se publica en `fuente/{período}/tramitaciones.json` y `fuente/{período}/tramitaciones.csv`, con 13601 registros en total.
 
 | Campo | Origen | Tipo | Descripción |
 |---|---|---|---|
@@ -101,7 +101,7 @@ Archivos: `fuente/{período}/tramitaciones.json`, `fuente/{período}/tramitacion
 
 Un registro por votación nominal del período, sin los votos individuales (están en `votos`).
 
-Archivos: `fuente/{período}/votaciones.json`, `fuente/{período}/votaciones.csv` · 1165 registros en total.
+Se publica en `fuente/{período}/votaciones.json` y `fuente/{período}/votaciones.csv`, con 1165 registros en total.
 
 | Campo | Origen | Tipo | Descripción |
 |---|---|---|---|
@@ -123,10 +123,10 @@ Archivos: `fuente/{período}/votaciones.json`, `fuente/{período}/votaciones.csv
 | `proyecto.fechaIngresoExpediente` | oficial | fecha (texto dd/mm/aaaa) | Fecha de ingreso del expediente. |
 | `proyecto._propio.fechaIngresoExpediente` | propio | fecha (aaaa-mm-dd) | Fecha anterior en formato ISO. Vacía si el texto oficial no es una fecha válida (el caso queda en `propios/notas.json`). |
 | `proyecto.idProyecto` | oficial | entero | Identificador oficial del proyecto. |
-| `proyecto.iniciativa` | oficial | texto | Quién presentó el proyecto: PARLAMENTARIA, PODER EJECUTIVO o CORTE SUPREMA DE JUSTICIA. |
+| `proyecto.iniciativa` | oficial | texto | Quién presentó el proyecto (PARLAMENTARIA, PODER EJECUTIVO o CORTE SUPREMA DE JUSTICIA). |
 | `proyecto.origenProyecto` | oficial | texto | Cámara de origen del proyecto. |
 | `proyecto.tipoProyecto` | oficial | texto | Tipo de proyecto (proyecto de ley, resolución, declaración…). |
-| `proyecto.urgencia` | oficial | texto | Tipo de tratamiento: ORDINARIO, DE URGENCIA, etc. |
+| `proyecto.urgencia` | oficial | texto | Tipo de tratamiento, por ejemplo ORDINARIO o DE URGENCIA. |
 | `tramitacion.camaraTramite` | oficial | texto | Cámara en la que ocurrió el trámite. |
 | `tramitacion.descripcionEtapa` | oficial | texto | Etapa del trámite (por ejemplo, Primer trámite constitucional). |
 | `tramitacion.descripcionSubEtapa` | oficial | texto | Subetapa del trámite (por ejemplo, Discusión Plenario). |
@@ -153,7 +153,7 @@ Archivos: `fuente/{período}/votaciones.json`, `fuente/{período}/votaciones.csv
 | `tramitacion.idSesion.periodoParlamentarioDTO.periodoLegislativo` | oficial | texto | Período legislativo, por ejemplo 2023-2028. |
 | `tramitacion.idSesion.periodoParlamentarioDTO.periodoParlamentario` | oficial | texto | Período parlamentario anual, por ejemplo 2023-2024. |
 | `_propio.cantidadVotos` | propio | entero | Cantidad de votos individuales de la votación en `votos.csv`. |
-| `_propio.enlaceLey` | propio | texto | Estado del enlace con una ley: `resuelto`, `no_resuelto` o `sin_ley` (el proyecto no tiene ley sancionada en el período). |
+| `_propio.enlaceLey` | propio | texto | Estado del enlace con una ley, que puede ser `resuelto`, `no_resuelto` o `sin_ley` (el proyecto no tiene ley sancionada en el período). |
 | `_propio.idLeyes` | propio | lista de enteros | Leyes (`idLey`) enlazadas con la votación. En el CSV, separadas por ` \| `. |
 | `_propio.periodoLegislativo` | propio | texto | Período legislativo de la votación. |
 | `_propio.totalesCoinciden` | propio | booleano | Si cada total publicado coincide con el recuento de los votos individuales. |
@@ -163,14 +163,14 @@ Archivos: `fuente/{período}/votaciones.json`, `fuente/{período}/votaciones.csv
 
 Un voto individual por fila.
 
-Archivos: `fuente/{período}/votos.csv` · 82680 registros en total.
+Se publica en `fuente/{período}/votos.csv`, con 82680 registros en total.
 
 | Campo | Origen | Tipo | Descripción |
 |---|---|---|---|
 | `idVotacion` | oficial | entero | Votación a la que pertenece el voto. |
 | `idDetalleVotacion` | oficial | entero | Identificador oficial del voto individual. |
 | `idLegislador` | oficial | entero | Legislador que votó (ver `legisladores`). |
-| `idSentidoVotacion` | oficial | entero | Código del sentido del voto: 272 SI, 273 NO, 274 ABSTENCIÓN/BLANCO, 275 AUSENTE, 276 NO VOTA, 281-283 MOCIÓN 1-3. |
+| `idSentidoVotacion` | oficial | entero | Código del sentido del voto (272 SI, 273 NO, 274 ABSTENCIÓN/BLANCO, 275 AUSENTE, 276 NO VOTA, 281-283 MOCIÓN 1-3). |
 | `sentidoVotacion` | oficial | texto | Sentido del voto en texto. AUSENTE significa que no votó en ese momento, no que faltó a la sesión. |
 | `observacion` | oficial | texto | Observación del voto (por ejemplo, «Votó a viva voz»). |
 
@@ -178,7 +178,7 @@ Archivos: `fuente/{período}/votos.csv` · 82680 registros en total.
 
 Un registro por legislador del período, vigente o no. Es la única tabla con el correo y el teléfono que la API publica para cada legislador.
 
-Archivos: `fuente/{período}/legisladores.json`, `fuente/{período}/legisladores.csv` · 143 registros en total.
+Se publica en `fuente/{período}/legisladores.json` y `fuente/{período}/legisladores.csv`, con 143 registros en total.
 
 | Campo | Origen | Tipo | Descripción |
 |---|---|---|---|
@@ -186,18 +186,18 @@ Archivos: `fuente/{período}/legisladores.json`, `fuente/{período}/legisladores
 | `apellidos` | oficial | texto | Apellidos. |
 | `appURL` | oficial | URL | Ficha del legislador en SILpy. |
 | `bancada` | oficial | texto | Bancada. La API da el valor actual por legislador y período, no la bancada en cada fecha. |
-| `camaraParlamentario` | oficial | texto | Cámara: CAMARA DE SENADORES o CAMARA DE DIPUTADOS. |
+| `camaraParlamentario` | oficial | texto | Cámara (CAMARA DE SENADORES o CAMARA DE DIPUTADOS). |
 | `cargoBancada` | oficial | texto | Cargo en la bancada (MIEMBRO, LIDER, VICELIDER…). Puede estar vacío. |
 | `departamento` | oficial | texto | Departamento por el que fue electo; NACIONAL para el Senado. |
 | `emailParlamentario` | oficial | texto | Correo que la API publica para el legislador. Puede estar vacío. |
 | `fotoURL` | oficial | URL | Foto oficial. |
-| `idLegislador` | oficial | entero | Identificador oficial. Cambia en cada legislatura: no identifica a una persona entre períodos. |
+| `idLegislador` | oficial | entero | Identificador oficial. Cambia en cada legislatura, así que no identifica a una persona entre períodos. |
 | `nombres` | oficial | texto | Nombres. |
 | `partidoPolitico` | oficial | texto | Partido político. La API da el valor actual por legislador y período, no el partido en cada fecha. |
 | `periodoLegislativo` | oficial | texto | Período legislativo del registro. |
 | `telefonoParlamentario` | oficial | texto | Teléfono que la API publica para el legislador. Puede estar vacío. |
 | `tipoParlamentario` | oficial | texto | TITULAR, SUPLENTE o VITALICIO (los senadores vitalicios tienen voz pero no voto). |
-| `_propio.fuenteRegistro` | propio | texto | De dónde se tomó el registro: el listado histórico (`legislador?idCamara=A`), el de vigentes (`legislador/camara/{S\|D}`) o, si no figura en ninguno, el voto que lo incluye (`votacion`). |
+| `_propio.fuenteRegistro` | propio | texto | De dónde se tomó el registro. Puede ser el listado histórico (`legislador?idCamara=A`), el de vigentes (`legislador/camara/{S\|D}`) o, si no figura en ninguno, el voto que lo incluye (`votacion`). |
 | `_propio.slug` | propio | texto | Identificador estable de la persona (ver `personas`). Forma la URL de su ficha. |
 | `_propio.vigente` | propio | booleano | Si figura en el listado de legisladores en ejercicio. |
 
@@ -205,7 +205,7 @@ Archivos: `fuente/{período}/legisladores.json`, `fuente/{período}/legisladores
 
 Un registro por autor de cada proyecto con ley, en el orden que publica la API. El autor puede ser legislador de otra legislatura.
 
-Archivos: `fuente/{período}/autores.json`, `fuente/{período}/autores.csv` · 1386 registros en total.
+Se publica en `fuente/{período}/autores.json` y `fuente/{período}/autores.csv`, con 1386 registros en total.
 
 | Campo | Origen | Tipo | Descripción |
 |---|---|---|---|
@@ -214,11 +214,11 @@ Archivos: `fuente/{período}/autores.json`, `fuente/{período}/autores.csv` · 1
 | `legislador.apellidos` | oficial | texto | Apellidos. |
 | `legislador.appURL` | oficial | URL | Ficha del legislador en SILpy. |
 | `legislador.bancada` | oficial | texto | Bancada. La API da el valor actual por legislador y período, no la bancada en cada fecha. |
-| `legislador.camaraParlamentario` | oficial | texto | Cámara: CAMARA DE SENADORES o CAMARA DE DIPUTADOS. |
+| `legislador.camaraParlamentario` | oficial | texto | Cámara (CAMARA DE SENADORES o CAMARA DE DIPUTADOS). |
 | `legislador.cargoBancada` | oficial | texto | Cargo en la bancada (MIEMBRO, LIDER, VICELIDER…). Puede estar vacío. |
 | `legislador.departamento` | oficial | texto | Departamento por el que fue electo; NACIONAL para el Senado. |
 | `legislador.fotoURL` | oficial | URL | Foto oficial. |
-| `legislador.idLegislador` | oficial | entero | Identificador oficial. Cambia en cada legislatura: no identifica a una persona entre períodos. |
+| `legislador.idLegislador` | oficial | entero | Identificador oficial. Cambia en cada legislatura, así que no identifica a una persona entre períodos. |
 | `legislador.nombres` | oficial | texto | Nombres. |
 | `legislador.partidoPolitico` | oficial | texto | Partido político. La API da el valor actual por legislador y período, no el partido en cada fecha. |
 | `legislador.periodoLegislativo` | oficial | texto | Período legislativo del registro. |
@@ -229,9 +229,9 @@ Archivos: `fuente/{período}/autores.json`, `fuente/{período}/autores.csv` · 1
 
 ## personas
 
-Capa propia: identificador estable de cada persona y sus `idLegislador` por período.
+Capa propia con el identificador estable de cada persona y sus `idLegislador` por período.
 
-Archivos: `propios/personas.json`.
+Se publica en `propios/personas.json`.
 
 | Campo | Origen | Tipo | Descripción |
 |---|---|---|---|
@@ -242,14 +242,14 @@ Archivos: `propios/personas.json`.
 
 ## notas
 
-Capa propia: problemas detectados en la fuente (fechas mal formadas, totales que no coinciden, votos faltantes, etc.).
+Capa propia con los problemas detectados en la fuente (fechas mal formadas, totales que no coinciden, votos faltantes, etc.).
 
-Archivos: `propios/notas.json`.
+Se publica en `propios/notas.json`.
 
 | Campo | Origen | Tipo | Descripción |
 |---|---|---|---|
 | `tipo` | propio | texto | Tipo de problema (por ejemplo, `menos_votos_que_miembros`, `enlace_no_resuelto`). |
-| `entidad` | propio | texto | Qué tipo de registro afecta: ley, votacion, legislador… |
+| `entidad` | propio | texto | Qué tipo de registro afecta (ley, votacion, legislador…). |
 | `id` | propio | entero o texto | Identificador oficial del registro afectado. |
 | `detalle` | propio | texto | Explicación del problema. |
 | `ruta` | propio | texto | Campo afectado dentro del registro, si corresponde. |

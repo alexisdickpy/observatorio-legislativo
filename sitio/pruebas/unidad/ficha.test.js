@@ -183,5 +183,5 @@ test("barras: un segmento por categoría con votos, que suman el 100 %, con su c
     v.leyenda.map((l) => l.categoria),
     ["ABSTENCIÓN/BLANCO", "MOCIÓN 1", "MOCIÓN 2", "MOCIÓN 3", "AUSENTE"],
   );
-  assert.equal(v.barraTotal.segmentos[1].texto, "MOCIÓN 1: 31 de 45 (68,9%)");
+  assert.equal(v.barraTotal.segmentos[1].texto, "MOCIÓN 1 31 de 45 (68,9%)");
 });
