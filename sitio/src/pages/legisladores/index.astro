@@ -19,15 +19,15 @@ const conNombreConocido = todos.some((l) => l.partidoConocido);
   <h1>Legisladores</h1>
   <div class="lectura">
     <p>
-      {enEjercicio.length} legisladores en ejercicio en el período legislativo {periodo}: primero la
-      Cámara de Senadores y luego la de Diputados, por apellido. Cada nombre lleva a su ficha, con sus
+      {enEjercicio.length} legisladores en ejercicio en el período legislativo {periodo}, primero los
+      de la Cámara de Senadores y luego los de Diputados, por apellido. Cada nombre lleva a su ficha, con sus
       votos y las leyes de su autoría.
     </p>
     <p class="chico texto-suave">
       Los datos son los que publica el Congreso. Partido y bancada son los que la API registra para
       cada legislador en el período, no necesariamente los de cada fecha. Los senadores se eligen en
-      una circunscripción nacional: la API registra su departamento como NACIONAL.
-      {conNombreConocido && " Entre paréntesis, el nombre por el que se conoce a un partido: es un agregado de este sitio."}
+      una circunscripción nacional, por eso la API registra su departamento como NACIONAL.
+      {conNombreConocido && " El nombre entre paréntesis es el nombre por el que se conoce a un partido, un agregado de este sitio."}
     </p>
   </div>
   <FiltroLegisladores entradas={todos.map((l) => l.filtro)} opciones={opcionesDelListado(periodo)} />

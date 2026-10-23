@@ -4,10 +4,10 @@
 import { normalizar } from "./texto.js";
 
 export const ORDENES = {
-  "sancion-desc": "Fecha de sanción: más nuevas primero",
-  "sancion-asc": "Fecha de sanción: más viejas primero",
-  "numero-desc": "Número: mayor a menor",
-  "numero-asc": "Número: menor a mayor",
+  "sancion-desc": "Sanción más reciente primero",
+  "sancion-asc": "Sanción más antigua primero",
+  "numero-desc": "Número de mayor a menor",
+  "numero-asc": "Número de menor a mayor",
 };
 export const ORDEN_PREDETERMINADO = "sancion-desc";
 

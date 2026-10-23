@@ -28,7 +28,7 @@ const sinDato = "Sin dato";
 {
   d.autores.length === 0 ? (
     // Sin legisladores autores: si hay ministerio, ya figura arriba como autor del proyecto.
-    d.ministerios.length === 0 && <p class="texto-suave">Autores: {sinDato}</p>
+    d.ministerios.length === 0 && <p class="texto-suave">Sin dato de autores</p>
   ) : (
     <ul class="autores">
       {d.autores.map((a: any) => (
@@ -46,8 +46,8 @@ const sinDato = "Sin dato";
 {
   d.autores.some((a: any) => !a.delPeriodo) && (
     <p class="chico texto-suave lectura">
-      Algunos autores eran legisladores de otra legislatura: se indica la legislatura, y su partido,
-      bancada y cámara son los que la API registra para ella.
+      Algunos autores eran legisladores de otra legislatura. En ese caso se indica la legislatura, y su
+      partido, bancada y cámara son los que la API registra para ella.
     </p>
   )
 }

@@ -34,10 +34,10 @@ const fecha = actualizacion();
     <p>
       <strong>{fuente.cita}.</strong> Los datos provienen de la
       <a href={fuente.url}>API de Datos Abiertos del Congreso Nacional</a> y se copian una vez por día.
-      Última actualización: <time datetime={fecha.iso}>{fecha.texto}</time>.
+      La última actualización es del <time datetime={fecha.iso}>{fecha.texto}</time>.
     </p>
     <p>
-      Se muestran tal como los publica el Congreso, con sus posibles errores: este sitio no corrige los
+      Se muestran tal como los publica el Congreso, con sus posibles errores. Este sitio no corrige los
       valores oficiales. Si un dato parece incorrecto, el error puede estar en la propia fuente oficial;
       conviene compararlo con ella. Las observaciones automáticas sobre los datos se listan en la
       <a href={rutas.metodologia(rutas.anclasMetodologia.observaciones)}>metodología</a>, junto con lo que el
@@ -53,12 +53,12 @@ const fecha = actualizacion();
     <h2 id="licencias">Licencias y cómo citar</h2>
     <ul>
       <li>
-        Datos: <a href={rutas.licenciaDatos()}>{fuente.licencia}</a>, la misma licencia con que los
-        publica el Congreso. Se pueden reutilizar citando «{fuente.cita}» y la fecha de actualización.
+        Los datos tienen licencia <a href={rutas.licenciaDatos()}>{fuente.licencia}</a>, la misma con
+        que los publica el Congreso. Se pueden reutilizar citando «{fuente.cita}» y la fecha de actualización.
         Se descargan en <a href={rutas.datosAbiertos()}>Datos abiertos</a>.
       </li>
       <li>
-        Código: <a href={rutas.licenciaCodigo()}>AGPL-3.0</a>, publicado en el
+        El código tiene licencia <a href={rutas.licenciaCodigo()}>AGPL-3.0</a> y está publicado en el
         <a href={rutas.codigoFuente()}>repositorio del proyecto</a>.
       </li>
     </ul>

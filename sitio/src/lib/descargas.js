@@ -6,7 +6,7 @@ import { archivosDeDatos, diccionario, periodos } from "./datos.js";
 import * as rutas from "./rutas.js";
 
 const GENERALES = {
-  "diccionario.md": "Diccionario de datos: cada campo de cada tabla, con su tipo, su origen (oficial o propio) y su descripción.",
+  "diccionario.md": "Diccionario de datos, con cada campo de cada tabla, su tipo, su origen (oficial o propio) y su descripción.",
   "diccionario.json": "El mismo diccionario, en formato JSON.",
   "estado.json": "Fecha de la última comprobación con la fuente, última modificación y cantidades por período.",
   "periodos.json": "Períodos legislativos incluidos, con sus fechas.",
@@ -67,7 +67,7 @@ export function descargas() {
         .filter((t) => t.archivos.length),
     },
     ...periodos().map((p) => ({
-      titulo: `Período legislativo ${p.id}: valores oficiales`,
+      titulo: `Valores oficiales del período legislativo ${p.id}`,
       tablas: tablasDe((a) => a.startsWith("fuente/"), p.id),
     })),
     { titulo: "Datos agregados por este proyecto (no oficiales)", tablas: tablasDe((a) => a.startsWith("propios/"), "") },
