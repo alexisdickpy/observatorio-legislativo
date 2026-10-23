@@ -2,7 +2,7 @@
 
 Copia propia de los datos del Congreso Nacional, generada por el [importador](../importador/) a partir de la [API de Datos Abiertos Legislativos](https://datosv2.congreso.gov.py/web/api-doc/index.html).
 
-**Origen de los datos: Datos Abiertos Poder Legislativo.** Licencia [CC BY 4.0](../LICENSE-DATOS.md). La fecha de la última actualización está en [`estado.json`](estado.json). Ante cualquier diferencia, prevalece la fuente oficial.
+**Origen de los datos: Datos Abiertos Poder Legislativo.** Licencia [CC BY 4.0](../LICENSE-DATOS.md). La fecha de la última actualización está en [`estado.json`](estado.json). Se muestran tal como los publica el Congreso, con sus posibles errores; ante una duda, compárelos con la fuente oficial.
 
 Todos estos archivos son **datos abiertos**: se pueden descargar y reutilizar citando la fuente. El [diccionario de datos](diccionario.md) describe cada campo, su tipo y si es oficial o propio.
 

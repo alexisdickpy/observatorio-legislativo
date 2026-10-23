@@ -1,22 +1,41 @@
 ---
-// Pie de página provisional: cita obligatoria de la fuente y fecha de actualización.
-// Los textos completos (firma, aviso de datos, privacidad, metodología) llegan en #9.
+// Pie de página común: cita de la fuente con la fecha de actualización, aviso de datos, enlaces a
+// las páginas de metodología y privacidad, licencias y firma (textos acordados en #9).
 import { actualizacion, cita } from "../lib/catalogo.js";
 import * as rutas from "../lib/rutas.js";
 
 const fuente = cita();
 const fecha = actualizacion();
+const enlaces = [
+  { url: rutas.metodologia(), texto: "Metodología" },
+  { url: rutas.privacidad(), texto: "Privacidad y aviso legal" },
+  { url: rutas.datosAbiertos(), texto: "Datos abiertos" },
+  { url: rutas.codigoFuente(), texto: "Código fuente" },
+];
 ---
 
 <footer class="pie">
   <div class="contenedor chico">
     <p>
       <strong>{fuente.cita}.</strong>
-      Datos comprobados con la fuente el <time datetime={fecha.iso}>{fecha.texto}</time>.
-      Licencia de los datos: {fuente.licencia}. Ante cualquier diferencia, prevalece la
-      <a href={fuente.url}>fuente oficial</a>.
+      Actualizado el <time datetime={fecha.iso}>{fecha.texto}</time>.
     </p>
-    <p><a href={rutas.datosAbiertos()}>Descargar los datos abiertos</a></p>
+    <p class="lectura">
+      Los datos provienen de la API de Datos Abiertos del Congreso Nacional y se muestran tal como allí
+      se publican, con sus posibles errores: este sitio no corrige los valores oficiales. Si un dato
+      parece incorrecto, compáralo con la <a href={fuente.url}>fuente oficial</a>. Este es un proyecto
+      independiente, sin vínculo con el Congreso.
+    </p>
+    <nav aria-label="Pie de página">
+      <ul class="enlaces">
+        {enlaces.map((e) => <li><a href={e.url}>{e.texto}</a></li>)}
+      </ul>
+    </nav>
+    <p>
+      Datos: <a href={rutas.licenciaDatos()}>{fuente.licencia}</a> · Código:
+      <a href={rutas.licenciaCodigo()}>AGPL-3.0</a>
+    </p>
+    <p class="firma">Desarrollado por Alexis Dick con asistencia de IA.</p>
   </div>
 </footer>
 
@@ -28,7 +47,14 @@ const fecha = actualizacion();
     padding: var(--espacio-4) 0;
     color: var(--color-texto-suave);
   }
-  p:last-child {
+  .enlaces {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espacio-2) var(--espacio-4);
+    list-style: none;
+    padding: 0;
+  }
+  .firma {
     margin-bottom: 0;
   }
 </style>

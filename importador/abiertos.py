@@ -120,7 +120,7 @@ def diccionario_md(diccionario, estado):
         "<!-- Generado por el importador a partir de diccionario.json. No editar a mano. -->",
         "",
         f"**{fuente.get('cita', 'Origen de los datos: Datos Abiertos Poder Legislativo')}.** "
-        "Licencia [CC BY 4.0](../LICENSE-DATOS.md). Ante cualquier diferencia, prevalece la fuente oficial.",
+        "Licencia [CC BY 4.0](../LICENSE-DATOS.md). Se muestran tal como los publica el Congreso, con sus posibles errores; ante una duda, compárelos con la fuente oficial.",
         "",
     ]
     periodos = estado.get("periodos", {})

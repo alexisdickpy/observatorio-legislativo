@@ -61,6 +61,7 @@ const descripcion = `${f.nombre ?? sinDato}: ${actual.camara ?? sinDato}, perío
             no necesariamente eran los vigentes en la fecha de cada votación.
             {b.camara === "CAMARA DE SENADORES" && " Los senadores se eligen en una circunscripción nacional: la API registra su departamento como NACIONAL."}
             {b.partidoConocido && " Entre paréntesis, el nombre por el que se conoce a su partido: es un agregado de este sitio; el nombre que va antes es el oficial."}
+            {" "}<a href={rutas.metodologia(rutas.anclasMetodologia.afiliacion)}>Más información</a>
           </p>
           {b.urlSilpy && <p class="chico"><a href={b.urlSilpy}>Ficha oficial en SILpy</a></p>}
 

@@ -13,6 +13,23 @@ export const legisladores = () => "/legisladores/";
 export const legislador = (slug) => `/legisladores/${encodeURIComponent(slug)}/`;
 export const buscar = () => "/buscar/";
 export const datosAbiertos = () => "/datos/";
+export const privacidad = () => "/privacidad/";
+/** Metodología; con sección, el ancla de esa parte (anclasMetodologia). */
+export const metodologia = (seccion) => (seccion ? `/metodologia/#${seccion}` : "/metodologia/");
+/** Secciones de la metodología a las que enlazan las fichas. */
+export const anclasMetodologia = {
+  categorias: "categorias-de-voto",
+  votosLegislador: "votos-de-cada-legislador",
+  afiliacion: "partido-y-bancada",
+  observaciones: "observaciones-sobre-los-datos",
+};
+
+/** Repositorio público del proyecto: código, datos y licencias. */
+const repositorio = "https://github.com/alexisdickpy/observatorio-legislativo-py";
+export const codigoFuente = () => repositorio;
+export const licenciaCodigo = () => `${repositorio}/blob/main/LICENSE`;
+export const licenciaDatos = () => `${repositorio}/blob/main/LICENSE-DATOS.md`;
+export const metodologiaTecnica = () => `${repositorio}/blob/main/docs/metodologia.md`;
 
 /** Archivo de datos/ servido en /datos/… con la misma ruta que en el repositorio. */
 export const archivoDatos = (ruta) => `/datos/${ruta}`;

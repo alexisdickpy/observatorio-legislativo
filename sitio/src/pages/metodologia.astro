@@ -1,0 +1,176 @@
+---
+// Versión pública de docs/metodologia.md, con las observaciones sobre los datos generadas desde
+// datos/propios/notas.json (lib/metodologia.js).
+import Base from "../layouts/Base.astro";
+import { actualizacion, cita } from "../lib/catalogo.js";
+import { periodos } from "../lib/datos.js";
+import { observacionesDeLosDatos } from "../lib/metodologia.js";
+import * as rutas from "../lib/rutas.js";
+
+const fuente = cita();
+const fecha = actualizacion();
+const vigente = periodos().find((p) => p.vigente);
+const observaciones = observacionesDeLosDatos();
+const anclas = rutas.anclasMetodologia;
+---
+
+<Base
+  titulo="Metodología"
+  descripcion="De dónde vienen los datos del sitio, qué significa cada categoría de voto, cómo se calculan los resúmenes y qué observaciones automáticas se registran sobre los datos oficiales."
+>
+  <div class="lectura metodologia">
+    <h1>Metodología</h1>
+    <p>
+      Esta página explica de dónde vienen los datos, cómo se presentan y qué agrega el sitio por su
+      cuenta. La versión técnica, con el detalle de cada archivo, está en el
+      <a href={rutas.metodologiaTecnica()}>repositorio del proyecto</a>.
+    </p>
+
+    <h2 id="fidelidad">Principio: los datos tal como los publica el Congreso</h2>
+    <p>
+      Los datos se muestran tal como los publica el Congreso Nacional, aunque tengan errores. Ningún
+      valor oficial se corrige ni se reemplaza. Cuando un dato no cumple lo esperado, el sitio conserva el
+      valor original y lo señala en las <a href={`#${anclas.observaciones}`}>observaciones sobre los datos</a>. Lo
+      que el sitio calcula o agrega por su cuenta se indica como propio.
+    </p>
+
+    <h2 id="fuente">Fuente y actualización</h2>
+    <p>
+      <strong>{fuente.cita}.</strong> Todos los datos provienen de la
+      <a href={fuente.url}>API de Datos Abiertos del Congreso Nacional</a>, publicada bajo licencia
+      {fuente.licencia}. El sitio guarda una copia propia y la compara con la fuente una vez por día;
+      no consulta la API en cada visita. Última actualización:
+      <time datetime={fecha.iso}>{fecha.texto}</time>.
+    </p>
+
+    <h2 id="alcance">Qué incluye</h2>
+    <ul>
+      <li>El período legislativo {vigente.id}, en sus dos cámaras.</li>
+      <li>Las leyes sancionadas en el período, con su proyecto, sus autores y sus votaciones nominales.</li>
+      <li>Los legisladores del período, también los que ya no ejercen el cargo.</li>
+    </ul>
+    <p>
+      Una <strong>votación nominal</strong> es la que registra el voto de cada legislador. La API solo
+      publica esas votaciones: las que se hacen sin registrar el voto de cada uno, por ejemplo a mano
+      alzada, no se publican en la API. El Senado registra
+      muchas menos votaciones nominales que la Cámara de Diputados, así que los datos de los senadores
+      se basan en menos votaciones.
+    </p>
+
+    <h2 id={anclas.categorias}>Categorías de voto</h2>
+    <p>
+      El sitio usa las categorías que publica el Congreso, sin fusionarlas. La API no documenta su
+      significado; lo que sigue es lo que indica cada nombre.
+    </p>
+    <dl>
+      <dt>SI, NO, ABSTENCIÓN/BLANCO</dt>
+      <dd>El sentido del voto emitido.</dd>
+      <dt>NO VOTA</dt>
+      <dd>El legislador figura en la votación sin emitir voto. Aparece solo en el Senado.</dd>
+      <dt>AUSENTE</dt>
+      <dd>
+        El legislador estuvo ausente en esa votación: no registró su voto. <strong>No necesariamente
+        equivale a faltar a la sesión</strong>, porque pudo estar presente en otro momento. Por eso el
+        sitio habla de «ausencias en votaciones nominales».
+      </dd>
+      <dt>MOCIÓN 1, MOCIÓN 2, MOCIÓN 3</dt>
+      <dd>
+        Votos por una de varias propuestas alternativas. El Congreso no publica un total para estas
+        categorías: el sitio los cuenta a partir de los votos individuales y lo señala como recuento
+        propio.
+      </dd>
+    </dl>
+    <p>
+      Los totales de cada votación son los que publica el Congreso. Los porcentajes se calculan sobre
+      todos los legisladores que figuran en la lista de la votación, incluidos AUSENTE y NO VOTA, y
+      siempre se muestran con su denominador, por ejemplo «54 de 130 (41,5 %)».
+    </p>
+
+    <h2 id={anclas.votosLegislador}>Votos y leyes de cada legislador</h2>
+    <p>
+      La ficha de cada legislador resume sus votos en las votaciones nominales de leyes sancionadas del
+      período en cuya lista oficial figura. Cada categoría se cuenta por separado. Por ahora no se
+      incluyen las votaciones de proyectos que no llegaron a ser ley. Los senadores vitalicios no figuran en las
+      listas de votación, así que sus fichas no tienen votos.
+    </p>
+    <p>
+      Las leyes de su autoría son las leyes sancionadas del período en cuyo proyecto figura entre los
+      autores.
+    </p>
+
+    <h2 id={anclas.afiliacion}>Partido y bancada</h2>
+    <p>
+      La API publica un único partido y una única bancada por legislador y período, sin fecha. Si un
+      legislador cambió de bancada, el sitio no puede saberlo: en cada votación se muestran el partido
+      y la bancada registrados para el período, que no necesariamente eran los vigentes en esa fecha.
+      Cuando sea posible, el sitio agregará a mano los cambios de bancada conocidos, señalados como
+      dato propio y sin reemplazar el valor oficial.
+    </p>
+    <p>
+      Algunos partidos son más conocidos por otro nombre. En ese caso el sitio muestra el nombre oficial
+      y, entre paréntesis, el nombre conocido, que es un agregado propio.
+    </p>
+
+    <h2 id="transformaciones">Qué hace el sitio con los datos</h2>
+    <p>Ninguna de estas operaciones cambia un valor oficial:</p>
+    <ul>
+      <li>Convierte las fechas a un formato que permite ordenarlas. Una fecha no válida se muestra tal como viene.</li>
+      <li>Agrupa los registros de una misma ley por su número, sin los espacios que a veces lo rodean.</li>
+      <li>Enlaza cada votación con su ley solo si el trámite votado figura en el proyecto. Si no, no adivina el enlace.</li>
+      <li>Cuenta los votos individuales de cada votación y los compara con los totales publicados.</li>
+      <li>Da a cada legislador una dirección propia y estable, formada con su nombre.</li>
+      <li>Guarda una copia propia de las fotos oficiales y la muestra en tamaño reducido.</li>
+    </ul>
+
+    <h2 id={anclas.observaciones}>Observaciones sobre los datos oficiales</h2>
+    <p>
+      En cada actualización diaria, un programa revisa los datos con reglas fijas y anota los datos que no
+      cumplen lo esperado. Una observación no significa necesariamente que haya un error: puede tener
+      una explicación que la fuente no informa. Se listan para que cualquiera pueda contrastarlas con
+      la fuente, y los valores se muestran sin cambios. {observaciones.total === 0 ? "Hoy no hay observaciones." : `Hoy hay ${observaciones.total}.`}
+    </p>
+    {
+      observaciones.grupos.map((g) => (
+        <section class="observacion">
+          <h3 id={g.ancla}>{g.titulo} ({g.casos.length})</h3>
+          {g.explicacion && <p>{g.explicacion}</p>}
+          <details>
+            <summary class="chico">Ver {g.casos.length === 1 ? "el caso" : `los ${g.casos.length} casos`}</summary>
+            <ul class="casos chico">
+              {g.casos.map((c) => <li>{c.sitio ? <a href={c.sitio.url}>{c.titulo}</a> : c.titulo}{c.oficial && <Fragment> · <a href={c.oficial.url}>{c.oficial.texto}</a></Fragment>}{c.manual && <span class="texto-suave"> (nota agregada a mano)</span>}</li>)}
+            </ul>
+          </details>
+        </section>
+      ))
+    }
+    <p class="chico texto-suave">
+      Los casos que no tienen enlace propio no figuran en este sitio, por ejemplo votaciones que no
+      están enlazadas con una ley sancionada en el período; se pueden consultar en la fuente oficial.
+    </p>
+
+    <h2 id="limitaciones">Limitaciones conocidas</h2>
+    <ul>
+      <li>La API no informa cuándo se modificó un registro: los cambios se detectan comparando cada copia con la anterior.</li>
+      <li>Partido y bancada son un único valor por período, sin fecha.</li>
+      <li>«AUSENTE» indica ausencia en la votación; no necesariamente equivale a faltar a la sesión.</li>
+      <li>
+        Solo se publican las votaciones nominales, es decir, las que registran el voto de cada legislador.
+        Las que se hacen sin ese registro, por ejemplo a mano alzada, no se publican en la API. El Senado registra
+        muchas menos votaciones nominales que Diputados.
+      </li>
+      <li>Por ahora el sitio cubre solo el período {vigente.id}.</li>
+    </ul>
+  </div>
+</Base>
+
+<style>
+  dt {
+    font-weight: var(--peso-fuerte);
+  }
+  dd {
+    margin: 0 0 var(--espacio-3);
+  }
+  .casos li {
+    margin-bottom: var(--espacio-1);
+  }
+</style>
