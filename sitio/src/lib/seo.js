@@ -139,6 +139,7 @@ export function direccionesDelSitemap() {
     rutas.leyes(),
     ...leyes().map((l) => l.url),
     rutas.legisladores(),
+    rutas.votacionesNominales(),
     ...legisladores().map((p) => p.url),
     rutas.datosAbiertos(),
     rutas.metodologia(),

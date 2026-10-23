@@ -7,7 +7,19 @@ import { test } from "node:test";
 import { estado, fuente, periodos, personas } from "../../src/lib/datos.js";
 import { escribirFiltros, filtrar, leerFiltros } from "../../src/lib/filtroLegisladores.js";
 import { escribirEstado, filtrarPorEstado, leerEstado, textoResultado } from "../../src/lib/filtroVotos.js";
-import { esDeProyectoDeLey, ficha, legisladores, listado, opcionesDelListado } from "../../src/lib/legisladores.js";
+import { csv } from "../../src/lib/calculados.js";
+import {
+  COLUMNAS_TABLA,
+  comparativa,
+  esDeProyectoDeLey,
+  ficha,
+  legisladores,
+  listado,
+  opcionesDelListado,
+  tablaComparativa,
+} from "../../src/lib/legisladores.js";
+import { interpretarCsv } from "../../src/lib/datos.js";
+import { leerOrden, ordenar } from "../../src/lib/ordenComparativa.js";
 import { parametroEstadoVotos, parametrosLegisladores as nombres } from "../../src/lib/rutas.js";
 
 const PERIODO = "2023-2028";
@@ -234,6 +246,9 @@ test("quien ya no ejerce: ficha completa y cantidades cerradas", () => {
   // Ausencias en votaciones nominales, sobre todas sus votaciones nominales y no solo las de proyectos de ley.
   assert.equal(b.ausencias.texto, "23 de 96 (24%)");
   assert.equal(b.ausencias.lista.length, 23);
+  // NO VOTA y abstenciones, con el mismo denominador que las ausencias.
+  assert.equal(b.noVota.texto, "6 de 96 (6,3%)");
+  assert.equal(b.abstencion.texto, "7 de 96 (7,3%)");
   assert.equal(b.votos.porEstado.find((e) => e.estado === "ARCHIVADO").total, 18);
   assert.deepEqual(b.autoria.map((l) => l.numero), ["7256", "7239", "7190"]);
   assert.ok(todas().noEjercen.some((l) => l.slug === "kattya-mabel-gonzalez-villanueva"));
@@ -259,4 +274,87 @@ test("foto: la copia propia cuando existe; sin foto si el Congreso no la publica
   assert.equal(de("silvio-adalberto-ovelar-benitez").foto, "/fotos/2023-2028/101339.jpg");
   const sinFoto = fuente(PERIODO, "legisladores.json").filter((l) => l.fotoURL.includes("noimage"));
   for (const l of sinFoto) assert.equal(de(l._propio.slug).foto, null);
+});
+
+test("NO VOTA y abstenciones: recuento desde votos.csv, mismo denominador que las ausencias", () => {
+  const votos = fuente(PERIODO, "votos.csv");
+  const casos = [
+    "silvio-adalberto-ovelar-benitez",
+    "maria-rocio-abed-de-zacarias",
+    "kattya-mabel-gonzalez-villanueva",
+    "juan-eudes-afara-maciel",
+    ...legisladores()
+      .filter((p) => p.registros.some((r) => r.camara === "CAMARA DE DIPUTADOS"))
+      .slice(0, 3)
+      .map((p) => p.slug),
+  ];
+  for (const slug of casos) {
+    const b = de(slug);
+    const propios = votos.filter((v) => Number(v.idLegislador) === b.id);
+    const cuenta = (categoria) => propios.filter((v) => v.sentidoVotacion === categoria).length;
+    assert.equal(b.noVota.cantidad, cuenta("NO VOTA"), slug);
+    assert.equal(b.abstencion.cantidad, cuenta("ABSTENCIÓN/BLANCO"), slug);
+    assert.equal(b.noVota.total, b.ausencias.total, slug);
+    assert.equal(b.abstencion.total, b.ausencias.total, slug);
+  }
+});
+
+test("vista comparativa: una tabla por cámara, cifras separadas y totales iguales a votos.csv", () => {
+  const { camaras } = comparativa(PERIODO);
+  assert.deepEqual(camaras.map((c) => c.camara), ["CAMARA DE SENADORES", "CAMARA DE DIPUTADOS"]);
+  const filas = camaras.flatMap((c) => c.filas);
+  // Sin el senador vitalicio, que no figura en ninguna votación; con quienes ya no ejercen.
+  assert.ok(!filas.some((f) => f.slug === "juan-carlos-wasmosy-monti"));
+  assert.ok(filas.some((f) => f.slug === "kattya-mabel-gonzalez-villanueva" && !f.vigente));
+  assert.ok(filas.every((f) => f.ausencias.total > 0 && f.noVota.total === f.ausencias.total));
+  for (const c of camaras) assert.ok(c.filas.every((f) => f.camara === c.camara));
+  // Los totales de toda la vista coinciden con un recuento de votos.csv por categoría.
+  const votos = fuente(PERIODO, "votos.csv");
+  const ids = new Set(filas.map((f) => f.id));
+  const cuenta = (categoria) => votos.filter((v) => v.sentidoVotacion === categoria && ids.has(Number(v.idLegislador))).length;
+  const suma = (campo) => filas.reduce((n, f) => n + f[campo].cantidad, 0);
+  assert.equal(suma("noVota"), cuenta("NO VOTA"));
+  assert.equal(suma("abstencion"), cuenta("ABSTENCIÓN/BLANCO"));
+  assert.equal(suma("ausencias"), cuenta("AUSENTE"));
+  // En este período NO VOTA aparece solo en el Senado (lo dice la metodología).
+  assert.equal(camaras[1].filas.reduce((n, f) => n + f.noVota.cantidad, 0), 0);
+});
+
+test("vista comparativa: orden por nombre o por cifra, de mayor a menor, sin perder filas", () => {
+  const filas = comparativa(PERIODO).camaras[0].filas;
+  const entradas = filas.map((f, posicion) => ({
+    slug: f.slug,
+    posicion,
+    ausencias: f.ausencias.porcentaje,
+    noVota: f.noVota.porcentaje,
+    abstencion: f.abstencion.porcentaje,
+  }));
+  assert.deepEqual(ordenar(entradas, "").map((e) => e.slug), filas.map((f) => f.slug));
+  for (const [valor, campo] of [["ausencias", "ausencias"], ["no-vota", "noVota"], ["abstencion", "abstencion"]]) {
+    const orden = ordenar(entradas, valor);
+    assert.equal(orden.length, entradas.length);
+    for (let n = 1; n < orden.length; n++) {
+      const [a, b] = [orden[n - 1], orden[n]];
+      assert.ok(a[campo] > b[campo] || (a[campo] === b[campo] && a.posicion < b.posicion), valor);
+    }
+  }
+  assert.equal(leerOrden(new URLSearchParams("orden=no-vota"), "orden"), "no-vota");
+  assert.equal(leerOrden(new URLSearchParams("orden=peor"), "orden"), "");
+});
+
+test("tabla descargable: mismas cifras que la vista, columnas fijas y CSV legible", () => {
+  const tabla = tablaComparativa(PERIODO);
+  const filas = comparativa(PERIODO).camaras.flatMap((c) => c.filas);
+  assert.equal(tabla.length, filas.length);
+  const k = tabla.find((t) => t.slug === "kattya-mabel-gonzalez-villanueva");
+  assert.deepEqual(
+    [k.votacionesEnSuLista, k.ausente, k.porcentajeAusente, k.noVota, k.porcentajeNoVota, k.abstencionBlanco, k.porcentajeAbstencionBlanco],
+    [96, 23, 24, 6, 6.3, 7, 7.3],
+  );
+  const texto = csv(COLUMNAS_TABLA, tabla);
+  assert.ok(texto.startsWith("﻿"));
+  const leidas = interpretarCsv(texto);
+  assert.deepEqual(Object.keys(leidas[0]), COLUMNAS_TABLA);
+  assert.equal(leidas.length, tabla.length);
+  assert.equal(leidas.find((l) => l.slug === k.slug).nombre, k.nombre);
 });

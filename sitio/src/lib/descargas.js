@@ -2,6 +2,7 @@
 // Las descripciones son textos breves para el público; si una tabla nueva no tiene el suyo, se usa
 // la descripción de datos/diccionario.json. Las rutas salen de lib/rutas.
 
+import { archivosCalculados, NOMBRE_VOTACIONES_NOMINALES } from "./calculados.js";
 import { archivosDeDatos, diccionario, periodos } from "./datos.js";
 import * as rutas from "./rutas.js";
 
@@ -35,6 +36,24 @@ export function tamano(bytes) {
 }
 
 const formato = (ruta) => ruta.split(".").pop().toUpperCase();
+
+const CALCULADOS = {
+  [NOMBRE_VOTACIONES_NOMINALES]:
+    "Por legislador, las votaciones nominales en que figura como AUSENTE, NO VOTA y ABSTENCIÓN/BLANCO, cada una por separado, sobre todas las votaciones nominales en cuya lista figura. Es la tabla de la vista comparativa.",
+};
+
+/** Archivos que genera la compilación (lib/calculados.js), agrupados por período y nombre. */
+function calculadas() {
+  const porNombre = new Map();
+  for (const a of archivosCalculados()) {
+    const clave = `${a.periodo}/${a.nombre}`;
+    if (!porNombre.has(clave)) {
+      porNombre.set(clave, { nombre: `${a.nombre} (${a.periodo})`, descripcion: CALCULADOS[a.nombre] ?? "", archivos: [] });
+    }
+    porNombre.get(clave).archivos.push({ ruta: a.url, url: a.url, formato: a.formato, tamano: tamano(a.bytes) });
+  }
+  return [...porNombre.values()];
+}
 
 /** Grupos de archivos para la página de descargas. Ningún archivo de datos/ queda fuera. */
 export function descargas() {
@@ -71,6 +90,7 @@ export function descargas() {
       tablas: tablasDe((a) => a.startsWith("fuente/"), p.id),
     })),
     { titulo: "Datos agregados por este proyecto (no oficiales)", tablas: tablasDe((a) => a.startsWith("propios/"), "") },
+    { titulo: "Cifras calculadas por este proyecto (no oficiales)", tablas: calculadas() },
   ];
   const otros = [...archivos.keys()].filter((r) => !usados.has(r));
   if (otros.length) {

@@ -1,11 +1,12 @@
 ---
 // Ficha de un legislador: datos oficiales del cargo, resumen e historial de sus votos en las
-// votaciones nominales sobre proyectos de ley, ausencias en todas las votaciones nominales y leyes de
-// su autoría (preparado por lib/legisladores.js).
+// votaciones nominales sobre proyectos de ley, ausencias, NO VOTA y abstenciones en todas las
+// votaciones nominales y leyes de su autoría (preparado por lib/legisladores.js).
 import Base from "../../layouts/Base.astro";
 import AusenciasVotaciones from "../../components/AusenciasVotaciones.astro";
 import FiltroVotos from "../../components/FiltroVotos.astro";
 import HistorialVotos from "../../components/HistorialVotos.astro";
+import NoVotaAbstencion from "../../components/NoVotaAbstencion.astro";
 import ResumenVotos from "../../components/ResumenVotos.astro";
 import { ficha, legisladores } from "../../lib/legisladores.js";
 import * as rutas from "../../lib/rutas.js";
@@ -96,6 +97,15 @@ const descripcion = descripcionDeLegislador(f, sinDato);
                 <p class="lectura">No figura en ninguna votación nominal del período {b.periodo}.</p>
               ) : (
                 <AusenciasVotaciones ausencias={b.ausencias} periodo={b.periodo} camara={b.camara} />
+              )
+            }
+
+            {
+              b.ausencias.total > 0 && (
+                <Fragment>
+                  <Titulo>NO VOTA y abstenciones en votaciones nominales</Titulo>
+                  <NoVotaAbstencion noVota={b.noVota} abstencion={b.abstencion} periodo={b.periodo} />
+                </Fragment>
               )
             }
 

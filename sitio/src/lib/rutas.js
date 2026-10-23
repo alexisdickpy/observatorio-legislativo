@@ -31,6 +31,7 @@ export const anclasMetodologia = {
   categorias: "categorias-de-voto",
   votosLegislador: "votos-de-cada-legislador",
   ausencias: "ausencias-en-votaciones-nominales",
+  noVotaAbstencion: "no-vota-y-abstenciones",
   afiliacion: "partido-y-bancada",
   observaciones: "observaciones-sobre-los-datos",
 };
@@ -44,6 +45,13 @@ export const metodologiaTecnica = () => `${repositorio}/blob/main/docs/metodolog
 
 /** Archivo de datos/ servido en /datos/… con la misma ruta que en el repositorio. */
 export const archivoDatos = (ruta) => `/datos/${ruta}`;
+/** Archivo calculado por este proyecto en la compilación (lib/calculados.js), no guardado en datos/. */
+export const archivoCalculado = (periodo, nombre, extension) => `/datos/calculados/${periodo}/${nombre}.${extension}`;
+
+/** Vista comparativa de ausencias, NO VOTA y abstenciones en votaciones nominales. */
+export const votacionesNominales = () => "/legisladores/votaciones-nominales/";
+/** Parámetro de la dirección de la vista comparativa (?orden=…). */
+export const parametroOrdenComparativa = "orden";
 
 /** Parámetros de la dirección del catálogo de leyes (?q=…&anio=…&camara=…&orden=…). */
 export const parametrosCatalogo = { texto: "q", anio: "anio", camara: "camara", orden: "orden" };

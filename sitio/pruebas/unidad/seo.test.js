@@ -90,7 +90,8 @@ test("datos del sitio y del conjunto de datos", () => {
 test("el sitemap tiene cada ley y cada legislador una vez, sin la búsqueda", () => {
   const urls = direccionesDelSitemap();
   assert.equal(new Set(urls).size, urls.length);
-  assert.equal(urls.length, leyes().length + legisladores().length + 6);
+  assert.equal(urls.length, leyes().length + legisladores().length + 7);
+  assert.ok(urls.includes(rutas.absoluta(rutas.votacionesNominales())));
   assert.ok(!urls.includes(rutas.absoluta(rutas.buscar())));
   for (const u of urls) assert.ok(u.startsWith(`${rutas.sitio}/`) && u.endsWith("/"), u);
 });

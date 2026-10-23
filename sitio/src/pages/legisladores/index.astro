@@ -5,6 +5,7 @@ import FiltroLegisladores from "../../components/FiltroLegisladores.astro";
 import TablaLegisladores from "../../components/TablaLegisladores.astro";
 import { periodos } from "../../lib/datos.js";
 import { listado, opcionesDelListado } from "../../lib/legisladores.js";
+import * as rutas from "../../lib/rutas.js";
 
 const periodo = periodos().find((p) => p.vigente).id;
 const { enEjercicio, noEjercen } = listado(periodo);
@@ -28,6 +29,10 @@ const conNombreConocido = todos.some((l) => l.partidoConocido);
       cada legislador en el período, no necesariamente los de cada fecha. Los senadores se eligen en
       una circunscripción nacional, por eso la API registra su departamento como NACIONAL.
       {conNombreConocido && " El nombre entre paréntesis es el nombre por el que se conoce a un partido, un agregado de este sitio."}
+    </p>
+    <p>
+      <a href={rutas.votacionesNominales()}>Ausencias, NO VOTA y abstenciones en votaciones nominales</a>,
+      una tabla con las cifras de todos los legisladores, cada una con su denominador.
     </p>
   </div>
   <FiltroLegisladores entradas={todos.map((l) => l.filtro)} opciones={opcionesDelListado(periodo)} />

@@ -1,0 +1,68 @@
+---
+// Vista comparativa del período vigente: por cámara, las ausencias, NO VOTA y abstenciones de cada
+// legislador en votaciones nominales, cada cifra por separado y con su denominador
+// (lib/legisladores.js, comparativa). Títulos neutrales y fórmula visible (alcance acordado en #38).
+import Base from "../../layouts/Base.astro";
+import OrdenComparativa from "../../components/OrdenComparativa.astro";
+import TablaComparativa from "../../components/TablaComparativa.astro";
+import { NOMBRE_VOTACIONES_NOMINALES } from "../../lib/calculados.js";
+import { periodos } from "../../lib/datos.js";
+import { comparativa } from "../../lib/legisladores.js";
+import * as rutas from "../../lib/rutas.js";
+
+const periodo = periodos().find((p) => p.vigente).id;
+const { camaras } = comparativa(periodo);
+---
+
+<Base
+  titulo="Ausencias, NO VOTA y abstenciones en votaciones nominales"
+  descripcion={`Cuántas veces figura cada senador y diputado del período legislativo ${periodo} como AUSENTE, NO VOTA y ABSTENCIÓN/BLANCO en las votaciones nominales de su cámara, cada cifra con su denominador.`}
+>
+  <p class="chico"><a href={rutas.legisladores()}>← Todos los legisladores</a></p>
+  <h1>Ausencias, NO VOTA y abstenciones en votaciones nominales</h1>
+  <div class="lectura">
+    <p>
+      Para cada legislador del período legislativo {periodo}, la cantidad de votaciones nominales en que
+      figura con cada una de estas tres categorías oficiales, sobre todas las votaciones nominales de su
+      cámara en cuya lista oficial figura. Las tres cifras son distintas y no se suman.
+    </p>
+    <p class="formula">
+      Cifra de cada categoría = votaciones en que figura con esa categoría ÷ votaciones nominales en cuya
+      lista figura × 100
+    </p>
+    <ul class="chico">
+      <li>
+        <strong>Ausencias en votaciones nominales</strong> (AUSENTE). No registró su voto en esa votación.
+        No indica si estaba o no en la sesión.
+      </li>
+      <li><strong>NO VOTA.</strong> Figura en la votación sin emitir voto. Solo aparece en el Senado.</li>
+      <li><strong>ABSTENCIÓN/BLANCO.</strong> Voto oficial de abstención o en blanco.</li>
+    </ul>
+    <p class="chico texto-suave">
+      Las cámaras se muestran por separado porque el Senado publica muchas menos votaciones nominales
+      que Diputados. Los porcentajes de quienes figuran en pocas votaciones cambian mucho con cada
+      votación, por eso cada cifra lleva su denominador. La API no informa si había permiso o licencia, ni
+      el motivo. Ordenar la tabla por una cifra solo cambia el orden de las filas.{" "}
+      <a href={rutas.metodologia(rutas.anclasMetodologia.noVotaAbstencion)}>Cómo se calcula</a>
+      {" · "}
+      <a href={rutas.archivoCalculado(periodo, NOMBRE_VOTACIONES_NOMINALES, "csv")} download>Descargar la tabla (CSV)</a>
+    </p>
+  </div>
+  <OrdenComparativa />
+  {
+    camaras.map((c: any) => (
+      <section>
+        <h2>{c.camara ?? "Sin dato"} ({c.filas.length})</h2>
+        <TablaComparativa titulo={`${c.camara ?? "Sin dato"}, ausencias, NO VOTA y abstenciones`} filas={c.filas} />
+      </section>
+    ))
+  }
+</Base>
+
+<style>
+  .formula {
+    padding: var(--espacio-3) var(--espacio-4);
+    background: var(--color-superficie);
+    border-left: var(--foco-ancho) solid var(--color-acento);
+  }
+</style>

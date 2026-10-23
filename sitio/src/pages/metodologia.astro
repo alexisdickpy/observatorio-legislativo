@@ -137,6 +137,28 @@ const anclas = rutas.anclasMetodologia;
       tenía permiso o licencia, ni el motivo.
     </p>
 
+    <h2 id={anclas.noVotaAbstencion}>NO VOTA y abstenciones en votaciones nominales</h2>
+    <p>
+      Cada ficha muestra también cuántas veces el legislador figura como NO VOTA y como
+      ABSTENCIÓN/BLANCO, sobre las mismas votaciones que las ausencias, es decir, todas las votaciones
+      nominales del período en cuya lista oficial figura. NO VOTA indica que figura en la votación sin
+      emitir voto, y en este período aparece solo en el Senado. ABSTENCIÓN/BLANCO es un voto oficial de
+      abstención o en blanco.
+    </p>
+    <p>
+      AUSENTE, NO VOTA y ABSTENCIÓN/BLANCO significan cosas distintas, por eso son tres cifras separadas
+      que nunca se suman en un solo índice. Cada una se calcula como las votaciones en que figura con esa
+      categoría, divididas por las votaciones nominales en cuya lista figura, por 100, y se muestra con su
+      denominador. Como el resumen de votos de la ficha cuenta solo proyectos de ley, sus cantidades de NO
+      VOTA y ABSTENCIÓN/BLANCO pueden ser menores.
+    </p>
+    <p>
+      La <a href={rutas.votacionesNominales()}>vista comparativa</a> reúne las tres cifras de todos los
+      legisladores del período, con una tabla por cámara. Se ordena por apellido o por cualquiera de las
+      cifras, de mayor a menor porcentaje, sin posiciones ni calificativos. La misma tabla se puede
+      descargar en <a href={rutas.datosAbiertos()}>datos abiertos</a>, como cálculo propio de este sitio.
+    </p>
+
     <h2 id={anclas.afiliacion}>Partido y bancada</h2>
     <p>
       La API publica un único partido y una única bancada por legislador y período, sin fecha. Si un

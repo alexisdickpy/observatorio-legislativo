@@ -77,7 +77,24 @@ Decisión de alcance (#29). La cifra de cada ficha es la cantidad de votaciones 
 
 La ficha muestra la cantidad con su denominador y su porcentaje, por ejemplo "23 de 96 (24%)", y la lista de las votaciones en que figura como `AUSENTE`, de la más reciente a la más antigua, con la fecha (`tramitacion.fechaTramite`), el número y el tipo de sesión (`tramitacion.idSesion.numeroSesion` y `tipoSesion`) y el expediente (`proyecto.expedienteCamara`), con enlace a la votación oficial en SILpy (`appURL`). Los senadores vitalicios no figuran en las listas de votación, así que no tienen esta cifra.
 
-El Senado publica muchas menos votaciones nominales que Diputados, así que las cifras de las dos cámaras no se comparan directamente. La API no informa si un legislador `AUSENTE` tenía permiso o licencia. La vista comparativa de este indicador prevista en #12 debe usar este mismo cálculo.
+El Senado publica muchas menos votaciones nominales que Diputados, así que las cifras de las dos cámaras no se comparan directamente. La API no informa si un legislador `AUSENTE` tenía permiso o licencia. La vista comparativa (sección siguiente) usa este mismo cálculo.
+
+## NO VOTA y abstenciones en votaciones nominales
+
+Decisión de alcance (#38). Además de las ausencias, la ficha muestra otras dos cifras con **el mismo denominador**, todas las votaciones nominales del período en cuya lista oficial figura, de cualquier tipo de expediente.
+
+- **`NO VOTA`**. Votaciones en que figura con `sentidoVotacion` = `NO VOTA`, es decir, en la lista de la votación sin emitir voto. En el período 2023-2028 esta categoría aparece solo en el Senado.
+- **`ABSTENCIÓN/BLANCO`**. Votaciones en que figura con `sentidoVotacion` = `ABSTENCIÓN/BLANCO`, un voto oficial de abstención o en blanco.
+
+Las tres categorías (`AUSENTE`, `NO VOTA` y `ABSTENCIÓN/BLANCO`) significan cosas distintas, así que se muestran siempre por separado y nunca se suman en un índice de "participación". Cada cifra lleva su numerador, su denominador y su porcentaje con la fórmula
+
+> cifra = votaciones en que figura con la categoría ÷ votaciones nominales en cuya lista figura × 100
+
+Estas cifras usan un denominador distinto del resumen de votos de la ficha, que cuenta solo proyectos de ley, por eso pueden no coincidir con el `NO VOTA` y la `ABSTENCIÓN/BLANCO` de ese resumen.
+
+**Vista comparativa** (`/legisladores/votaciones-nominales/`). Una tabla por cámara con los legisladores del período vigente que figuran en al menos una votación nominal, en ejercicio o no, con las tres cifras por separado. Por defecto se ordena por cámara y apellido, y se puede ordenar por cualquiera de las cifras, de mayor a menor porcentaje (parámetro `?orden=` con `ausencias`, `no-vota` o `abstencion`). Los títulos son neutrales y no hay posiciones, puestos ni calificativos. Las cámaras no se mezclan porque el Senado publica muchas menos votaciones nominales que Diputados.
+
+**Descarga.** La misma tabla se publica en la página de datos abiertos, generada en cada compilación del sitio (`/datos/calculados/{período}/votaciones-nominales-por-legislador.csv` y `.json`), con las columnas `periodo`, `camara`, `slug`, `idLegislador`, `nombre`, `vigente`, `votacionesEnSuLista` (el denominador), `ausente`, `noVota` y `abstencionBlanco` (cantidades) y `porcentajeAusente`, `porcentajeNoVota` y `porcentajeAbstencionBlanco` (porcentaje con un decimal). Es un cálculo propio, no un dato oficial, y no se guarda en `datos/`.
 
 ## Números de ley
 

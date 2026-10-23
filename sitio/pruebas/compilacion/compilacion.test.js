@@ -5,9 +5,10 @@ import { join, resolve } from "node:path";
 import { test } from "node:test";
 
 import { leyes } from "../../src/lib/catalogo.js";
-import { archivosDeDatos, estado } from "../../src/lib/datos.js";
+import { archivosDeDatos, estado, periodos } from "../../src/lib/datos.js";
 import { detalleDeRegistro } from "../../src/lib/ficha.js";
-import { ficha, legisladores, listado } from "../../src/lib/legisladores.js";
+import { archivosCalculados } from "../../src/lib/calculados.js";
+import { comparativa, ficha, legisladores, listado } from "../../src/lib/legisladores.js";
 import { observacionesDeLosDatos } from "../../src/lib/metodologia.js";
 import * as rutas from "../../src/lib/rutas.js";
 
@@ -120,12 +121,53 @@ test("ausencias en votaciones nominales en cada ficha, con su denominador y su l
   }
 });
 
+test("NO VOTA y abstenciones en cada ficha, con su denominador y el enlace a la vista comparativa", () => {
+  const metodologia = `href="${rutas.metodologia(rutas.anclasMetodologia.noVotaAbstencion)}"`;
+  const vista = `href="${rutas.votacionesNominales()}"`;
+  for (const persona of legisladores()) {
+    const html = texto(persona.url);
+    for (const b of ficha(persona).bloques.filter((x) => x.ausencias.total > 0)) {
+      assert.ok(html.includes("NO VOTA y abstenciones en votaciones nominales"), persona.url);
+      assert.ok(html.includes(b.noVota.texto) && html.includes(b.abstencion.texto), persona.url);
+      assert.ok(html.includes(metodologia) && html.includes(vista), persona.url);
+    }
+  }
+});
+
+test("vista comparativa: una fila por legislador con sus tres cifras, fórmula y títulos neutrales", () => {
+  const periodo = periodos().find((p) => p.vigente).id;
+  const html = texto(rutas.votacionesNominales());
+  assert.ok(html.includes("Cifra de cada categoría = votaciones en que figura con esa categoría"));
+  assert.ok(html.includes(`href="${rutas.metodologia(rutas.anclasMetodologia.noVotaAbstencion)}"`));
+  const filas = comparativa(periodo).camaras.flatMap((c) => c.filas);
+  assert.equal(html.match(/<tr data-comparativa /g)?.length ?? 0, filas.length);
+  for (const f of filas) {
+    const fila = html.match(new RegExp(`<tr data-comparativa data-slug="${f.slug}"[^]*?</tr>`))?.[0] ?? "";
+    assert.ok(fila.includes(`href="${f.url}"`), f.slug);
+    for (const c of [f.ausencias, f.noVota, f.abstencion]) assert.ok(fila.includes(c.texto), `${f.slug} ${c.texto}`);
+  }
+  const visible = html.replace(/<(script|style)[\s\S]*?<\/\1>/g, " ").replace(/<[^>]+>/g, " ");
+  const calificativo = visible.match(/.{0,30}\b(mejor|peor|ranking|puesto|campe[oó]n|faltador|vago)\b.{0,20}/i);
+  assert.ok(!calificativo, `«${calificativo?.[0]}»`);
+  assert.ok(texto(rutas.legisladores()).includes(`href="${rutas.votacionesNominales()}"`));
+});
+
+test("tabla calculada servida y enlazada desde datos abiertos", () => {
+  const html = leer(rutas.datosAbiertos());
+  for (const a of archivosCalculados()) {
+    const ruta = join(dist, decodeURIComponent(a.url));
+    assert.ok(existsSync(ruta), `Falta ${a.url}`);
+    assert.equal(readFileSync(ruta, "utf-8"), a.contenido);
+    assert.ok(html.includes(`href="${a.url}"`), `La página de descargas no enlaza ${a.url}`);
+  }
+});
+
 test("ningún texto propio presenta AUSENTE como asistencia, faltas o inasistencias", () => {
   // Se revisan los textos del sitio, sin los valores oficiales (títulos de proyectos y leyes, que
   // pueden tratar de asistencia social y se muestran sin cambios). La firma dice «con asistencia de
   // IA», el único uso permitido de la palabra.
   const prohibidas = /inasistencia|asistencia(?! de IA)|\bfalta|\bfaltó|días ausente/i;
-  const urls = [rutas.inicio(), rutas.metodologia(), rutas.legisladores(), ...legisladores().map((p) => p.url)];
+  const urls = [rutas.inicio(), rutas.metodologia(), rutas.legisladores(), rutas.votacionesNominales(), ...legisladores().map((p) => p.url)];
   for (const url of urls) {
     const visible = leer(url)
       .replace(/<(script|style)[\s\S]*?<\/\1>/g, " ")
@@ -313,7 +355,7 @@ test("sin herramientas de seguimiento con cookies", () => {
 test("los textos propios de las páginas generales no usan dos puntos", () => {
   // Solo páginas sin valores oficiales; la cita obligatoria se mantiene textual.
   const { cita } = estado().fuente;
-  const urls = [rutas.inicio(), rutas.metodologia(), rutas.privacidad(), rutas.datosAbiertos(), rutas.buscar()];
+  const urls = [rutas.inicio(), rutas.metodologia(), rutas.privacidad(), rutas.datosAbiertos(), rutas.buscar(), rutas.votacionesNominales()];
   for (const url of urls) {
     const visible = leer(url)
       .replace(/<(script|style)[\s\S]*?<\/\1>/g, " ")
