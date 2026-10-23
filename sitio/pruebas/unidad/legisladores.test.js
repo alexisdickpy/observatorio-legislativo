@@ -41,7 +41,7 @@ test("listado: primero la Cámara de Senadores y, dentro de cada cámara, por ap
   }
 });
 
-test("valores oficiales sin cambios, sin correo ni teléfono", () => {
+test("valores oficiales sin cambios, con el correo y el teléfono que publica la API", () => {
   const oficial = fuente(PERIODO, "legisladores.json").find((l) => l.idLegislador === 101405);
   const r = todas().enEjercicio.find((l) => l.id === 101405);
   assert.equal(r.nombre, `${oficial.nombres} ${oficial.apellidos}`);
@@ -50,8 +50,9 @@ test("valores oficiales sin cambios, sin correo ni teléfono", () => {
   assert.equal(r.partido, oficial.partidoPolitico);
   assert.equal(r.bancada, oficial.bancada);
   assert.equal(r.urlSilpy, "https://silpy.congreso.gov.py/legislador/101405");
-  const texto = JSON.stringify(legisladores());
-  assert.ok(!/@|email|telefono/i.test(texto));
+  const oficialONulo = (v) => (v && String(v).trim() ? v : null);
+  assert.equal(r.correo, oficialONulo(oficial.emailParlamentario));
+  assert.equal(r.telefono, oficialONulo(oficial.telefonoParlamentario));
 });
 
 test("filtros: cámara, partido, bancada, departamento y nombre sin acentos", () => {

@@ -80,9 +80,9 @@ test("una ficha por legislador, con su historial enlazado a las fichas de ley", 
   for (const persona of legisladores()) {
     const html = leer(persona.url);
     assert.ok(html.includes("no necesariamente eran los vigentes"), `Falta el aviso de afiliación en ${persona.url}`);
-    assert.ok(!/mailto:|tel:/.test(html), `Datos de contacto en ${persona.url}`);
     for (const b of ficha(persona).bloques) {
       if (b.urlSilpy) assert.ok(html.includes(`href="${b.urlSilpy}"`));
+      if (b.correo) assert.ok(html.includes(`href="mailto:${b.correo}"`), `Falta el correo en ${persona.url}`);
       if (b.foto) assert.ok(existsSync(join(dist, b.foto)), `Falta la foto ${b.foto}`);
       for (const l of b.autoria) assert.ok(html.includes(`href="${l.url}"`), `Falta la ley ${l.numero} en ${persona.url}`);
       for (const h of b.votos.historial) {

@@ -63,7 +63,7 @@ Preparada por `src/lib/ficha.js`:
 
 Preparada por `src/lib/legisladores.js` (criterios en la [metodología](../docs/metodologia.md#votos-y-leyes-de-cada-legislador)):
 
-- **Datos del cargo** oficiales: cámara, tipo (`TITULAR`, `SUPLENTE`, `VITALICIO`), departamento (`NACIONAL` en los senadores), partido, bancada, cargo en la bancada y enlace a SILpy. Sin correo ni teléfono. Foto reducida, con crédito al Congreso.
+- **Datos del cargo** oficiales: cámara, tipo (`TITULAR`, `SUPLENTE`, `VITALICIO`), departamento (`NACIONAL` en los senadores), partido, bancada, cargo en la bancada, correo y teléfono (los que publica la API) y enlace a SILpy. Foto reducida, con crédito al Congreso.
 - **Resumen de votos:** barra y cantidad por categoría oficial, con su denominador, sobre las votaciones nominales de leyes sancionadas en cuya lista oficial figura. AUSENTE se presenta como "ausencias en votaciones nominales".
 - **Leyes de su autoría** del período, de la más reciente a la más antigua.
 - **Historial de votos**, de la más reciente a la más antigua, con enlace a la votación dentro de la ficha de la ley (`rutas.votacionEnLey`). No entra en el índice de búsqueda.

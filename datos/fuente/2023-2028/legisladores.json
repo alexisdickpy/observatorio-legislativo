@@ -12,11 +12,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "MIEMBRO",
     "departamento": "NACIONAL",
+    "emailParlamentario": "despachosocorreo@gmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101339.jpg",
     "idLegislador": 101339,
     "nombres": "Silvio Adalberto",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5217",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -32,11 +34,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "LIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "buzarquissalyn@gmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101340.jpg",
     "idLegislador": 101340,
     "nombres": "Enrique Salyn Concepción",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5131",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -52,11 +56,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "MIEMBRO",
     "departamento": "NACIONAL",
+    "emailParlamentario": "derlis_maidana@senado.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101341.jpg",
     "idLegislador": 101341,
     "nombres": "Derlis Hernán",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5215",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -72,11 +78,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "",
     "departamento": "NACIONAL",
+    "emailParlamentario": "",
     "fotoURL": "https://silpy.congreso.gov.py/images/101342.jpg",
     "idLegislador": 101342,
     "nombres": "Juan Carlos",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -92,11 +100,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "LIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "sergiorojaspy482@gmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101343.jpg",
     "idLegislador": 101343,
     "nombres": "Sergio Roberto",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5108",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -112,11 +122,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "LIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "paredesyolanda77@gmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101344.jpg",
     "idLegislador": 101344,
     "nombres": "Ramona Yolanda",
     "partidoPolitico": "Partido Cruzada Nacional",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5049",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -132,11 +144,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "SECRETARIO",
     "departamento": "NACIONAL",
+    "emailParlamentario": "pettengillsenador@gmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101345.jpg",
     "idLegislador": 101345,
     "nombres": "Luis Alberto",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5214",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -152,11 +166,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "VICELIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "",
     "fotoURL": "https://silpy.congreso.gov.py/images/101346.jpg",
     "idLegislador": 101346,
     "nombres": "Derlis Ariel Alejandro",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5284",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -172,11 +188,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "LIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "abogeilr@hotmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101347.jpg",
     "idLegislador": 101347,
     "nombres": "Edgar Idalino",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5138",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -192,11 +210,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "VICELIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "osalomon@senado.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101348.jpg",
     "idLegislador": 101348,
     "nombres": "Oscar Rubén",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5204",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -212,11 +232,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "VICELIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "lvaliente.senado@gmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101349.jpg",
     "idLegislador": 101349,
     "nombres": "Regina Lizarella",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5928",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -232,11 +254,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "MIEMBRO",
     "departamento": "NACIONAL",
+    "emailParlamentario": "celeste_amarilla@senado.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101350.jpg",
     "idLegislador": 101350,
     "nombres": "Celeste Josefina",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5133",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -252,11 +276,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "",
     "departamento": "NACIONAL",
+    "emailParlamentario": "",
     "fotoURL": "https://silpy.congreso.gov.py/images/noimage.jpg",
     "idLegislador": 101351,
     "nombres": "Rafael",
     "partidoPolitico": "Partido Cruzada Nacional",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -272,11 +298,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "MIEMBRO",
     "departamento": "NACIONAL",
+    "emailParlamentario": "liliansamaniego@gmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101352.jpg",
     "idLegislador": 101352,
     "nombres": "Lilian Graciela",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5279",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -292,11 +320,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "LIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "kattyasenadora@gmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101353.jpg",
     "idLegislador": 101353,
     "nombres": "Kattya Mabel",
     "partidoPolitico": "Partido Encuentro Nacional PEN",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5082",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -312,11 +342,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "VICELIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "carlosnuñezaguero4@gmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101354.jpg",
     "idLegislador": 101354,
     "nombres": "Carlos",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5285",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -332,11 +364,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "VICELIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "sen.evervillalba@gmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101355.jpg",
     "idLegislador": 101355,
     "nombres": "Ever Federico",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5105",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -352,11 +386,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "LIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "mariosenadorpy@gmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101356.jpg",
     "idLegislador": 101356,
     "nombres": "Mario Alberto",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5210",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -372,11 +408,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "VICELIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "arnaldo_samaniego@senado.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101357.jpg",
     "idLegislador": 101357,
     "nombres": "Arnaldo",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5040",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -392,11 +430,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "LIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "ehnr79@me.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101358.jpg",
     "idLegislador": 101358,
     "nombres": "Eduardo Hirohito",
     "partidoPolitico": "Independiente A",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5137",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -412,11 +452,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "VICELIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "joviedo@senado.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101359.jpg",
     "idLegislador": 101359,
     "nombres": "José Daniel",
     "partidoPolitico": "Movimiento Conciencia Democrática Nacional",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5146",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -432,11 +474,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "",
     "departamento": "NACIONAL",
+    "emailParlamentario": "calgimenez1672@gmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101360.jpg",
     "idLegislador": 101360,
     "nombres": "Carlos Alcibiades",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5288",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -452,11 +496,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "MIEMBRO",
     "departamento": "NACIONAL",
+    "emailParlamentario": "bachinunez@gmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101361.jpg",
     "idLegislador": 101361,
     "nombres": "Basilio Gustavo",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5207",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -472,11 +518,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "LIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "rfilizzola@senado.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101362.jpg",
     "idLegislador": 101362,
     "nombres": "Rafael Augusto",
     "partidoPolitico": "Partido Democrático Progresista PDP",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5034",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -492,11 +540,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "LIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "",
     "fotoURL": "https://silpy.congreso.gov.py/images/101363.jpg",
     "idLegislador": 101363,
     "nombres": "Natalicio Esteban",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5225",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -512,11 +562,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "LIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "colym_soroka@senado.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101364.jpg",
     "idLegislador": 101364,
     "nombres": "Colym Gregorio",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5202",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -532,11 +584,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "LIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "hermelindasensei@hotmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101365.jpg",
     "idLegislador": 101365,
     "nombres": "Hermelinda",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5156",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -552,11 +606,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "MIEMBRO",
     "departamento": "NACIONAL",
+    "emailParlamentario": "senzenaidadelgado@gmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101366.jpg",
     "idLegislador": 101366,
     "nombres": "Zenaida Concepción",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5226",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -572,11 +628,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "MIEMBRO",
     "departamento": "NACIONAL",
+    "emailParlamentario": "",
     "fotoURL": "https://silpy.congreso.gov.py/images/101367.jpg",
     "idLegislador": 101367,
     "nombres": "Erico",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5205",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -592,11 +650,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "LIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "jledesma@senado.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101368.jpg",
     "idLegislador": 101368,
     "nombres": "José Gregorio",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5119",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -612,11 +672,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "MIEMBRO",
     "departamento": "NACIONAL",
+    "emailParlamentario": "",
     "fotoURL": "https://silpy.congreso.gov.py/images/101369.jpg",
     "idLegislador": 101369,
     "nombres": "Hernán David",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5220",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -632,11 +694,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "LIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "senadorkemper@gmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101370.jpg",
     "idLegislador": 101370,
     "nombres": "Patrick Paul",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5093",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -652,11 +716,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "",
     "departamento": "NACIONAL",
+    "emailParlamentario": "erieraes@gmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101371.jpg",
     "idLegislador": 101371,
     "nombres": "Enrique",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -672,11 +738,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "LIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "pennerorlando2023@gmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101372.jpg",
     "idLegislador": 101372,
     "nombres": "Orlando",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5055",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -692,11 +760,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "LIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "damarill@economistas.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101373.jpg",
     "idLegislador": 101373,
     "nombres": "Dionisio Oswaldo",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5134",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -712,11 +782,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "MIEMBRO",
     "departamento": "NACIONAL",
+    "emailParlamentario": "pdiazveron@gmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101374.jpg",
     "idLegislador": 101374,
     "nombres": "Pedro Alejandro",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5030",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -732,11 +804,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "MIEMBRO",
     "departamento": "NACIONAL",
+    "emailParlamentario": "senadorayamynalaquino@gmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101375.jpg",
     "idLegislador": 101375,
     "nombres": "Norma Beatriz",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 5042",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -752,11 +826,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "MIEMBRO",
     "departamento": "NACIONAL",
+    "emailParlamentario": "zacariasdespacho@gmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101376.jpg",
     "idLegislador": 101376,
     "nombres": "Ernesto Javier",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5268",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -772,11 +848,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "LIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "despachosenadorlideramarilla@gmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101377.jpg",
     "idLegislador": 101377,
     "nombres": "Lider Santiago",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5115",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -792,11 +870,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "LIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "juanafara2023@gmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101378.jpg",
     "idLegislador": 101378,
     "nombres": "Juan Eudes",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5248",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -812,11 +892,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "LIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "esperanzamartinezpy@gmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101379.jpg",
     "idLegislador": 101379,
     "nombres": "Esperanza",
     "partidoPolitico": "Partido Participación Ciudadana",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5213",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -832,11 +914,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "LIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "despachosenblancaovelar@gmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101380.jpg",
     "idLegislador": 101380,
     "nombres": "Blanca Margarita",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5280",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -852,11 +936,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "MIEMBRO",
     "departamento": "NACIONAL",
+    "emailParlamentario": "senadoracabrerapettersnoelia@gmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101381.jpg",
     "idLegislador": 101381,
     "nombres": "Lourdes Noelia",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "021 414 5125",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -872,11 +958,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "MIEMBRO",
     "departamento": "NACIONAL",
+    "emailParlamentario": "fariajaime@hotmail.es",
     "fotoURL": "https://silpy.congreso.gov.py/images/101382.jpg",
     "idLegislador": 101382,
     "nombres": "Gustavo Alfredo",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5220",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -892,11 +980,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "LIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "despachosenrubenvelazquez@gmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101383.jpg",
     "idLegislador": 101383,
     "nombres": "Antonio Rubén",
     "partidoPolitico": "Movimiento Conciencia Democrática Nacional",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5127",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -912,11 +1002,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "CAPITAL",
+    "emailParlamentario": "raul_latorre@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101385.jpg",
     "idLegislador": 101385,
     "nombres": "RAÚL LUIS",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "4082",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -932,11 +1024,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "LIDER",
     "departamento": "CAPITAL",
+    "emailParlamentario": "daniel_centurion@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101386.jpg",
     "idLegislador": 101386,
     "nombres": "DANIEL FERNANDO",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4326",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -952,11 +1046,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "CAPITAL",
+    "emailParlamentario": "mauricio_espinola@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101387.jpg",
     "idLegislador": 101387,
     "nombres": "MAURICIO FABIAN",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4208",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -972,11 +1068,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "LIDER",
     "departamento": "CAPITAL",
+    "emailParlamentario": "rocio_vallejo@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101389.jpg",
     "idLegislador": 101389,
     "nombres": "HILDA MARÍA DEL ROCÍO",
     "partidoPolitico": "Partido Patria Querida PPQ",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4181",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -992,11 +1090,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "CAPITAL",
+    "emailParlamentario": "jose_rodriguez@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101390.jpg",
     "idLegislador": 101390,
     "nombres": "JOSÉ RAMÓN",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4206",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1012,11 +1112,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "VICELIDER",
     "departamento": "CAPITAL",
+    "emailParlamentario": "yamil_esgaib@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101391.jpg",
     "idLegislador": 101391,
     "nombres": "YAMIL",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4214",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1032,11 +1134,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "VICELIDER",
     "departamento": "PARAGUARÍ",
+    "emailParlamentario": "bocha_nandeamigo@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101392.jpg",
     "idLegislador": 101392,
     "nombres": "HÉCTOR RUBEN",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4317",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1052,11 +1156,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "CONCEPCION",
+    "emailParlamentario": "virina_villanueva@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101393.jpg",
     "idLegislador": 101393,
     "nombres": "VIRINA MAURICIA",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4180",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1072,11 +1178,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "ALTO PARANÁ",
+    "emailParlamentario": "bettina_aguilera@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101394.jpg",
     "idLegislador": 101394,
     "nombres": "BETTINA ROSMARY",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4222 / 0982 700 442",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1092,11 +1200,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "CONCEPCION",
+    "emailParlamentario": "emilio_pavon@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101395.jpg",
     "idLegislador": 101395,
     "nombres": "EMILIO",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4078",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1112,11 +1222,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "CONCEPCION",
+    "emailParlamentario": "arturo_urbieta@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101396.jpg",
     "idLegislador": 101396,
     "nombres": "ARTURO RENE",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4210",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1132,11 +1244,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "SAN PEDRO",
+    "emailParlamentario": "leonardo_saiz@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101397.jpg",
     "idLegislador": 101397,
     "nombres": "LEONARDO",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4324",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1152,11 +1266,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "ALTO PARANÁ",
+    "emailParlamentario": "guillermo_rodriguez@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101399.jpg",
     "idLegislador": 101399,
     "nombres": "GUILLERMO ARIEL",
     "partidoPolitico": "Movimiento Conciencia Democrática Nacional",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4071",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1172,11 +1288,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "SECRETARIO",
     "departamento": "ALTO PARANÁ",
+    "emailParlamentario": "miguel_martinez@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101402.jpg",
     "idLegislador": 101402,
     "nombres": "MIGUEL",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4070",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1192,11 +1310,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "ALTO PARANÁ",
+    "emailParlamentario": "liz_acosta@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101403.jpg",
     "idLegislador": 101403,
     "nombres": "LIZ CRISTINA",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4321",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1212,11 +1332,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "ALTO PARANÁ",
+    "emailParlamentario": "walter_garcia@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101404.jpg",
     "idLegislador": 101404,
     "nombres": "WALTER HUGO",
     "partidoPolitico": "Movimiento Conciencia Democrática Nacional",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4069",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1232,11 +1354,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "ALTO PARANÁ",
+    "emailParlamentario": "rocio_abed@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101405.jpg",
     "idLegislador": 101405,
     "nombres": "MARÍA ROCÍO",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4224",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1252,11 +1376,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "VICELIDER",
     "departamento": "CENTRAL",
+    "emailParlamentario": "juan_anazco@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101406.jpg",
     "idLegislador": 101406,
     "nombres": "JUAN MANUEL",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4327",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1272,11 +1398,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "SAN PEDRO",
+    "emailParlamentario": "carmen_dejesus@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101407.jpg",
     "idLegislador": 101407,
     "nombres": "CARMEN DEJESÚS",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4320",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1292,11 +1420,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "BOQUERÓN",
+    "emailParlamentario": "francisco_petersen@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101408.jpg",
     "idLegislador": 101408,
     "nombres": "FRANCISCO OSVALDO MANUEL",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4176",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1312,11 +1442,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "ALTO PARAGUAY",
+    "emailParlamentario": "jose_adorno@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101409.jpg",
     "idLegislador": 101409,
     "nombres": "JOSÉ DOMINGO",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4205",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1332,11 +1464,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "PTE. HAYES",
+    "emailParlamentario": "idacattebeke@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101410.jpg",
     "idLegislador": 101410,
     "nombres": "MARÍA IDA",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4314",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1352,11 +1486,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "LIDER",
     "departamento": "PTE. HAYES",
+    "emailParlamentario": "ruben_roussillon@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101411.jpg",
     "idLegislador": 101411,
     "nombres": "RUBEN ANTONIO",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4172",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1372,11 +1508,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "CANINDEYÚ",
+    "emailParlamentario": "benjamin_cantero@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101412.jpg",
     "idLegislador": 101412,
     "nombres": "BENJAMÍN",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4343",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1392,11 +1530,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "CANINDEYÚ",
+    "emailParlamentario": "dipnac_cristinavillalba@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101413.jpg",
     "idLegislador": 101413,
     "nombres": "MARÍA CRISTINA",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4221",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1412,11 +1552,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "AMAMBAY",
+    "emailParlamentario": "ayala_acevedo@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101414.jpg",
     "idLegislador": 101414,
     "nombres": "JUAN MANUEL",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4072",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1432,11 +1574,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "",
     "departamento": "AMAMBAY",
+    "emailParlamentario": "eulalio_gomes@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101415.jpg",
     "idLegislador": 101415,
     "nombres": "EULALIO",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4318",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1452,11 +1596,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "",
     "departamento": "ÑEEMBUCÚ",
+    "emailParlamentario": "luis_benitez@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101416.jpg",
     "idLegislador": 101416,
     "nombres": "LUIS FEDERICO",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4203",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1472,11 +1618,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "LIDER",
     "departamento": "CENTRAL",
+    "emailParlamentario": "raul_benitez@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101417.jpg",
     "idLegislador": 101417,
     "nombres": "RAÚL ANTONIO",
     "partidoPolitico": "Partido Encuentro Nacional PEN",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4178",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1492,11 +1640,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "LIDER",
     "departamento": "CENTRAL",
+    "emailParlamentario": "alexandrazena@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101418.jpg",
     "idLegislador": 101418,
     "nombres": "PATRICIA ALEXANDRA",
     "partidoPolitico": "CRUZADA NACIONAL",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4065",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1512,11 +1662,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "CENTRAL",
+    "emailParlamentario": "pedro_ortiz@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101420.jpg",
     "idLegislador": 101420,
     "nombres": "PEDRO",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4209",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1532,11 +1684,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "CENTRAL",
+    "emailParlamentario": "",
     "fotoURL": "https://silpy.congreso.gov.py/images/101421.jpg",
     "idLegislador": 101421,
     "nombres": "DIEGO CRISPIN",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4325",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1552,11 +1706,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "SAN PEDRO",
+    "emailParlamentario": "jorge_barressi@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101423.jpg",
     "idLegislador": 101423,
     "nombres": "JORGE SEBASTIAN",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4322",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1572,11 +1728,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "CORDILLERA",
+    "emailParlamentario": "hugo_meza@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101424.jpg",
     "idLegislador": 101424,
     "nombres": "HUGO JOEL",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4315",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1592,11 +1750,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "VICELIDER",
     "departamento": "CORDILLERA",
+    "emailParlamentario": "roberto_gonzalez@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101425.jpg",
     "idLegislador": 101425,
     "nombres": "ROBERTO EUDEZ",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4112",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1612,11 +1772,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "GUAIRÁ",
+    "emailParlamentario": "edgar_chavez@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101426.jpg",
     "idLegislador": 101426,
     "nombres": "EDGAR MILCIADES",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4218",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1632,11 +1794,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "VICELIDER",
     "departamento": "CENTRAL",
+    "emailParlamentario": "rodrigo_gamarra@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101427.jpg",
     "idLegislador": 101427,
     "nombres": "RODRIGO DANIEL",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4080",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1652,11 +1816,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "LIDER",
     "departamento": "CENTRAL",
+    "emailParlamentario": "leidygaleano@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101428.jpg",
     "idLegislador": 101428,
     "nombres": "LEIDY PAOLA",
     "partidoPolitico": "Movimiento Conciencia Democrática Nacional",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4068",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1672,11 +1838,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "CENTRAL",
+    "emailParlamentario": "nestor_castellano@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101429.jpg",
     "idLegislador": 101429,
     "nombres": "NÉSTOR DAVID",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4201",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1692,11 +1860,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "CENTRAL",
+    "emailParlamentario": "orlando_arevalo@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101430.jpg",
     "idLegislador": 101430,
     "nombres": "ORLANDO GABRIEL",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4216",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1712,11 +1882,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "LIDER",
     "departamento": "CENTRAL",
+    "emailParlamentario": "ruben_rubin@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101431.jpg",
     "idLegislador": 101431,
     "nombres": "RUBEN ISAAC",
     "partidoPolitico": "INDEPENDIENTE",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4230",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1732,11 +1904,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "CENTRAL",
+    "emailParlamentario": "johana_vega@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101434.jpg",
     "idLegislador": 101434,
     "nombres": "GLORIA MARÍA JOHANA",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4316",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1752,11 +1926,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "CENTRAL",
+    "emailParlamentario": "jatar_fernandez@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101435.jpg",
     "idLegislador": 101435,
     "nombres": "JATAR EDUARDO",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4328",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1772,11 +1948,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "CENTRAL",
+    "emailParlamentario": "canusa@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101436.jpg",
     "idLegislador": 101436,
     "nombres": "CARLOS ALBERTO",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4202",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1792,11 +1970,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "CENTRAL",
+    "emailParlamentario": "jazmin_narvaez@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101437.jpg",
     "idLegislador": 101437,
     "nombres": "JAZMIN",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4319",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1812,11 +1992,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "ALTO PARANÁ",
+    "emailParlamentario": "roya_torres@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101438.jpg",
     "idLegislador": 101438,
     "nombres": "ROYA NIGSA",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4244",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1832,11 +2014,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "LIDER",
     "departamento": "CENTRAL",
+    "emailParlamentario": "marcelo_salinas@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101439.jpg",
     "idLegislador": 101439,
     "nombres": "MARCELO RAFAEL",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4227",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1852,11 +2036,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "SECRETARIA",
     "departamento": "CENTRAL",
+    "emailParlamentario": "daliaestigarribia@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101440.jpg",
     "idLegislador": 101440,
     "nombres": "DALIA MARLENE",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4226",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1872,11 +2058,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "CENTRAL",
+    "emailParlamentario": "rodrigo_blanco@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101441.jpg",
     "idLegislador": 101441,
     "nombres": "RODRIGO DANIEL",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4231",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1892,11 +2080,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "VICELIDER",
     "departamento": "CENTRAL",
+    "emailParlamentario": "freddyfranco@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101442.jpg",
     "idLegislador": 101442,
     "nombres": "LUIS FEDERICO",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4223",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1912,11 +2102,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "CENTRAL",
+    "emailParlamentario": "pedro_gomez@diputados.com.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101443.jpg",
     "idLegislador": 101443,
     "nombres": "PEDRO JOSÉ",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4213",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1932,11 +2124,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "VICELIDER",
     "departamento": "CENTRAL",
+    "emailParlamentario": "billyvaesken@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101444.jpg",
     "idLegislador": 101444,
     "nombres": "ADRIÁN DARÍO (BILLY)",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4177",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1952,11 +2146,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "ÑEEMBUCÚ",
+    "emailParlamentario": "diosnel_aguilera@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101445.jpg",
     "idLegislador": 101445,
     "nombres": "DIOSNEL",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4079",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1972,11 +2168,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "CANINDEYÚ",
+    "emailParlamentario": "cleto_gimenez@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101446.jpg",
     "idLegislador": 101446,
     "nombres": "CLETO MARCELINO",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4232",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -1992,11 +2190,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "LIDER",
     "departamento": "CAPITAL",
+    "emailParlamentario": "johannaortegadiputada@gmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101447.jpg",
     "idLegislador": 101447,
     "nombres": "JOHANNA PAOLA",
     "partidoPolitico": "Partido País Solidario PPS",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4184",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -2012,11 +2212,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "SAN PEDRO",
+    "emailParlamentario": "ariel_villagra@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101448.jpg",
     "idLegislador": 101448,
     "nombres": "ARIEL",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4081",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -2032,11 +2234,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "SAN PEDRO",
+    "emailParlamentario": "pvbejarano@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101449.jpg",
     "idLegislador": 101449,
     "nombres": "PASTOR ALBERTO",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4077",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -2052,11 +2256,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "CORDILLERA",
+    "emailParlamentario": "graciela_aguilera@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101450.jpg",
     "idLegislador": 101450,
     "nombres": "GRACIELA",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4185",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -2072,11 +2278,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "LIDER",
     "departamento": "CORDILLERA",
+    "emailParlamentario": "carlos_lopez@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101451.jpg",
     "idLegislador": 101451,
     "nombres": "CARLOS MARÍA",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4066",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -2092,11 +2300,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "LIDER",
     "departamento": "GUAIRÁ",
+    "emailParlamentario": "mariaconstanciabenitez@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101452.jpg",
     "idLegislador": 101452,
     "nombres": "MARÍA CONSTANCIA",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4076",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -2112,11 +2322,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "VICELIDER",
     "departamento": "GUAIRÁ",
+    "emailParlamentario": "alejandro_aguilera@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101453.jpg",
     "idLegislador": 101453,
     "nombres": "ALEJANDRO DARÍO",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4212",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -2132,11 +2344,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "LIDER",
     "departamento": "CAAGUAZÚ",
+    "emailParlamentario": "miguel_delpuerto@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101454.jpg",
     "idLegislador": 101454,
     "nombres": "MIGUEL ANGEL",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4182",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -2152,11 +2366,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "CAAGUAZÚ",
+    "emailParlamentario": "alejo_rios@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101455.jpg",
     "idLegislador": 101455,
     "nombres": "ALEJO",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4183",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -2172,11 +2388,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "CAAGUAZÚ",
+    "emailParlamentario": "derlis_rodriguez@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101456.jpg",
     "idLegislador": 101456,
     "nombres": "DERLIS MANUEL",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4179",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -2192,11 +2410,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "CAAGUAZÚ",
+    "emailParlamentario": "antoniobuzarquis@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101457.jpg",
     "idLegislador": 101457,
     "nombres": "ENRIQUE ANTONIO CONCEPCIÓN",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4228",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -2212,11 +2432,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "CAAGUAZÚ",
+    "emailParlamentario": "edgar_olmedo@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101458.jpg",
     "idLegislador": 101458,
     "nombres": "EDGAR GUSTAVO",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4217",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -2232,11 +2454,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "CAAGUAZÚ",
+    "emailParlamentario": "carlos_godoy@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101459.jpg",
     "idLegislador": 101459,
     "nombres": "CARLOS MARCIAL",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4229",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -2252,11 +2476,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "CAAZAPÁ",
+    "emailParlamentario": "avelino_davalos@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101460.jpg",
     "idLegislador": 101460,
     "nombres": "AVELINO",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4204",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -2272,11 +2498,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "CAAZAPÁ",
+    "emailParlamentario": "juan_maciel@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101461.jpg",
     "idLegislador": 101461,
     "nombres": "JUAN RAMÓN",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4211",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -2292,11 +2520,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "",
     "departamento": "ITAPÚA",
+    "emailParlamentario": "walterharms@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101462.jpg",
     "idLegislador": 101462,
     "nombres": "WALTER ENRIQUE",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4174",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -2312,11 +2542,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "ITAPÚA",
+    "emailParlamentario": "carlos_pereira@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101463.jpg",
     "idLegislador": 101463,
     "nombres": "CARLOS ALBERTO",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4173",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -2332,11 +2564,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "ITAPÚA",
+    "emailParlamentario": "christian_brunaga@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101464.jpg",
     "idLegislador": 101464,
     "nombres": "CHRISTIAN GABRIEL",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4171",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -2352,11 +2586,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "ITAPÚA",
+    "emailParlamentario": "german_solinger@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101465.jpg",
     "idLegislador": 101465,
     "nombres": "GERMAN",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4207",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -2372,11 +2608,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "LIDER",
     "departamento": "ITAPÚA",
+    "emailParlamentario": "delpilar_vazquez@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101466.jpg",
     "idLegislador": 101466,
     "nombres": "DEL PILAR",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4233",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -2392,11 +2630,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "ITAPÚA",
+    "emailParlamentario": "cesar_cerini@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101467.jpg",
     "idLegislador": 101467,
     "nombres": "CÉSAR LADISLAO",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4175",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -2412,11 +2652,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "MISIONES",
+    "emailParlamentario": "carlos_arrechea@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101468.jpg",
     "idLegislador": 101468,
     "nombres": "CARLOS MARIA",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4215",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -2432,11 +2674,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "SECRETARIO",
     "departamento": "MISIONES",
+    "emailParlamentario": "arnaldo_valdez@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101469.jpg",
     "idLegislador": 101469,
     "nombres": "ARNALDO AGUSTÍN",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "14-4075",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -2452,11 +2696,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "PARAGUARÍ",
+    "emailParlamentario": "esteban_samaniego@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101470.jpg",
     "idLegislador": 101470,
     "nombres": "ESTEBAN MARTIN",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4225",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -2472,11 +2718,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "VICELIDER",
     "departamento": "PARAGUARÍ",
+    "emailParlamentario": "jorgeavalos@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101471.jpg",
     "idLegislador": 101471,
     "nombres": "JORGE RAMÓN",
     "partidoPolitico": "Partido Liberal Radical Auténtico PLRA",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4253",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -2492,11 +2740,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "ALTO PARANÁ",
+    "emailParlamentario": "luis_gonzalez@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101474.jpg",
     "idLegislador": 101474,
     "nombres": "LUIS MARÍA",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4073",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -2512,11 +2762,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "VICELIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "abarrios@senado.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101475.jpg",
     "idLegislador": 101475,
     "nombres": "Antonio Carlos",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "021 414 5238",
     "tipoParlamentario": "SUPLENTE"
   },
   {
@@ -2532,11 +2784,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "",
     "departamento": "NACIONAL",
+    "emailParlamentario": "",
     "fotoURL": "https://silpy.congreso.gov.py/images/101476.jpg",
     "idLegislador": 101476,
     "nombres": "Javier Odilón",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5135",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -2552,11 +2806,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "MIEMBRO",
     "departamento": "NACIONAL",
+    "emailParlamentario": "equiposen.rr@gmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101477.jpg",
     "idLegislador": 101477,
     "nombres": "Ramón Catalino",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5209",
     "tipoParlamentario": "SUPLENTE"
   },
   {
@@ -2572,11 +2828,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "ÑEEMBUCÚ",
+    "emailParlamentario": "",
     "fotoURL": "https://silpy.congreso.gov.py/images/101480.jpg",
     "idLegislador": 101480,
     "nombres": "MARÍA FABIANA",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "4144203",
     "tipoParlamentario": "SUPLENTE"
   },
   {
@@ -2592,11 +2850,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "VICELIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "nanogalaverna.sen@gmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101484.jpg",
     "idLegislador": 101484,
     "nombres": "Juan Carlos Luis",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5288",
     "tipoParlamentario": "SUPLENTE"
   },
   {
@@ -2612,11 +2872,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "",
     "departamento": "CAPITAL",
+    "emailParlamentario": "",
     "fotoURL": "https://silpy.congreso.gov.py/images/101494.jpg",
     "idLegislador": 101494,
     "nombres": "JULIO ROLANDO",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -2632,11 +2894,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "ITAPÚA",
+    "emailParlamentario": "",
     "fotoURL": "https://silpy.congreso.gov.py/images/101504.jpg",
     "idLegislador": 101504,
     "nombres": "SEBASTIÁN EMILIO",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "4144174",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -2652,11 +2916,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "LIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "driramainsenador@gmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101514.jpg",
     "idLegislador": 101514,
     "nombres": "Ignacio",
     "partidoPolitico": "Partido Encuentro Nacional PEN",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5082",
     "tipoParlamentario": "SUPLENTE"
   },
   {
@@ -2672,11 +2938,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "",
     "departamento": "NACIONAL",
+    "emailParlamentario": "",
     "fotoURL": "https://silpy.congreso.gov.py/images/101524.jpg",
     "idLegislador": 101524,
     "nombres": "Juan Carlos",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "",
     "tipoParlamentario": "VITALICIO"
   },
   {
@@ -2692,11 +2960,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "",
     "departamento": "NACIONAL",
+    "emailParlamentario": "",
     "fotoURL": "https://silpy.congreso.gov.py/images/101534.jpg",
     "idLegislador": 101534,
     "nombres": "Mario",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "",
     "tipoParlamentario": "VITALICIO"
   },
   {
@@ -2712,11 +2982,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "AMAMBAY",
+    "emailParlamentario": "santiago_benitez@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101554.jpg",
     "idLegislador": 101554,
     "nombres": "Santiago Alfredo",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4318",
     "tipoParlamentario": "SUPLENTE"
   },
   {
@@ -2732,11 +3004,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "CENTRAL",
+    "emailParlamentario": "",
     "fotoURL": "https://silpy.congreso.gov.py/images/101564.jpg",
     "idLegislador": 101564,
     "nombres": "Saúl",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414-4082",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -2752,11 +3026,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "LIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "",
     "fotoURL": "https://silpy.congreso.gov.py/images/101574.jpg",
     "idLegislador": 101574,
     "nombres": "Alfonso",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5222",
     "tipoParlamentario": "SUPLENTE"
   },
   {
@@ -2772,11 +3048,13 @@
     "camaraParlamentario": "CAMARA DE DIPUTADOS",
     "cargoBancada": "MIEMBRO",
     "departamento": "CAAGUAZÚ",
+    "emailParlamentario": "david_jara@diputados.gov.py",
     "fotoURL": "https://silpy.congreso.gov.py/images/101584.jpg",
     "idLegislador": 101584,
     "nombres": "David Manuel",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "414 - 4179",
     "tipoParlamentario": "TITULAR"
   },
   {
@@ -2792,11 +3070,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "LIDER",
     "departamento": "NACIONAL",
+    "emailParlamentario": "",
     "fotoURL": "https://silpy.congreso.gov.py/images/101594.jpg",
     "idLegislador": 101594,
     "nombres": "Walter Janusz Ricardo",
     "partidoPolitico": "Partido Cruzada Nacional",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5042",
     "tipoParlamentario": "SUPLENTE"
   },
   {
@@ -2812,11 +3092,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "MIEMBRO",
     "departamento": "NACIONAL",
+    "emailParlamentario": "luciaesparza2025@gmail.com",
     "fotoURL": "https://silpy.congreso.gov.py/images/101595.jpg",
     "idLegislador": 101595,
     "nombres": "Gladys Lucía",
     "partidoPolitico": "Partido Cruzada Nacional",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5135",
     "tipoParlamentario": "SUPLENTE"
   },
   {
@@ -2832,11 +3114,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "MIEMBRO",
     "departamento": "NACIONAL",
+    "emailParlamentario": "",
     "fotoURL": "https://silpy.congreso.gov.py/images/101604.jpg",
     "idLegislador": 101604,
     "nombres": "Guadalupe",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "59521 414 5205",
     "tipoParlamentario": "SUPLENTE"
   },
   {
@@ -2852,11 +3136,13 @@
     "camaraParlamentario": "CAMARA DE SENADORES",
     "cargoBancada": "MIEMBRO",
     "departamento": "NACIONAL",
+    "emailParlamentario": "",
     "fotoURL": "https://silpy.congreso.gov.py/images/101614.jpg",
     "idLegislador": 101614,
     "nombres": "Carlos Augusto",
     "partidoPolitico": "Asociación Nacional Republicana ANR",
     "periodoLegislativo": "2023-2028",
+    "telefonoParlamentario": "",
     "tipoParlamentario": "SUPLENTE"
   }
 ]

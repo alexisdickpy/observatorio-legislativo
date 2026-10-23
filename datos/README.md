@@ -38,7 +38,7 @@ No editar estos archivos a mano, salvo las notas manuales de `propios/notas.json
   - Los objetos anidados se aplanan con puntos en el nombre de la columna (`proyecto.acapite`). Las listas de valores se unen con ` | `. Las listas de objetos (los archivos adjuntos de cada ley) quedan solo en el JSON.
   - Las columnas propias conservan `_propio` en el nombre (`_propio.fechaSancion`) y van después de las oficiales.
   - Verdadero y falso se escriben `true` y `false`; un valor nulo queda vacío.
-- **Sin datos de contacto.** No se guardan el correo ni el teléfono de los legisladores.
+- **Datos de contacto.** El correo y el teléfono que publica la API para cada legislador se guardan solo en `legisladores.json` y `.csv`; se omiten en las copias del legislador dentro de autores, leyes y votaciones.
 
 ## Campos propios
 

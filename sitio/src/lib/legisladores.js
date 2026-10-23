@@ -13,6 +13,7 @@
 // - Autoría: leyes sancionadas del período de cuyo proyecto figura como autor (autores.json,
 //   registros con _propio.delPeriodo).
 // - Partido y bancada: los que la API registra para el período, no por fecha.
+// - Correo y teléfono: los que la API publica para el legislador, sin cambios.
 // - Orden: primero la Cámara de Senadores y luego la de Diputados; dentro, por apellido.
 
 import { existeEnDatos, fuente, periodos, personas } from "./datos.js";
@@ -156,6 +157,8 @@ function prepararRegistro(l, periodo) {
     partidoConocido: nombreConocido(partido),
     bancada: valor(l.bancada),
     cargoBancada: valor(l.cargoBancada),
+    correo: valor(l.emailParlamentario),
+    telefono: valor(l.telefonoParlamentario),
     vigente: Boolean(l._propio?.vigente),
     urlSilpy: valor(l.appURL),
     foto: existeEnDatos(foto) ? rutas.fotoLegislador(periodo, l.idLegislador) : null,

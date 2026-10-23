@@ -43,6 +43,8 @@ const descripcion = `${f.nombre ?? sinDato}: ${actual.camara ?? sinDato}, perío
               <div><dt>Partido</dt><dd>{b.partido ?? sinDato}{b.partidoConocido && ` (${b.partidoConocido})`}</dd></div>
               <div><dt>Bancada</dt><dd>{b.bancada ?? sinDato}</dd></div>
               <div><dt>Cargo en la bancada</dt><dd class={b.cargoBancada ? undefined : "texto-suave"}>{b.cargoBancada ?? sinDato}</dd></div>
+              <div><dt>Correo</dt><dd class={b.correo ? "contacto" : "texto-suave"}>{b.correo ? <a href={`mailto:${b.correo}`}>{b.correo}</a> : sinDato}</dd></div>
+              <div><dt>Teléfono</dt><dd class={b.telefono ? undefined : "texto-suave"}>{b.telefono ?? sinDato}</dd></div>
               {b.periodoVigente && <div><dt>Situación</dt><dd>{b.vigente ? "En ejercicio" : "Ya no ejerce"}</dd></div>}
             </dl>
           </div>
@@ -146,6 +148,9 @@ const descripcion = `${f.nombre ?? sinDato}: ${actual.camara ?? sinDato}, perío
   }
   dd {
     margin: 0;
+  }
+  .contacto {
+    overflow-wrap: anywhere;
   }
   .aviso {
     padding: var(--espacio-3) var(--espacio-4);
