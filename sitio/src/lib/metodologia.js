@@ -15,7 +15,7 @@ const TIPOS = [
   [
     "menos_votos_que_miembros",
     "Votaciones con menos votos individuales que miembros de la cámara",
-    "La lista de votos tiene menos nombres que miembros con voto de la cámara (45 en el Senado, 80 en Diputados). Puede haber varias causas, por ejemplo una banca vacante mientras no jura quien la reemplaza. La fuente no indica la causa y este sitio no la interpreta.",
+    "La lista de votos tiene menos nombres que miembros con voto de la cámara (45 en el Senado, 80 en Diputados). Puede haber varias causas. La fuente no indica la causa y este sitio no la interpreta.",
   ],
   [
     "totales_no_coinciden",
