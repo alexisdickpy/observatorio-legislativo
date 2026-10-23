@@ -49,7 +49,7 @@ Agrupaciones del período 2023-2028 (12 textos oficiales, 11 partidos unificados
 
 Los análisis por grupo usan dos niveles.
 
-- **Partido**, con el identificador unificado, comparable entre cámaras. Hoy lo usa el filtro "Partido" del listado de legisladores (valor de URL `?partido={partidoUnificado}`; para los partidos de un solo texto coincide con el slug del texto oficial que usaba antes). La ficha del legislador muestra el nombre unificado junto al texto oficial cuando no coinciden, señalado como dato de este sitio.
+- **Partido**, con el identificador unificado, comparable entre cámaras. Hoy lo usa el filtro "Partido" del listado de legisladores (valor de URL `?partido={partidoUnificado}`; para los partidos de un solo texto coincide con el slug del texto oficial que usaba antes). El filtro muestra cada partido una sola vez, con su nombre unificado. Las fichas y las tablas muestran siempre el texto oficial.
 - **Bancada**, con el nombre oficial, separada por cámara. No se unen bancadas de cámaras distintas, porque son grupos internos de cada cámara con nombres propios. Los legisladores con `bancada` vacía figuran como "Sin bancada registrada".
 
 Los votos distintos a la mayoría de su partido (#39) usan el texto oficial dentro de cada cámara. Dentro de cada cámara cada partido tiene un solo texto en 2023-2028, así que la cifra es la misma con el texto oficial o con el partido unificado.

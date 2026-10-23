@@ -27,8 +27,9 @@
 //   registros con _propio.delPeriodo).
 // - Partido y bancada: los que la API registra para el período, no por fecha.
 // - Partido unificado (alcance acordado en #42, lib/partidos.js): dato propio que dice qué textos
-//   oficiales de partido son el mismo partido. Lo usa el filtro "Partido" del listado y se muestra en
-//   la ficha junto al texto oficial. No cambia ninguna cifra: todas se calculan dentro de cada cámara.
+//   oficiales de partido son el mismo partido. Lo usa el filtro "Partido" del listado, con un solo
+//   nombre por partido. La ficha muestra solo el texto oficial. No cambia ninguna cifra: todas se
+//   calculan dentro de cada cámara.
 // - Correo y teléfono: los que la API publica para el legislador, sin cambios.
 // - Orden: primero la Cámara de Senadores y luego la de Diputados; dentro, por apellido.
 
@@ -336,7 +337,6 @@ function leyesDeSuAutoria(idLegislador, periodo, i) {
 function prepararRegistro(l, periodo) {
   const foto = `fotos/${periodo}/${l.idLegislador}.jpg`;
   const partido = valor(l.partidoPolitico);
-  const unificado = partidoUnificado(partido);
   return {
     periodo,
     id: l.idLegislador,
@@ -347,9 +347,7 @@ function prepararRegistro(l, periodo) {
     departamento: valor(l.departamento),
     partido,
     partidoConocido: nombreConocido(partido),
-    partidoUnificado: unificado,
-    // Nombre del partido unificado cuando no coincide con el texto oficial; la ficha lo muestra aparte.
-    partidoUnificadoAparte: unificado && unificado.nombre !== partido ? unificado.nombre : null,
+    partidoUnificado: partidoUnificado(partido),
     bancada: valor(l.bancada),
     cargoBancada: valor(l.cargoBancada),
     correo: valor(l.emailParlamentario),
@@ -404,24 +402,15 @@ function valoresUnicos(textos) {
 /** Valor de URL del filtro de partido: el identificador del partido unificado, no el texto oficial. */
 const valoresDePartido = (textos) => new Map([...new Set(textos.filter(Boolean))].map((t) => [t, partidoUnificado(t).id]));
 
-/**
- * Una opción por partido unificado. Si agrupa textos oficiales distintos de su nombre, se nombran
- * entre paréntesis, junto con el nombre conocido.
- */
+/** Una opción por partido unificado, con su nombre y, si lo tiene, el nombre conocido entre paréntesis. */
 function opcionesDePartido(valores) {
   const grupos = new Map();
   for (const [texto, id] of valores) {
-    if (!grupos.has(id)) grupos.set(id, { valor: id, nombre: partidoUnificado(texto).nombre, textos: [], conocido: null });
-    const g = grupos.get(id);
-    g.textos.push(texto);
-    g.conocido ??= nombreConocido(texto);
+    if (!grupos.has(id)) grupos.set(id, { valor: id, nombre: partidoUnificado(texto).nombre, conocido: null });
+    grupos.get(id).conocido ??= nombreConocido(texto);
   }
   return [...grupos.values()]
-    .map((g) => {
-      const otros = g.textos.filter((t) => t !== g.nombre).sort(porTexto);
-      const extras = [g.conocido, otros.length ? `también «${otros.join("», «")}»` : null].filter(Boolean);
-      return { valor: g.valor, etiqueta: extras.length ? `${g.nombre} (${extras.join("; ")})` : g.nombre };
-    })
+    .map((g) => ({ valor: g.valor, etiqueta: g.conocido ? `${g.nombre} (${g.conocido})` : g.nombre }))
     .sort((a, b) => porTexto(a.etiqueta, b.etiqueta));
 }
 

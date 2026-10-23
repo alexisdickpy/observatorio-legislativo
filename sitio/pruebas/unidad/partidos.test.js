@@ -70,7 +70,7 @@ test("ningún valor oficial cambia: el listado conserva el texto oficial del par
 test("filtro de partido: Cruzada Nacional una sola vez, con las dos cámaras", () => {
   const { partidos } = opcionesDelListado(PERIODO);
   const cruzada = partidos.filter((p) => p.etiqueta.includes("ruzada") || p.etiqueta.includes("RUZADA"));
-  assert.deepEqual(cruzada, [{ valor: "partido-cruzada-nacional", etiqueta: `${CRUZADA_SEN} (también «${CRUZADA_DIP}»)` }]);
+  assert.deepEqual(cruzada, [{ valor: "partido-cruzada-nacional", etiqueta: CRUZADA_SEN }]);
   assert.equal(partidos.length, 11);
   const { enEjercicio, noEjercen } = listado(PERIODO);
   const camaras = new Set([...enEjercicio, ...noEjercen].filter((l) => l.filtro.partido === "partido-cruzada-nacional").map((l) => l.camara));
@@ -79,13 +79,9 @@ test("filtro de partido: Cruzada Nacional una sola vez, con las dos cámaras", (
   assert.ok(partidos.some((p) => p.valor === "movimiento-conciencia-democratica-nacional" && p.etiqueta.endsWith("(Yo Creo)")));
 });
 
-test("ficha: el partido unificado aparte solo cuando no coincide con el texto oficial", () => {
+test("ficha: muestra solo el texto oficial del partido", () => {
   const bloques = legisladores().flatMap((p) => ficha(p).bloques).filter((b) => b.periodo === PERIODO);
-  const aparte = bloques.filter((b) => b.partidoUnificadoAparte);
-  assert.ok(aparte.length > 0);
-  for (const b of aparte) {
-    assert.equal(b.partido, CRUZADA_DIP);
-    assert.equal(b.partidoUnificadoAparte, CRUZADA_SEN);
-  }
-  assert.ok(bloques.filter((b) => b.partido === CRUZADA_SEN).every((b) => b.partidoUnificadoAparte === null));
+  const dip = bloques.filter((b) => b.partidoUnificado?.id === "partido-cruzada-nacional" && b.camara === "CAMARA DE DIPUTADOS");
+  assert.ok(dip.length > 0);
+  assert.ok(dip.every((b) => b.partido === CRUZADA_DIP));
 });
