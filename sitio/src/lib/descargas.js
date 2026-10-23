@@ -23,6 +23,7 @@ const TABLAS = {
   legisladores: "Legisladores del período, vigentes o no.",
   autores: "Autores del proyecto de cada ley.",
   personas: "Identificador propio de cada legislador, que se mantiene igual entre legislaturas y se usa en las direcciones del sitio.",
+  partidos: "Partido unificado de cada texto oficial de partido, que dice qué textos corresponden al mismo partido, con el fundamento de cada caso y los nombres conocidos. Los textos oficiales no cambian.",
   notas: "Problemas que este proyecto detectó en los datos oficiales (fechas mal escritas, totales que no coinciden, etc.). Los valores oficiales no se corrigen.",
 };
 

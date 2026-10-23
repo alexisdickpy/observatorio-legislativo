@@ -25,11 +25,38 @@ Cada una se aplica en una capa aparte que no borra el original.
 | 12 | **Copia propia de las fotos.** La foto que publica el Congreso en el `fotoURL` de cada legislador se guarda sin cambios. Si no tiene foto (`noimage`), no se guarda nada. Si una descarga falla, se conserva la copia anterior y se avisa, sin detener la sincronización. El sitio muestra una versión reducida (320 × 320 píxeles) generada en cada compilación. | Que las fichas no dependan del servidor del Congreso en cada visita ni conecten al visitante con él. | `fotos/{período}/{idLegislador}.jpg`. |
 | 11 | **Orden fijo** de registros y claves. Los votos se ordenan por `idDetalleVotacion`, las tramitaciones por `idTramitacion` y los adjuntos por `idAdjunto`. Los autores conservan el orden de la API, que se mantuvo igual en tres descargas. | La API devuelve esas listas en distinto orden en cada consulta, sin que cambien los datos. Con orden fijo, una descarga sin cambios produce los mismos archivos y el historial del repositorio muestra solo cambios reales de la fuente. | Todos los archivos. |
 
-No se aplican, por ahora, la unificación de nombres de partidos y bancadas ni la clasificación de la etapa de cada votación. Se harán en sus propios Issues, también en `datos/propios/`.
+La unificación de partidos se describe más abajo, en su propia sección (#42). No se unifican bancadas. No se aplica, por ahora, la clasificación de la etapa de cada votación, que se hará en su propio Issue, también en `datos/propios/`.
 
 ## Nombres conocidos de partidos
 
-Algunos partidos son más conocidos por otro nombre que el oficial. En ese caso, el sitio muestra el nombre oficial tal como lo publica la API y, entre paréntesis, el nombre conocido, con un aviso de que es un agregado del sitio. Hoy hay uno: «Movimiento Conciencia Democrática Nacional (Yo Creo)», porque las bancadas oficiales de sus legisladores llevan ese nombre. La lista y el fundamento de cada caso están en [`datos/propios/partidos.json`](../datos/propios/partidos.json). No se unifican partidos ni se cambia ningún valor oficial.
+Algunos partidos son más conocidos por otro nombre que el oficial. En ese caso, el sitio muestra el nombre oficial tal como lo publica la API y, entre paréntesis, el nombre conocido, con un aviso de que es un agregado del sitio. Hoy hay uno: «Movimiento Conciencia Democrática Nacional (Yo Creo)», porque las bancadas oficiales de sus legisladores llevan ese nombre. La lista y el fundamento de cada caso están en [`datos/propios/partidos.json`](../datos/propios/partidos.json) (`nombreConocido` y `fundamentoNombreConocido`). No se cambia ningún valor oficial.
+
+## Partidos unificados y los dos niveles de análisis
+
+Decisión de alcance (#42). La API publica el partido (`partidoPolitico`) como texto libre por legislador y período, y a veces escribe el mismo partido de forma distinta en cada cámara. La misma tabla propia, [`datos/propios/partidos.json`](../datos/propios/partidos.json), da a **cada texto oficial** un identificador de partido unificado (`partidoUnificado`), un nombre para mostrarlo (`nombreUnificado`) y el fundamento de la agrupación (`fundamentoUnificado`).
+
+- **Solo se agrupa lo seguro.** Se reúnen dos textos únicamente si un dato oficial muestra que son el mismo partido. Los demás quedan solos, con su propio identificador.
+- **Ningún valor oficial cambia.** El texto oficial se sigue mostrando en todas las páginas. El partido unificado es un dato propio y se señala como tal.
+- **No suma cámaras.** Unificar solo dice qué textos son el mismo partido. Todas las cifras (votos distintos a la mayoría, ausencias, NO VOTA, abstenciones) se calculan dentro de cada cámara, y nunca se suman senadores y diputados. El partido unificado sirve para poner lado a lado lo que hizo un mismo partido en cada cámara, cada uno con su cifra (#43, #37).
+
+Agrupaciones del período 2023-2028 (12 textos oficiales, 11 partidos unificados).
+
+| Partido unificado | Textos oficiales | Fundamento |
+|---|---|---|
+| `partido-cruzada-nacional` (Partido Cruzada Nacional) | «Partido Cruzada Nacional» (Cámara de Senadores) y «CRUZADA NACIONAL» (Cámara de Diputados) | La bancada oficial de la diputada con el segundo texto se llama «PARTIDO CRUZADA NACIONAL "CN"», y la de dos de los senadores con el primero, «CRUZADA NACIONAL». |
+| `independiente-a` y `independiente` | «Independiente A» (Cámara de Senadores) e «INDEPENDIENTE» (Cámara de Diputados) | **No se agrupan.** Nada en los datos oficiales indica que sean el mismo partido. Sus bancadas oficiales son «LIBERAL INDEPENDIENTE» y «BANCADA INDEPENDIENTE». |
+| Los otros 8 | Un texto cada uno | Único texto oficial del partido en el período. |
+
+Los análisis por grupo usan dos niveles.
+
+- **Partido**, con el identificador unificado, comparable entre cámaras. Hoy lo usa el filtro "Partido" del listado de legisladores (valor de URL `?partido={partidoUnificado}`; para los partidos de un solo texto coincide con el slug del texto oficial que usaba antes). El filtro muestra cada partido una sola vez, con su nombre unificado. Las fichas y las tablas muestran siempre el texto oficial.
+- **Bancada**, con el nombre oficial, separada por cámara. No se unen bancadas de cámaras distintas, porque son grupos internos de cada cámara con nombres propios. Los legisladores con `bancada` vacía figuran como "Sin bancada registrada".
+
+Los votos distintos a la mayoría de su partido (#39) usan el texto oficial dentro de cada cámara. Dentro de cada cámara cada partido tiene un solo texto en 2023-2028, así que la cifra es la misma con el texto oficial o con el partido unificado.
+
+Partido y bancada siguen siendo un valor por período, sin fecha (ver las limitaciones).
+
+**Textos nuevos.** Si la API publica un texto de partido que no está en la tabla, el sitio lo trata como un partido aparte, con el slug de su texto, para que la compilación no falle. La prueba `sitio/pruebas/unidad/partidos.test.js` falla hasta que se agregue a la tabla con su identificador y su fundamento.
 
 ## Notas sobre la fuente
 

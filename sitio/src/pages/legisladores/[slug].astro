@@ -53,8 +53,7 @@ const descripcion = descripcionDeLegislador(f, sinDato);
               <div><dt>Cámara</dt><dd>{b.camara ?? sinDato}</dd></div>
               <div><dt>Tipo</dt><dd>{b.tipo ?? sinDato}</dd></div>
               <div><dt>Departamento</dt><dd>{b.departamento ?? sinDato}</dd></div>
-              <div><dt>Partido</dt><dd>{b.partido ?? sinDato}{b.partidoConocido && ` (${b.partidoConocido})`}</dd></div>
-              <div><dt>Bancada</dt><dd>{b.bancada ?? sinDato}</dd></div>
+              <div><dt>Partido</dt><dd>{b.partido ?? sinDato}{b.partidoConocido && ` (${b.partidoConocido})`}</dd></div>              <div><dt>Bancada</dt><dd>{b.bancada ?? sinDato}</dd></div>
               <div><dt>Cargo en la bancada</dt><dd class={b.cargoBancada ? undefined : "texto-suave"}>{b.cargoBancada ?? sinDato}</dd></div>
               <div><dt>Correo</dt><dd class={b.correo ? "contacto" : "texto-suave"}>{b.correo ? <a href={`mailto:${b.correo}`}>{b.correo}</a> : sinDato}</dd></div>
               <div><dt>Teléfono</dt><dd class={b.telefono ? undefined : "texto-suave"}>{b.telefono ?? sinDato}</dd></div>
@@ -73,8 +72,7 @@ const descripcion = descripcionDeLegislador(f, sinDato);
             Partido y bancada son los que la API registra en el período {b.periodo};
             no necesariamente eran los vigentes en la fecha de cada votación.
             {b.camara === "CAMARA DE SENADORES" && " Los senadores se eligen en una circunscripción nacional, por eso la API registra su departamento como NACIONAL."}
-            {b.partidoConocido && " El nombre entre paréntesis es el nombre por el que se conoce a su partido, un agregado de este sitio. El que va antes es el oficial."}
-            {" "}<a href={rutas.metodologia(rutas.anclasMetodologia.afiliacion)}>Más información</a>
+            {b.partidoConocido && " El nombre entre paréntesis es el nombre por el que se conoce a su partido, un agregado de este sitio. El que va antes es el oficial."}            {" "}<a href={rutas.metodologia(rutas.anclasMetodologia.afiliacion)}>Más información</a>
           </p>
           {b.urlSilpy && <p class="chico"><a href={b.urlSilpy}>Ficha oficial en SILpy</a></p>}
 

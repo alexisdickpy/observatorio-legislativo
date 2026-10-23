@@ -34,6 +34,7 @@ export const anclasMetodologia = {
   noVotaAbstencion: "no-vota-y-abstenciones",
   mayoria: "votos-distintos-a-la-mayoria",
   afiliacion: "partido-y-bancada",
+  partidoUnificado: "partido-unificado",
   observaciones: "observaciones-sobre-los-datos",
 };
 
