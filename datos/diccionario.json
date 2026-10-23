@@ -1,0 +1,1084 @@
+{
+  "introduccion": "Describe cada campo de los archivos de `datos/`. El mismo nombre sirve para el JSON y para la columna del CSV: los objetos anidados se nombran con puntos (`proyecto.acapite`) y `[]` indica un elemento de una lista de objetos, que solo está en el JSON. En el CSV, las listas de valores se separan con ` | `, los valores verdadero/falso son `true`/`false` y un valor nulo queda vacío. `*` reemplaza una parte variable del nombre.\n\n**Origen.** `oficial`: valor tal como lo publica la API del Congreso, sin cambios. `propio`: lo calcula o agrega este proyecto; siempre está dentro de `_propio` (o en `propios/`). Los criterios están en la [metodología](../docs/metodologia.md).\n\n**Formatos.** Cada tabla de `fuente/{período}/` está en JSON y en CSV (UTF-8 con BOM, separado por comas). En Excel, si las columnas no se separan solas: *Datos → Desde texto/CSV*.",
+  "tablas": {
+    "leyes": {
+      "descripcion": "Un registro por ley sancionada en el período, con su proyecto, ministerios y archivos adjuntos.",
+      "archivos": [
+        "fuente/{período}/leyes.json",
+        "fuente/{período}/leyes.csv"
+      ],
+      "campos": [
+        {
+          "campo": "idLey",
+          "origen": "oficial",
+          "tipo": "entero",
+          "descripcion": "Identificador oficial del registro de ley. Una misma ley puede tener más de un registro."
+        },
+        {
+          "campo": "appURL",
+          "origen": "oficial",
+          "tipo": "URL",
+          "descripcion": "Ficha de la ley en SILpy."
+        },
+        {
+          "campo": "fechaPromulgacion",
+          "origen": "oficial",
+          "tipo": "fecha (texto dd/mm/aaaa)",
+          "descripcion": "Fecha de promulgación."
+        },
+        {
+          "campo": "fechaPublicacion",
+          "origen": "oficial",
+          "tipo": "fecha (texto dd/mm/aaaa)",
+          "descripcion": "Fecha de publicación."
+        },
+        {
+          "campo": "fechaSancion",
+          "origen": "oficial",
+          "tipo": "fecha (texto dd/mm/aaaa)",
+          "descripcion": "Fecha de sanción."
+        },
+        {
+          "campo": "numeroLey",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Número de ley tal como lo publica la API (puede tener espacios)."
+        },
+        {
+          "campo": "observacionDecreto",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Observación sobre el decreto de promulgación."
+        },
+        {
+          "campo": "tipoPromulgacion",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "NORMAL o AUTOMÁTICA."
+        },
+        {
+          "campo": "proyecto.acapite",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Acápite (título y descripción) del proyecto, tal como figura en el expediente."
+        },
+        {
+          "campo": "proyecto.appURL",
+          "origen": "oficial",
+          "tipo": "URL",
+          "descripcion": "Ficha del expediente en SILpy."
+        },
+        {
+          "campo": "proyecto.descripcionEtapa",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Etapa de tramitación en la que está el proyecto."
+        },
+        {
+          "campo": "proyecto.descripcionSubEtapa",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Subetapa de tramitación."
+        },
+        {
+          "campo": "proyecto.estadoProyecto",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Estado del proyecto (por ejemplo, PUBLICADO)."
+        },
+        {
+          "campo": "proyecto.expedienteCamara",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Número de expediente en la cámara."
+        },
+        {
+          "campo": "proyecto.fechaIngresoExpediente",
+          "origen": "oficial",
+          "tipo": "fecha (texto dd/mm/aaaa)",
+          "descripcion": "Fecha de ingreso del expediente."
+        },
+        {
+          "campo": "proyecto._propio.fechaIngresoExpediente",
+          "origen": "propio",
+          "tipo": "fecha (aaaa-mm-dd)",
+          "descripcion": "Fecha anterior en formato ISO. Vacía si el texto oficial no es una fecha válida (el caso queda en `propios/notas.json`)."
+        },
+        {
+          "campo": "proyecto.idProyecto",
+          "origen": "oficial",
+          "tipo": "entero",
+          "descripcion": "Identificador oficial del proyecto."
+        },
+        {
+          "campo": "proyecto.iniciativa",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Quién presentó el proyecto: PARLAMENTARIA, PODER EJECUTIVO o CORTE SUPREMA DE JUSTICIA."
+        },
+        {
+          "campo": "proyecto.origenProyecto",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Cámara de origen del proyecto."
+        },
+        {
+          "campo": "proyecto.tipoProyecto",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Tipo de proyecto (proyecto de ley, resolución, declaración…)."
+        },
+        {
+          "campo": "proyecto.urgencia",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Tipo de tratamiento: ORDINARIO, DE URGENCIA, etc."
+        },
+        {
+          "campo": "proyecto.ministerios",
+          "origen": "oficial",
+          "tipo": "lista de textos",
+          "descripcion": "Ministerios que remiten el proyecto (iniciativas del Poder Ejecutivo). En el CSV, separados por ` | `."
+        },
+        {
+          "campo": "proyecto.archivosAdjuntos[].appURL",
+          "origen": "oficial",
+          "tipo": "URL",
+          "descripcion": "Descarga del archivo adjunto.",
+          "soloJSON": true
+        },
+        {
+          "campo": "proyecto.archivosAdjuntos[].idAdjunto",
+          "origen": "oficial",
+          "tipo": "entero",
+          "descripcion": "Identificador oficial del adjunto.",
+          "soloJSON": true
+        },
+        {
+          "campo": "proyecto.archivosAdjuntos[].idProyecto",
+          "origen": "oficial",
+          "tipo": "entero",
+          "descripcion": "Proyecto al que pertenece el adjunto.",
+          "soloJSON": true
+        },
+        {
+          "campo": "proyecto.archivosAdjuntos[].infoAdjunto",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Descripción del adjunto.",
+          "soloJSON": true
+        },
+        {
+          "campo": "proyecto.archivosAdjuntos[].tipoAdjunto",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Tipo: LEY (texto de la ley), PROYECTO o ANTECEDENTE.",
+          "soloJSON": true
+        },
+        {
+          "campo": "proyecto.archivosAdjuntos[].tipoArchivo",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Formato del archivo (por ejemplo, application/pdf).",
+          "soloJSON": true
+        },
+        {
+          "campo": "_propio.fechaPromulgacion",
+          "origen": "propio",
+          "tipo": "fecha (aaaa-mm-dd)",
+          "descripcion": "Fecha anterior en formato ISO. Vacía si el texto oficial no es una fecha válida (el caso queda en `propios/notas.json`)."
+        },
+        {
+          "campo": "_propio.fechaPublicacion",
+          "origen": "propio",
+          "tipo": "fecha (aaaa-mm-dd)",
+          "descripcion": "Fecha anterior en formato ISO. Vacía si el texto oficial no es una fecha válida (el caso queda en `propios/notas.json`)."
+        },
+        {
+          "campo": "_propio.fechaSancion",
+          "origen": "propio",
+          "tipo": "fecha (aaaa-mm-dd)",
+          "descripcion": "Fecha anterior en formato ISO. Vacía si el texto oficial no es una fecha válida (el caso queda en `propios/notas.json`)."
+        },
+        {
+          "campo": "_propio.idPeriodoParlamentario",
+          "origen": "propio",
+          "tipo": "entero",
+          "descripcion": "Período parlamentario anual en cuyo listado (`ley/periodo/{id}`) figura la ley."
+        },
+        {
+          "campo": "_propio.idVotaciones",
+          "origen": "propio",
+          "tipo": "lista de enteros",
+          "descripcion": "Votaciones nominales del período enlazadas con la ley: su proyecto coincide y su trámite figura entre las tramitaciones del proyecto. En el CSV, separadas por ` | `."
+        },
+        {
+          "campo": "_propio.idVotacionesNoResueltas",
+          "origen": "propio",
+          "tipo": "lista de enteros",
+          "descripcion": "Votaciones del mismo proyecto cuyo trámite no figura en las tramitaciones publicadas. No se asume el enlace."
+        },
+        {
+          "campo": "_propio.idVotacionesOtrosPeriodos",
+          "origen": "propio",
+          "tipo": "lista de enteros",
+          "descripcion": "Votaciones del mismo proyecto que pertenecen a otra legislatura."
+        },
+        {
+          "campo": "_propio.numeroLey",
+          "origen": "propio",
+          "tipo": "texto",
+          "descripcion": "Número de ley sin espacios alrededor. Agrupa los registros de una misma ley y forma su URL."
+        },
+        {
+          "campo": "_propio.periodoLegislativo",
+          "origen": "propio",
+          "tipo": "texto",
+          "descripcion": "Período legislativo en el que se importó la ley."
+        }
+      ]
+    },
+    "tramitaciones": {
+      "descripcion": "Un registro por trámite del proyecto de cada ley.",
+      "archivos": [
+        "fuente/{período}/tramitaciones.json",
+        "fuente/{período}/tramitaciones.csv"
+      ],
+      "campos": [
+        {
+          "campo": "idProyecto",
+          "origen": "oficial",
+          "tipo": "entero",
+          "descripcion": "Proyecto al que pertenece el trámite."
+        },
+        {
+          "campo": "tramitacion.camaraTramite",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Cámara en la que ocurrió el trámite."
+        },
+        {
+          "campo": "tramitacion.descripcionEtapa",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Etapa del trámite (por ejemplo, Primer trámite constitucional)."
+        },
+        {
+          "campo": "tramitacion.descripcionSubEtapa",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Subetapa del trámite (por ejemplo, Discusión Plenario)."
+        },
+        {
+          "campo": "tramitacion.fechaTramite",
+          "origen": "oficial",
+          "tipo": "fecha (texto dd/mm/aaaa)",
+          "descripcion": "Fecha del trámite."
+        },
+        {
+          "campo": "tramitacion._propio.fechaTramite",
+          "origen": "propio",
+          "tipo": "fecha (aaaa-mm-dd)",
+          "descripcion": "Fecha anterior en formato ISO. Vacía si el texto oficial no es una fecha válida (el caso queda en `propios/notas.json`)."
+        },
+        {
+          "campo": "tramitacion.idTramitacion",
+          "origen": "oficial",
+          "tipo": "entero",
+          "descripcion": "Identificador oficial del trámite."
+        },
+        {
+          "campo": "tramitacion.numeroSesion",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Número de la sesión en que ocurrió el trámite, si corresponde."
+        },
+        {
+          "campo": "tramitacion.resultadoTramite",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Resultado del trámite (por ejemplo, PASA A COMISIÓN: …)."
+        },
+        {
+          "campo": "tramitacion.idSesion.appURL",
+          "origen": "oficial",
+          "tipo": "URL",
+          "descripcion": "Ficha de la sesión en SILpy."
+        },
+        {
+          "campo": "tramitacion.idSesion.camaraSesion",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Cámara que celebró la sesión."
+        },
+        {
+          "campo": "tramitacion.idSesion.fechaSesion",
+          "origen": "oficial",
+          "tipo": "fecha (texto dd/mm/aaaa)",
+          "descripcion": "Fecha de la sesión."
+        },
+        {
+          "campo": "tramitacion.idSesion._propio.fechaSesion",
+          "origen": "propio",
+          "tipo": "fecha (aaaa-mm-dd)",
+          "descripcion": "Fecha anterior en formato ISO. Vacía si el texto oficial no es una fecha válida (el caso queda en `propios/notas.json`)."
+        },
+        {
+          "campo": "tramitacion.idSesion.horaFin",
+          "origen": "oficial",
+          "tipo": "texto (hh:mm)",
+          "descripcion": "Hora de cierre de la sesión."
+        },
+        {
+          "campo": "tramitacion.idSesion.horaInicio",
+          "origen": "oficial",
+          "tipo": "texto (hh:mm)",
+          "descripcion": "Hora de inicio de la sesión."
+        },
+        {
+          "campo": "tramitacion.idSesion.idSesion",
+          "origen": "oficial",
+          "tipo": "entero",
+          "descripcion": "Identificador oficial de la sesión."
+        },
+        {
+          "campo": "tramitacion.idSesion.numeroSesion",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Número de la sesión."
+        },
+        {
+          "campo": "tramitacion.idSesion.tipoSesion",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Tipo de sesión (ORDINARIA, EXTRAORDINARIA, PREPARATORIA…)."
+        },
+        {
+          "campo": "tramitacion.idSesion.periodoParlamentarioDTO.fechaInicio",
+          "origen": "oficial",
+          "tipo": "fecha (texto dd/mm/aaaa)",
+          "descripcion": "Inicio del período parlamentario anual."
+        },
+        {
+          "campo": "tramitacion.idSesion.periodoParlamentarioDTO._propio.fechaInicio",
+          "origen": "propio",
+          "tipo": "fecha (aaaa-mm-dd)",
+          "descripcion": "Fecha anterior en formato ISO. Vacía si el texto oficial no es una fecha válida (el caso queda en `propios/notas.json`)."
+        },
+        {
+          "campo": "tramitacion.idSesion.periodoParlamentarioDTO.fechaTermino",
+          "origen": "oficial",
+          "tipo": "fecha (texto dd/mm/aaaa)",
+          "descripcion": "Fin del período parlamentario anual."
+        },
+        {
+          "campo": "tramitacion.idSesion.periodoParlamentarioDTO._propio.fechaTermino",
+          "origen": "propio",
+          "tipo": "fecha (aaaa-mm-dd)",
+          "descripcion": "Fecha anterior en formato ISO. Vacía si el texto oficial no es una fecha válida (el caso queda en `propios/notas.json`)."
+        },
+        {
+          "campo": "tramitacion.idSesion.periodoParlamentarioDTO.idPeriodoLegislativo",
+          "origen": "oficial",
+          "tipo": "entero",
+          "descripcion": "Identificador oficial del período legislativo (cinco años)."
+        },
+        {
+          "campo": "tramitacion.idSesion.periodoParlamentarioDTO.idPeriodoParlamentario",
+          "origen": "oficial",
+          "tipo": "entero",
+          "descripcion": "Identificador oficial del período parlamentario anual."
+        },
+        {
+          "campo": "tramitacion.idSesion.periodoParlamentarioDTO.periodoLegislativo",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Período legislativo, por ejemplo 2023-2028."
+        },
+        {
+          "campo": "tramitacion.idSesion.periodoParlamentarioDTO.periodoParlamentario",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Período parlamentario anual, por ejemplo 2023-2024."
+        }
+      ]
+    },
+    "votaciones": {
+      "descripcion": "Un registro por votación nominal del período, sin los votos individuales (están en `votos`).",
+      "archivos": [
+        "fuente/{período}/votaciones.json",
+        "fuente/{período}/votaciones.csv"
+      ],
+      "campos": [
+        {
+          "campo": "idVotacion",
+          "origen": "oficial",
+          "tipo": "entero",
+          "descripcion": "Identificador oficial de la votación nominal. Único en todo el histórico."
+        },
+        {
+          "campo": "appURL",
+          "origen": "oficial",
+          "tipo": "URL",
+          "descripcion": "Ficha de la votación en SILpy."
+        },
+        {
+          "campo": "descripcion",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Qué se sometió a votación."
+        },
+        {
+          "campo": "observacion",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Observación de la votación."
+        },
+        {
+          "campo": "totalAbstencion",
+          "origen": "oficial",
+          "tipo": "entero",
+          "descripcion": "Total de abstenciones publicado por la API."
+        },
+        {
+          "campo": "totalAusente",
+          "origen": "oficial",
+          "tipo": "entero",
+          "descripcion": "Total de AUSENTE publicado. AUSENTE en una votación no equivale a ausencia en la sesión."
+        },
+        {
+          "campo": "totalNO",
+          "origen": "oficial",
+          "tipo": "entero",
+          "descripcion": "Total de votos NO publicado."
+        },
+        {
+          "campo": "totalNoVota",
+          "origen": "oficial",
+          "tipo": "entero",
+          "descripcion": "Total de NO VOTA publicado (solo en el Senado)."
+        },
+        {
+          "campo": "totalSI",
+          "origen": "oficial",
+          "tipo": "entero",
+          "descripcion": "Total de votos SI publicado."
+        },
+        {
+          "campo": "proyecto.acapite",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Acápite (título y descripción) del proyecto, tal como figura en el expediente."
+        },
+        {
+          "campo": "proyecto.appURL",
+          "origen": "oficial",
+          "tipo": "URL",
+          "descripcion": "Ficha del expediente en SILpy."
+        },
+        {
+          "campo": "proyecto.descripcionEtapa",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Etapa de tramitación en la que está el proyecto."
+        },
+        {
+          "campo": "proyecto.descripcionSubEtapa",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Subetapa de tramitación."
+        },
+        {
+          "campo": "proyecto.estadoProyecto",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Estado del proyecto (por ejemplo, PUBLICADO)."
+        },
+        {
+          "campo": "proyecto.expedienteCamara",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Número de expediente en la cámara."
+        },
+        {
+          "campo": "proyecto.fechaIngresoExpediente",
+          "origen": "oficial",
+          "tipo": "fecha (texto dd/mm/aaaa)",
+          "descripcion": "Fecha de ingreso del expediente."
+        },
+        {
+          "campo": "proyecto._propio.fechaIngresoExpediente",
+          "origen": "propio",
+          "tipo": "fecha (aaaa-mm-dd)",
+          "descripcion": "Fecha anterior en formato ISO. Vacía si el texto oficial no es una fecha válida (el caso queda en `propios/notas.json`)."
+        },
+        {
+          "campo": "proyecto.idProyecto",
+          "origen": "oficial",
+          "tipo": "entero",
+          "descripcion": "Identificador oficial del proyecto."
+        },
+        {
+          "campo": "proyecto.iniciativa",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Quién presentó el proyecto: PARLAMENTARIA, PODER EJECUTIVO o CORTE SUPREMA DE JUSTICIA."
+        },
+        {
+          "campo": "proyecto.origenProyecto",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Cámara de origen del proyecto."
+        },
+        {
+          "campo": "proyecto.tipoProyecto",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Tipo de proyecto (proyecto de ley, resolución, declaración…)."
+        },
+        {
+          "campo": "proyecto.urgencia",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Tipo de tratamiento: ORDINARIO, DE URGENCIA, etc."
+        },
+        {
+          "campo": "tramitacion.camaraTramite",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Cámara en la que ocurrió el trámite."
+        },
+        {
+          "campo": "tramitacion.descripcionEtapa",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Etapa del trámite (por ejemplo, Primer trámite constitucional)."
+        },
+        {
+          "campo": "tramitacion.descripcionSubEtapa",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Subetapa del trámite (por ejemplo, Discusión Plenario)."
+        },
+        {
+          "campo": "tramitacion.fechaTramite",
+          "origen": "oficial",
+          "tipo": "fecha (texto dd/mm/aaaa)",
+          "descripcion": "Fecha del trámite."
+        },
+        {
+          "campo": "tramitacion._propio.fechaTramite",
+          "origen": "propio",
+          "tipo": "fecha (aaaa-mm-dd)",
+          "descripcion": "Fecha anterior en formato ISO. Vacía si el texto oficial no es una fecha válida (el caso queda en `propios/notas.json`)."
+        },
+        {
+          "campo": "tramitacion.idTramitacion",
+          "origen": "oficial",
+          "tipo": "entero",
+          "descripcion": "Identificador oficial del trámite."
+        },
+        {
+          "campo": "tramitacion.numeroSesion",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Número de la sesión en que ocurrió el trámite, si corresponde."
+        },
+        {
+          "campo": "tramitacion.resultadoTramite",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Resultado del trámite (por ejemplo, PASA A COMISIÓN: …)."
+        },
+        {
+          "campo": "tramitacion.idSesion.appURL",
+          "origen": "oficial",
+          "tipo": "URL",
+          "descripcion": "Ficha de la sesión en SILpy."
+        },
+        {
+          "campo": "tramitacion.idSesion.camaraSesion",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Cámara que celebró la sesión."
+        },
+        {
+          "campo": "tramitacion.idSesion.fechaSesion",
+          "origen": "oficial",
+          "tipo": "fecha (texto dd/mm/aaaa)",
+          "descripcion": "Fecha de la sesión."
+        },
+        {
+          "campo": "tramitacion.idSesion._propio.fechaSesion",
+          "origen": "propio",
+          "tipo": "fecha (aaaa-mm-dd)",
+          "descripcion": "Fecha anterior en formato ISO. Vacía si el texto oficial no es una fecha válida (el caso queda en `propios/notas.json`)."
+        },
+        {
+          "campo": "tramitacion.idSesion.horaFin",
+          "origen": "oficial",
+          "tipo": "texto (hh:mm)",
+          "descripcion": "Hora de cierre de la sesión."
+        },
+        {
+          "campo": "tramitacion.idSesion.horaInicio",
+          "origen": "oficial",
+          "tipo": "texto (hh:mm)",
+          "descripcion": "Hora de inicio de la sesión."
+        },
+        {
+          "campo": "tramitacion.idSesion.idSesion",
+          "origen": "oficial",
+          "tipo": "entero",
+          "descripcion": "Identificador oficial de la sesión."
+        },
+        {
+          "campo": "tramitacion.idSesion.numeroSesion",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Número de la sesión."
+        },
+        {
+          "campo": "tramitacion.idSesion.tipoSesion",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Tipo de sesión (ORDINARIA, EXTRAORDINARIA, PREPARATORIA…)."
+        },
+        {
+          "campo": "tramitacion.idSesion.periodoParlamentarioDTO.fechaInicio",
+          "origen": "oficial",
+          "tipo": "fecha (texto dd/mm/aaaa)",
+          "descripcion": "Inicio del período parlamentario anual."
+        },
+        {
+          "campo": "tramitacion.idSesion.periodoParlamentarioDTO._propio.fechaInicio",
+          "origen": "propio",
+          "tipo": "fecha (aaaa-mm-dd)",
+          "descripcion": "Fecha anterior en formato ISO. Vacía si el texto oficial no es una fecha válida (el caso queda en `propios/notas.json`)."
+        },
+        {
+          "campo": "tramitacion.idSesion.periodoParlamentarioDTO.fechaTermino",
+          "origen": "oficial",
+          "tipo": "fecha (texto dd/mm/aaaa)",
+          "descripcion": "Fin del período parlamentario anual."
+        },
+        {
+          "campo": "tramitacion.idSesion.periodoParlamentarioDTO._propio.fechaTermino",
+          "origen": "propio",
+          "tipo": "fecha (aaaa-mm-dd)",
+          "descripcion": "Fecha anterior en formato ISO. Vacía si el texto oficial no es una fecha válida (el caso queda en `propios/notas.json`)."
+        },
+        {
+          "campo": "tramitacion.idSesion.periodoParlamentarioDTO.idPeriodoLegislativo",
+          "origen": "oficial",
+          "tipo": "entero",
+          "descripcion": "Identificador oficial del período legislativo (cinco años)."
+        },
+        {
+          "campo": "tramitacion.idSesion.periodoParlamentarioDTO.idPeriodoParlamentario",
+          "origen": "oficial",
+          "tipo": "entero",
+          "descripcion": "Identificador oficial del período parlamentario anual."
+        },
+        {
+          "campo": "tramitacion.idSesion.periodoParlamentarioDTO.periodoLegislativo",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Período legislativo, por ejemplo 2023-2028."
+        },
+        {
+          "campo": "tramitacion.idSesion.periodoParlamentarioDTO.periodoParlamentario",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Período parlamentario anual, por ejemplo 2023-2024."
+        },
+        {
+          "campo": "_propio.cantidadVotos",
+          "origen": "propio",
+          "tipo": "entero",
+          "descripcion": "Cantidad de votos individuales de la votación en `votos.csv`."
+        },
+        {
+          "campo": "_propio.enlaceLey",
+          "origen": "propio",
+          "tipo": "texto",
+          "descripcion": "Estado del enlace con una ley: `resuelto`, `no_resuelto` o `sin_ley` (el proyecto no tiene ley sancionada en el período)."
+        },
+        {
+          "campo": "_propio.idLeyes",
+          "origen": "propio",
+          "tipo": "lista de enteros",
+          "descripcion": "Leyes (`idLey`) enlazadas con la votación. En el CSV, separadas por ` | `."
+        },
+        {
+          "campo": "_propio.periodoLegislativo",
+          "origen": "propio",
+          "tipo": "texto",
+          "descripcion": "Período legislativo de la votación."
+        },
+        {
+          "campo": "_propio.totalesCoinciden",
+          "origen": "propio",
+          "tipo": "booleano",
+          "descripcion": "Si cada total publicado coincide con el recuento de los votos individuales."
+        },
+        {
+          "campo": "_propio.totalesRecalculados.*",
+          "origen": "propio",
+          "tipo": "entero",
+          "descripcion": "Votos individuales contados por sentido (`SI`, `NO`, `ABSTENCIÓN/BLANCO`, `AUSENTE`, `NO VOTA`, `MOCIÓN 1`…). Una columna por sentido; vacía si no hubo votos de ese sentido."
+        }
+      ]
+    },
+    "votos": {
+      "descripcion": "Un voto individual por fila.",
+      "archivos": [
+        "fuente/{período}/votos.csv"
+      ],
+      "campos": [
+        {
+          "campo": "idVotacion",
+          "origen": "oficial",
+          "tipo": "entero",
+          "descripcion": "Votación a la que pertenece el voto."
+        },
+        {
+          "campo": "idDetalleVotacion",
+          "origen": "oficial",
+          "tipo": "entero",
+          "descripcion": "Identificador oficial del voto individual."
+        },
+        {
+          "campo": "idLegislador",
+          "origen": "oficial",
+          "tipo": "entero",
+          "descripcion": "Legislador que votó (ver `legisladores`)."
+        },
+        {
+          "campo": "idSentidoVotacion",
+          "origen": "oficial",
+          "tipo": "entero",
+          "descripcion": "Código del sentido del voto: 272 SI, 273 NO, 274 ABSTENCIÓN/BLANCO, 275 AUSENTE, 276 NO VOTA, 281-283 MOCIÓN 1-3."
+        },
+        {
+          "campo": "sentidoVotacion",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Sentido del voto en texto. AUSENTE significa que no votó en ese momento, no que faltó a la sesión."
+        },
+        {
+          "campo": "observacion",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Observación del voto (por ejemplo, «Votó a viva voz»)."
+        }
+      ]
+    },
+    "legisladores": {
+      "descripcion": "Un registro por legislador del período, vigente o no. Sin correo ni teléfono.",
+      "archivos": [
+        "fuente/{período}/legisladores.json",
+        "fuente/{período}/legisladores.csv"
+      ],
+      "campos": [
+        {
+          "campo": "activo",
+          "origen": "oficial",
+          "tipo": "booleano",
+          "descripcion": "Si la API lo marca como activo."
+        },
+        {
+          "campo": "apellidos",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Apellidos."
+        },
+        {
+          "campo": "appURL",
+          "origen": "oficial",
+          "tipo": "URL",
+          "descripcion": "Ficha del legislador en SILpy."
+        },
+        {
+          "campo": "bancada",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Bancada. La API da el valor actual por legislador y período, no la bancada en cada fecha."
+        },
+        {
+          "campo": "camaraParlamentario",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Cámara: CAMARA DE SENADORES o CAMARA DE DIPUTADOS."
+        },
+        {
+          "campo": "cargoBancada",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Cargo en la bancada (MIEMBRO, LIDER, VICELIDER…). Puede estar vacío."
+        },
+        {
+          "campo": "departamento",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Departamento por el que fue electo; NACIONAL para el Senado."
+        },
+        {
+          "campo": "fotoURL",
+          "origen": "oficial",
+          "tipo": "URL",
+          "descripcion": "Foto oficial."
+        },
+        {
+          "campo": "idLegislador",
+          "origen": "oficial",
+          "tipo": "entero",
+          "descripcion": "Identificador oficial. Cambia en cada legislatura: no identifica a una persona entre períodos."
+        },
+        {
+          "campo": "nombres",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Nombres."
+        },
+        {
+          "campo": "partidoPolitico",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Partido político. La API da el valor actual por legislador y período, no el partido en cada fecha."
+        },
+        {
+          "campo": "periodoLegislativo",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Período legislativo del registro."
+        },
+        {
+          "campo": "tipoParlamentario",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "TITULAR, SUPLENTE o VITALICIO (los senadores vitalicios tienen voz pero no voto)."
+        },
+        {
+          "campo": "_propio.fuenteRegistro",
+          "origen": "propio",
+          "tipo": "texto",
+          "descripcion": "De dónde se tomó el registro: el listado histórico (`legislador?idCamara=A`), el de vigentes (`legislador/camara/{S|D}`) o, si no figura en ninguno, el voto que lo incluye (`votacion`)."
+        },
+        {
+          "campo": "_propio.slug",
+          "origen": "propio",
+          "tipo": "texto",
+          "descripcion": "Identificador estable de la persona (ver `personas`). Forma la URL de su ficha."
+        },
+        {
+          "campo": "_propio.vigente",
+          "origen": "propio",
+          "tipo": "booleano",
+          "descripcion": "Si figura en el listado de legisladores en ejercicio."
+        }
+      ]
+    },
+    "autores": {
+      "descripcion": "Un registro por autor de cada proyecto con ley, en el orden que publica la API. El autor puede ser legislador de otra legislatura.",
+      "archivos": [
+        "fuente/{período}/autores.json",
+        "fuente/{período}/autores.csv"
+      ],
+      "campos": [
+        {
+          "campo": "idProyecto",
+          "origen": "oficial",
+          "tipo": "entero",
+          "descripcion": "Proyecto del que es autor."
+        },
+        {
+          "campo": "legislador.activo",
+          "origen": "oficial",
+          "tipo": "booleano",
+          "descripcion": "Si la API lo marca como activo."
+        },
+        {
+          "campo": "legislador.apellidos",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Apellidos."
+        },
+        {
+          "campo": "legislador.appURL",
+          "origen": "oficial",
+          "tipo": "URL",
+          "descripcion": "Ficha del legislador en SILpy."
+        },
+        {
+          "campo": "legislador.bancada",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Bancada. La API da el valor actual por legislador y período, no la bancada en cada fecha."
+        },
+        {
+          "campo": "legislador.camaraParlamentario",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Cámara: CAMARA DE SENADORES o CAMARA DE DIPUTADOS."
+        },
+        {
+          "campo": "legislador.cargoBancada",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Cargo en la bancada (MIEMBRO, LIDER, VICELIDER…). Puede estar vacío."
+        },
+        {
+          "campo": "legislador.departamento",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Departamento por el que fue electo; NACIONAL para el Senado."
+        },
+        {
+          "campo": "legislador.fotoURL",
+          "origen": "oficial",
+          "tipo": "URL",
+          "descripcion": "Foto oficial."
+        },
+        {
+          "campo": "legislador.idLegislador",
+          "origen": "oficial",
+          "tipo": "entero",
+          "descripcion": "Identificador oficial. Cambia en cada legislatura: no identifica a una persona entre períodos."
+        },
+        {
+          "campo": "legislador.nombres",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Nombres."
+        },
+        {
+          "campo": "legislador.partidoPolitico",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Partido político. La API da el valor actual por legislador y período, no el partido en cada fecha."
+        },
+        {
+          "campo": "legislador.periodoLegislativo",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Período legislativo del registro."
+        },
+        {
+          "campo": "legislador.tipoParlamentario",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "TITULAR, SUPLENTE o VITALICIO (los senadores vitalicios tienen voz pero no voto)."
+        },
+        {
+          "campo": "_propio.delPeriodo",
+          "origen": "propio",
+          "tipo": "booleano",
+          "descripcion": "Si el autor es legislador de este período legislativo."
+        },
+        {
+          "campo": "_propio.orden",
+          "origen": "propio",
+          "tipo": "entero",
+          "descripcion": "Posición en la lista de autores, en el orden que publica la API."
+        },
+        {
+          "campo": "_propio.slug",
+          "origen": "propio",
+          "tipo": "texto",
+          "descripcion": "Slug de la persona, si es legisladora de un período incluido. Vacío si no."
+        }
+      ]
+    },
+    "personas": {
+      "descripcion": "Capa propia: identificador estable de cada persona y sus `idLegislador` por período.",
+      "archivos": [
+        "propios/personas.json"
+      ],
+      "campos": [
+        {
+          "campo": "slug",
+          "origen": "propio",
+          "tipo": "texto",
+          "descripcion": "Identificador estable de la persona. No cambia aunque la fuente corrija la escritura del nombre."
+        },
+        {
+          "campo": "nombre",
+          "origen": "propio",
+          "tipo": "texto",
+          "descripcion": "Nombre con el que se creó el slug."
+        },
+        {
+          "campo": "legisladores[].idLegislador",
+          "origen": "oficial",
+          "tipo": "entero",
+          "descripcion": "`idLegislador` de la persona en cada período.",
+          "soloJSON": true
+        },
+        {
+          "campo": "legisladores[].periodoLegislativo",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Período de ese `idLegislador`.",
+          "soloJSON": true
+        }
+      ]
+    },
+    "notas": {
+      "descripcion": "Capa propia: problemas detectados en la fuente (fechas mal formadas, totales que no coinciden, votos faltantes, etc.).",
+      "archivos": [
+        "propios/notas.json"
+      ],
+      "campos": [
+        {
+          "campo": "tipo",
+          "origen": "propio",
+          "tipo": "texto",
+          "descripcion": "Tipo de problema (por ejemplo, `menos_votos_que_miembros`, `enlace_no_resuelto`)."
+        },
+        {
+          "campo": "entidad",
+          "origen": "propio",
+          "tipo": "texto",
+          "descripcion": "Qué tipo de registro afecta: ley, votacion, legislador…"
+        },
+        {
+          "campo": "id",
+          "origen": "propio",
+          "tipo": "entero o texto",
+          "descripcion": "Identificador oficial del registro afectado."
+        },
+        {
+          "campo": "detalle",
+          "origen": "propio",
+          "tipo": "texto",
+          "descripcion": "Explicación del problema."
+        },
+        {
+          "campo": "ruta",
+          "origen": "propio",
+          "tipo": "texto",
+          "descripcion": "Campo afectado dentro del registro, si corresponde."
+        },
+        {
+          "campo": "valorOriginal",
+          "origen": "propio",
+          "tipo": "texto",
+          "descripcion": "Valor oficial que motivó la nota, sin cambios, si corresponde."
+        },
+        {
+          "campo": "origen",
+          "origen": "propio",
+          "tipo": "texto",
+          "descripcion": "`importador` (detectada automáticamente) o `manual`."
+        },
+        {
+          "campo": "periodoLegislativo",
+          "origen": "propio",
+          "tipo": "texto",
+          "descripcion": "Período en el que se detectó."
+        }
+      ]
+    }
+  }
+}

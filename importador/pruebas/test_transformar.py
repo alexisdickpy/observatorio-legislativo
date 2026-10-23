@@ -232,9 +232,9 @@ class Serializacion(unittest.TestCase):
         self.assertTrue(json_bytes({"a": 1}).endswith(b"}\n"))
         self.assertIn("ñ".encode("utf-8"), json_bytes({"a": "ñ"}))
 
-    def test_csv_con_saltos_de_linea_unix(self):
+    def test_csv_con_bom_y_saltos_de_linea_unix(self):
         contenido = csv_bytes(["a", "b"], [{"a": 1, "b": None}, {"a": 2, "b": "x\ny"}])
-        self.assertEqual(contenido, b'a,b\n1,\n2,"x\ny"\n')
+        self.assertEqual(contenido, b'\xef\xbb\xbfa,b\n1,\n2,"x\ny"\n')
 
 
 if __name__ == "__main__":

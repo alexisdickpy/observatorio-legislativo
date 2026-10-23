@@ -15,6 +15,7 @@ python -m importador
 - Guarda cada respuesta cruda en `tmp/importador/crudo/` (no se sube al repositorio). Una respuesta que no es JSON válido no se guarda.
 - `--modo incremental` reutiliza las respuestas guardadas de lo que no cambia y hace unas 20 consultas (ver abajo).
 - `--sin-red` repite la importación con esas respuestas guardadas, sin consultar la API.
+- Después de escribir los JSON genera los formatos para descarga: una versión CSV de cada tabla y `datos/diccionario.md` (ver [`datos/README.md`](../datos/README.md)). Para regenerarlos sin consultar la API: `python -m importador.abiertos`. Si encuentra un campo que no está en `datos/diccionario.json`, lo avisa.
 - Al final imprime un resumen: cantidades, enlaces entre leyes y votaciones, notas sobre la fuente, registros agregados, modificados y eliminados, leyes nuevas, avisos y archivos modificados.
 - Si la API falla, termina con error y no modifica ningún archivo de datos. Solo anota el error en `datos/sincronizaciones.json`.
 - **Protección contra datos incompletos.** Si alguna cantidad (leyes, votaciones, votos…) baja más de un 5 % respecto de la importación anterior (`datos/estado.json`), se asume que la API respondió a medias: termina con error y no escribe nada. Si la baja es real, se repite con `--permitir-disminucion`.

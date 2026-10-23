@@ -125,9 +125,13 @@ class Importar(unittest.TestCase):
     def test_archivos_y_enlaces(self):
         resultado = self.correr()
         carpeta = "fuente/2023-2028/"
-        for nombre in ("leyes.json", "tramitaciones.json", "votaciones.json", "votos.csv",
-                       "legisladores.json", "autores.json"):
-            self.assertTrue((self.salida / carpeta / nombre).exists(), nombre)
+        for tabla in ("leyes", "tramitaciones", "votaciones", "legisladores", "autores"):
+            for extension in (".json", ".csv"):
+                self.assertTrue((self.salida / carpeta / (tabla + extension)).exists(), tabla + extension)
+        self.assertTrue((self.salida / carpeta / "votos.csv").exists())
+        self.assertTrue((self.salida / "diccionario.md").exists())
+        self.assertIn("fuente/2023-2028/leyes.csv", resultado["cambiados"])
+        self.assertFalse([a for a in resultado["avisos"] if "sin describir" in a])
         ley = self.leer(carpeta + "leyes.json")[0]
         votacion = self.leer(carpeta + "votaciones.json")[0]
         self.assertEqual(ley["_propio"]["idVotaciones"], [108906])

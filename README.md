@@ -21,6 +21,16 @@ Todos los datos provienen de la [API de Datos Abiertos Legislativos](https://dat
 
 Los indicadores calculados por este proyecto (porcentajes, agregados por bancada, etc.) se identifican como tales y su método se documenta.
 
+## Datos abiertos
+
+La copia propia de los datos está en [`datos/`](datos/), en JSON y en CSV (para abrir en una planilla), y se actualiza todos los días:
+
+- [Leyes](datos/fuente/2023-2028/leyes.csv), [votaciones](datos/fuente/2023-2028/votaciones.csv), [votos individuales](datos/fuente/2023-2028/votos.csv), [legisladores](datos/fuente/2023-2028/legisladores.csv), [autores](datos/fuente/2023-2028/autores.csv) y [tramitaciones](datos/fuente/2023-2028/tramitaciones.csv) del período 2023-2028.
+- [Diccionario de datos](datos/diccionario.md): qué significa cada columna y si es un valor oficial o calculado por este proyecto (las columnas propias empiezan con `_propio`).
+- [Cómo están organizados los archivos](datos/README.md).
+
+Se pueden reutilizar libremente bajo [CC BY 4.0](LICENSE-DATOS.md), citando "Origen de los datos: Datos Abiertos Poder Legislativo" y la fecha de actualización. Cuando el sitio esté publicado, los mismos archivos se podrán descargar desde él.
+
 ## Privacidad
 
 Este proyecto no recoge datos personales de quienes lo visitan. Solo se usarán estadísticas anónimas de visitas, sin cookies.

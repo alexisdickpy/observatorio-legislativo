@@ -19,6 +19,7 @@ from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
+from . import abiertos
 from .api import BASE, Cliente, ErrorAPI, ListadoCambiado
 from .escribir import csv_bytes, escribir_si_cambia, json_bytes, leer_json
 from .fechas import a_iso
@@ -328,6 +329,11 @@ def importar(cliente, salida, id_periodo=None, ahora=None, progreso=print, permi
     estado["ultimaModificacion"] = max(p["ultimaModificacion"] for p in estado["periodos"].values())
     estado["fuente"] = FUENTE
     escribir_si_cambia(ruta_estado, json_bytes(estado))
+
+    # Formatos derivados para descarga (CSV y diccionario), a partir de los JSON recién escritos.
+    derivados, avisos_derivados = abiertos.generar(salida)
+    cambiados += derivados
+    avisos += avisos_derivados
 
     cambiados = [str(r.relative_to(salida)).replace("\\", "/") for r in cambiados]
     por_id = {l["idLey"]: l for l in leyes}
