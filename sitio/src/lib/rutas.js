@@ -21,7 +21,7 @@ export const anclasMetodologia = {
   categorias: "categorias-de-voto",
   votosLegislador: "votos-de-cada-legislador",
   afiliacion: "partido-y-bancada",
-  problemas: "problemas-conocidos",
+  observaciones: "observaciones-sobre-los-datos",
 };
 
 /** Repositorio público del proyecto: código, datos y licencias. */

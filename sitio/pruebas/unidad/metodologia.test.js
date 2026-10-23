@@ -1,14 +1,14 @@
-// Pruebas de la lista de problemas conocidos de la metodología con las notas reales de datos/.
+// Pruebas de la lista de observaciones sobre los datos de la metodología con las notas reales de datos/.
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
 import { notas } from "../../src/lib/datos.js";
 import { indice } from "../../src/lib/ficha.js";
-import { problemasConocidos } from "../../src/lib/metodologia.js";
+import { observacionesDeLosDatos } from "../../src/lib/metodologia.js";
 import * as rutas from "../../src/lib/rutas.js";
 
 test("cada nota figura una sola vez, en el grupo de su tipo", () => {
-  const { total, grupos } = problemasConocidos();
+  const { total, grupos } = observacionesDeLosDatos();
   assert.equal(total, notas().length);
   assert.equal(grupos.flatMap((g) => g.casos).length, notas().length);
   assert.equal(new Set(grupos.map((g) => g.tipo)).size, grupos.length);
@@ -19,7 +19,7 @@ test("cada nota figura una sola vez, en el grupo de su tipo", () => {
 });
 
 test("los tipos conocidos tienen título y explicación propios; el ancla no repite", () => {
-  const { grupos } = problemasConocidos();
+  const { grupos } = observacionesDeLosDatos();
   for (const g of grupos) {
     assert.notEqual(g.titulo, g.tipo, `Falta el título de ${g.tipo}`);
     assert.ok(g.explicacion, `Falta la explicación de ${g.tipo}`);
@@ -28,13 +28,13 @@ test("los tipos conocidos tienen título y explicación propios; el ancla no rep
 });
 
 test("menos votos que miembros: no se interpreta la causa", () => {
-  const g = problemasConocidos().grupos.find((x) => x.tipo === "menos_votos_que_miembros");
+  const g = observacionesDeLosDatos().grupos.find((x) => x.tipo === "menos_votos_que_miembros");
   assert.ok(g, "Las notas de datos/ incluyen este tipo");
   assert.match(g.explicacion, /no indica la causa/);
 });
 
 test("cada caso enlaza a su página en el sitio y a la fuente oficial", () => {
-  for (const g of problemasConocidos().grupos) {
+  for (const g of observacionesDeLosDatos().grupos) {
     for (const c of g.casos) {
       const nota = notas().find((n) => n.tipo === g.tipo && n.id === c.id);
       const i = indice(nota.periodoLegislativo);
@@ -56,6 +56,6 @@ test("cada caso enlaza a su página en el sitio y a la fuente oficial", () => {
 
 test("direcciones de la metodología y de privacidad", () => {
   assert.equal(rutas.metodologia(), "/metodologia/");
-  assert.equal(rutas.metodologia(rutas.anclasMetodologia.problemas), "/metodologia/#problemas-conocidos");
+  assert.equal(rutas.metodologia(rutas.anclasMetodologia.observaciones), "/metodologia/#observaciones-sobre-los-datos");
   assert.equal(rutas.privacidad(), "/privacidad/");
 });

@@ -1,4 +1,4 @@
-// Prepara la lista pública de problemas conocidos de los datos oficiales para la página de
+// Prepara la lista pública de observaciones sobre los datos oficiales para la página de
 // metodología, a partir de datos/propios/notas.json. Sin HTML.
 //
 // Criterios (alcance acordado en #9):
@@ -108,8 +108,8 @@ function registro({ entidad, id, periodoLegislativo }) {
   return sinRegistro;
 }
 
-/** Problemas conocidos, agrupados por tipo: { total, grupos: [{ tipo, ancla, titulo, explicacion, casos }] }. */
-export function problemasConocidos() {
+/** Observaciones sobre los datos, agrupadas por tipo: { total, grupos: [{ tipo, ancla, titulo, explicacion, casos }] }. */
+export function observacionesDeLosDatos() {
   const grupos = new Map();
   for (const n of notas()) {
     if (!grupos.has(n.tipo)) grupos.set(n.tipo, []);
@@ -121,7 +121,7 @@ export function problemasConocidos() {
       const [, titulo, explicacion] = TIPOS[posicion(tipo)] ?? [tipo, tipo, null];
       return {
         tipo,
-        ancla: `problema-${tipo.replaceAll("_", "-")}`,
+        ancla: `observacion-${tipo.replaceAll("_", "-")}`,
         titulo,
         explicacion,
         casos: casos.sort((a, b) => a.id - b.id),

@@ -1,6 +1,6 @@
 # Metodología
 
-Este documento reúne los criterios propios del proyecto, con el detalle técnico de cada archivo. El sitio publica una versión en lenguaje simple en `/metodologia/` (`sitio/src/pages/metodologia.astro`), con la lista de problemas conocidos generada desde `datos/propios/notas.json` en cada compilación. Si cambia un criterio, actualizar los dos.
+Este documento reúne los criterios propios del proyecto, con el detalle técnico de cada archivo. El sitio publica una versión en lenguaje simple en `/metodologia/` (`sitio/src/pages/metodologia.astro`), con las observaciones sobre los datos generadas desde `datos/propios/notas.json` en cada compilación. Si cambia un criterio, actualizar los dos.
 
 ## Principio: fidelidad a la fuente
 

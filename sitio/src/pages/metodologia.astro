@@ -1,22 +1,22 @@
 ---
-// Versión pública de docs/metodologia.md, con la lista de problemas conocidos generada desde
+// Versión pública de docs/metodologia.md, con las observaciones sobre los datos generadas desde
 // datos/propios/notas.json (lib/metodologia.js).
 import Base from "../layouts/Base.astro";
 import { actualizacion, cita } from "../lib/catalogo.js";
 import { periodos } from "../lib/datos.js";
-import { problemasConocidos } from "../lib/metodologia.js";
+import { observacionesDeLosDatos } from "../lib/metodologia.js";
 import * as rutas from "../lib/rutas.js";
 
 const fuente = cita();
 const fecha = actualizacion();
 const vigente = periodos().find((p) => p.vigente);
-const problemas = problemasConocidos();
+const observaciones = observacionesDeLosDatos();
 const anclas = rutas.anclasMetodologia;
 ---
 
 <Base
   titulo="Metodología"
-  descripcion="De dónde vienen los datos del sitio, qué significa cada categoría de voto, cómo se calculan los resúmenes y qué problemas conocidos tienen los datos oficiales."
+  descripcion="De dónde vienen los datos del sitio, qué significa cada categoría de voto, cómo se calculan los resúmenes y qué observaciones automáticas se registran sobre los datos oficiales."
 >
   <div class="lectura metodologia">
     <h1>Metodología</h1>
@@ -29,8 +29,8 @@ const anclas = rutas.anclasMetodologia;
     <h2 id="fidelidad">Principio: los datos tal como los publica el Congreso</h2>
     <p>
       Los datos se muestran tal como los publica el Congreso Nacional, aunque tengan errores. Ningún
-      valor oficial se corrige ni se reemplaza. Cuando el sitio detecta un problema, conserva el valor
-      original y lo señala en la lista de <a href={`#${anclas.problemas}`}>problemas conocidos</a>. Lo
+      valor oficial se corrige ni se reemplaza. Cuando un dato no cumple lo esperado, el sitio conserva el
+      valor original y lo señala en las <a href={`#${anclas.observaciones}`}>observaciones sobre los datos</a>. Lo
       que el sitio calcula o agrega por su cuenta se indica como propio.
     </p>
 
@@ -51,8 +51,8 @@ const anclas = rutas.anclasMetodologia;
     </ul>
     <p>
       Una <strong>votación nominal</strong> es la que registra el voto de cada legislador. La API solo
-      publica esas votaciones. Las que se hacen sin registrar el voto de cada uno, por ejemplo a mano
-      alzada, no figuran. El Senado registra
+      publica esas votaciones: las que se hacen sin registrar el voto de cada uno, por ejemplo a mano
+      alzada, no se publican en la API. El Senado registra
       muchas menos votaciones nominales que la Cámara de Diputados, así que los datos de los senadores
       se basan en menos votaciones.
     </p>
@@ -122,15 +122,16 @@ const anclas = rutas.anclasMetodologia;
       <li>Guarda una copia propia de las fotos oficiales y la muestra en tamaño reducido.</li>
     </ul>
 
-    <h2 id={anclas.problemas}>Problemas conocidos de los datos oficiales</h2>
+    <h2 id={anclas.observaciones}>Observaciones sobre los datos oficiales</h2>
     <p>
-      En cada actualización diaria, un programa revisa los datos con reglas fijas y genera esta lista,
-      para que cualquiera pueda contrastarla con la fuente. Los valores afectados se muestran sin
-      cambios. {problemas.total === 0 ? "Hoy no hay problemas registrados." : `Hoy hay ${problemas.total}.`}
+      En cada actualización diaria, un programa revisa los datos con reglas fijas y anota los datos que no
+      cumplen lo esperado. Una observación no significa necesariamente que haya un error: puede tener
+      una explicación que la fuente no informa. Se listan para que cualquiera pueda contrastarlas con
+      la fuente, y los valores se muestran sin cambios. {observaciones.total === 0 ? "Hoy no hay observaciones." : `Hoy hay ${observaciones.total}.`}
     </p>
     {
-      problemas.grupos.map((g) => (
-        <section class="problema">
+      observaciones.grupos.map((g) => (
+        <section class="observacion">
           <h3 id={g.ancla}>{g.titulo} ({g.casos.length})</h3>
           {g.explicacion && <p>{g.explicacion}</p>}
           <details>
@@ -154,7 +155,7 @@ const anclas = rutas.anclasMetodologia;
       <li>«AUSENTE» indica ausencia en la votación; no necesariamente equivale a faltar a la sesión.</li>
       <li>
         Solo se publican las votaciones nominales, es decir, las que registran el voto de cada legislador.
-        Las que se hacen sin ese registro, por ejemplo a mano alzada, no figuran. El Senado registra
+        Las que se hacen sin ese registro, por ejemplo a mano alzada, no se publican en la API. El Senado registra
         muchas menos votaciones nominales que Diputados.
       </li>
       <li>Por ahora el sitio cubre solo el período {vigente.id}.</li>

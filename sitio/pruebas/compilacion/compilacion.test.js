@@ -8,7 +8,7 @@ import { leyes } from "../../src/lib/catalogo.js";
 import { archivosDeDatos, estado } from "../../src/lib/datos.js";
 import { detalleDeRegistro } from "../../src/lib/ficha.js";
 import { ficha, legisladores, listado } from "../../src/lib/legisladores.js";
-import { problemasConocidos } from "../../src/lib/metodologia.js";
+import { observacionesDeLosDatos } from "../../src/lib/metodologia.js";
 import * as rutas from "../../src/lib/rutas.js";
 
 const dist = resolve(process.cwd(), "dist");
@@ -159,11 +159,11 @@ test("todas las páginas tienen el pie común: aviso, enlaces, licencias y firma
   }
 });
 
-test("la metodología tiene las secciones que enlazan las fichas y todos los problemas conocidos", () => {
+test("la metodología tiene las secciones que enlazan las fichas y todas las observaciones sobre los datos", () => {
   const html = leer(rutas.metodologia());
   for (const ancla of Object.values(rutas.anclasMetodologia)) assert.ok(html.includes(`id="${ancla}"`), `Falta #${ancla}`);
   assert.ok(texto(rutas.metodologia()).includes("ausencias en votaciones nominales"));
-  const { grupos } = problemasConocidos();
+  const { grupos } = observacionesDeLosDatos();
   for (const g of grupos) {
     assert.ok(html.includes(`id="${g.ancla}"`), `Falta el grupo ${g.tipo}`);
     for (const c of g.casos) {
