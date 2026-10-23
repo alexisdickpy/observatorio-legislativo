@@ -1,0 +1,22 @@
+{
+  "name": "observatorio-legislativo-sitio",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "license": "AGPL-3.0-only",
+  "engines": {
+    "node": "24.21.0"
+  },
+  "scripts": {
+    "datos": "node scripts/copiar-datos.js",
+    "dev": "npm run datos && astro dev",
+    "build": "npm run datos && astro build && pagefind --site dist",
+    "preview": "astro preview",
+    "test": "node --test \"pruebas/unidad/**/*.test.js\"",
+    "test:compilacion": "node --test \"pruebas/compilacion/**/*.test.js\""
+  },
+  "dependencies": {
+    "astro": "7.3.8",
+    "pagefind": "1.5.2"
+  }
+}

@@ -1,0 +1,144 @@
+/* Estilos generales. Solo usan los tokens de tokens.css. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Lo oculto con el atributo hidden queda oculto aunque un componente cambie su display. */
+[hidden] {
+  display: none !important;
+}
+
+html {
+  color-scheme: light dark;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-fondo);
+  color: var(--color-texto);
+  font-family: var(--fuente-texto);
+  font-size: var(--tamano-base);
+  line-height: var(--interlineado);
+}
+
+h1,
+h2,
+h3 {
+  line-height: var(--interlineado-titulo);
+  font-weight: var(--peso-fuerte);
+  margin: var(--espacio-5) 0 var(--espacio-3);
+}
+h1 {
+  font-size: var(--tamano-titulo-1);
+}
+h2 {
+  font-size: var(--tamano-titulo-2);
+}
+h3 {
+  font-size: var(--tamano-titulo-3);
+}
+
+p,
+ul,
+ol,
+dl {
+  margin: 0 0 var(--espacio-4);
+}
+
+a {
+  color: var(--color-enlace);
+  text-underline-offset: 0.15em;
+}
+a:visited {
+  color: var(--color-enlace-visitado);
+}
+
+:focus-visible {
+  outline: var(--foco-ancho) solid var(--color-foco);
+  outline-offset: var(--borde-ancho);
+}
+
+mark {
+  background: var(--color-marca);
+  color: inherit;
+}
+
+code {
+  font-family: var(--fuente-mono);
+  font-size: var(--tamano-chico);
+}
+
+.contenedor {
+  max-width: var(--ancho-contenido);
+  margin: 0 auto;
+  padding: 0 var(--espacio-4);
+}
+
+.texto-suave {
+  color: var(--color-texto-suave);
+}
+
+.chico {
+  font-size: var(--tamano-chico);
+}
+
+.lectura {
+  max-width: var(--ancho-lectura);
+}
+
+.solo-lectores {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.saltar {
+  position: absolute;
+  left: var(--espacio-2);
+  top: calc(-1 * var(--espacio-6));
+  background: var(--color-acento);
+  color: var(--color-sobre-acento);
+  padding: var(--espacio-2) var(--espacio-3);
+  z-index: 1;
+}
+.saltar:focus {
+  top: var(--espacio-2);
+}
+
+input,
+select,
+button {
+  font: inherit;
+  color: inherit;
+}
+
+input[type="search"],
+select {
+  width: 100%;
+  padding: var(--espacio-2);
+  border: var(--borde-ancho) solid var(--color-borde);
+  border-radius: var(--radio);
+  background: var(--color-fondo);
+}
+
+button {
+  padding: var(--espacio-2) var(--espacio-4);
+  border: var(--borde-ancho) solid var(--color-acento);
+  border-radius: var(--radio);
+  background: var(--color-fondo);
+  color: var(--color-acento);
+  cursor: pointer;
+}
+
+label {
+  display: block;
+  font-size: var(--tamano-chico);
+  font-weight: var(--peso-fuerte);
+  margin-bottom: var(--espacio-1);
+}

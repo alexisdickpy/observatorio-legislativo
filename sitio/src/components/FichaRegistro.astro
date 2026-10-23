@@ -1,0 +1,69 @@
+---
+// Un registro oficial de ley: valores tal como los publica el Congreso.
+interface Props {
+  registro: any;
+  encabezado: string | null;
+}
+const { registro: r, encabezado } = Astro.props;
+const sinDato = "Sin dato";
+const Subtitulo = encabezado ? "h3" : "h2";
+const datos = [
+  ["Fecha de sanción", r.fechaSancion],
+  ["Fecha de promulgación", r.fechaPromulgacion],
+  ["Fecha de publicación", r.fechaPublicacion],
+  ["Tipo de promulgación", r.tipoPromulgacion],
+  ["Observación del decreto", r.observacionDecreto],
+  ["Cámara de origen", r.camaraOrigen],
+  ["Expediente", r.expediente],
+  ["Estado del proyecto", r.estadoProyecto],
+];
+---
+
+<section class="registro">
+  {encabezado && <h2>{encabezado}</h2>}
+  <p class="titulo lectura">{r.titulo ?? sinDato}</p>
+  <dl>
+    {
+      datos.map(([nombre, valor]) => (
+        <div>
+          <dt>{nombre}</dt>
+          <dd class={valor ? undefined : "texto-suave"}>{valor || sinDato}</dd>
+        </div>
+      ))
+    }
+  </dl>
+  <Subtitulo>Enlaces oficiales</Subtitulo>
+  <ul>
+    {r.urlLey && <li><a href={r.urlLey}>Ficha de la ley en SILpy</a></li>}
+    {r.urlExpediente && <li><a href={r.urlExpediente}>Expediente en SILpy</a></li>}
+    {
+      r.textosDeLey.map((t: any) => (
+        <li>
+          <a href={t.url}>Texto de la ley ({t.descripcion}{t.formato === "application/pdf" ? ", PDF" : ""})</a>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .registro + .registro {
+    border-top: var(--borde-ancho) solid var(--color-borde);
+    margin-top: var(--espacio-5);
+  }
+  .titulo {
+    font-size: var(--tamano-titulo-3);
+  }
+  dl {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--ancho-campo-filtro), 1fr));
+    gap: var(--espacio-3) var(--espacio-4);
+  }
+  dt {
+    font-size: var(--tamano-chico);
+    color: var(--color-texto-suave);
+  }
+  dd {
+    margin: 0;
+  }
+</style>

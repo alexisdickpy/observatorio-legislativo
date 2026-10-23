@@ -1,0 +1,49 @@
+---
+// Ficha básica de una ley. #7 agrega autores, iniciativa y votaciones.
+import Base from "../../layouts/Base.astro";
+import FichaRegistro from "../../components/FichaRegistro.astro";
+import { leyes } from "../../lib/catalogo.js";
+import * as rutas from "../../lib/rutas.js";
+
+export function getStaticPaths() {
+  return leyes().map((ley) => ({ params: { numero: ley.numero }, props: { ley } }));
+}
+
+const { ley } = Astro.props;
+const resumen = ley.titulos[0] ?? "";
+---
+
+<Base
+  titulo={`Ley ${ley.numero}`}
+  descripcion={`Ley ${ley.numero} del Paraguay${ley.fechasSancion[0] ? `, sancionada el ${ley.fechasSancion[0]}` : ""}. ${resumen}`.slice(0, 300)}
+>
+  <p class="chico"><a href={rutas.leyes()}>← Todas las leyes</a></p>
+  <article data-pagefind-body>
+    <h1 data-pagefind-meta="title">Ley {ley.numero}</h1>
+    <span data-pagefind-filter="año" hidden>{ley.anio}</span>
+    {
+      ley.registros.length > 1 && (
+        <p class="aviso lectura">
+          El Congreso publica {ley.registros.length} registros con este número de ley. Se muestran
+          todos, tal como figuran en la fuente.
+        </p>
+      )
+    }
+    {
+      ley.registros.map((registro: any, i: number) => (
+        <FichaRegistro
+          registro={registro}
+          encabezado={ley.registros.length > 1 ? `Registro ${i + 1} de ${ley.registros.length}` : null}
+        />
+      ))
+    }
+  </article>
+</Base>
+
+<style>
+  .aviso {
+    padding: var(--espacio-3) var(--espacio-4);
+    background: var(--color-superficie);
+    border-left: var(--foco-ancho) solid var(--color-acento);
+  }
+</style>

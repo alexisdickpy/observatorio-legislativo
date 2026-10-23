@@ -1,0 +1,145 @@
+---
+// Búsqueda estática con Pagefind: el índice se genera al final de la compilación
+// (npm run build) y el navegador descarga solo los fragmentos que necesita.
+import Base from "../layouts/Base.astro";
+import * as rutas from "../lib/rutas.js";
+---
+
+<Base titulo="Buscar" descripcion="Buscar leyes del Congreso Nacional del Paraguay por número o por palabras del título.">
+  <h1>Buscar</h1>
+  <form class="buscador" id="buscador" role="search" method="get">
+    <label for="busqueda">Número de ley o palabras del título</label>
+    <div class="fila">
+      <input type="search" id="busqueda" name={rutas.parametroBusqueda} autocomplete="off" />
+      <button type="submit">Buscar</button>
+    </div>
+  </form>
+  <p id="busqueda-estado" class="chico texto-suave" aria-live="polite"></p>
+  <ol id="busqueda-resultados" class="resultados"></ol>
+  <button type="button" id="busqueda-mas" hidden>Ver más resultados</button>
+  <noscript>
+    <p>La búsqueda necesita JavaScript. También podés recorrer la <a href={rutas.leyes()}>lista completa de leyes</a>.</p>
+  </noscript>
+</Base>
+
+<script>
+  import { parametroBusqueda } from "../lib/rutas.js";
+
+  const POR_PAGINA = 20;
+  const form = document.getElementById("buscador") as HTMLFormElement;
+  const campo = document.getElementById("busqueda") as HTMLInputElement;
+  const estado = document.getElementById("busqueda-estado")!;
+  const lista = document.getElementById("busqueda-resultados")!;
+  const mas = document.getElementById("busqueda-mas") as HTMLButtonElement;
+  let pagefind: any;
+  let resultados: any[] = [];
+  let mostrados = 0;
+  let turno = 0;
+
+  async function cargar() {
+    if (!pagefind) {
+      const ruta = "/pagefind/pagefind.js";
+      pagefind = await import(/* @vite-ignore */ ruta);
+      await pagefind.init();
+    }
+    return pagefind;
+  }
+
+  async function mostrarMas() {
+    const miTurno = turno;
+    const tanda = resultados.slice(mostrados, mostrados + POR_PAGINA);
+    mostrados += tanda.length;
+    const datos = await Promise.all(tanda.map((r) => r.data()));
+    if (miTurno !== turno) return;
+    for (const d of datos) {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = d.url;
+      a.textContent = d.meta.title;
+      const p = document.createElement("p");
+      p.className = "extracto";
+      p.innerHTML = d.excerpt; // Pagefind escapa el texto y solo agrega <mark>.
+      li.append(a, p);
+      lista.append(li);
+    }
+    mas.hidden = mostrados >= resultados.length;
+  }
+
+  async function buscar(texto: string) {
+    const miTurno = ++turno;
+    lista.replaceChildren();
+    mas.hidden = true;
+    resultados = [];
+    mostrados = 0;
+    if (!texto.trim()) {
+      estado.textContent = "";
+      return;
+    }
+    estado.textContent = "Buscando…";
+    try {
+      const pf = await cargar();
+      const respuesta = await pf.search(texto);
+      if (miTurno !== turno) return;
+      resultados = respuesta.results;
+      estado.textContent =
+        resultados.length === 0
+          ? "No se encontraron leyes."
+          : resultados.length === 1
+            ? "1 resultado."
+            : `${resultados.length} resultados.`;
+      await mostrarMas();
+    } catch {
+      estado.textContent = "La búsqueda no está disponible en este momento.";
+    }
+  }
+
+  function actualizarDireccion(texto: string) {
+    const p = new URLSearchParams();
+    if (texto) p.set(parametroBusqueda, texto);
+    const consulta = p.toString();
+    history.replaceState(null, "", consulta ? `?${consulta}` : location.pathname);
+  }
+
+  function buscarAhora() {
+    clearTimeout(espera);
+    actualizarDireccion(campo.value.trim());
+    buscar(campo.value);
+  }
+
+  let espera: ReturnType<typeof setTimeout>;
+  campo.addEventListener("input", () => {
+    clearTimeout(espera);
+    espera = setTimeout(buscarAhora, 250);
+  });
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    buscarAhora();
+  });
+  mas.addEventListener("click", mostrarMas);
+
+  const inicial = new URLSearchParams(location.search).get(parametroBusqueda) ?? "";
+  campo.value = inicial;
+  if (inicial) buscar(inicial);
+</script>
+
+<style>
+  .buscador {
+    max-width: var(--ancho-lectura);
+    margin-bottom: var(--espacio-3);
+  }
+  .fila {
+    display: flex;
+    gap: var(--espacio-2);
+  }
+  .resultados {
+    max-width: var(--ancho-lectura);
+    padding-left: var(--espacio-5);
+  }
+  .resultados :global(li) {
+    margin-bottom: var(--espacio-4);
+  }
+  .resultados :global(.extracto) {
+    margin: var(--espacio-1) 0 0;
+    font-size: var(--tamano-chico);
+  }
+</style>
