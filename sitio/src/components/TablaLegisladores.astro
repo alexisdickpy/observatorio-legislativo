@@ -1,0 +1,84 @@
+---
+// Tabla del listado de legisladores. Recibe las filas ya preparadas por lib/legisladores.js.
+// Filas en una sola línea y estilos globales con prefijo de clase: con compressHTML desactivado,
+// la sangría y los atributos de los estilos con alcance se copian en cada celda.
+interface Props {
+  titulo: string;
+  filas: any[];
+}
+const { titulo, filas } = Astro.props;
+const sinDato = "Sin dato";
+---
+
+<table class="tabla-legisladores">
+  <caption class="solo-lectores">{titulo}</caption>
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Cámara</th>
+      <th scope="col">Tipo</th>
+      <th scope="col">Departamento</th>
+      <th scope="col">Partido</th>
+      <th scope="col">Bancada</th>
+    </tr>
+  </thead>
+  <tbody>
+    {filas.map((l) => <tr data-slug={l.slug}><th scope="row"><a href={l.url}>{l.nombre ?? sinDato}</a></th><td data-etiqueta="Cámara">{l.camara ?? sinDato}</td><td data-etiqueta="Tipo">{l.tipo ?? sinDato}</td><td data-etiqueta="Departamento">{l.departamento ?? sinDato}</td><td data-etiqueta="Partido">{l.partido ?? sinDato}{l.partidoConocido && ` (${l.partidoConocido})`}</td><td data-etiqueta="Bancada">{l.bancada ?? sinDato}</td></tr>)}
+  </tbody>
+</table>
+
+<style is:global>
+  .tabla-legisladores {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--tamano-chico);
+  }
+  .tabla-legisladores th,
+  .tabla-legisladores td {
+    text-align: left;
+    vertical-align: top;
+    padding: var(--espacio-2);
+    border-bottom: var(--borde-ancho) solid var(--color-borde);
+  }
+  .tabla-legisladores thead th {
+    position: sticky;
+    top: 0;
+    background: var(--color-fondo);
+    border-bottom-width: var(--foco-ancho);
+  }
+  .tabla-legisladores tbody th {
+    font-weight: var(--peso-normal);
+  }
+
+  /* Móvil: cada legislador como una tarjeta. 48rem = --punto-quiebre-movil. */
+  @media (max-width: 48rem) {
+    .tabla-legisladores thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+    }
+    .tabla-legisladores tr,
+    .tabla-legisladores th,
+    .tabla-legisladores td {
+      display: block;
+    }
+    .tabla-legisladores tbody tr {
+      border-bottom: var(--borde-ancho) solid var(--color-borde);
+      padding: var(--espacio-3) 0;
+    }
+    .tabla-legisladores tbody th,
+    .tabla-legisladores tbody td {
+      border: 0;
+      padding: var(--espacio-1) 0;
+    }
+    .tabla-legisladores tbody th {
+      font-size: var(--tamano-base);
+    }
+    .tabla-legisladores tbody td::before {
+      content: attr(data-etiqueta) ": ";
+      color: var(--color-texto-suave);
+    }
+  }
+</style>

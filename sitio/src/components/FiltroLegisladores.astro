@@ -1,0 +1,120 @@
+---
+// Filtros del listado de legisladores. Sin JavaScript queda oculto y se ve la lista completa.
+// Con JavaScript oculta las filas que no cumplen los filtros (en todas las tablas con
+// data-filtro-legisladores) y refleja los filtros en la dirección.
+import { parametrosLegisladores } from "../lib/rutas.js";
+
+type Opcion = { valor: string; etiqueta: string };
+interface Props {
+  entradas: any[];
+  opciones: { camaras: Opcion[]; partidos: Opcion[]; bancadas: Opcion[]; departamentos: Opcion[] };
+}
+const { entradas, opciones } = Astro.props;
+const p = parametrosLegisladores;
+const selectores = [
+  { campo: "camara", etiqueta: "Cámara", todas: "Las dos", lista: opciones.camaras },
+  { campo: "partido", etiqueta: "Partido", todas: "Todos", lista: opciones.partidos },
+  { campo: "bancada", etiqueta: "Bancada", todas: "Todas", lista: opciones.bancadas },
+  { campo: "departamento", etiqueta: "Departamento", todas: "Todos", lista: opciones.departamentos },
+];
+---
+
+<form class="filtro" id="filtro-legisladores" role="search" hidden>
+  <div class="campo texto">
+    <label for="filtro-texto">Nombre</label>
+    <input type="search" id="filtro-texto" name={p.texto} autocomplete="off" />
+  </div>
+  {
+    selectores.map((s) => (
+      <div class="campo">
+        <label for={`filtro-${s.campo}`}>{s.etiqueta}</label>
+        <select id={`filtro-${s.campo}`} name={p[s.campo as keyof typeof p]}>
+          <option value="">{s.todas}</option>
+          {s.lista.map((o) => <option value={o.valor}>{o.etiqueta}</option>)}
+        </select>
+      </div>
+    ))
+  }
+  <div class="campo acciones">
+    <button type="reset">Limpiar</button>
+  </div>
+  <p class="resultado" id="filtro-resultado" aria-live="polite"></p>
+</form>
+
+<script type="application/json" id="filtro-entradas" set:html={JSON.stringify(entradas)} />
+
+<script>
+  import { CAMPOS, escribirFiltros, filtrar, leerFiltros } from "../lib/filtroLegisladores.js";
+  import { parametrosLegisladores as nombres } from "../lib/rutas.js";
+
+  const form = document.getElementById("filtro-legisladores") as HTMLFormElement;
+  const resultado = document.getElementById("filtro-resultado")!;
+  const entradas = JSON.parse(document.getElementById("filtro-entradas")!.textContent!);
+  const secciones = [...document.querySelectorAll<HTMLElement>("[data-filtro-legisladores]")];
+  const filas = [...document.querySelectorAll<HTMLTableRowElement>("[data-filtro-legisladores] tr[data-slug]")];
+  const total = entradas.length;
+
+  function aplicar(filtros: ReturnType<typeof leerFiltros>, actualizarDireccion: boolean) {
+    const visibles = new Set(filtrar(entradas, filtros).map((e: any) => e.slug));
+    for (const fila of filas) fila.hidden = !visibles.has(fila.dataset.slug);
+    for (const s of secciones) s.hidden = !s.querySelector("tr[data-slug]:not([hidden])");
+    resultado.textContent =
+      visibles.size === total
+        ? `Se muestran los ${total} legisladores.`
+        : visibles.size === 0
+          ? "Ningún legislador cumple estos filtros."
+          : visibles.size === 1
+            ? `Se muestra 1 de ${total} legisladores.`
+            : `Se muestran ${visibles.size} de ${total} legisladores.`;
+    if (actualizarDireccion) {
+      const consulta = escribirFiltros(filtros, nombres).toString();
+      history.replaceState(null, "", consulta ? `?${consulta}` : location.pathname);
+    }
+  }
+
+  const desdeFormulario = () => leerFiltros(new URLSearchParams(new FormData(form) as any), nombres);
+
+  // Estado inicial desde la dirección (enlace compartido). Los valores desconocidos se ignoran.
+  const inicial = leerFiltros(new URLSearchParams(location.search), nombres);
+  for (const c of CAMPOS) {
+    const campo = form.elements.namedItem(nombres[c as keyof typeof nombres]) as HTMLInputElement | HTMLSelectElement;
+    const valido = !(campo instanceof HTMLSelectElement) || [...campo.options].some((o) => o.value === inicial[c]);
+    campo.value = valido ? inicial[c] : "";
+  }
+  form.hidden = false;
+  aplicar(desdeFormulario(), false);
+
+  let espera: ReturnType<typeof setTimeout>;
+  form.addEventListener("input", () => {
+    clearTimeout(espera);
+    espera = setTimeout(() => aplicar(desdeFormulario(), true), 150);
+  });
+  form.addEventListener("submit", (e) => e.preventDefault());
+  form.addEventListener("reset", () => setTimeout(() => aplicar(desdeFormulario(), true)));
+</script>
+
+<style>
+  .filtro {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--ancho-campo-filtro), 1fr));
+    gap: var(--espacio-3);
+    align-items: end;
+    padding: var(--espacio-4);
+    margin-bottom: var(--espacio-4);
+    background: var(--color-superficie);
+    border: var(--borde-ancho) solid var(--color-borde);
+    border-radius: var(--radio);
+  }
+  .filtro[hidden] {
+    display: none;
+  }
+  .texto {
+    grid-column: 1 / -1;
+  }
+  .resultado {
+    grid-column: 1 / -1;
+    margin: 0;
+    font-size: var(--tamano-chico);
+    color: var(--color-texto-suave);
+  }
+</style>

@@ -1,7 +1,7 @@
 // Lectura de datos/ durante la compilación. Es la única pieza del sitio que abre archivos.
 // Nunca modifica valores oficiales: devuelve los registros tal como están en datos/.
 
-import { readdirSync, readFileSync, statSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative, resolve, sep } from "node:path";
 
 /** Carpeta datos/ del repositorio. La compilación se ejecuta desde sitio/. */
@@ -59,6 +59,10 @@ export const estado = () => leerJson("estado.json");
 export const diccionario = () => leerJson("diccionario.json");
 export const notas = () => leerJson("propios/notas.json").notas;
 export const partidosConocidos = () => leerJson("propios/partidos.json").partidos;
+export const personas = () => leerJson("propios/personas.json").personas;
+
+/** Si existe un archivo en datos/ (por ejemplo, una foto guardada por el importador). */
+export const existeEnDatos = (ruta) => existsSync(join(carpetaDatos, ruta));
 
 /** Un archivo de un período tal como está en datos/fuente/{período}/. */
 export const fuente = (periodo, archivo) =>
@@ -71,11 +75,18 @@ export function registrosDeLey() {
   );
 }
 
-/** Todos los archivos de datos/, con su ruta relativa (separada con "/") y su tamaño en bytes. */
+/** Carpeta de las fotos de legisladores: se sirven en el sitio, pero no son una tabla de datos. */
+export const CARPETA_FOTOS = "fotos";
+
+/**
+ * Todos los archivos de datos/, con su ruta relativa (separada con "/") y su tamaño en bytes.
+ * Sin las fotos de datos/fotos/, que la página de descargas presenta aparte.
+ */
 export function archivosDeDatos(carpeta = carpetaDatos) {
   return readdirSync(carpeta, { withFileTypes: true })
     .flatMap((e) => {
       const ruta = join(carpeta, e.name);
+      if (e.isDirectory() && carpeta === carpetaDatos && e.name === CARPETA_FOTOS) return [];
       if (e.isDirectory()) return archivosDeDatos(ruta);
       return [{ ruta: relative(carpetaDatos, ruta).split(sep).join("/"), bytes: statSync(ruta).size }];
     })

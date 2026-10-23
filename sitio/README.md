@@ -15,7 +15,7 @@ npm test                  # pruebas del filtro de leyes y de las fichas
 npm run test:compilacion  # comprobar dist/ después de npm run build
 ```
 
-`npm run build` copia `datos/` a `public/datos/` (no se sube al repositorio) para servirlo en `/datos/…` con las mismas rutas.
+`npm run build` copia `datos/` a `public/datos/` (no se sube al repositorio) para servirlo en `/datos/…` con las mismas rutas, y genera en `public/fotos/` las fotos de `datos/fotos/` reducidas a 320 × 320 píxeles (`scripts/reducir-fotos.js`, con `sharp`).
 
 ## Estructura
 
@@ -39,6 +39,8 @@ Reglas para el rediseño (Fase 4): ningún color, tipografía ni medida fuera de
 | `/` | Inicio. |
 | `/leyes/` | Catálogo con filtros por texto, año de sanción y cámara de origen, y orden por fecha o número. Los filtros quedan en la dirección: `?q=…&anio=…&camara=…&orden=…`. |
 | `/leyes/{número}/` | Ficha de la ley (`_propio.numeroLey`). Los registros con el mismo número se muestran juntos; cada uno con su iniciativa, autores y votaciones nominales. |
+| `/legisladores/` | Legisladores del período vigente: primero los que están en ejercicio (Senadores y luego Diputados, por apellido) y, aparte, los que ya no ejercen. Filtros por nombre, cámara, partido, bancada y departamento, que quedan en la dirección: `?q=…&camara=…&partido=…&bancada=…&departamento=…`. |
+| `/legisladores/{slug}/` | Ficha de cada persona (slug de `datos/propios/personas.json`), con un bloque por período. |
 | `/buscar/` | Búsqueda en las fichas con Pagefind (`?q=…`). |
 | `/datos/` | Descarga de los datos abiertos. |
 
@@ -55,3 +57,13 @@ Preparada por `src/lib/ficha.js`:
 - **Barras de colores:** una barra apilada para el total de la votación y una por partido, con leyenda (`BarraVotos` y `GraficoPartidos`, sin JavaScript). Los colores de cada categoría están en `tokens.css` (`--color-voto-…`). Los números exactos siguen en la tabla, donde los ceros se muestran como `0` en gris.
 - **Votaciones de otra legislatura** (`_propio.idVotacionesOtrosPeriodos`) y **no resueltas** (`idVotacionesNoResueltas`): se avisan con enlace a SILpy.
 - Las secciones de votaciones no entran en el índice de búsqueda (`data-pagefind-ignore`).
+- El nombre de cada autor del período y de cada votante enlaza a su ficha de legislador; los autores de otra legislatura, a SILpy.
+
+### Ficha de legislador
+
+Preparada por `src/lib/legisladores.js` (criterios en la [metodología](../docs/metodologia.md#votos-y-leyes-de-cada-legislador)):
+
+- **Datos del cargo** oficiales: cámara, tipo (`TITULAR`, `SUPLENTE`, `VITALICIO`), departamento (`NACIONAL` en los senadores), partido, bancada, cargo en la bancada y enlace a SILpy. Sin correo ni teléfono. Foto reducida, con crédito al Congreso.
+- **Resumen de votos:** barra y cantidad por categoría oficial, con su denominador, sobre las votaciones nominales de leyes sancionadas en cuya lista oficial figura. AUSENTE se presenta como "ausencias en votaciones nominales".
+- **Leyes de su autoría** del período, de la más reciente a la más antigua.
+- **Historial de votos**, de la más reciente a la más antigua, con enlace a la votación dentro de la ficha de la ley (`rutas.votacionEnLey`). No entra en el índice de búsqueda.

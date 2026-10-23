@@ -83,7 +83,7 @@ const sinDato = "Sin dato";
         </thead>
         <tbody>
           {/* Filas en una sola línea: con compressHTML desactivado, la sangría se copia en cada celda. */}
-          {v.votos.map((x: any) => <tr><td>{x.sentido}</td><th scope="row">{x.nombre ?? sinDato}{x.observacion && <span class="texto-suave"> ({x.observacion})</span>}</th><td>{x.partido ?? sinDato}{x.partidoConocido && ` (${x.partidoConocido})`}</td><td>{x.bancada ?? sinDato}</td></tr>)}
+          {v.votos.map((x: any) => <tr><td>{x.sentido}</td><th scope="row">{x.ficha ? <a href={x.ficha}>{x.nombre ?? sinDato}</a> : (x.nombre ?? sinDato)}{x.observacion && <span class="texto-suave"> ({x.observacion})</span>}</th><td>{x.partido ?? sinDato}{x.partidoConocido && ` (${x.partidoConocido})`}</td><td>{x.bancada ?? sinDato}</td></tr>)}
         </tbody>
       </table>
     </div>

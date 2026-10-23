@@ -1,5 +1,6 @@
 ---
 // Iniciativa y autores de un registro de ley, tal como los publica el Congreso.
+// El nombre de cada autor del período enlaza a su ficha; el de otras legislaturas, a SILpy.
 interface Props {
   detalle: any;
   nivel: number;
@@ -32,7 +33,7 @@ const sinDato = "Sin dato";
     <ul class="autores">
       {d.autores.map((a: any) => (
         <li>
-          {a.url ? <a href={a.url}>{a.nombre ?? sinDato}</a> : <span>{a.nombre ?? sinDato}</span>}
+          {a.ficha || a.url ? <a href={a.ficha ?? a.url}>{a.nombre ?? sinDato}</a> : <span>{a.nombre ?? sinDato}</span>}
           <span class="chico texto-suave">
             {" "}— Partido: {a.partido ?? sinDato}{a.partidoConocido && ` (${a.partidoConocido})`} · Bancada: {a.bancada ?? sinDato} · {a.camara ?? sinDato}
             {!a.delPeriodo && <strong> · Legislatura {a.legislatura ?? sinDato}</strong>}

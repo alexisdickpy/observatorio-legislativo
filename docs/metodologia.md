@@ -21,7 +21,8 @@ Cada una se aplica en una capa aparte que no borra el original.
 | 7 | **Votaciones del período.** Una votación pertenece al período si su sesión pertenece a uno de sus períodos parlamentarios anuales. Las votaciones de leyes del período que se hicieron en la legislatura anterior se listan en la ley, pero no se incluyen. | Mantener cada período en su carpeta. | `_propio.idVotacionesOtrosPeriodos` en leyes. |
 | 8 | **Slug de cada persona.** Se forma con nombres y apellidos, sin tildes y en minúsculas (por ejemplo, `maria-rocio-abed-de-zacarias`). Si dos personas coinciden, la segunda recibe `-2`. Una vez asignado no cambia, aunque la fuente corrija el nombre. | El `idLegislador` cambia en cada legislatura y no sirve como identificador estable de la URL. | `propios/personas.json`; `_propio.slug` en legisladores y autores. |
 | 9 | **Legisladores que solo aparecen en votaciones.** Si alguien vota en el período y no figura en los listados de legisladores, se incluye con los datos que trae el voto. | No dejar votos sin legislador. | `_propio.fuenteRegistro = "votacion"`; notas `legislador_solo_en_votaciones`. |
-| 10 | **Sin correo ni teléfono** de los legisladores. | El sitio no los usa (se decide en #8). | Se omiten. |
+| 10 | **Sin correo ni teléfono** de los legisladores. | El sitio no los muestra (decidido en #8): no aportan a la consulta de votos y leyes. La API los sigue publicando. | Se omiten. |
+| 12 | **Copia propia de las fotos.** La foto que publica el Congreso en el `fotoURL` de cada legislador se guarda sin cambios. Si no tiene foto (`noimage`), no se guarda nada. Si una descarga falla, se conserva la copia anterior y se avisa, sin detener la sincronización. El sitio muestra una versión reducida (320 × 320 píxeles) generada en cada compilación. | Que las fichas no dependan del servidor del Congreso en cada visita ni conecten al visitante con él. | `fotos/{período}/{idLegislador}.jpg`. |
 | 11 | **Orden fijo** de registros y claves. Los votos se ordenan por `idDetalleVotacion`, las tramitaciones por `idTramitacion` y los adjuntos por `idAdjunto`. Los autores conservan el orden de la API, que se mantuvo igual en tres descargas. | La API devuelve esas listas en distinto orden en cada consulta, sin que cambien los datos. Con orden fijo, una descarga sin cambios produce los mismos archivos y el historial del repositorio muestra solo cambios reales de la fuente. | Todos los archivos. |
 
 No se aplican, por ahora, la unificación de nombres de partidos y bancadas ni la clasificación de la etapa de cada votación. Se harán en sus propios Issues, también en `datos/propios/`.
@@ -53,6 +54,16 @@ Las notas con `"origen": "manual"` se escriben a mano y el importador las conser
 ## Totales de votación y mociones
 
 La [auditoría](auditoria-datos.md) encontró 13 votaciones en las que la suma de los totales publicados no coincide con la cantidad de votos individuales. Al comparar categoría por categoría, el importador comprobó que en todas los totales publicados son correctos: la diferencia son los votos "MOCIÓN 1/2/3", que no tienen un total propio en la API. Por eso la comparación se hace por categoría y no por la suma.
+
+## Votos y leyes de cada legislador
+
+La ficha de cada legislador resume sus votos en las votaciones nominales vinculadas a leyes sancionadas del período (`_propio.idLeyes` de cada votación) en cuya lista oficial figura (`votos.csv`). Cada categoría oficial se cuenta por separado, sin fusionar, y siempre con su denominador: "54 de 130 (41,5%)". La cantidad de AUSENTE se presenta como **ausencias en votaciones nominales**: el Congreso no publica la asistencia a las sesiones, y AUSENTE solo indica que no votó en esa votación.
+
+Las votaciones de proyectos que no llegaron a ser ley no se incluyen. Los senadores vitalicios no figuran en las listas de votación, así que su ficha no tiene votos.
+
+Las leyes de su autoría son las leyes sancionadas del período en cuyo proyecto figura entre los autores (`autores.json`, registros con `_propio.delPeriodo`).
+
+Tienen ficha todos los legisladores del período, también los que ya no ejercen (`_propio.vigente = false`: no figuran en el listado de legisladores en ejercicio de la API). Su ficha lo indica.
 
 ## Números de ley
 
