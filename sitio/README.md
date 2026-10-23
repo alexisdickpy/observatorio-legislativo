@@ -64,6 +64,6 @@ La prepara `src/lib/ficha.js`.
 La prepara `src/lib/legisladores.js` (criterios en la [metodología](../docs/metodologia.md#votos-y-leyes-de-cada-legislador)).
 
 - **Datos del cargo** oficiales, que son cámara, tipo (`TITULAR`, `SUPLENTE`, `VITALICIO`), departamento (`NACIONAL` en los senadores), partido, bancada, cargo en la bancada, correo y teléfono (los que publica la API) y enlace a SILpy. Foto reducida, con crédito al Congreso.
-- **Resumen de votos**, con barra y cantidad por categoría oficial, con su denominador, sobre las votaciones nominales de leyes sancionadas en cuya lista oficial figura. AUSENTE se presenta como "ausencias en votaciones nominales".
+- **Resumen de votos**, con barra y cantidad por categoría oficial, con su denominador, sobre las votaciones nominales sobre proyectos de ley del período en cuya lista oficial figura, hayan llegado a ser ley o no. Hay un resumen aparte por cada estado oficial del proyecto (`PUBLICADO`, `ARCHIVADO`, `EN TRAMITE`), que muestra el filtro `src/components/FiltroVotos.astro` (`src/lib/filtroVotos.js`, parámetro `?estado=`). AUSENTE se presenta como "ausencias en votaciones nominales".
 - **Leyes de su autoría** del período, de la más reciente a la más antigua.
-- **Historial de votos**, de la más reciente a la más antigua, con enlace a la votación dentro de la ficha de la ley (`rutas.votacionEnLey`). No entra en el índice de búsqueda.
+- **Historial de votos**, de la más reciente a la más antigua, con el estado oficial del proyecto, el trámite y el resultado de cada votación. Las leyes sancionadas del período enlazan a la votación dentro de la ficha de la ley (`rutas.votacionEnLey`); los demás proyectos, a su expediente oficial en SILpy. No entra en el índice de búsqueda.

@@ -88,10 +88,27 @@ const anclas = rutas.anclasMetodologia;
 
     <h2 id={anclas.votosLegislador}>Votos y leyes de cada legislador</h2>
     <p>
-      La ficha de cada legislador resume sus votos en las votaciones nominales de leyes sancionadas del
-      período en cuya lista oficial figura. Cada categoría se cuenta por separado. Por ahora no se
-      incluyen las votaciones de proyectos que no llegaron a ser ley. Los senadores vitalicios no figuran en las
-      listas de votación, así que sus fichas no tienen votos.
+      La ficha de cada legislador resume sus votos en las votaciones nominales del período sobre
+      proyectos de ley en cuya lista oficial figura, hayan llegado a ser ley o no. Cada categoría se
+      cuenta por separado. No se incluyen las votaciones sobre otros tipos de expediente, como
+      resoluciones, declaraciones, pedidos de informe o designaciones. Los senadores vitalicios no
+      figuran en las listas de votación, así que sus fichas no tienen votos.
+    </p>
+    <p>
+      Cada votación muestra el estado oficial del proyecto tal como lo publica el Congreso en la última
+      actualización de los datos, no el que tenía el día de la votación. PUBLICADO corresponde a los
+      proyectos que llegaron a ser ley, ARCHIVADO a los que se archivaron y EN TRAMITE a los que siguen en
+      trámite. Un proyecto en trámite aparece solo si ya tuvo al menos una votación nominal. La ficha
+      permite filtrar el resumen y el historial por estado. Las leyes sancionadas del período enlazan a
+      su ficha en este sitio y los demás proyectos, a su expediente oficial en SILpy.
+    </p>
+    <p>
+      El sentido de un voto depende de lo que se vota en cada trámite. Un proyecto pasa por varias
+      votaciones, en la cámara de origen, en la revisora y, si el Poder Ejecutivo lo objeta, en la
+      discusión de esa objeción. Votar NO puede significar rechazar el proyecto, pero también rechazar
+      una modificación de la otra cámara o una objeción del Ejecutivo, es decir, mantener el proyecto.
+      Por eso cada voto se muestra junto al trámite y al resultado oficial, y el sitio no calcula una
+      cifra única de proyectos apoyados o rechazados.
     </p>
     <p>
       Las leyes de su autoría son las leyes sancionadas del período en cuyo proyecto figura entre los

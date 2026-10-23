@@ -1,0 +1,90 @@
+---
+// Filtro de los votos de una ficha de legislador por estado oficial del proyecto. Sin JavaScript
+// queda oculto y se ven el resumen y el historial completos. Con JavaScript, dentro del mismo
+// contenedor [data-votos], oculta las filas del historial de otros estados, muestra el resumen del
+// estado elegido y refleja el filtro en la dirección.
+import { parametroEstadoVotos } from "../lib/rutas.js";
+
+interface Props {
+  porEstado: { estado: string | null; filtro: string; total: number }[];
+  total: number;
+  periodo: string;
+}
+const { porEstado, total, periodo } = Astro.props;
+const id = `filtro-votos-${periodo}`;
+---
+
+<form class="filtro-votos" data-filtro-votos role="search" hidden>
+  <div class="campo">
+    <label for={id}>Estado oficial del proyecto</label>
+    <select id={id} name={parametroEstadoVotos}>
+      <option value="">Todos ({total} votaciones)</option>
+      {porEstado.map((e) => <option value={e.filtro}>{e.estado ?? "Sin estado oficial"} ({e.total} votaciones)</option>)}
+    </select>
+  </div>
+  <p class="chico texto-suave">
+    PUBLICADO es el estado de los proyectos que llegaron a ser ley. El filtro se aplica al resumen y al
+    historial de votos.
+  </p>
+  <p class="resultado" data-filtro-votos-resultado aria-live="polite"></p>
+</form>
+
+<script>
+  import { escribirEstado, filtrarPorEstado, leerEstado, textoResultado } from "../lib/filtroVotos.js";
+  import { parametroEstadoVotos as nombre } from "../lib/rutas.js";
+
+  for (const form of document.querySelectorAll<HTMLFormElement>("form[data-filtro-votos]")) {
+    const contenedor = form.closest<HTMLElement>("[data-votos]")!;
+    const select = form.querySelector("select")!;
+    const resultado = form.querySelector<HTMLElement>("[data-filtro-votos-resultado]")!;
+    const filas = [...contenedor.querySelectorAll<HTMLTableRowElement>("tr[data-estado]")];
+    const resumenes = [...contenedor.querySelectorAll<HTMLElement>("[data-resumen-estado]")];
+    const entradas = filas.map((fila) => ({ fila, estado: fila.dataset.estado }));
+    const opciones = [...select.options].map((o) => o.value).filter(Boolean);
+
+    const aplicar = (estado: string, actualizarDireccion: boolean) => {
+      const visibles = new Set(filtrarPorEstado(entradas, estado).map((e) => e.fila));
+      for (const fila of filas) fila.hidden = !visibles.has(fila);
+      for (const r of resumenes) r.hidden = r.dataset.resumenEstado !== estado;
+      resultado.textContent = textoResultado(visibles.size, filas.length);
+      if (actualizarDireccion) {
+        const consulta = escribirEstado(new URLSearchParams(location.search), nombre, estado).toString();
+        history.replaceState(null, "", consulta ? `?${consulta}` : location.pathname);
+      }
+    };
+
+    // Estado inicial desde la dirección (enlace compartido). Un valor desconocido se ignora.
+    select.value = leerEstado(new URLSearchParams(location.search), nombre, opciones);
+    form.hidden = false;
+    aplicar(select.value, false);
+    select.addEventListener("change", () => aplicar(select.value, true));
+    form.addEventListener("submit", (e) => e.preventDefault());
+  }
+</script>
+
+<style>
+  .filtro-votos {
+    display: grid;
+    gap: var(--espacio-2);
+    padding: var(--espacio-4);
+    margin-bottom: var(--espacio-4);
+    background: var(--color-superficie);
+    border: var(--borde-ancho) solid var(--color-borde);
+    border-radius: var(--radio);
+  }
+  .filtro-votos[hidden] {
+    display: none;
+  }
+  .campo {
+    display: grid;
+    gap: var(--espacio-1);
+    max-width: calc(var(--ancho-campo-filtro) * 2);
+  }
+  p {
+    margin: 0;
+  }
+  .resultado {
+    font-size: var(--tamano-chico);
+    color: var(--color-texto-suave);
+  }
+</style>

@@ -57,9 +57,13 @@ La [auditoría](auditoria-datos.md) encontró 13 votaciones en las que la suma d
 
 ## Votos y leyes de cada legislador
 
-La ficha de cada legislador resume sus votos en las votaciones nominales vinculadas a leyes sancionadas del período (`_propio.idLeyes` de cada votación) en cuya lista oficial figura (`votos.csv`). Cada categoría oficial se cuenta por separado, sin fusionar, y siempre con su denominador: "54 de 130 (41,5%)". La cantidad de AUSENTE se presenta como **ausencias en votaciones nominales**, no como ausencias a la sesión.
+La ficha de cada legislador resume sus votos en las votaciones nominales del período sobre proyectos de ley (`proyecto.tipoProyecto` = `PROYECTO DE LEY`, o enlazadas a una ley sancionada en `_propio.idLeyes`) en cuya lista oficial figura (`votos.csv`), hayan llegado a ser ley o no. Cada categoría oficial se cuenta por separado, sin fusionar, y siempre con su denominador, por ejemplo "54 de 130 (41,5%)". La cantidad de AUSENTE se presenta como **ausencias en votaciones nominales**, no como ausencias a la sesión.
 
-Las votaciones de proyectos que no llegaron a ser ley no se incluyen. Los senadores vitalicios no figuran en las listas de votación, así que su ficha no tiene votos.
+No se incluyen las votaciones sobre otros tipos de expediente (resoluciones, declaraciones, pedidos de informe, acuerdos, designaciones y demás). Los senadores vitalicios no figuran en las listas de votación, así que su ficha no tiene votos.
+
+Cada votación lleva el estado oficial del proyecto (`proyecto.estadoProyecto`), el de la última actualización de los datos y no el del día de la votación. En el período 2023-2028 los estados presentes son `PUBLICADO` (llegó a ser ley), `ARCHIVADO` y `EN TRAMITE`. Un proyecto en trámite aparece solo si ya tuvo al menos una votación nominal. La ficha filtra el resumen y el historial por estado (parámetro `?estado=` en la dirección), con un resumen calculado aparte para cada estado. Las votaciones enlazadas a una ley sancionada del período llevan a la votación dentro de la ficha de la ley; las demás, al expediente oficial en SILpy (`proyecto.appURL`). Una votación sobre un proyecto `PUBLICADO` no tiene ficha de ley porque su ley no figura entre las sancionadas del período, y también enlaza a SILpy.
+
+El sentido de un voto depende de lo que se vota en cada trámite (`tramitacion.descripcionEtapa` y `resultadoTramite`). Un `NO` puede rechazar el proyecto, pero también una modificación de la otra cámara o una objeción del Poder Ejecutivo, y en ese caso mantiene el proyecto. Por eso cada voto se muestra con su trámite y su resultado oficial, y no se calcula una cifra única de proyectos apoyados.
 
 Las leyes de su autoría son las leyes sancionadas del período en cuyo proyecto figura entre los autores (`autores.json`, registros con `_propio.delPeriodo`).
 

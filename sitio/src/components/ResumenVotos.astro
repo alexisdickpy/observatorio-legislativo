@@ -1,6 +1,8 @@
 ---
 // Resumen de los votos de un legislador: barra y cantidad por categoría oficial, con su
-// denominador. Recibe los valores ya calculados por lib/legisladores.js.
+// denominador. Recibe los valores ya calculados por lib/legisladores.js. Muestra el resumen de todas
+// las votaciones y deja ocultos los de cada estado oficial del proyecto, que muestra el componente
+// FiltroVotos al elegir un estado.
 import BarraVotos from "./BarraVotos.astro";
 import * as rutas from "../lib/rutas.js";
 
@@ -9,20 +11,36 @@ interface Props {
   periodo: string;
 }
 const { votos: v, periodo } = Astro.props;
+const lista = new Intl.ListFormat("es", { type: "conjunction" });
+const porEstado = lista.format(v.porEstado.map((e: any) => `${e.total} ${e.estado ?? "sin estado"}`));
+const resumenes = [
+  {
+    filtro: "",
+    texto: `Sus votos en las ${v.total} votaciones nominales sobre proyectos de ley del período ${periodo} en cuya lista oficial figura, hayan llegado a ser ley o no. Según el estado oficial del proyecto, ${porEstado}.`,
+    ...v,
+  },
+  ...v.porEstado.map((e: any) => ({
+    ...e,
+    texto: `Sus votos en las ${e.total} votaciones nominales del período ${periodo} sobre proyectos de ley ${e.estado ? `con estado oficial ${e.estado}` : "sin estado oficial"}.`,
+  })),
+];
 ---
 
 <div class="resumen-votos">
-  <p class="chico texto-suave lectura">
-    Sus votos en las {v.total} votaciones nominales de leyes sancionadas del período {periodo} en cuya
-    lista oficial figura.
-  </p>
-  <BarraVotos barra={v.barra} />
-  <ul class="totales">
-    {v.totales.map((t: any) => <li class={t.cantidad ? undefined : "texto-suave"}><span class={`cuadro ${t.clase}`}></span><span class="categoria">{t.categoria}</span> {t.texto}</li>)}
-  </ul>
-  <p class="lectura">
-    <strong>Ausencias en votaciones nominales</strong> {v.ausencias.texto}
-  </p>
+  {
+    resumenes.map((r) => (
+      <div data-resumen-estado={r.filtro} hidden={r.filtro !== ""}>
+        <p class="chico texto-suave lectura">{r.texto}</p>
+        <BarraVotos barra={r.barra} />
+        <ul class="totales">
+          {r.totales.map((t: any) => <li class={t.cantidad ? undefined : "texto-suave"}><span class={`cuadro ${t.clase}`}></span><span class="categoria">{t.categoria}</span> {t.texto}</li>)}
+        </ul>
+        <p class="lectura">
+          <strong>Ausencias en votaciones nominales</strong> {r.ausencias.texto}
+        </p>
+      </div>
+    ))
+  }
   <p class="chico lectura">
     <a href={rutas.metodologia(rutas.anclasMetodologia.votosLegislador)}>Cómo se calcula este resumen</a> ·
     <a href={rutas.metodologia(rutas.anclasMetodologia.categorias)}>Qué significa cada categoría de voto</a>
@@ -30,6 +48,9 @@ const { votos: v, periodo } = Astro.props;
 </div>
 
 <style is:global>
+  .resumen-votos [hidden] {
+    display: none;
+  }
   .resumen-votos .totales {
     margin-top: var(--espacio-2);
     list-style: none;
