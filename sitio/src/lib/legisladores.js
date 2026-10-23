@@ -16,6 +16,9 @@
 //   "AUSENTE" sobre todas las votaciones nominales del período en cuya lista oficial figura, de
 //   cualquier tipo de expediente. La lista de cada votación incluye solo a quienes ocupaban el cargo
 //   ese día. No es asistencia a la sesión, y no se agrupa por día.
+// - NO VOTA y ABSTENCIÓN/BLANCO (alcance acordado en #38): votaciones en que figura con cada una de esas
+//   categorías, sobre el mismo denominador que las ausencias. Son dos cifras separadas, nunca sumadas
+//   entre sí ni con las ausencias. La vista comparativa las reúne por cámara, sin calificar a nadie.
 // - Autoría: leyes sancionadas del período de cuyo proyecto figura como autor (autores.json,
 //   registros con _propio.delPeriodo).
 // - Partido y bancada: los que la API registra para el período, no por fecha.
@@ -39,6 +42,8 @@ import * as rutas from "./rutas.js";
 import { normalizar, recortar, slug } from "./texto.js";
 
 const AUSENTE = "AUSENTE";
+const NO_VOTA = "NO VOTA";
+const ABSTENCION = "ABSTENCIÓN/BLANCO";
 const PROYECTO_DE_LEY = "PROYECTO DE LEY";
 const porTexto = (a, b) => a.localeCompare(b, "es");
 const porCamaraYApellido = (a, b) =>
@@ -150,6 +155,14 @@ function ausenciasDe(todas) {
     })
     .sort(masRecientePrimero);
   return { ...proporcion(lista.length, todas.length), lista };
+}
+
+/** Votaciones en que figura con una categoría oficial, sobre todas las de su lista (como las ausencias). */
+const cifraDe = (todas, categoria) => proporcion(todas.filter((x) => x.sentido === categoria).length, todas.length);
+
+/** NO VOTA y ABSTENCIÓN/BLANCO, cada una por separado. */
+function participacionDe(todas) {
+  return { noVota: cifraDe(todas, NO_VOTA), abstencion: cifraDe(todas, ABSTENCION) };
 }
 
 function historialDeVotos(lista, i, estados) {
@@ -334,8 +347,8 @@ function votosDe(todas, periodo) {
 }
 
 /**
- * Ficha de una persona: por período, sus datos, el resumen y el historial de sus votos, sus ausencias
- * en votaciones nominales y sus leyes.
+ * Ficha de una persona: por período, sus datos, el resumen y el historial de sus votos, sus ausencias,
+ * NO VOTA y abstenciones en votaciones nominales y sus leyes.
  */
 export function ficha(persona) {
   const bloques = persona.registros.map((r) => {
@@ -346,6 +359,7 @@ export function ficha(persona) {
       periodoVigente: Boolean(periodos().find((p) => p.id === r.periodo)?.vigente),
       votos: votosDe(todas, r.periodo),
       ausencias: ausenciasDe(todas),
+      ...participacionDe(todas),
       autoria: leyesDeSuAutoria(r.id, r.periodo, i),
     };
   });
@@ -355,4 +369,83 @@ export function ficha(persona) {
     conNombreConocido: bloques.some((b) => b.partidoConocido),
     bloques,
   };
+}
+
+/** Cifras de la vista comparativa, en el orden de sus columnas. */
+export const CIFRAS_COMPARATIVAS = [
+  { campo: "ausencias", categoria: AUSENTE, titulo: "Ausencias en votaciones nominales" },
+  { campo: "noVota", categoria: NO_VOTA, titulo: "NO VOTA" },
+  { campo: "abstencion", categoria: ABSTENCION, titulo: "ABSTENCIÓN/BLANCO" },
+];
+
+const comparativas = new Map();
+
+/**
+ * Vista comparativa de un período: por cámara, cada legislador que figura en al menos una votación
+ * nominal, con sus ausencias, NO VOTA y abstenciones por separado (cantidad, total y porcentaje).
+ * Mismo orden que el listado: por cámara y, dentro, por apellido.
+ */
+export function comparativa(periodo) {
+  if (comparativas.has(periodo)) return comparativas.get(periodo);
+  const { enEjercicio, noEjercen } = listado(periodo);
+  const porLegislador = votosDelPeriodo(periodo);
+  const filas = [...enEjercicio, ...noEjercen]
+    .map((r) => {
+      const todas = porLegislador.get(r.id) ?? [];
+      const cifras = Object.fromEntries(CIFRAS_COMPARATIVAS.map((c) => [c.campo, cifraDe(todas, c.categoria)]));
+      return { id: r.id, slug: r.slug, url: r.url, nombre: r.nombre, apellidos: r.apellidos, camara: r.camara, vigente: r.vigente, ...cifras };
+    })
+    .filter((f) => f.ausencias.total > 0)
+    .sort(porCamaraYApellido);
+  const camaras = [...new Set(filas.map((f) => f.camara))].map((camara) => ({
+    camara,
+    filas: filas.filter((f) => f.camara === camara),
+  }));
+  const resultado = { periodo, camaras };
+  comparativas.set(periodo, resultado);
+  return resultado;
+}
+
+/** Columnas de la tabla descargable, en orden. */
+export const COLUMNAS_TABLA = [
+  "periodo",
+  "camara",
+  "slug",
+  "idLegislador",
+  "nombre",
+  "vigente",
+  "votacionesEnSuLista",
+  "ausente",
+  "porcentajeAusente",
+  "noVota",
+  "porcentajeNoVota",
+  "abstencionBlanco",
+  "porcentajeAbstencionBlanco",
+];
+
+/** Porcentaje con un decimal (0,1234 → 12.3). */
+const redondear = (p) => Math.round(p * 1000) / 10;
+
+/**
+ * Tabla descargable de la vista comparativa: una fila por legislador, con la cantidad y el porcentaje
+ * de cada cifra sobre el mismo denominador (votacionesEnSuLista). Cálculo propio, no oficial.
+ */
+export function tablaComparativa(periodo) {
+  return comparativa(periodo).camaras.flatMap(({ filas }) =>
+    filas.map((f) => ({
+      periodo,
+      camara: f.camara,
+      slug: f.slug,
+      idLegislador: f.id,
+      nombre: f.nombre,
+      vigente: f.vigente,
+      votacionesEnSuLista: f.ausencias.total,
+      ausente: f.ausencias.cantidad,
+      porcentajeAusente: redondear(f.ausencias.porcentaje),
+      noVota: f.noVota.cantidad,
+      porcentajeNoVota: redondear(f.noVota.porcentaje),
+      abstencionBlanco: f.abstencion.cantidad,
+      porcentajeAbstencionBlanco: redondear(f.abstencion.porcentaje),
+    })),
+  );
 }

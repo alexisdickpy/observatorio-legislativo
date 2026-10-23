@@ -1,0 +1,68 @@
+---
+// Selector de orden de la vista comparativa. Sin JavaScript queda oculto y las tablas quedan por
+// apellido. Con JavaScript reordena las filas de cada tabla (tr[data-comparativa]) y refleja el
+// orden en la dirección. La lógica está en lib/ordenComparativa.js.
+import { ORDENES } from "../lib/ordenComparativa.js";
+import { parametroOrdenComparativa } from "../lib/rutas.js";
+---
+
+<form class="orden" id="orden-comparativa" hidden>
+  <label for="orden-campo">Ordenar por</label>
+  <select id="orden-campo" name={parametroOrdenComparativa}>
+    {ORDENES.map((o) => <option value={o.valor}>{o.etiqueta}</option>)}
+  </select>
+</form>
+
+<script>
+  import { leerOrden, ordenar } from "../lib/ordenComparativa.js";
+  import { parametroOrdenComparativa as nombre } from "../lib/rutas.js";
+
+  const form = document.getElementById("orden-comparativa") as HTMLFormElement;
+  const campo = form.elements.namedItem(nombre) as HTMLSelectElement;
+  const cuerpos = [...document.querySelectorAll<HTMLTableSectionElement>("tbody:has(tr[data-comparativa])")];
+
+  const entrada = (fila: HTMLTableRowElement) => ({
+    fila,
+    posicion: Number(fila.dataset.posicion),
+    ausencias: Number(fila.dataset.ausencias),
+    noVota: Number(fila.dataset.noVota),
+    abstencion: Number(fila.dataset.abstencion),
+  });
+
+  function aplicar(valor: string, actualizarDireccion: boolean) {
+    for (const cuerpo of cuerpos) {
+      const entradas = [...cuerpo.querySelectorAll<HTMLTableRowElement>("tr[data-comparativa]")].map(entrada);
+      for (const e of ordenar(entradas, valor)) cuerpo.append(e.fila);
+    }
+    if (actualizarDireccion) {
+      const p = new URLSearchParams(location.search);
+      if (valor) p.set(nombre, valor);
+      else p.delete(nombre);
+      const consulta = p.toString();
+      history.replaceState(null, "", consulta ? `?${consulta}` : location.pathname);
+    }
+  }
+
+  campo.value = leerOrden(new URLSearchParams(location.search), nombre);
+  form.hidden = false;
+  aplicar(campo.value, false);
+  campo.addEventListener("change", () => aplicar(campo.value, true));
+  form.addEventListener("submit", (e) => e.preventDefault());
+</script>
+
+<style>
+  .orden {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espacio-2) var(--espacio-3);
+    align-items: center;
+    padding: var(--espacio-3) var(--espacio-4);
+    margin-bottom: var(--espacio-4);
+    background: var(--color-superficie);
+    border: var(--borde-ancho) solid var(--color-borde);
+    border-radius: var(--radio);
+  }
+  .orden[hidden] {
+    display: none;
+  }
+</style>
