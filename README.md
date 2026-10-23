@@ -29,15 +29,17 @@ La copia propia de los datos está en [`datos/`](datos/), en JSON y en CSV (para
 - [Diccionario de datos](datos/diccionario.md): qué significa cada columna y si es un valor oficial o calculado por este proyecto (las columnas propias empiezan con `_propio`).
 - [Cómo están organizados los archivos](datos/README.md).
 
-Se pueden reutilizar libremente bajo [CC BY 4.0](LICENSE-DATOS.md), citando "Origen de los datos: Datos Abiertos Poder Legislativo" y la fecha de actualización. Cuando el sitio esté publicado, los mismos archivos se podrán descargar desde su página `/datos/`.
+Se pueden reutilizar libremente bajo [CC BY 4.0](LICENSE-DATOS.md), citando "Origen de los datos: Datos Abiertos Poder Legislativo" y la fecha de actualización. Los mismos archivos se pueden descargar desde la página [`/datos/`](https://congreso.alexisdick.com/datos/) del sitio.
 
 ## Sitio
 
 El sitio está en [`sitio/`](sitio/): Astro con salida estática y búsqueda con Pagefind, sin servidor ni base de datos. Cómo compilarlo y cómo está organizado: [`sitio/README.md`](sitio/README.md).
 
+Se publica en [congreso.alexisdick.com](https://congreso.alexisdick.com) con Cloudflare Pages, que lo compila y publica solo con cada cambio en `main`. La configuración está en [`docs/publicacion.md`](docs/publicacion.md).
+
 ## Privacidad
 
-Este proyecto no recoge datos personales de quienes lo visitan. Solo se usarán estadísticas anónimas de visitas, sin cookies.
+Este proyecto no recoge datos personales de quienes lo visitan. Solo se usan estadísticas anónimas de visitas de Cloudflare Web Analytics, sin cookies.
 
 ## Licencias
 
