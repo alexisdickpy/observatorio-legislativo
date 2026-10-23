@@ -96,6 +96,23 @@ Estas cifras usan un denominador distinto del resumen de votos de la ficha, que 
 
 **Descarga.** La misma tabla se publica en la página de datos abiertos, generada en cada compilación del sitio (`/datos/calculados/{período}/votaciones-nominales-por-legislador.csv` y `.json`), con las columnas `periodo`, `camara`, `slug`, `idLegislador`, `nombre`, `vigente`, `votacionesEnSuLista` (el denominador), `ausente`, `noVota` y `abstencionBlanco` (cantidades) y `porcentajeAusente`, `porcentajeNoVota` y `porcentajeAbstencionBlanco` (porcentaje con un decimal). Es un cálculo propio, no un dato oficial, y no se guarda en `datos/`.
 
+## Votos distintos a la mayoría de su bancada o de su partido
+
+Decisión de alcance (#39). La ficha muestra dos cifras separadas, en cuántas votaciones nominales el legislador votó distinto a la mayoría de su **bancada** y, aparte, de su **partido**, sobre todas las votaciones nominales del período en cuya lista oficial figura, de cualquier tipo de expediente (el mismo universo que las ausencias).
+
+- **Voto emitido.** Toda categoría oficial salvo `AUSENTE` y `NO VOTA`, es decir `SI`, `NO`, `ABSTENCIÓN/BLANCO` y, en las 13 votaciones entre propuestas alternativas del período, `MOCIÓN 1`, `MOCIÓN 2` y `MOCIÓN 3`. Las mociones no estaban previstas en el Issue; se cuentan como votos emitidos porque son la elección del legislador en esa votación.
+- **Grupo.** Bancada = `bancada` del legislador en `legisladores.json`; partido = `partidoPolitico`. Son los textos oficiales del período, sin fecha. Cada votación es de una sola cámara, así que el grupo reúne a sus miembros de esa cámara. Dentro de cada cámara cada partido tiene un único texto oficial en 2023-2028, por eso el cálculo por partido da lo mismo con o sin la tabla de partidos unificados (#42), y no depende de ella. Los legisladores con `bancada` vacía (10 en el período) no tienen cifra de bancada y no forman parte de la mayoría de ninguna.
+- **Mayoría del grupo.** En cada votación, la categoría con más votos entre los votos emitidos de los miembros del grupo, incluido el del propio legislador.
+- **Votación comparable.** El legislador emitió voto y el grupo tuvo mayoría. Quedan fuera, y se cuentan aparte en la ficha, los **empates** (dos o más categorías empatan en el primer lugar) y las votaciones en que fue el **único votante** del grupo, porque la mayoría sería su propio voto. Esto último lo decidió el proyecto al acordar el alcance; sin esa regla, un partido de un solo legislador en su cámara aparecería con 0% de votos distintos sin haber podido diferir. Por la misma definición, cuando en un grupo votan solo dos y difieren, es un empate, así que un voto distinto solo aparece cuando votan tres o más miembros del grupo.
+
+> votos distintos = votaciones en que su voto difiere de la mayoría del grupo ÷ votaciones comparables × 100
+
+La ficha muestra cada cifra con su denominador y la lista de las votaciones en que votó distinto a una u otra mayoría, de la más reciente a la más antigua, con la fecha (`tramitacion.fechaTramite`), el expediente con enlace a la votación oficial en SILpy (`appURL`), la etapa (`tramitacion.descripcionEtapa`), su voto y la mayoría de cada grupo (o "Empate" o "Único votante" cuando esa comparación no cuenta). Votar distinto no se presenta como bueno ni malo, y el sentido de cada voto depende del trámite.
+
+La **vista comparativa** agrega dos columnas, "Votos distintos a la mayoría de su bancada" y "de su partido", y se puede ordenar por ellas (`?orden=bancada` o `?orden=partido`); quien no tiene votaciones comparables queda al final. La **tabla descargable** agrega las columnas `bancada` y `partido` (textos oficiales), `votacionesComparablesBancada` y `votacionesComparablesPartido` (denominadores), `distintasBancada` y `distintasPartido` (cantidades) y `porcentajeDistintasBancada` y `porcentajeDistintasPartido` (un decimal), vacías cuando no hay votaciones comparables.
+
+Comprobación. Las pruebas recalculan a mano 12 votaciones de 3 bancadas a partir de `votos.csv` y `legisladores.json`, además de casos sintéticos de mayoría, empate, único votante y mociones.
+
 ## Números de ley
 
 El número de ley se usa como URL (`/leyes/{número}/`). El importador verifica en cada ejecución que ningún número del período figure en otra legislatura, comparando con el listado histórico completo de la API. El resultado se informa en el resumen de cada ejecución.

@@ -12,9 +12,11 @@ import {
   COLUMNAS_TABLA,
   comparativa,
   esDeProyectoDeLey,
+  esVotoEmitido,
   ficha,
   legisladores,
   listado,
+  mayoriaDe,
   opcionesDelListado,
   tablaComparativa,
 } from "../../src/lib/legisladores.js";
@@ -328,9 +330,17 @@ test("vista comparativa: orden por nombre o por cifra, de mayor a menor, sin per
     ausencias: f.ausencias.porcentaje,
     noVota: f.noVota.porcentaje,
     abstencion: f.abstencion.porcentaje,
+    mayoriaBancada: f.mayoriaBancada.total ? f.mayoriaBancada.porcentaje : -1,
+    mayoriaPartido: f.mayoriaPartido.total ? f.mayoriaPartido.porcentaje : -1,
   }));
   assert.deepEqual(ordenar(entradas, "").map((e) => e.slug), filas.map((f) => f.slug));
-  for (const [valor, campo] of [["ausencias", "ausencias"], ["no-vota", "noVota"], ["abstencion", "abstencion"]]) {
+  for (const [valor, campo] of [
+    ["ausencias", "ausencias"],
+    ["no-vota", "noVota"],
+    ["abstencion", "abstencion"],
+    ["bancada", "mayoriaBancada"],
+    ["partido", "mayoriaPartido"],
+  ]) {
     const orden = ordenar(entradas, valor);
     assert.equal(orden.length, entradas.length);
     for (let n = 1; n < orden.length; n++) {
@@ -351,10 +361,124 @@ test("tabla descargable: mismas cifras que la vista, columnas fijas y CSV legibl
     [k.votacionesEnSuLista, k.ausente, k.porcentajeAusente, k.noVota, k.porcentajeNoVota, k.abstencionBlanco, k.porcentajeAbstencionBlanco],
     [96, 23, 24, 6, 6.3, 7, 7.3],
   );
+  const f = filas.find((x) => x.slug === k.slug);
+  assert.deepEqual(
+    [k.bancada, k.votacionesComparablesBancada, k.distintasBancada, k.partido, k.votacionesComparablesPartido, k.distintasPartido],
+    [
+      f.mayoriaBancada.grupo,
+      f.mayoriaBancada.total,
+      f.mayoriaBancada.total ? f.mayoriaBancada.cantidad : null,
+      f.mayoriaPartido.grupo,
+      f.mayoriaPartido.total,
+      f.mayoriaPartido.total ? f.mayoriaPartido.cantidad : null,
+    ],
+  );
+  // Sin votaciones comparables, cantidad y porcentaje vacíos.
+  const unico = tabla.find((t) => t.idLegislador === 101362);
+  assert.deepEqual([unico.votacionesComparablesPartido, unico.distintasPartido, unico.porcentajeDistintasPartido], [0, null, null]);
   const texto = csv(COLUMNAS_TABLA, tabla);
   assert.ok(texto.startsWith("﻿"));
   const leidas = interpretarCsv(texto);
   assert.deepEqual(Object.keys(leidas[0]), COLUMNAS_TABLA);
   assert.equal(leidas.length, tabla.length);
   assert.equal(leidas.find((l) => l.slug === k.slug).nombre, k.nombre);
+});
+
+test("mayoría de un grupo: categoría más votada entre los votos emitidos, empate sin mayoría", () => {
+  assert.deepEqual(mayoriaDe(["SI", "SI", "NO"]), { mayoria: "SI", votantes: 3 });
+  assert.deepEqual(mayoriaDe(["SI", "NO", "ABSTENCIÓN/BLANCO", "NO"]), { mayoria: "NO", votantes: 4 });
+  // AUSENTE y NO VOTA no son votos emitidos: no forman mayoría ni cuentan como votantes.
+  assert.deepEqual(mayoriaDe(["AUSENTE", "AUSENTE", "AUSENTE", "SI"]), { mayoria: "SI", votantes: 1 });
+  assert.deepEqual(mayoriaDe(["NO VOTA", "NO VOTA", "NO", "SI", "SI"]), { mayoria: "SI", votantes: 3 });
+  // Empate en el primer lugar, aunque haya una tercera categoría con menos votos.
+  assert.deepEqual(mayoriaDe(["SI", "NO"]), { mayoria: null, votantes: 2 });
+  assert.deepEqual(mayoriaDe(["SI", "SI", "NO", "NO", "ABSTENCIÓN/BLANCO"]), { mayoria: null, votantes: 5 });
+  assert.deepEqual(mayoriaDe(["SI", "NO", "ABSTENCIÓN/BLANCO"]), { mayoria: null, votantes: 3 });
+  // Las mociones son votos emitidos.
+  assert.deepEqual(mayoriaDe(["MOCIÓN 1", "MOCIÓN 2", "MOCIÓN 2", "AUSENTE"]), { mayoria: "MOCIÓN 2", votantes: 3 });
+  assert.deepEqual(mayoriaDe(["AUSENTE", "NO VOTA"]), { mayoria: null, votantes: 0 });
+  assert.deepEqual(mayoriaDe([]), { mayoria: null, votantes: 0 });
+  assert.ok(esVotoEmitido("ABSTENCIÓN/BLANCO") && esVotoEmitido("MOCIÓN 3"));
+  assert.ok(!esVotoEmitido("AUSENTE") && !esVotoEmitido("NO VOTA") && !esVotoEmitido(""));
+});
+
+// Recuento a mano de 13 casos (11 votaciones, 3 bancadas) a partir de votos.csv y legisladores.json:
+// votos emitidos de la bancada, mayoría (null = empate) y quiénes votaron distinto.
+const ANR_A = 'BANCADA DE LA ASOCIACIÓN NACIONAL REPUBLICANA ANR - A "HONOR COLORADO"';
+const PLRA_A_DIP = "BANCADA DEL PARTIDO LIBERAL RADICAL AUTÉNTICO PLRA - A";
+const PLRA_A_SEN = 'PARTIDO LIBERAL RADICAL AUTENTICO (PLRA) "A"';
+const A_MANO = [
+  [ANR_A, 104222, { NO: 25, "ABSTENCIÓN/BLANCO": 1 }, "NO", [101397]],
+  [ANR_A, 104235, { SI: 23, "ABSTENCIÓN/BLANCO": 1 }, "SI", [101454]],
+  [ANR_A, 104236, { NO: 24, SI: 4 }, "NO", [101403, 101392, 101397, 101434]],
+  [ANR_A, 104237, { SI: 30 }, "SI", []],
+  [ANR_A, 104375, { NO: 16, SI: 2, "ABSTENCIÓN/BLANCO": 3 }, "NO", [101464, 101392, 101459, 101480, 101413]],
+  [PLRA_A_DIP, 104224, { NO: 5, SI: 1 }, "NO", [101449]],
+  [PLRA_A_DIP, 104235, { "ABSTENCIÓN/BLANCO": 1, SI: 2 }, "SI", [101471]],
+  [PLRA_A_DIP, 104236, { "ABSTENCIÓN/BLANCO": 1, NO: 1 }, null, []],
+  [PLRA_A_DIP, 104252, { "ABSTENCIÓN/BLANCO": 1, SI: 3 }, "SI", [101471]],
+  [PLRA_A_SEN, 104240, { NO: 1, SI: 1, "ABSTENCIÓN/BLANCO": 1 }, null, []],
+  [PLRA_A_SEN, 104243, { NO: 2, SI: 1 }, "NO", [101368]],
+  [PLRA_A_SEN, 104246, { SI: 2, NO: 1 }, "SI", [101355]],
+  [PLRA_A_SEN, 104266, { SI: 2, NO: 1 }, "SI", [101368]],
+];
+
+test("votos distintos a la mayoría de su bancada: 13 casos calculados a mano en 11 votaciones de 3 bancadas", () => {
+  const votos = fuente(PERIODO, "votos.csv");
+  const oficiales = new Map(fuente(PERIODO, "legisladores.json").map((l) => [l.idLegislador, l]));
+  const slugDe = new Map([...todas().enEjercicio, ...todas().noEjercen].map((r) => [r.id, r.slug]));
+  assert.equal(new Set(A_MANO.map((c) => c[1])).size, 11);
+  for (const [bancada, idVotacion, conteo, mayoria, distintos] of A_MANO) {
+    const caso = `${bancada} en ${idVotacion}`;
+    const miembros = votos.filter(
+      (v) =>
+        Number(v.idVotacion) === idVotacion &&
+        oficiales.get(Number(v.idLegislador))?.bancada === bancada &&
+        esVotoEmitido(v.sentidoVotacion),
+    );
+    // Los datos siguen siendo los del recuento a mano.
+    const cuenta = {};
+    for (const v of miembros) cuenta[v.sentidoVotacion] = (cuenta[v.sentidoVotacion] ?? 0) + 1;
+    assert.deepEqual(cuenta, conteo, caso);
+    for (const v of miembros) {
+      const id = Number(v.idLegislador);
+      const fila = de(slugDe.get(id)).mayoria.lista.find((x) => x.id === idVotacion);
+      if (mayoria === null) {
+        // Empate: la votación no cuenta para la bancada; si figura en la lista es por el partido.
+        if (fila) assert.equal(fila.bancada.estado, "empate", `${caso}, ${id}`);
+      } else if (distintos.includes(id)) {
+        assert.ok(fila, `${caso}, falta ${id}`);
+        assert.deepEqual(
+          [fila.sentido, fila.bancada.estado, fila.bancada.mayoria],
+          [v.sentidoVotacion, "distinto", mayoria],
+          `${caso}, ${id}`,
+        );
+      } else if (fila) {
+        assert.deepEqual([fila.bancada.estado, fila.bancada.mayoria], ["igual", mayoria], `${caso}, ${id}`);
+      }
+    }
+  }
+});
+
+test("votos distintos a la mayoría: cifras coherentes con la lista, empates y único votante aparte", () => {
+  const filas = comparativa(PERIODO).camaras.flatMap((c) => c.filas);
+  for (const f of filas) {
+    const m = de(f.slug).mayoria;
+    for (const grupo of ["bancada", "partido"]) {
+      const c = m[grupo];
+      const enLista = m.lista.filter((x) => x[grupo].estado === "distinto").length;
+      assert.equal(c.cantidad, enLista, `${f.slug} ${grupo}`);
+      assert.ok(c.total + c.empates + c.unico <= m.emitidos, `${f.slug} ${grupo}`);
+      if (!c.grupo) assert.equal(c.total + c.empates + c.unico, 0, `${f.slug} ${grupo}`);
+    }
+    assert.ok(m.lista.every((x) => esVotoEmitido(x.sentido)), f.slug);
+  }
+  // Sin bancada registrada: sin cifra de bancada, con cifra de partido.
+  const sinBancada = de("juan-carlos-baruja-fernandez").mayoria;
+  assert.equal(sinBancada.bancada.grupo, null);
+  assert.ok(sinBancada.partido.total > 0);
+  // Único legislador de su partido en el Senado: nunca hay votación comparable por partido.
+  const unico = filas.find((f) => f.id === 101362);
+  assert.equal(unico.mayoriaPartido.total, 0);
+  assert.ok(unico.mayoriaPartido.unico > 0);
 });

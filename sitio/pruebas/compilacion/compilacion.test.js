@@ -134,10 +134,29 @@ test("NO VOTA y abstenciones en cada ficha, con su denominador y el enlace a la 
   }
 });
 
-test("vista comparativa: una fila por legislador con sus tres cifras, fórmula y títulos neutrales", () => {
+test("votos distintos a la mayoría en cada ficha, con sus denominadores y su lista", () => {
+  const metodologia = `href="${rutas.metodologia(rutas.anclasMetodologia.mayoria)}"`;
+  for (const persona of legisladores()) {
+    const html = leer(persona.url);
+    const bloques = ficha(persona).bloques;
+    for (const b of bloques.filter((x) => x.mayoria.emitidos > 0)) {
+      assert.ok(html.includes("Votos distintos a la mayoría de su bancada y de su partido"), persona.url);
+      assert.ok(html.includes(metodologia), `Falta el enlace a la metodología en ${persona.url}`);
+      for (const c of [b.mayoria.bancada, b.mayoria.partido]) {
+        if (c.total) assert.ok(html.includes(c.texto), `Falta ${c.texto} en ${persona.url}`);
+      }
+    }
+    const filas = html.match(/<tr data-distinto>/g)?.length ?? 0;
+    assert.equal(filas, bloques.reduce((n, b) => n + b.mayoria.lista.length, 0), `Filas de votos distintos en ${persona.url}`);
+  }
+});
+
+test("vista comparativa: una fila por legislador con sus cinco cifras, fórmulas y títulos neutrales", () => {
   const periodo = periodos().find((p) => p.vigente).id;
   const html = texto(rutas.votacionesNominales());
   assert.ok(html.includes("Cifra de cada categoría = votaciones en que figura con esa categoría"));
+  assert.ok(html.includes("Votos distintos = votaciones en que su voto difiere de la mayoría del grupo"));
+  assert.ok(html.includes(`href="${rutas.metodologia(rutas.anclasMetodologia.mayoria)}"`));
   assert.ok(html.includes(`href="${rutas.metodologia(rutas.anclasMetodologia.noVotaAbstencion)}"`));
   const filas = comparativa(periodo).camaras.flatMap((c) => c.filas);
   assert.equal(html.match(/<tr data-comparativa /g)?.length ?? 0, filas.length);
@@ -145,6 +164,7 @@ test("vista comparativa: una fila por legislador con sus tres cifras, fórmula y
     const fila = html.match(new RegExp(`<tr data-comparativa data-slug="${f.slug}"[^]*?</tr>`))?.[0] ?? "";
     assert.ok(fila.includes(`href="${f.url}"`), f.slug);
     for (const c of [f.ausencias, f.noVota, f.abstencion]) assert.ok(fila.includes(c.texto), `${f.slug} ${c.texto}`);
+    for (const c of [f.mayoriaBancada, f.mayoriaPartido]) if (c.total) assert.ok(fila.includes(c.texto), `${f.slug} ${c.texto}`);
   }
   const visible = html.replace(/<(script|style)[\s\S]*?<\/\1>/g, " ").replace(/<[^>]+>/g, " ");
   const calificativo = visible.match(/.{0,30}\b(mejor|peor|ranking|puesto|campe[oó]n|faltador|vago)\b.{0,20}/i);

@@ -32,6 +32,7 @@ export const anclasMetodologia = {
   votosLegislador: "votos-de-cada-legislador",
   ausencias: "ausencias-en-votaciones-nominales",
   noVotaAbstencion: "no-vota-y-abstenciones",
+  mayoria: "votos-distintos-a-la-mayoria",
   afiliacion: "partido-y-bancada",
   observaciones: "observaciones-sobre-los-datos",
 };
@@ -48,7 +49,7 @@ export const archivoDatos = (ruta) => `/datos/${ruta}`;
 /** Archivo calculado por este proyecto en la compilación (lib/calculados.js), no guardado en datos/. */
 export const archivoCalculado = (periodo, nombre, extension) => `/datos/calculados/${periodo}/${nombre}.${extension}`;
 
-/** Vista comparativa de ausencias, NO VOTA y abstenciones en votaciones nominales. */
+/** Vista comparativa de votaciones nominales por legislador (ausencias, NO VOTA, abstenciones y votos distintos a la mayoría). */
 export const votacionesNominales = () => "/legisladores/votaciones-nominales/";
 /** Parámetro de la dirección de la vista comparativa (?orden=…). */
 export const parametroOrdenComparativa = "orden";
