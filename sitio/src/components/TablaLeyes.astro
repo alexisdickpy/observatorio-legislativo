@@ -1,0 +1,137 @@
+---
+// Tabla del catálogo de leyes. Recibe las leyes ya preparadas por lib/catalogo.js.
+import ValoresOficiales from "./ValoresOficiales.astro";
+
+interface Props {
+  leyes: any[];
+}
+const { leyes } = Astro.props;
+---
+
+<table class="tabla-leyes">
+  <caption class="solo-lectores">Leyes sancionadas</caption>
+  <thead>
+    <tr>
+      <th scope="col">Número</th>
+      <th scope="col">Título</th>
+      <th scope="col">Sanción</th>
+      <th scope="col">Promulgación</th>
+      <th scope="col">Publicación</th>
+      <th scope="col">Cámara de origen</th>
+    </tr>
+  </thead>
+  <tbody>
+    {
+      leyes.map((l) => (
+        <tr data-numero={l.numero}>
+          <th scope="row" data-etiqueta="Número">
+            <a href={l.url}>Ley {l.numero}</a>
+          </th>
+          <td data-etiqueta="Título" class="titulo">
+            {l.titulos.map((t: string) => (
+              <p>{t}</p>
+            ))}
+          </td>
+          <td data-etiqueta="Sanción">
+            <ValoresOficiales valores={l.fechasSancion} />
+          </td>
+          <td data-etiqueta="Promulgación">
+            <ValoresOficiales valores={l.fechasPromulgacion} />
+          </td>
+          <td data-etiqueta="Publicación">
+            <ValoresOficiales valores={l.fechasPublicacion} />
+          </td>
+          <td data-etiqueta="Cámara de origen">
+            <ValoresOficiales valores={l.camaras} />
+          </td>
+        </tr>
+      ))
+    }
+  </tbody>
+</table>
+
+<style>
+  .tabla-leyes {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--tamano-chico);
+  }
+  th,
+  td {
+    text-align: left;
+    vertical-align: top;
+    padding: var(--espacio-3) var(--espacio-2);
+    border-bottom: var(--borde-ancho) solid var(--color-borde);
+  }
+  thead th {
+    position: sticky;
+    top: 0;
+    background: var(--color-fondo);
+    border-bottom-width: var(--foco-ancho);
+  }
+  tbody th {
+    white-space: nowrap;
+    width: var(--columna-numero);
+  }
+  td:nth-child(3),
+  td:nth-child(4),
+  td:nth-child(5) {
+    width: var(--columna-fecha);
+    white-space: nowrap;
+  }
+  .titulo p {
+    margin: 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: var(--lineas-titulo-catalogo);
+    line-clamp: var(--lineas-titulo-catalogo);
+    overflow: hidden;
+  }
+  .titulo p + p {
+    margin-top: var(--espacio-2);
+  }
+
+  /* Móvil: cada ley como una tarjeta. 48rem = --punto-quiebre-movil. */
+  @media (max-width: 48rem) {
+    thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+    }
+    tr,
+    th,
+    td {
+      display: block;
+      width: auto;
+    }
+    tbody tr {
+      border-bottom: var(--borde-ancho) solid var(--color-borde);
+      padding: var(--espacio-3) 0;
+    }
+    tbody th,
+    tbody td {
+      border: 0;
+      padding: var(--espacio-1) 0;
+      white-space: normal;
+      width: auto;
+    }
+    tbody th {
+      font-size: var(--tamano-base);
+    }
+    td:nth-child(3),
+    td:nth-child(4),
+    td:nth-child(5),
+    td:nth-child(6) {
+      display: flex;
+      gap: var(--espacio-2);
+      width: auto;
+    }
+    td:nth-child(n + 3)::before {
+      content: attr(data-etiqueta) ":";
+      color: var(--color-texto-suave);
+      flex: none;
+    }
+  }
+</style>

@@ -1,0 +1,33 @@
+---
+// Muestra uno o varios valores oficiales tal como vienen. Si los registros de una misma ley
+// publican valores distintos, se muestran todos.
+interface Props {
+  valores: string[];
+  vacio?: string;
+}
+const { valores, vacio = "Sin dato" } = Astro.props;
+---
+
+{
+  valores.length === 0 ? (
+    <span class="texto-suave">{vacio}</span>
+  ) : valores.length === 1 ? (
+    <Fragment>{valores[0]}</Fragment>
+  ) : (
+    <ul class="varios">
+      {valores.map((v) => (
+        <li>{v}</li>
+      ))}
+    </ul>
+  )
+}
+
+<style>
+  .varios {
+    margin: 0;
+    padding-left: var(--espacio-4);
+  }
+  .varios li + li {
+    margin-top: var(--espacio-1);
+  }
+</style>

@@ -1,0 +1,67 @@
+/*
+ * Tokens de diseño: ÚNICO lugar del aspecto visual (colores, tipografías, medidas).
+ * Diseño provisional y sobrio. El rediseño de la Fase 4 (#14) puede cambiar la identidad
+ * visual tocando solo este archivo.
+ */
+:root {
+  /* Colores */
+  --color-fondo: #ffffff;
+  --color-superficie: #f5f6f7;
+  --color-texto: #1d2125;
+  --color-texto-suave: #5a6169;
+  --color-borde: #d5d9de;
+  --color-enlace: #0b5394;
+  --color-enlace-visitado: #5b3a8c;
+  --color-acento: #0b5394;
+  --color-sobre-acento: #ffffff;
+  --color-foco: #f2a900;
+  --color-marca: #fff4c2;
+
+  /* Tipografía */
+  --fuente-texto: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --fuente-mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --tamano-base: 1rem;
+  --tamano-chico: 0.875rem;
+  --tamano-titulo-1: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+  --tamano-titulo-2: 1.25rem;
+  --tamano-titulo-3: 1.0625rem;
+  --interlineado: 1.55;
+  --interlineado-titulo: 1.25;
+  --peso-normal: 400;
+  --peso-fuerte: 650;
+
+  /* Espaciado */
+  --espacio-1: 0.25rem;
+  --espacio-2: 0.5rem;
+  --espacio-3: 0.75rem;
+  --espacio-4: 1rem;
+  --espacio-5: 1.5rem;
+  --espacio-6: 2.5rem;
+
+  /* Medidas */
+  --ancho-contenido: 72rem;
+  --ancho-lectura: 46rem;
+  --borde-ancho: 1px;
+  --foco-ancho: 3px;
+  --radio: 4px;
+  --lineas-titulo-catalogo: 4;
+  --columna-numero: 5.5rem;
+  --columna-fecha: 7rem;
+  --ancho-campo-filtro: 11rem;
+  --punto-quiebre-movil: 48rem; /* referencia: las media queries no aceptan variables */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-fondo: #16191c;
+    --color-superficie: #1f2327;
+    --color-texto: #e6e8ea;
+    --color-texto-suave: #a5adb5;
+    --color-borde: #3a4048;
+    --color-enlace: #7cb7f0;
+    --color-enlace-visitado: #b9a2e6;
+    --color-acento: #7cb7f0;
+    --color-sobre-acento: #0f1215;
+    --color-marca: #4a3f10;
+  }
+}

@@ -1,0 +1,100 @@
+---
+import Base from "../layouts/Base.astro";
+import { cita, actualizacion } from "../lib/catalogo.js";
+import { descargas } from "../lib/descargas.js";
+import * as rutas from "../lib/rutas.js";
+
+const grupos = descargas();
+const fuente = cita();
+const fecha = actualizacion();
+---
+
+<Base
+  titulo="Datos abiertos"
+  descripcion="Descarga de los datos del Congreso Nacional del Paraguay que usa este sitio, en CSV y JSON, con su diccionario de datos."
+>
+  <h1>Datos abiertos</h1>
+  <div class="lectura">
+    <p>
+      Todos los datos que usa este sitio se pueden descargar y reutilizar libremente bajo la
+      licencia {fuente.licencia}, citando <strong>"{fuente.cita}"</strong> y la fecha de
+      actualización (<time datetime={fecha.iso}>{fecha.texto}</time>).
+    </p>
+    <p>
+      Los archivos de <em>valores oficiales</em> contienen los datos exactamente como los publica el
+      Congreso; lo que agrega este proyecto está en columnas cuyo nombre empieza con <code>_propio</code>.
+      El <a href={rutas.archivoDatos("diccionario.md")}>diccionario de datos</a> describe cada campo. Los CSV se abren con una planilla de cálculo (en Excel, si las columnas no
+      se separan solas: <em>Datos → Desde texto/CSV</em>).
+    </p>
+  </div>
+  {
+    grupos.map((g) => (
+      <section>
+        <h2>{g.titulo}</h2>
+        <table class="descargas">
+          <thead>
+            <tr>
+              <th scope="col">Archivo</th>
+              <th scope="col">Contenido</th>
+              <th scope="col">Descargas</th>
+            </tr>
+          </thead>
+          <tbody>
+            {g.tablas.map((t) => (
+              <tr>
+                <th scope="row">{t.nombre}</th>
+                <td>{t.descripcion}</td>
+                <td class="archivos">
+                  {t.archivos.map((a) => (
+                    <a href={a.url} download>
+                      {a.formato} <span class="texto-suave">({a.tamano})</span>
+                    </a>
+                  ))}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+    ))
+  }
+</Base>
+
+<style>
+  .descargas {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--tamano-chico);
+  }
+  th,
+  td {
+    text-align: left;
+    vertical-align: top;
+    padding: var(--espacio-2);
+    border-bottom: var(--borde-ancho) solid var(--color-borde);
+  }
+  .archivos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espacio-1) var(--espacio-3);
+    white-space: nowrap;
+  }
+  /* 48rem = --punto-quiebre-movil */
+  @media (max-width: 48rem) {
+    tr,
+    th,
+    td {
+      display: block;
+    }
+    thead {
+      display: none;
+    }
+    tbody th {
+      padding-bottom: 0;
+      border: 0;
+    }
+    .archivos {
+      display: flex;
+    }
+  }
+</style>

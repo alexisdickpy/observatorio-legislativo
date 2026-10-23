@@ -4,7 +4,7 @@ on:
   pull_request:
   push:
     branches: [main]
-    paths: ["importador/**", ".github/workflows/**"]
+    paths: ["importador/**", "sitio/**", ".github/workflows/**"]
   workflow_dispatch:
 
 permissions:
@@ -18,3 +18,25 @@ jobs:
       - uses: actions/checkout@v7
       - name: Pruebas del importador
         run: python3 -m unittest discover -s importador/pruebas -t . -v
+
+  sitio:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: sitio
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: sitio/.node-version
+          cache: npm
+          cache-dependency-path: sitio/package-lock.json
+      - name: Instalar dependencias
+        run: npm ci
+      - name: Pruebas del filtro de leyes
+        run: npm test
+      - name: Compilar el sitio
+        run: npm run build
+      - name: Comprobar el sitio compilado
+        run: npm run test:compilacion

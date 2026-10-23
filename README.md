@@ -29,7 +29,11 @@ La copia propia de los datos está en [`datos/`](datos/), en JSON y en CSV (para
 - [Diccionario de datos](datos/diccionario.md): qué significa cada columna y si es un valor oficial o calculado por este proyecto (las columnas propias empiezan con `_propio`).
 - [Cómo están organizados los archivos](datos/README.md).
 
-Se pueden reutilizar libremente bajo [CC BY 4.0](LICENSE-DATOS.md), citando "Origen de los datos: Datos Abiertos Poder Legislativo" y la fecha de actualización. Cuando el sitio esté publicado, los mismos archivos se podrán descargar desde él.
+Se pueden reutilizar libremente bajo [CC BY 4.0](LICENSE-DATOS.md), citando "Origen de los datos: Datos Abiertos Poder Legislativo" y la fecha de actualización. Cuando el sitio esté publicado, los mismos archivos se podrán descargar desde su página `/datos/`.
+
+## Sitio
+
+El sitio está en [`sitio/`](sitio/): Astro con salida estática y búsqueda con Pagefind, sin servidor ni base de datos. Cómo compilarlo y cómo está organizado: [`sitio/README.md`](sitio/README.md).
 
 ## Privacidad
 

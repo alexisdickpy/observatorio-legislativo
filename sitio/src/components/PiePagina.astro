@@ -1,0 +1,34 @@
+---
+// Pie de página provisional: cita obligatoria de la fuente y fecha de actualización.
+// Los textos completos (firma, aviso de datos, privacidad, metodología) llegan en #9.
+import { actualizacion, cita } from "../lib/catalogo.js";
+import * as rutas from "../lib/rutas.js";
+
+const fuente = cita();
+const fecha = actualizacion();
+---
+
+<footer class="pie">
+  <div class="contenedor chico">
+    <p>
+      <strong>{fuente.cita}.</strong>
+      Datos comprobados con la fuente el <time datetime={fecha.iso}>{fecha.texto}</time>.
+      Licencia de los datos: {fuente.licencia}. Ante cualquier diferencia, prevalece la
+      <a href={fuente.url}>fuente oficial</a>.
+    </p>
+    <p><a href={rutas.datosAbiertos()}>Descargar los datos abiertos</a></p>
+  </div>
+</footer>
+
+<style>
+  .pie {
+    margin-top: var(--espacio-6);
+    border-top: var(--borde-ancho) solid var(--color-borde);
+    background: var(--color-superficie);
+    padding: var(--espacio-4) 0;
+    color: var(--color-texto-suave);
+  }
+  p:last-child {
+    margin-bottom: 0;
+  }
+</style>
