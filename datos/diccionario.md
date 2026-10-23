@@ -256,3 +256,18 @@ Se publica en `propios/notas.json`.
 | `valorOriginal` | propio | texto | Valor oficial que motivó la nota, sin cambios, si corresponde. |
 | `origen` | propio | texto | `importador` (detectada automáticamente) o `manual`. |
 | `periodoLegislativo` | propio | texto | Período en el que se detectó. |
+
+## partidos
+
+Capa propia con una entrada por cada texto oficial de partido. Dice qué textos corresponden al mismo partido (partido unificado) y, en algunos casos, el nombre por el que se conoce al partido. No cambia el texto oficial ni suma cámaras.
+
+Se publica en `propios/partidos.json`.
+
+| Campo | Origen | Tipo | Descripción |
+|---|---|---|---|
+| `partidoPolitico` | oficial | texto | Texto oficial del partido, exactamente como figura en `legisladores.json`. |
+| `partidoUnificado` | propio | texto | Identificador propio del partido unificado (minúsculas y guiones). Los textos oficiales que corresponden al mismo partido comparten identificador; los que no se pueden agrupar con seguridad tienen el suyo. |
+| `nombreUnificado` | propio | texto | Nombre con el que el sitio muestra el partido unificado (uno de sus textos oficiales). |
+| `fundamentoUnificado` | propio | texto | Por qué el texto se agrupa con otro o por qué queda solo, preferentemente con un dato oficial. |
+| `nombreConocido` | propio | texto | Nombre por el que se conoce al partido, cuando difiere del oficial. Solo en algunas entradas. |
+| `fundamentoNombreConocido` | propio | texto | De dónde sale el nombre conocido. Solo en las entradas con `nombreConocido`. |

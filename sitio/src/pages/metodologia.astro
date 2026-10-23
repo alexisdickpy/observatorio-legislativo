@@ -5,9 +5,12 @@ import Base from "../layouts/Base.astro";
 import { actualizacion, cita } from "../lib/catalogo.js";
 import { periodos } from "../lib/datos.js";
 import { observacionesDeLosDatos } from "../lib/metodologia.js";
+import { tablaDePartidos } from "../lib/partidos.js";
 import * as rutas from "../lib/rutas.js";
 
 const fuente = cita();
+const partidos = tablaDePartidos();
+const agrupados = partidos.filter((g) => g.textos.length > 1);
 const fecha = actualizacion();
 const vigente = periodos().find((p) => p.vigente);
 const observaciones = observacionesDeLosDatos();
@@ -198,7 +201,8 @@ const anclas = rutas.anclasMetodologia;
       Partido y bancada son los textos oficiales que la API registra para el legislador en el período, sin
       fecha, así que el cálculo no refleja cambios de bancada durante el período. Cada votación es de una
       sola cámara, de modo que el grupo reúne a sus miembros de esa cámara. Dentro de cada cámara cada
-      partido figura con un único texto oficial, así que no es necesario unificar nombres. Quien no tiene
+      partido figura con un único texto oficial, así que el cálculo usa ese texto y da lo mismo con o sin
+      los <a href={`#${anclas.partidoUnificado}`}>partidos unificados</a>. Quien no tiene
       bancada registrada no tiene esta cifra para la bancada y no cuenta en la mayoría de ninguna.
     </p>
     <p>
@@ -220,6 +224,55 @@ const anclas = rutas.anclasMetodologia;
       y, entre paréntesis, el nombre conocido, que es un agregado propio.
     </p>
 
+    <h3 id={anclas.partidoUnificado}>Dos niveles de análisis, partido y bancada</h3>
+    <p>
+      La API escribe el partido como texto libre, y a veces escribe el mismo partido de forma distinta en
+      cada cámara. Por eso el sitio agrega una tabla propia de <strong>partidos unificados</strong>, que
+      dice qué textos oficiales corresponden al mismo partido. Solo se reúnen los textos que con seguridad
+      son el mismo partido, con el fundamento de cada caso. Los que no se pueden agrupar con seguridad
+      quedan solos. El texto oficial no cambia y se sigue mostrando en todas las páginas.
+    </p>
+    <ul>
+      <li>
+        <strong>Partido.</strong> Se identifica con el partido unificado, que es el mismo en las dos
+        cámaras. Lo usa el filtro de partidos del <a href={rutas.legisladores()}>listado de legisladores</a>,
+        y la ficha lo muestra junto al texto oficial cuando no coincide con él.
+      </li>
+      <li>
+        <strong>Bancada.</strong> Se usa el nombre oficial, separado por cámara. Las bancadas de una cámara
+        no se unen con las de la otra, porque son grupos internos de cada cámara con nombres propios. Quien
+        no tiene bancada registrada figura como «Sin bancada registrada».
+      </li>
+    </ul>
+    <p>
+      Unificar un partido no suma senadores y diputados. Todas las cifras del sitio (votos distintos a la
+      mayoría, ausencias, NO VOTA, abstenciones) se calculan dentro de cada cámara. El partido unificado
+      solo permite poner lado a lado lo que hizo un mismo partido en cada cámara, cada uno con su propia
+      cifra. Partido y bancada siguen siendo un único valor por período, sin fecha.
+      {agrupados.length > 0 && ` Hoy se reúnen ${agrupados.map((g) => `${g.textos.map((t) => `«${t.texto}»`).join(" y ")} como ${g.nombre}`).join("; ")}.`}
+    </p>
+    <details>
+      <summary class="chico">Ver los {partidos.length} partidos unificados y el fundamento de cada texto oficial</summary>
+      <dl class="partidos chico">
+        {
+          partidos.map((g) => (
+            <Fragment>
+              <dt>{g.nombre} <span class="texto-suave">({g.id})</span></dt>
+              <dd>
+                <ul>
+                  {g.textos.map((t) => <li>«{t.texto}»{t.nombreConocido && ` (${t.nombreConocido})`}. {t.fundamento}</li>)}
+                </ul>
+              </dd>
+            </Fragment>
+          ))
+        }
+      </dl>
+      <p class="chico">
+        La tabla se descarga en <a href={rutas.archivoDatos("propios/partidos.json")}>partidos.json</a>, con
+        su descripción en el diccionario de datos.
+      </p>
+    </details>
+
     <h2 id="transformaciones">Qué hace el sitio con los datos</h2>
     <p>El sitio hace estas operaciones con los datos, y ninguna cambia un valor oficial.</p>
     <ul>
@@ -228,6 +281,7 @@ const anclas = rutas.anclasMetodologia;
       <li>Enlaza cada votación con su ley solo si el trámite votado figura en el proyecto. Si no, no adivina el enlace.</li>
       <li>Cuenta los votos individuales de cada votación y los compara con los totales publicados.</li>
       <li>Da a cada legislador una dirección propia y estable, formada con su nombre.</li>
+      <li>Reúne bajo un <a href={`#${anclas.partidoUnificado}`}>partido unificado</a> los textos oficiales que corresponden al mismo partido, sin cambiarlos.</li>
       <li>Guarda una copia propia de las fotos oficiales y la muestra en tamaño reducido.</li>
     </ul>
 
@@ -278,6 +332,9 @@ const anclas = rutas.anclasMetodologia;
   }
   dd {
     margin: 0 0 var(--espacio-3);
+  }
+  .partidos ul {
+    margin: 0;
   }
   .casos li {
     margin-bottom: var(--espacio-1);

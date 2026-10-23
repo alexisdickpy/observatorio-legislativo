@@ -26,6 +26,9 @@
 // - Autoría: leyes sancionadas del período de cuyo proyecto figura como autor (autores.json,
 //   registros con _propio.delPeriodo).
 // - Partido y bancada: los que la API registra para el período, no por fecha.
+// - Partido unificado (alcance acordado en #42, lib/partidos.js): dato propio que dice qué textos
+//   oficiales de partido son el mismo partido. Lo usa el filtro "Partido" del listado y se muestra en
+//   la ficha junto al texto oficial. No cambia ninguna cifra: todas se calculan dentro de cada cámara.
 // - Correo y teléfono: los que la API publica para el legislador, sin cambios.
 // - Orden: primero la Cámara de Senadores y luego la de Diputados; dentro, por apellido.
 
@@ -42,6 +45,7 @@ import {
   proporcion,
   valor,
 } from "./ficha.js";
+import { partidoUnificado } from "./partidos.js";
 import * as rutas from "./rutas.js";
 import { normalizar, recortar, slug } from "./texto.js";
 
@@ -332,6 +336,7 @@ function leyesDeSuAutoria(idLegislador, periodo, i) {
 function prepararRegistro(l, periodo) {
   const foto = `fotos/${periodo}/${l.idLegislador}.jpg`;
   const partido = valor(l.partidoPolitico);
+  const unificado = partidoUnificado(partido);
   return {
     periodo,
     id: l.idLegislador,
@@ -342,6 +347,9 @@ function prepararRegistro(l, periodo) {
     departamento: valor(l.departamento),
     partido,
     partidoConocido: nombreConocido(partido),
+    partidoUnificado: unificado,
+    // Nombre del partido unificado cuando no coincide con el texto oficial; la ficha lo muestra aparte.
+    partidoUnificadoAparte: unificado && unificado.nombre !== partido ? unificado.nombre : null,
     bancada: valor(l.bancada),
     cargoBancada: valor(l.cargoBancada),
     correo: valor(l.emailParlamentario),
@@ -393,6 +401,30 @@ function valoresUnicos(textos) {
   return valores;
 }
 
+/** Valor de URL del filtro de partido: el identificador del partido unificado, no el texto oficial. */
+const valoresDePartido = (textos) => new Map([...new Set(textos.filter(Boolean))].map((t) => [t, partidoUnificado(t).id]));
+
+/**
+ * Una opción por partido unificado. Si agrupa textos oficiales distintos de su nombre, se nombran
+ * entre paréntesis, junto con el nombre conocido.
+ */
+function opcionesDePartido(valores) {
+  const grupos = new Map();
+  for (const [texto, id] of valores) {
+    if (!grupos.has(id)) grupos.set(id, { valor: id, nombre: partidoUnificado(texto).nombre, textos: [], conocido: null });
+    const g = grupos.get(id);
+    g.textos.push(texto);
+    g.conocido ??= nombreConocido(texto);
+  }
+  return [...grupos.values()]
+    .map((g) => {
+      const otros = g.textos.filter((t) => t !== g.nombre).sort(porTexto);
+      const extras = [g.conocido, otros.length ? `también «${otros.join("», «")}»` : null].filter(Boolean);
+      return { valor: g.valor, etiqueta: extras.length ? `${g.nombre} (${extras.join("; ")})` : g.nombre };
+    })
+    .sort((a, b) => porTexto(a.etiqueta, b.etiqueta));
+}
+
 const listados = new Map();
 
 /**
@@ -408,7 +440,9 @@ export function listado(periodo) {
     })
     .filter(Boolean)
     .sort(porCamaraYApellido);
-  const valores = Object.fromEntries(CAMPOS_FILTRO.map((c) => [c, valoresUnicos(filas.map((r) => r[c]))]));
+  const valores = Object.fromEntries(
+    CAMPOS_FILTRO.map((c) => [c, (c === "partido" ? valoresDePartido : valoresUnicos)(filas.map((r) => r[c]))]),
+  );
   for (const r of filas) {
     r.filtro = {
       slug: r.slug,
@@ -421,17 +455,13 @@ export function listado(periodo) {
   return resultado;
 }
 
-/** Opciones de los filtros del listado: valor de URL y texto oficial (con el nombre conocido del partido). */
+/** Opciones de los filtros del listado: valor de URL y texto oficial (el partido, unificado y con su nombre conocido). */
 export function opcionesDelListado(periodo) {
   const { valores } = listado(periodo);
-  const opciones = (campo, conocido = () => null) =>
-    [...valores[campo].entries()].map(([texto, valor]) => {
-      const extra = conocido(texto);
-      return { valor, etiqueta: extra ? `${texto} (${extra})` : texto };
-    });
+  const opciones = (campo) => [...valores[campo].entries()].map(([texto, valor]) => ({ valor, etiqueta: texto }));
   return {
     camaras: opciones("camara").sort((a, b) => posicionCamara(a.etiqueta) - posicionCamara(b.etiqueta)),
-    partidos: opciones("partido", nombreConocido),
+    partidos: opcionesDePartido(valores.partido),
     bancadas: opciones("bancada"),
     departamentos: opciones("departamento"),
   };

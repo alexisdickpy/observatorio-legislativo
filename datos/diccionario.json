@@ -1091,6 +1091,50 @@
           "descripcion": "Período en el que se detectó."
         }
       ]
+    },
+    "partidos": {
+      "descripcion": "Capa propia con una entrada por cada texto oficial de partido. Dice qué textos corresponden al mismo partido (partido unificado) y, en algunos casos, el nombre por el que se conoce al partido. No cambia el texto oficial ni suma cámaras.",
+      "archivos": [
+        "propios/partidos.json"
+      ],
+      "campos": [
+        {
+          "campo": "partidoPolitico",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Texto oficial del partido, exactamente como figura en `legisladores.json`."
+        },
+        {
+          "campo": "partidoUnificado",
+          "origen": "propio",
+          "tipo": "texto",
+          "descripcion": "Identificador propio del partido unificado (minúsculas y guiones). Los textos oficiales que corresponden al mismo partido comparten identificador; los que no se pueden agrupar con seguridad tienen el suyo."
+        },
+        {
+          "campo": "nombreUnificado",
+          "origen": "propio",
+          "tipo": "texto",
+          "descripcion": "Nombre con el que el sitio muestra el partido unificado (uno de sus textos oficiales)."
+        },
+        {
+          "campo": "fundamentoUnificado",
+          "origen": "propio",
+          "tipo": "texto",
+          "descripcion": "Por qué el texto se agrupa con otro o por qué queda solo, preferentemente con un dato oficial."
+        },
+        {
+          "campo": "nombreConocido",
+          "origen": "propio",
+          "tipo": "texto",
+          "descripcion": "Nombre por el que se conoce al partido, cuando difiere del oficial. Solo en algunas entradas."
+        },
+        {
+          "campo": "fundamentoNombreConocido",
+          "origen": "propio",
+          "tipo": "texto",
+          "descripcion": "De dónde sale el nombre conocido. Solo en las entradas con `nombreConocido`."
+        }
+      ]
     }
   }
 }

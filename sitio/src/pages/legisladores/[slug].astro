@@ -54,6 +54,7 @@ const descripcion = descripcionDeLegislador(f, sinDato);
               <div><dt>Tipo</dt><dd>{b.tipo ?? sinDato}</dd></div>
               <div><dt>Departamento</dt><dd>{b.departamento ?? sinDato}</dd></div>
               <div><dt>Partido</dt><dd>{b.partido ?? sinDato}{b.partidoConocido && ` (${b.partidoConocido})`}</dd></div>
+              {b.partidoUnificadoAparte && <div><dt>Partido unificado <span class="texto-suave">(dato de este sitio)</span></dt><dd>{b.partidoUnificadoAparte}</dd></div>}
               <div><dt>Bancada</dt><dd>{b.bancada ?? sinDato}</dd></div>
               <div><dt>Cargo en la bancada</dt><dd class={b.cargoBancada ? undefined : "texto-suave"}>{b.cargoBancada ?? sinDato}</dd></div>
               <div><dt>Correo</dt><dd class={b.correo ? "contacto" : "texto-suave"}>{b.correo ? <a href={`mailto:${b.correo}`}>{b.correo}</a> : sinDato}</dd></div>
@@ -74,6 +75,7 @@ const descripcion = descripcionDeLegislador(f, sinDato);
             no necesariamente eran los vigentes en la fecha de cada votación.
             {b.camara === "CAMARA DE SENADORES" && " Los senadores se eligen en una circunscripción nacional, por eso la API registra su departamento como NACIONAL."}
             {b.partidoConocido && " El nombre entre paréntesis es el nombre por el que se conoce a su partido, un agregado de este sitio. El que va antes es el oficial."}
+            {b.partidoUnificadoAparte && ` El partido unificado es un agregado de este sitio. El Congreso escribe este partido de más de una forma, y el sitio reúne esas escrituras bajo un solo nombre en el filtro de partidos. Las cifras se siguen calculando dentro de cada cámara.`}
             {" "}<a href={rutas.metodologia(rutas.anclasMetodologia.afiliacion)}>Más información</a>
           </p>
           {b.urlSilpy && <p class="chico"><a href={b.urlSilpy}>Ficha oficial en SILpy</a></p>}

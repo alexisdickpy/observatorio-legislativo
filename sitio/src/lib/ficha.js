@@ -15,7 +15,8 @@
 // - Porcentajes sobre todos los legisladores del grupo registrados en la votación (incluidos
 //   AUSENTE y NO VOTA), con el denominador escrito.
 
-import { fuente, notas, partidosConocidos } from "./datos.js";
+import { fuente, notas } from "./datos.js";
+import { nombreConocido } from "./partidos.js";
 import * as rutas from "./rutas.js";
 import { recortar, slug } from "./texto.js";
 
@@ -102,10 +103,7 @@ export function indice(periodo) {
   return i;
 }
 
-/** Nombre conocido de un partido oficial, o null. */
-export function nombreConocido(partidoOficial) {
-  return partidosConocidos().find((p) => p.partidoPolitico === partidoOficial)?.nombreConocido ?? null;
-}
+export { nombreConocido };
 
 export const nombreDe = (l) => [valor(l.nombres), valor(l.apellidos)].filter(Boolean).join(" ") || null;
 
