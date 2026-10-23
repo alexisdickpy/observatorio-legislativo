@@ -35,9 +35,6 @@ const resumenes = [
         <ul class="totales">
           {r.totales.map((t: any) => <li class={t.cantidad ? undefined : "texto-suave"}><span class={`cuadro ${t.clase}`}></span><span class="categoria">{t.categoria}</span> {t.texto}</li>)}
         </ul>
-        <p class="lectura">
-          <strong>Ausencias en votaciones nominales</strong> {r.ausencias.texto}
-        </p>
       </div>
     ))
   }

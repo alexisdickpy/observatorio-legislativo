@@ -69,9 +69,9 @@ const anclas = rutas.anclasMetodologia;
       <dd>El legislador figura en la votación sin emitir voto. Aparece solo en el Senado.</dd>
       <dt>AUSENTE</dt>
       <dd>
-        El legislador estuvo ausente en esa votación, es decir, no registró su voto. <strong>No necesariamente
-        equivale a faltar a la sesión</strong>, porque pudo estar presente en otro momento. Por eso el
-        sitio habla de «ausencias en votaciones nominales».
+        El legislador estuvo ausente en esa votación, es decir, no registró su voto. <strong>No indica si
+        estaba o no en la sesión</strong>, porque pudo estar presente en otro momento. Por eso el sitio
+        habla de «ausencias en votaciones nominales».
       </dd>
       <dt>MOCIÓN 1, MOCIÓN 2, MOCIÓN 3</dt>
       <dd>
@@ -113,6 +113,28 @@ const anclas = rutas.anclasMetodologia;
     <p>
       Las leyes de su autoría son las leyes sancionadas del período en cuyo proyecto figura entre los
       autores.
+    </p>
+
+    <h2 id={anclas.ausencias}>Ausencias en votaciones nominales</h2>
+    <p>
+      La API no publica listas de presencia en las sesiones. Lo único disponible es la categoría AUSENTE
+      de cada votación nominal, que indica que el legislador no registró su voto en ese momento, aunque
+      pudiera estar en la sala. Por eso el sitio habla siempre de «ausencias en votaciones nominales»,
+      cuenta votaciones y no días, y no presenta esta cifra como presencia en las sesiones.
+    </p>
+    <p>
+      La cifra de cada ficha cuenta las votaciones nominales del período en que el legislador figura
+      como AUSENTE, sobre todas las votaciones nominales en cuya lista oficial figura, de cualquier tipo
+      de expediente (proyectos de ley, resoluciones, declaraciones y otros). La lista de cada votación
+      incluye solo a quienes ocupaban el cargo ese día, así que el total son las votaciones de su cámara
+      mientras ejercía el cargo. Por eso este total es mayor que el del resumen de votos, que cuenta
+      solo las votaciones sobre proyectos de ley. Cada votación de la lista enlaza a su página oficial en
+      SILpy, con la fecha y la sesión.
+    </p>
+    <p>
+      El Senado publica muchas menos votaciones nominales que Diputados, así que las cifras de una
+      cámara y de la otra no se comparan directamente. La API tampoco informa si un legislador AUSENTE
+      tenía permiso o licencia, ni el motivo.
     </p>
 
     <h2 id={anclas.afiliacion}>Partido y bancada</h2>
@@ -169,7 +191,7 @@ const anclas = rutas.anclasMetodologia;
     <ul>
       <li>La API no informa cuándo se modificó un registro, así que los cambios se detectan comparando cada copia con la anterior.</li>
       <li>Partido y bancada son un único valor por período, sin fecha.</li>
-      <li>«AUSENTE» indica ausencia en la votación; no necesariamente equivale a faltar a la sesión.</li>
+      <li>«AUSENTE» indica ausencia en la votación y no informa si el legislador estaba en la sesión.</li>
       <li>
         Solo se publican las votaciones nominales, es decir, las que registran el voto de cada legislador.
         Las que se hacen sin ese registro, por ejemplo a mano alzada, no se publican en la API. El Senado registra
