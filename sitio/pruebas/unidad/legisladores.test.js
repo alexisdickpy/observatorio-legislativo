@@ -110,7 +110,6 @@ test("votos: el resumen coincide con un recuento hecho aparte en votos.csv", () 
       assert.equal(t.cantidad, propios.filter((v) => v.sentidoVotacion === t.categoria).length, `${slug} ${t.categoria}`);
       assert.equal(t.total, propios.length);
     }
-    assert.equal(b.votos.ausencias.cantidad, propios.filter((v) => v.sentidoVotacion === "AUSENTE").length);
     assert.equal(b.votos.historial.length, propios.length);
     const fechas = b.votos.historial.map((h) => h.fechaIso);
     assert.deepEqual(fechas, [...fechas].sort().reverse());
@@ -138,6 +137,48 @@ test("votos: todas las votaciones nominales sobre proyectos de ley y ninguna de 
   assert.equal(enFichas, esperados);
   const ids = new Set(legisladores().flatMap((p) => ficha(p).bloques.flatMap((b) => b.votos.historial.map((h) => h.id))));
   assert.deepEqual([...ids].sort(), [...deLey].sort());
+});
+
+test("ausencias en votaciones nominales: recuento desde votos.csv sobre todas las votaciones de su lista", () => {
+  const votaciones = new Map(fuente(PERIODO, "votaciones.json").map((v) => [v.idVotacion, v]));
+  const votos = fuente(PERIODO, "votos.csv");
+  const casos = [
+    "silvio-adalberto-ovelar-benitez",
+    "maria-rocio-abed-de-zacarias",
+    "kattya-mabel-gonzalez-villanueva",
+    ...legisladores()
+      .filter((p) => p.registros.some((r) => r.camara === "CAMARA DE DIPUTADOS"))
+      .slice(0, 3)
+      .map((p) => p.slug),
+  ];
+  for (const slug of casos) {
+    const b = de(slug);
+    const propios = votos.filter((v) => Number(v.idLegislador) === b.id);
+    const ausente = propios.filter((v) => v.sentidoVotacion === "AUSENTE");
+    assert.equal(b.ausencias.total, propios.length, slug);
+    assert.equal(b.ausencias.cantidad, ausente.length, slug);
+    assert.ok(b.ausencias.total >= b.votos.total, slug);
+    assert.deepEqual(b.ausencias.lista.map((x) => x.id).sort(), ausente.map((v) => Number(v.idVotacion)).sort(), slug);
+    const fechas = b.ausencias.lista.map((x) => x.fechaIso);
+    assert.deepEqual(fechas, [...fechas].sort().reverse());
+    for (const x of b.ausencias.lista) {
+      const v = votaciones.get(x.id);
+      assert.equal(x.url, v.appURL);
+      assert.equal(x.expediente, v.proyecto.expedienteCamara);
+      assert.equal(x.sesion.numero, v.tramitacion.idSesion.numeroSesion);
+      assert.equal(x.sesion.tipo, v.tramitacion.idSesion.tipoSesion);
+      assert.ok(x.fecha);
+    }
+  }
+  // Incluye votaciones sobre expedientes que no son proyectos de ley.
+  const b = de("silvio-adalberto-ovelar-benitez");
+  assert.ok(b.ausencias.total > b.votos.total);
+});
+
+test("ausencias: el senador vitalicio no figura en ninguna votación", () => {
+  const b = de("juan-carlos-wasmosy-monti");
+  assert.equal(b.ausencias.total, 0);
+  assert.equal(b.ausencias.lista.length, 0);
 });
 
 test("historial: un proyecto sin ley sancionada enlaza a su expediente oficial, con su estado", () => {
@@ -187,9 +228,12 @@ test("quien ya no ejerce: ficha completa y cantidades cerradas", () => {
   assert.equal(b.vigente, false);
   assert.equal(b.periodoVigente, true);
   assert.equal(b.votos.total, 55);
-  assert.equal(b.votos.ausencias.texto, "16 de 55 (29,1%)");
-  const publicado = b.votos.porEstado.find((e) => e.estado === "PUBLICADO");
-  assert.equal(publicado.ausencias.texto, "12 de 37 (32,4%)");
+  const ausente = (r) => r.totales.find((t) => t.categoria === "AUSENTE").texto;
+  assert.equal(ausente(b.votos), "16 de 55 (29,1%)");
+  assert.equal(ausente(b.votos.porEstado.find((e) => e.estado === "PUBLICADO")), "12 de 37 (32,4%)");
+  // Ausencias en votaciones nominales, sobre todas sus votaciones nominales y no solo las de proyectos de ley.
+  assert.equal(b.ausencias.texto, "23 de 96 (24%)");
+  assert.equal(b.ausencias.lista.length, 23);
   assert.equal(b.votos.porEstado.find((e) => e.estado === "ARCHIVADO").total, 18);
   assert.deepEqual(b.autoria.map((l) => l.numero), ["7256", "7239", "7190"]);
   assert.ok(todas().noEjercen.some((l) => l.slug === "kattya-mabel-gonzalez-villanueva"));

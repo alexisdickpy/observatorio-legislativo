@@ -104,6 +104,39 @@ test("una ficha por legislador, con su historial enlazado a las fichas de ley", 
   }
 });
 
+test("ausencias en votaciones nominales en cada ficha, con su denominador y su lista", () => {
+  const enlace = `href="${rutas.metodologia(rutas.anclasMetodologia.ausencias)}"`;
+  for (const persona of legisladores()) {
+    const html = leer(persona.url);
+    const bloques = ficha(persona).bloques;
+    assert.ok(html.includes("Ausencias en votaciones nominales"), persona.url);
+    for (const b of bloques.filter((x) => x.ausencias.total > 0)) {
+      assert.ok(html.includes(b.ausencias.texto), `Falta ${b.ausencias.texto} en ${persona.url}`);
+      assert.ok(html.includes(enlace), `Falta el enlace a la metodología en ${persona.url}`);
+      for (const x of b.ausencias.lista) assert.ok(html.includes(`href="${x.url}"`), `Falta ${x.url} en ${persona.url}`);
+    }
+    const filas = html.match(/<tr data-ausencia>/g)?.length ?? 0;
+    assert.equal(filas, bloques.reduce((n, b) => n + b.ausencias.lista.length, 0), `Filas de ausencias en ${persona.url}`);
+  }
+});
+
+test("ningún texto propio presenta AUSENTE como asistencia, faltas o inasistencias", () => {
+  // Se revisan los textos del sitio, sin los valores oficiales (títulos de proyectos y leyes, que
+  // pueden tratar de asistencia social y se muestran sin cambios). La firma dice «con asistencia de
+  // IA», el único uso permitido de la palabra.
+  const prohibidas = /inasistencia|asistencia(?! de IA)|\bfalta|\bfaltó|días ausente/i;
+  const urls = [rutas.inicio(), rutas.metodologia(), rutas.legisladores(), ...legisladores().map((p) => p.url)];
+  for (const url of urls) {
+    const visible = leer(url)
+      .replace(/<(script|style)[\s\S]*?<\/\1>/g, " ")
+      .replace(/<table[\s\S]*?<\/table>/g, " ")
+      .replace(/<span class="titulo[^>]*>[^<]*<\/span>/g, " ")
+      .replace(/<[^>]+>/g, " ");
+    const encontrado = visible.match(new RegExp(`.{0,30}(${prohibidas.source}).{0,20}`, "i"));
+    assert.ok(!encontrado, `En ${url}, «${encontrado?.[0]}»`);
+  }
+});
+
 test("cada enlace del historial lleva a una votación que existe en la ficha de la ley", () => {
   const anclas = new Map();
   for (const persona of legisladores()) {

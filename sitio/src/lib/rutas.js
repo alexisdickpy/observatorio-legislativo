@@ -30,6 +30,7 @@ export const metodologia = (seccion) => (seccion ? `/metodologia/#${seccion}` : 
 export const anclasMetodologia = {
   categorias: "categorias-de-voto",
   votosLegislador: "votos-de-cada-legislador",
+  ausencias: "ausencias-en-votaciones-nominales",
   afiliacion: "partido-y-bancada",
   observaciones: "observaciones-sobre-los-datos",
 };

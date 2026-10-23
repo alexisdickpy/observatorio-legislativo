@@ -11,8 +11,11 @@
 //   oficial figura el legislador. Quedan fuera resoluciones, declaraciones, pedidos de informe y
 //   demás tipos de expediente. Cada votación lleva el estado oficial del proyecto (estadoProyecto,
 //   el de la última actualización) y la etapa en que se votó. Categorías oficiales sin fusionar;
-//   cada cantidad lleva su denominador. "AUSENTE" se informa como "ausencias en votaciones
-//   nominales", no como ausencias a la sesión.
+//   cada cantidad lleva su denominador.
+// - Ausencias en votaciones nominales (alcance acordado en #29): votaciones en que figura como
+//   "AUSENTE" sobre todas las votaciones nominales del período en cuya lista oficial figura, de
+//   cualquier tipo de expediente. La lista de cada votación incluye solo a quienes ocupaban el cargo
+//   ese día. No es asistencia a la sesión, y no se agrupa por día.
 // - Autoría: leyes sancionadas del período de cuyo proyecto figura como autor (autores.json,
 //   registros con _propio.delPeriodo).
 // - Partido y bancada: los que la API registra para el período, no por fecha.
@@ -46,7 +49,7 @@ const porCamaraYApellido = (a, b) =>
 /** Si una votación es sobre un proyecto de ley. Las enlazadas a una ley sancionada siempre lo son. */
 export const esDeProyectoDeLey = (v) => v.proyecto?.tipoProyecto === PROYECTO_DE_LEY || v._propio?.idLeyes?.length > 0;
 
-// Votos de cada legislador en las votaciones sobre proyectos de ley, por período.
+// Votos de cada legislador en todas las votaciones nominales, por período.
 const votosPorPeriodo = new Map();
 function votosDelPeriodo(periodo) {
   if (votosPorPeriodo.has(periodo)) return votosPorPeriodo.get(periodo);
@@ -54,7 +57,7 @@ function votosDelPeriodo(periodo) {
   const porLegislador = new Map();
   for (const [idVotacion, votos] of i.votos) {
     const v = i.votaciones.get(idVotacion);
-    if (!v || !esDeProyectoDeLey(v)) continue;
+    if (!v) continue;
     for (const voto of votos) {
       const id = Number(voto.idLegislador);
       if (!porLegislador.has(id)) porLegislador.set(id, []);
@@ -123,8 +126,30 @@ function resumenDeVotos(lista) {
     total: lista.length,
     totales: categorias.map((categoria, n) => ({ categoria, clase: claseDeCategoria(categoria), ...celdas[n] })),
     barra: barra(categorias, celdas),
-    ausencias: celdas[categorias.indexOf(AUSENTE)],
   };
+}
+
+/**
+ * Ausencias en votaciones nominales: las votaciones en que figura como AUSENTE, con su sesión, sobre
+ * todas las de su lista (cualquier tipo de expediente). Cada una enlaza a la votación oficial en SILpy.
+ */
+function ausenciasDe(todas) {
+  const lista = todas
+    .filter((x) => x.sentido === AUSENTE)
+    .map(({ votacion: v }) => {
+      const t = v.tramitacion ?? {};
+      const s = t.idSesion ?? {};
+      return {
+        id: v.idVotacion,
+        fecha: valor(t.fechaTramite),
+        fechaIso: t._propio?.fechaTramite ?? null,
+        sesion: { numero: valor(s.numeroSesion ?? t.numeroSesion), tipo: valor(s.tipoSesion) },
+        expediente: valor(v.proyecto?.expedienteCamara),
+        url: valor(v.appURL),
+      };
+    })
+    .sort(masRecientePrimero);
+  return { ...proporcion(lista.length, todas.length), lista };
 }
 
 function historialDeVotos(lista, i, estados) {
@@ -289,13 +314,13 @@ function estadosDelPeriodo(periodo) {
 }
 
 /**
- * Votos de un legislador en un período: resumen de todas sus votaciones, un resumen por estado
- * oficial del proyecto (para el filtro de la ficha) y el historial.
+ * Votos de un legislador en un período sobre proyectos de ley: resumen de todas sus votaciones, un
+ * resumen por estado oficial del proyecto (para el filtro de la ficha) y el historial.
  */
-function votosDe(idLegislador, periodo) {
+function votosDe(todas, periodo) {
   const i = indice(periodo);
   const estados = estadosDelPeriodo(periodo);
-  const lista = votosDelPeriodo(periodo).get(idLegislador) ?? [];
+  const lista = todas.filter((x) => esDeProyectoDeLey(x.votacion));
   const historial = historialDeVotos(lista, i, estados);
   const porEstado = [...estados.entries()]
     .map(([estado, filtro]) => {
@@ -308,14 +333,19 @@ function votosDe(idLegislador, periodo) {
   return { ...resumenDeVotos(lista), porEstado, historial };
 }
 
-/** Ficha de una persona: por período, sus datos, el resumen y el historial de sus votos y sus leyes. */
+/**
+ * Ficha de una persona: por período, sus datos, el resumen y el historial de sus votos, sus ausencias
+ * en votaciones nominales y sus leyes.
+ */
 export function ficha(persona) {
   const bloques = persona.registros.map((r) => {
     const i = indice(r.periodo);
+    const todas = votosDelPeriodo(r.periodo).get(r.id) ?? [];
     return {
       ...r,
       periodoVigente: Boolean(periodos().find((p) => p.id === r.periodo)?.vigente),
-      votos: votosDe(r.id, r.periodo),
+      votos: votosDe(todas, r.periodo),
+      ausencias: ausenciasDe(todas),
       autoria: leyesDeSuAutoria(r.id, r.periodo, i),
     };
   });

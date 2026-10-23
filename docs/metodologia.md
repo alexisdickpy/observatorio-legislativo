@@ -57,7 +57,7 @@ La [auditoría](auditoria-datos.md) encontró 13 votaciones en las que la suma d
 
 ## Votos y leyes de cada legislador
 
-La ficha de cada legislador resume sus votos en las votaciones nominales del período sobre proyectos de ley (`proyecto.tipoProyecto` = `PROYECTO DE LEY`, o enlazadas a una ley sancionada en `_propio.idLeyes`) en cuya lista oficial figura (`votos.csv`), hayan llegado a ser ley o no. Cada categoría oficial se cuenta por separado, sin fusionar, y siempre con su denominador, por ejemplo "54 de 130 (41,5%)". La cantidad de AUSENTE se presenta como **ausencias en votaciones nominales**, no como ausencias a la sesión.
+La ficha de cada legislador resume sus votos en las votaciones nominales del período sobre proyectos de ley (`proyecto.tipoProyecto` = `PROYECTO DE LEY`, o enlazadas a una ley sancionada en `_propio.idLeyes`) en cuya lista oficial figura (`votos.csv`), hayan llegado a ser ley o no. Cada categoría oficial se cuenta por separado, sin fusionar, y siempre con su denominador, por ejemplo "54 de 130 (41,5%)". La cantidad de AUSENTE de estas votaciones se muestra como una categoría más. La cifra de ausencias se calcula aparte (ver la sección siguiente).
 
 No se incluyen las votaciones sobre otros tipos de expediente (resoluciones, declaraciones, pedidos de informe, acuerdos, designaciones y demás). Los senadores vitalicios no figuran en las listas de votación, así que su ficha no tiene votos.
 
@@ -68,6 +68,16 @@ El sentido de un voto depende de lo que se vota en cada trámite (`tramitacion.d
 Las leyes de su autoría son las leyes sancionadas del período en cuyo proyecto figura entre los autores (`autores.json`, registros con `_propio.delPeriodo`).
 
 Tienen ficha todos los legisladores del período, también los que ya no ejercen (`_propio.vigente = false`: no figuran en el listado de legisladores en ejercicio de la API). Su ficha lo indica.
+
+## Ausencias en votaciones nominales
+
+La API no publica listas de presencia en las sesiones ([auditoría](auditoria-datos.md), sección 7). Lo único disponible es la categoría `AUSENTE` de cada votación nominal, que indica que el legislador no registró su voto en ese momento, aunque pudiera estar en la sesión. Por eso la métrica se llama siempre **ausencias en votaciones nominales**, cuenta votaciones y no días, y nunca se presenta como asistencia, faltas o inasistencias.
+
+Decisión de alcance (#29). La cifra de cada ficha es la cantidad de votaciones nominales del período en que el legislador figura como `AUSENTE` (`votos.csv`, `sentidoVotacion`), sobre **todas** las votaciones nominales en cuya lista oficial figura, de cualquier tipo de expediente (proyectos de ley, resoluciones, declaraciones, elección de autoridades y demás). Se eligió este total, y no solo el de proyectos de ley, porque lo que se mide es si estaba registrado para votar, sin importar qué se votaba. La lista de cada votación incluye solo a quienes ocupaban el cargo ese día (80 en Diputados y 45 en el Senado, salvo las votaciones con menos votos señaladas en las observaciones), así que el total equivale a las votaciones de su cámara mientras ejercía el cargo. Este total es mayor que el del resumen de votos, que cuenta solo proyectos de ley. Ejemplo del período 2023-2028, un diputado que ejerció todo el período figura en 865 votaciones nominales, 793 de ellas sobre proyectos de ley.
+
+La ficha muestra la cantidad con su denominador y su porcentaje, por ejemplo "23 de 96 (24%)", y la lista de las votaciones en que figura como `AUSENTE`, de la más reciente a la más antigua, con la fecha (`tramitacion.fechaTramite`), el número y el tipo de sesión (`tramitacion.idSesion.numeroSesion` y `tipoSesion`) y el expediente (`proyecto.expedienteCamara`), con enlace a la votación oficial en SILpy (`appURL`). Los senadores vitalicios no figuran en las listas de votación, así que no tienen esta cifra.
+
+El Senado publica muchas menos votaciones nominales que Diputados, así que las cifras de las dos cámaras no se comparan directamente. La API no informa si un legislador `AUSENTE` tenía permiso o licencia. La vista comparativa de este indicador prevista en #12 debe usar este mismo cálculo.
 
 ## Números de ley
 

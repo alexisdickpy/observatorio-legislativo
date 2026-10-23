@@ -319,6 +319,7 @@ Esta recomendación es preliminar. La decisión se toma y se documenta en #2.
 3. En las votaciones donde los totales no coinciden con los votos individuales, ¿cuál es el dato correcto?
 4. ¿Hay un retraso habitual entre la sanción de una ley y su carga en la API?
 5. ¿Se corregirá el endpoint `votacion/parlamentario/{id}`?
+6. ¿Se publican, o se publicarán, las listas de asistencia a las sesiones de cada cámara? Hoy solo está la categoría AUSENTE de las votaciones nominales.
 
 ## Cómo reproducir
 
