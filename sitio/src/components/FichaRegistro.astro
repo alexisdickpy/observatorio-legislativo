@@ -1,12 +1,18 @@
 ---
-// Un registro oficial de ley: valores tal como los publica el Congreso.
+// Un registro oficial de ley: valores tal como los publica el Congreso, con su iniciativa,
+// autores y votaciones (preparados por lib/ficha.js).
+import Autores from "./Autores.astro";
+import Votaciones from "./Votaciones.astro";
+
 interface Props {
   registro: any;
+  detalle: any;
   encabezado: string | null;
 }
-const { registro: r, encabezado } = Astro.props;
+const { registro: r, detalle, encabezado } = Astro.props;
 const sinDato = "Sin dato";
-const Subtitulo = encabezado ? "h3" : "h2";
+const nivel = encabezado ? 3 : 2;
+const Subtitulo = `h${nivel}`;
 const datos = [
   ["Fecha de sanción", r.fechaSancion],
   ["Fecha de promulgación", r.fechaPromulgacion],
@@ -32,6 +38,8 @@ const datos = [
       ))
     }
   </dl>
+  {detalle.notas.map((n: string) => <p class="nota chico lectura">Nota del Observatorio: {n}</p>)}
+  <Autores detalle={detalle} nivel={nivel} />
   <Subtitulo>Enlaces oficiales</Subtitulo>
   <ul>
     {r.urlLey && <li><a href={r.urlLey}>Ficha de la ley en SILpy</a></li>}
@@ -44,6 +52,7 @@ const datos = [
       ))
     }
   </ul>
+  <Votaciones votaciones={detalle.votaciones} periodo={detalle.periodo} nivel={nivel} />
 </section>
 
 <style>
@@ -65,5 +74,9 @@ const datos = [
   }
   dd {
     margin: 0;
+  }
+  .nota {
+    padding: var(--espacio-2) var(--espacio-3);
+    background: var(--color-superficie);
   }
 </style>

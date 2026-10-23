@@ -1,0 +1,64 @@
+---
+// Desglose de una votación por grupo (partido o bancada). Recibe los valores ya calculados.
+// Estilos globales con prefijo de clase: los estilos con alcance agregan un atributo a cada celda.
+interface Props {
+  titulo: string;
+  grupo: string;
+  categorias: string[];
+  filas: any[];
+}
+const { titulo, grupo, categorias, filas } = Astro.props;
+---
+
+<div class="desglose-contenedor">
+  <table class="desglose">
+    <caption>{titulo}</caption>
+    <thead>
+      <tr>
+        <th scope="col">{grupo}</th>
+        {categorias.map((c) => <th scope="col">{c}</th>)}
+      </tr>
+    </thead>
+    <tbody>
+      {/* Filas en una sola línea: con compressHTML desactivado, la sangría se copia en cada celda. */}
+      {filas.map((f) => <tr><th scope="row" class={f.nombre ? undefined : "texto-suave"}>{f.nombre ?? "Sin dato"}</th>{f.celdas.map((c: any) => <td class={c.cantidad ? undefined : "texto-suave"}>{c.fraccion} <span class="porcentaje">{c.porcentajeTexto}</span></td>)}</tr>)}
+    </tbody>
+  </table>
+</div>
+
+<style is:global>
+  .desglose-contenedor {
+    overflow-x: auto;
+    margin-bottom: var(--espacio-4);
+  }
+  .desglose {
+    border-collapse: collapse;
+    font-size: var(--tamano-chico);
+    min-width: 100%;
+  }
+  .desglose caption {
+    text-align: left;
+    font-weight: var(--peso-fuerte);
+    padding-bottom: var(--espacio-2);
+  }
+  .desglose th,
+  .desglose td {
+    text-align: left;
+    vertical-align: top;
+    padding: var(--espacio-2);
+    border-bottom: var(--borde-ancho) solid var(--color-borde);
+  }
+  .desglose thead th {
+    border-bottom-width: var(--foco-ancho);
+  }
+  .desglose tbody th {
+    font-weight: var(--peso-normal);
+    min-width: var(--ancho-campo-filtro);
+  }
+  .desglose td {
+    white-space: nowrap;
+  }
+  .desglose .porcentaje {
+    display: block;
+  }
+</style>
