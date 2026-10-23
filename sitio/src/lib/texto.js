@@ -14,3 +14,11 @@ export function normalizar(texto) {
 export function slug(texto) {
   return normalizar(texto).replace(/ /g, "-");
 }
+
+/** Recorta un texto largo en el último espacio antes de `maximo` caracteres y agrega "…". */
+export function recortar(texto, maximo) {
+  const t = String(texto ?? "").replace(/\s+/g, " ").trim();
+  if (t.length <= maximo) return t;
+  const corte = t.lastIndexOf(" ", maximo);
+  return `${t.slice(0, corte > 0 ? corte : maximo)}…`;
+}

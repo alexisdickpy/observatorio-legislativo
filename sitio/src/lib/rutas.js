@@ -16,3 +16,6 @@ export const parametrosCatalogo = { texto: "q", anio: "anio", camara: "camara", 
 
 /** Parámetro de la dirección de la búsqueda (?q=…). */
 export const parametroBusqueda = "q";
+
+/** Votación en SILpy, para las que no están en datos/ (otra legislatura o enlace no resuelto). */
+export const votacionSilpy = (idVotacion) => `https://silpy.congreso.gov.py/votacion/${idVotacion}`;

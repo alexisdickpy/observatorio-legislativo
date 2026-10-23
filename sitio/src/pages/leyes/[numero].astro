@@ -1,8 +1,9 @@
 ---
-// Ficha básica de una ley. #7 agrega autores, iniciativa y votaciones.
+// Ficha de una ley: datos oficiales, iniciativa, autores y votaciones nominales de cada registro.
 import Base from "../../layouts/Base.astro";
 import FichaRegistro from "../../components/FichaRegistro.astro";
 import { leyes } from "../../lib/catalogo.js";
+import { detalleDeRegistro } from "../../lib/ficha.js";
 import * as rutas from "../../lib/rutas.js";
 
 export function getStaticPaths() {
@@ -33,6 +34,7 @@ const resumen = ley.titulos[0] ?? "";
       ley.registros.map((registro: any, i: number) => (
         <FichaRegistro
           registro={registro}
+          detalle={detalleDeRegistro(registro)}
           encabezado={ley.registros.length > 1 ? `Registro ${i + 1} de ${ley.registros.length}` : null}
         />
       ))

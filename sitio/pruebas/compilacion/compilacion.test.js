@@ -1,11 +1,12 @@
 // Comprueba el sitio compilado (ejecutar después de npm run build).
 import assert from "node:assert/strict";
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync, statSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { test } from "node:test";
 
 import { leyes } from "../../src/lib/catalogo.js";
 import { archivosDeDatos, estado } from "../../src/lib/datos.js";
+import { detalleDeRegistro } from "../../src/lib/ficha.js";
 import * as rutas from "../../src/lib/rutas.js";
 
 const dist = resolve(process.cwd(), "dist");
@@ -14,6 +15,31 @@ const leer = (url) => readFileSync(pagina(url), "utf-8");
 
 test("una ficha por número de ley", () => {
   for (const ley of leyes()) assert.ok(existsSync(pagina(ley.url)), `Falta la ficha ${ley.url}`);
+});
+
+test("cada ficha muestra autores, enlaces oficiales y todas sus votaciones", () => {
+  for (const ley of leyes()) {
+    const html = leer(ley.url);
+    assert.ok(html.includes("Iniciativa y autores"), `Faltan los autores en ${ley.url}`);
+    for (const registro of ley.registros) {
+      if (registro.urlLey) assert.ok(html.includes(`href="${registro.urlLey}"`), `Falta el enlace a la ley en ${ley.url}`);
+      if (registro.urlExpediente) assert.ok(html.includes(`href="${registro.urlExpediente}"`));
+      const { votaciones } = detalleDeRegistro(registro);
+      if (votaciones.cantidad === 0) assert.ok(html.includes("no tiene votaciones nominales registradas"));
+      else assert.ok(html.includes("no necesariamente eran los vigentes"), `Falta el aviso de afiliación en ${ley.url}`);
+      for (const v of votaciones.indice) {
+        assert.ok(html.includes(`id="${v.ancla}"`) && html.includes(`href="#${v.ancla}"`), `Falta ${v.ancla} en ${ley.url}`);
+      }
+      for (const o of votaciones.otrosPeriodos) assert.ok(html.includes(`href="${o.url}"`));
+    }
+  }
+});
+
+test("tamaño razonable de las fichas", () => {
+  for (const ley of leyes()) {
+    const bytes = statSync(pagina(ley.url)).size;
+    assert.ok(bytes < 1_000_000, `${ley.url} pesa ${bytes} bytes`);
+  }
 });
 
 test("páginas fijas", () => {

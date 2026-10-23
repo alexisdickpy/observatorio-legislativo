@@ -26,6 +26,10 @@ Cada una se aplica en una capa aparte que no borra el original.
 
 No se aplican, por ahora, la unificación de nombres de partidos y bancadas ni la clasificación de la etapa de cada votación. Se harán en sus propios Issues, también en `datos/propios/`.
 
+## Nombres conocidos de partidos
+
+Algunos partidos son más conocidos por otro nombre que el oficial. En ese caso, el sitio muestra el nombre oficial tal como lo publica la API y, entre paréntesis, el nombre conocido, con un aviso de que es un agregado del sitio. Hoy hay uno: «Movimiento Conciencia Democrática Nacional (Yo Creo)», porque las bancadas oficiales de sus legisladores llevan ese nombre. La lista y el fundamento de cada caso están en [`datos/propios/partidos.json`](../datos/propios/partidos.json). No se unifican partidos ni se cambia ningún valor oficial.
+
 ## Notas sobre la fuente
 
 El importador registra en `datos/propios/notas.json` los problemas que detecta. Cada nota indica su tipo, el registro afectado y, si corresponde, el valor original.

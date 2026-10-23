@@ -1,0 +1,107 @@
+---
+// Votaciones nominales de un registro de ley: índice por fecha y una sección por cámara.
+import Votacion from "./Votacion.astro";
+
+interface Props {
+  votaciones: any;
+  periodo: string;
+  nivel: number;
+}
+const { votaciones: vs, periodo, nivel } = Astro.props;
+const Titulo = `h${nivel}`;
+const Camara = `h${nivel + 1}`;
+const plural = (n: number, uno: string, varios: string) => `${n} ${n === 1 ? uno : varios}`;
+---
+
+<section class="votaciones" data-pagefind-ignore="all">
+  <Titulo>Votaciones nominales ({vs.cantidad})</Titulo>
+  {
+    vs.cantidad === 0 ? (
+      <p class="aviso lectura">
+        Esta ley no tiene votaciones nominales registradas en el período {periodo}. La API solo
+        publica las votaciones nominales, es decir, las que registran el voto de cada legislador.
+      </p>
+    ) : (
+      <Fragment>
+        <p class="aviso chico lectura">
+          Partido y bancada son los que la API registra para cada legislador en el período {periodo};
+          no necesariamente eran los vigentes en la fecha de cada votación.
+        </p>
+        <p class="chico texto-suave">De la más reciente a la más antigua:</p>
+        <ol class="indice chico">
+          {vs.indice.map((v: any) => (
+            <li>
+              <a href={`#${v.ancla}`}>
+                {v.fecha} · {v.camara} · {v.etapa} · {v.resultado}
+              </a>
+              {v.descripcionCorta && <span class="texto-suave"> — {v.descripcionCorta}</span>}
+            </li>
+          ))}
+        </ol>
+        {vs.camaras.map((c: any) => (
+          <section>
+            <Camara class="camara">
+              {c.camara ?? "Sin dato"} ({plural(c.votaciones.length, "votación", "votaciones")})
+            </Camara>
+            {c.votaciones.map((v: any) => (
+              <Votacion votacion={v} nivel={nivel + 2} />
+            ))}
+          </section>
+        ))}
+      </Fragment>
+    )
+  }
+  {
+    vs.otrosPeriodos.length > 0 && (
+      <div class="aviso lectura">
+        <p>
+          Esta ley tuvo{vs.cantidad > 0 && " además"} {plural(vs.otrosPeriodos.length, "votación nominal", "votaciones nominales")}{" "}
+          en otra legislatura, que este sitio todavía no incluye. Se pueden ver en SILpy:
+        </p>
+        <ul>
+          {vs.otrosPeriodos.map((o: any) => (
+            <li>
+              <a href={o.url}>Votación {o.id}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
+  {
+    vs.noResueltas.length > 0 && (
+      <div class="aviso lectura">
+        <p>
+          El proyecto tiene además {plural(vs.noResueltas.length, "votación", "votaciones")} cuyo trámite
+          no figura entre las tramitaciones publicadas, por lo que no se pudo confirmar que correspondan
+          a esta ley. Se pueden ver en SILpy:
+        </p>
+        <ul>
+          {vs.noResueltas.map((o: any) => (
+            <li>
+              <a href={o.url}>Votación {o.id}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
+</section>
+
+<style>
+  .aviso {
+    padding: var(--espacio-3) var(--espacio-4);
+    background: var(--color-superficie);
+    border-left: var(--foco-ancho) solid var(--color-acento);
+  }
+  .aviso p:last-child,
+  .aviso ul {
+    margin-bottom: 0;
+  }
+  .indice {
+    padding-left: var(--espacio-5);
+  }
+  .camara {
+    margin-top: var(--espacio-6);
+  }
+</style>

@@ -1,0 +1,153 @@
+---
+// Una votación nominal: textos oficiales, totales, desglose por partido y bancada y voto de
+// cada legislador. Recibe los valores ya calculados por lib/ficha.js.
+// Estilos globales con prefijo de clase: los estilos con alcance agregan un atributo a cada celda.
+import BarraVotos from "./BarraVotos.astro";
+import GraficoPartidos from "./GraficoPartidos.astro";
+import TablaDesglose from "./TablaDesglose.astro";
+
+interface Props {
+  votacion: any;
+  nivel: number;
+}
+const { votacion: v, nivel } = Astro.props;
+const Titulo = `h${nivel}`;
+const Subtitulo = `h${Math.min(nivel + 1, 6)}`;
+const sinDato = "Sin dato";
+---
+
+<section class="votacion" id={v.ancla}>
+  <Titulo>{v.fecha ?? sinDato} · {v.etapa ?? sinDato}</Titulo>
+  <p class="chico">
+    {v.subetapa && <span>{v.subetapa} · </span>}
+    Resultado: <strong>{v.resultado ?? sinDato}</strong>
+    {v.sesion.numero && <span> · Sesión {v.sesion.tipo} n.º {v.sesion.numero}</span>}
+  </p>
+  {v.descripcion && <p class="lectura">{v.descripcion}</p>}
+  {v.observacion && <p class="lectura chico">Observación: {v.observacion}</p>}
+
+  <p class="chico texto-suave">Totales sobre {v.registrados} legisladores registrados en la votación:</p>
+  <BarraVotos barra={v.barraTotal} />
+  <ul class="totales">
+    {
+      v.totales.map((t: any) => (
+        <li class={t.cantidad ? undefined : "texto-suave"}>
+          <span class="categoria">{t.categoria}{t.recuentoPropio && "*"}</span> {t.texto}
+        </li>
+      ))
+    }
+  </ul>
+  {
+    v.hayRecuentoPropio && (
+      <p class="chico texto-suave lectura">
+        * El Congreso no publica un total para esta categoría: es un recuento propio de los votos
+        individuales.
+      </p>
+    )
+  }
+  {
+    !v.totalesCoinciden && (
+      <p class="nota chico lectura">
+        Nota del Observatorio: los totales publicados no coinciden con el recuento de los votos
+        individuales ({v.recalculados.map((r: any) => `${r.categoria}: ${r.cantidad}`).join(" · ")}).
+      </p>
+    )
+  }
+  {v.notas.map((n: string) => <p class="nota chico lectura">Nota del Observatorio: {n}</p>)}
+
+  <p class="chico texto-suave lectura">
+    En cada partido y bancada, el total ("de …") son sus legisladores que figuran en la lista oficial
+    de esta votación, incluidos los suplentes en ejercicio y los ausentes.
+  </p>
+  <Subtitulo class="subtitulo">Por partido</Subtitulo>
+  <GraficoPartidos votacion={v} />
+  <TablaDesglose titulo="Por partido, en números" grupo="Partido" categorias={v.categorias} filas={v.porPartido} />
+
+  <details>
+    <summary>Ver por bancada</summary>
+    <TablaDesglose titulo="Por bancada" grupo="Bancada" categorias={v.categorias} filas={v.porBancada} />
+  </details>
+
+  <details>
+    <summary>Ver el voto de cada legislador ({v.votos.length})</summary>
+    <div class="desplazable">
+      <table class="votos">
+        <caption class="solo-lectores">Voto de cada legislador</caption>
+        <thead>
+          <tr>
+            <th scope="col">Voto</th>
+            <th scope="col">Legislador</th>
+            <th scope="col">Partido</th>
+            <th scope="col">Bancada</th>
+          </tr>
+        </thead>
+        <tbody>
+          {/* Filas en una sola línea: con compressHTML desactivado, la sangría se copia en cada celda. */}
+          {v.votos.map((x: any) => <tr><td>{x.sentido}</td><th scope="row">{x.nombre ?? sinDato}{x.observacion && <span class="texto-suave"> ({x.observacion})</span>}</th><td>{x.partido ?? sinDato}{x.partidoConocido && ` (${x.partidoConocido})`}</td><td>{x.bancada ?? sinDato}</td></tr>)}
+        </tbody>
+      </table>
+    </div>
+  </details>
+
+  <p class="chico"><a href={v.url}>Votación en SILpy</a>{v.sesion.url && <Fragment> · <a href={v.sesion.url}>Sesión en SILpy</a></Fragment>}</p>
+</section>
+
+<style is:global>
+  .votacion {
+    border-top: var(--borde-ancho) solid var(--color-borde);
+    padding-top: var(--espacio-2);
+  }
+  .votacion .subtitulo {
+    font-size: var(--tamano-base);
+    margin-top: var(--espacio-4);
+  }
+  .votacion .totales {
+    margin-top: var(--espacio-2);
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espacio-2) var(--espacio-4);
+  }
+  .votacion .categoria {
+    font-weight: var(--peso-fuerte);
+  }
+  .votacion .nota {
+    padding: var(--espacio-2) var(--espacio-3);
+    background: var(--color-superficie);
+  }
+  .votacion details {
+    margin-bottom: var(--espacio-4);
+  }
+  .votacion summary {
+    cursor: pointer;
+    color: var(--color-enlace);
+    padding: var(--espacio-2) 0;
+  }
+  .votacion .desplazable {
+    overflow-x: auto;
+  }
+  .votacion .votos {
+    border-collapse: collapse;
+    font-size: var(--tamano-chico);
+    min-width: 100%;
+  }
+  .votacion .votos th,
+  .votacion .votos td {
+    text-align: left;
+    vertical-align: top;
+    padding: var(--espacio-1) var(--espacio-2);
+    border-bottom: var(--borde-ancho) solid var(--color-borde);
+  }
+  .votacion .votos thead th {
+    border-bottom-width: var(--foco-ancho);
+  }
+  .votacion .votos tbody th,
+  .votacion .votos td:last-child {
+    font-weight: var(--peso-normal);
+    min-width: var(--ancho-campo-filtro);
+  }
+  .votacion .votos td:first-child {
+    white-space: nowrap;
+  }
+</style>

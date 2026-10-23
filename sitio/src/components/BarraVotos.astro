@@ -1,0 +1,34 @@
+---
+// Barra apilada de una votación o de un grupo: un segmento de color por categoría con votos.
+// Recibe los segmentos ya calculados por lib/ficha.js. Los colores están en tokens.css.
+// Estilos globales con prefijo de clase: los estilos con alcance agregan un atributo a cada segmento.
+interface Props {
+  barra: { segmentos: any[]; etiqueta: string };
+}
+const { barra } = Astro.props;
+---
+
+<div class="barra-votos" role="img" aria-label={barra.etiqueta}>{barra.segmentos.map((s) => <span class={`segmento ${s.clase}`} style={`width:${s.ancho}%`} title={s.texto}></span>)}</div>
+
+<style is:global>
+  .barra-votos {
+    display: flex;
+    height: var(--alto-barra-votos);
+    border-radius: var(--radio);
+    overflow: hidden;
+    background: var(--color-superficie);
+  }
+  .barra-votos .segmento {
+    display: block;
+    height: 100%;
+  }
+  .voto-si { background: var(--color-voto-si); }
+  .voto-no { background: var(--color-voto-no); }
+  .voto-abstencion { background: var(--color-voto-abstencion); }
+  .voto-no-vota { background: var(--color-voto-no-vota); }
+  .voto-ausente { background: var(--color-voto-ausente); }
+  .voto-mocion-1 { background: var(--color-voto-mocion-1); }
+  .voto-mocion-2 { background: var(--color-voto-mocion-2); }
+  .voto-mocion-3 { background: var(--color-voto-mocion-3); }
+  .voto-otro { background: var(--color-voto-otro); }
+</style>
