@@ -82,6 +82,7 @@ test("datos del sitio y del conjunto de datos", () => {
   const d = datosAbiertos("Descripción de prueba suficientemente larga para el conjunto de datos.");
   assert.equal(d["@type"], "Dataset");
   assert.equal(d.license, "https://creativecommons.org/licenses/by/4.0/");
+  assert.equal(d.spatialCoverage["@type"], "Place"); // Google no acepta Country aquí
   assert.ok(d.distribution.length > 0);
   for (const a of d.distribution) assert.ok(a.contentUrl.startsWith(rutas.sitio));
 });

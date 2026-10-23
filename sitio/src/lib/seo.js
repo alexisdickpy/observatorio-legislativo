@@ -119,7 +119,8 @@ export function datosAbiertos(descripcion) {
     isBasedOn: e.fuente.url,
     citation: e.fuente.cita,
     dateModified: e.ultimaModificacion,
-    spatialCoverage: paraguay,
+    // Google solo acepta Place (no Country) en la cobertura de un Dataset.
+    spatialCoverage: { "@type": "Place", name: "Paraguay" },
     ...(inicioPeriodos && { temporalCoverage: `${inicioPeriodos}/..` }),
     keywords: ["leyes", "Congreso Nacional", "Paraguay", "votaciones nominales", "legisladores"],
     distribution: archivos.map((a) => ({
