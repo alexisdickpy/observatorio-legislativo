@@ -41,6 +41,7 @@ Los nombres de los menús pueden variar un poco si Cloudflare cambia el panel.
 3. Pulsar **Create application** (o **Create**). Si la pantalla ofrece crear un *Worker*, buscar la pestaña **Pages** o el enlace para Pages.
 4. Elegir **Connect to Git** (o **Import an existing Git repository**) y luego **GitHub**.
 5. Si es la primera vez, GitHub pide instalar la aplicación de Cloudflare. Conviene elegir **Only select repositories** y marcar solo `observatorio-legislativo-py`. Pulsar **Install & Authorize**.
+   - Si la aplicación ya estaba instalada para otros repositorios, este no aparece en la lista. Pulsar el enlace **Cloudflare Pages** de la frase «configure repository access…», agregar `observatorio-legislativo-py` en **Repository access** → **Select repositories** sin quitar los demás, pulsar **Save** y recargar la página de Cloudflare.
 6. De vuelta en Cloudflare, elegir el repositorio `observatorio-legislativo-py` y pulsar **Begin setup**.
 7. Completar la pantalla **Set up builds and deployments** con la tabla de arriba.
    - **Project name**, `observatorio-legislativo-py`.
