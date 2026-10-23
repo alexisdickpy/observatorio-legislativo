@@ -1,6 +1,7 @@
 ---
 // Votaciones nominales de un registro de ley: índice por fecha y una sección por cámara.
 import Votacion from "./Votacion.astro";
+import * as rutas from "../lib/rutas.js";
 
 interface Props {
   votaciones: any;
@@ -26,6 +27,8 @@ const plural = (n: number, uno: string, varios: string) => `${n} ${n === 1 ? uno
         <p class="aviso chico lectura">
           Partido y bancada son los que la API registra para cada legislador en el período {periodo};
           no necesariamente eran los vigentes en la fecha de cada votación.
+          <a href={rutas.metodologia(rutas.anclasMetodologia.afiliacion)}>Más información</a> ·
+          <a href={rutas.metodologia(rutas.anclasMetodologia.categorias)}>Qué significa cada categoría de voto</a>
         </p>
         <p class="chico texto-suave">De la más reciente a la más antigua:</p>
         <ol class="indice chico">

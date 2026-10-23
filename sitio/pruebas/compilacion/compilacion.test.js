@@ -1,6 +1,6 @@
 // Comprueba el sitio compilado (ejecutar después de npm run build).
 import assert from "node:assert/strict";
-import { existsSync, readFileSync, statSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { test } from "node:test";
 
@@ -8,11 +8,14 @@ import { leyes } from "../../src/lib/catalogo.js";
 import { archivosDeDatos, estado } from "../../src/lib/datos.js";
 import { detalleDeRegistro } from "../../src/lib/ficha.js";
 import { ficha, legisladores, listado } from "../../src/lib/legisladores.js";
+import { problemasConocidos } from "../../src/lib/metodologia.js";
 import * as rutas from "../../src/lib/rutas.js";
 
 const dist = resolve(process.cwd(), "dist");
 const pagina = (url) => join(dist, decodeURIComponent(url), "index.html");
 const leer = (url) => readFileSync(pagina(url), "utf-8");
+/** HTML con los espacios y saltos de línea seguidos reducidos a uno (compressHTML está desactivado). */
+const texto = (url) => leer(url).replace(/\s+/g, " ");
 
 test("una ficha por número de ley", () => {
   for (const ley of leyes()) assert.ok(existsSync(pagina(ley.url)), `Falta la ficha ${ley.url}`);
@@ -44,7 +47,7 @@ test("tamaño razonable de las fichas", () => {
 });
 
 test("páginas fijas", () => {
-  for (const url of [rutas.inicio(), rutas.leyes(), rutas.legisladores(), rutas.buscar(), rutas.datosAbiertos()]) {
+  for (const url of [rutas.inicio(), rutas.leyes(), rutas.legisladores(), rutas.buscar(), rutas.datosAbiertos(), rutas.metodologia(), rutas.privacidad()]) {
     assert.ok(existsSync(pagina(url)), `Falta ${url}`);
   }
 });
@@ -121,5 +124,72 @@ test("fotos: la original en /datos/fotos/ y la reducida en /fotos/", () => {
       assert.ok(existsSync(original), `Falta ${original}`);
       assert.ok(statSync(join(dist, b.foto)).size < 40_000, `${b.foto} no está reducida`);
     }
+  }
+});
+
+/** Todas las páginas HTML del sitio compilado, como URL. */
+function todasLasPaginas(carpeta = dist, base = "/") {
+  const urls = [];
+  for (const e of readdirSync(carpeta, { withFileTypes: true })) {
+    if (e.isDirectory() && !["datos", "fotos", "pagefind", "_astro"].includes(e.name)) {
+      urls.push(...todasLasPaginas(join(carpeta, e.name), `${base}${e.name}/`));
+    } else if (e.name === "index.html") urls.push(base);
+  }
+  return urls;
+}
+
+test("todas las páginas tienen el pie común: aviso, enlaces, licencias y firma", () => {
+  const urls = todasLasPaginas();
+  assert.ok(urls.length > leyes().length + legisladores().length);
+  for (const url of urls) {
+    const html = texto(url);
+    for (const buscado of [
+      "sin vínculo con el Congreso",
+      "este sitio no corrige los valores oficiales",
+      "Desarrollado por Alexis Dick con asistencia de IA.",
+      `href="${rutas.metodologia()}"`,
+      `href="${rutas.privacidad()}"`,
+      `href="${rutas.codigoFuente()}"`,
+      `href="${rutas.licenciaDatos()}"`,
+      `href="${rutas.licenciaCodigo()}"`,
+    ]) {
+      assert.ok(html.includes(buscado), `Falta «${buscado}» en ${url}`);
+    }
+    assert.ok(!html.includes("prevalece"), `Queda el aviso anterior en ${url}`);
+  }
+});
+
+test("la metodología tiene las secciones que enlazan las fichas y todos los problemas conocidos", () => {
+  const html = leer(rutas.metodologia());
+  for (const ancla of Object.values(rutas.anclasMetodologia)) assert.ok(html.includes(`id="${ancla}"`), `Falta #${ancla}`);
+  assert.ok(texto(rutas.metodologia()).includes("ausencias en votaciones nominales"));
+  const { grupos } = problemasConocidos();
+  for (const g of grupos) {
+    assert.ok(html.includes(`id="${g.ancla}"`), `Falta el grupo ${g.tipo}`);
+    for (const c of g.casos) {
+      if (c.sitio) assert.ok(html.includes(`href="${c.sitio.url}"`), `Falta ${c.sitio.url}`);
+      if (c.oficial) assert.ok(html.includes(`href="${c.oficial.url}"`), `Falta ${c.oficial.url}`);
+    }
+  }
+});
+
+test("la privacidad dice que no se recogen datos personales ni se usan cookies", () => {
+  const html = texto(rutas.privacidad());
+  assert.ok(html.includes("no recoge datos personales"));
+  assert.ok(html.includes("sin cookies") || html.includes("no usan cookies"));
+  assert.ok(html.includes("No tiene vínculo con el Congreso Nacional ni cuenta con su"));
+});
+
+test("las fichas enlazan a la metodología", () => {
+  const afiliacion = `href="${rutas.metodologia(rutas.anclasMetodologia.afiliacion)}"`;
+  const resumen = `href="${rutas.metodologia(rutas.anclasMetodologia.votosLegislador)}"`;
+  for (const persona of legisladores()) {
+    const html = leer(persona.url);
+    assert.ok(html.includes(afiliacion), `Falta el enlace a la metodología en ${persona.url}`);
+    if (ficha(persona).bloques.some((b) => b.votos.total > 0)) assert.ok(html.includes(resumen), persona.url);
+  }
+  for (const ley of leyes()) {
+    const conVotaciones = ley.registros.some((r) => detalleDeRegistro(r).votaciones.cantidad > 0);
+    if (conVotaciones) assert.ok(leer(ley.url).includes(afiliacion), `Falta el enlace a la metodología en ${ley.url}`);
   }
 });

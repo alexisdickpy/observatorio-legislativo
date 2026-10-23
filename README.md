@@ -15,7 +15,7 @@ Más adelante: clasificación por temas, indicadores de participación en votaci
 
 ## Fuente de los datos
 
-Todos los datos provienen de la [API de Datos Abiertos Legislativos](https://datosv2.congreso.gov.py/web/api-doc/index.html) del Congreso Nacional de Paraguay y se muestran tal como allí se publican. Ante cualquier diferencia, prevalece la fuente oficial.
+Todos los datos provienen de la [API de Datos Abiertos Legislativos](https://datosv2.congreso.gov.py/web/api-doc/index.html) del Congreso Nacional de Paraguay y se muestran tal como allí se publican, con sus posibles errores: el proyecto no corrige los valores oficiales. Si un dato parece incorrecto, compárelo con la fuente oficial.
 
 **Origen de los datos: Datos Abiertos Poder Legislativo.** Los datos del Congreso se publican bajo licencia [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.es). Este proyecto es independiente y no tiene vínculo con el Congreso Nacional ni cuenta con su aval.
 

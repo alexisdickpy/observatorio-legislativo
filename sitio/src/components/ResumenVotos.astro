@@ -2,6 +2,7 @@
 // Resumen de los votos de un legislador: barra y cantidad por categoría oficial, con su
 // denominador. Recibe los valores ya calculados por lib/legisladores.js.
 import BarraVotos from "./BarraVotos.astro";
+import * as rutas from "../lib/rutas.js";
 
 interface Props {
   votos: any;
@@ -21,6 +22,10 @@ const { votos: v, periodo } = Astro.props;
   </ul>
   <p class="lectura">
     <strong>Ausencias en votaciones nominales:</strong> {v.ausencias.texto}.
+  </p>
+  <p class="chico lectura">
+    <a href={rutas.metodologia(rutas.anclasMetodologia.votosLegislador)}>Cómo se calcula este resumen</a> ·
+    <a href={rutas.metodologia(rutas.anclasMetodologia.categorias)}>Qué significa cada categoría de voto</a>
   </p>
 </div>
 

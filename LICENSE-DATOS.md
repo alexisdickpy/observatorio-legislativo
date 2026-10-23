@@ -11,7 +11,8 @@ Los datos se obtienen de la API de Datos Abiertos Legislativos del Congreso Naci
 **Origen de los datos: Datos Abiertos Poder Legislativo.**
 
 Cada archivo publicado indica la fecha de su última actualización. Los datos se reproducen tal como
-los publica la fuente oficial; ante cualquier diferencia, prevalece la fuente oficial.
+los publica la fuente oficial, con sus posibles errores: el proyecto no corrige los valores oficiales.
+Ante una duda, compárelos con la fuente oficial.
 
 ## Cómo citar
 
