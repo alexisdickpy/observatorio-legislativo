@@ -1,16 +1,28 @@
 // Prepara la página de datos abiertos: qué archivos hay, su descripción y su tamaño.
-// Las descripciones salen de datos/diccionario.json; las rutas, de lib/rutas.
+// Las descripciones son textos breves para el público; si una tabla nueva no tiene el suyo, se usa
+// la descripción de datos/diccionario.json. Las rutas salen de lib/rutas.
 
 import { archivosDeDatos, diccionario, periodos } from "./datos.js";
 import * as rutas from "./rutas.js";
 
 const GENERALES = {
   "diccionario.md": "Diccionario de datos: cada campo de cada tabla, con su tipo, su origen (oficial o propio) y su descripción.",
-  "diccionario.json": "El mismo diccionario, en formato para programas.",
+  "diccionario.json": "El mismo diccionario, en formato JSON.",
   "estado.json": "Fecha de la última comprobación con la fuente, última modificación y cantidades por período.",
   "periodos.json": "Períodos legislativos incluidos, con sus fechas.",
   "sincronizaciones.json": "Registro de las últimas sincronizaciones con la API del Congreso.",
   "README.md": "Explicación de los archivos y sus convenciones.",
+};
+
+const TABLAS = {
+  leyes: "Una fila por ley sancionada en el período, con datos de su proyecto.",
+  tramitaciones: "Cada paso de la tramitación del proyecto de cada ley.",
+  votaciones: "Una fila por votación nominal, con sus totales. El voto de cada legislador está en votos.",
+  votos: "El voto de cada legislador en cada votación nominal.",
+  legisladores: "Legisladores del período, vigentes o no.",
+  autores: "Autores del proyecto de cada ley.",
+  personas: "Identificador propio de cada legislador, que se mantiene igual entre legislaturas y se usa en las direcciones del sitio.",
+  notas: "Problemas que este proyecto detectó en los datos oficiales (fechas mal escritas, totales que no coinciden, etc.). Los valores oficiales no se corrigen.",
 };
 
 const sinMarcas = (texto) => texto.replaceAll("`", "");
@@ -39,7 +51,7 @@ export function descargas() {
     tablas
       .map(([nombre, t]) => ({
         nombre,
-        descripcion: sinMarcas(t.descripcion),
+        descripcion: TABLAS[nombre] ?? sinMarcas(t.descripcion),
         archivos: t.archivos
           .filter(filtro)
           .map((patron) => archivo(patron.replace("{período}", periodo)))
@@ -58,7 +70,7 @@ export function descargas() {
       titulo: `Período legislativo ${p.id}: valores oficiales`,
       tablas: tablasDe((a) => a.startsWith("fuente/"), p.id),
     })),
-    { titulo: "Capa propia del proyecto", tablas: tablasDe((a) => a.startsWith("propios/"), "") },
+    { titulo: "Datos agregados por este proyecto (no oficiales)", tablas: tablasDe((a) => a.startsWith("propios/"), "") },
   ];
   const otros = [...archivos.keys()].filter((r) => !usados.has(r));
   if (otros.length) {
