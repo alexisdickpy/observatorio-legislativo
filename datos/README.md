@@ -6,7 +6,7 @@ Copia propia de los datos del Congreso Nacional, generada por el [importador](..
 
 Todos estos archivos son **datos abiertos**: se pueden descargar y reutilizar citando la fuente. El [diccionario de datos](diccionario.md) describe cada campo, su tipo y si es oficial o propio.
 
-No editar estos archivos a mano, salvo las notas manuales de `propios/notas.json`, la unión de personas de `propios/personas.json` (ver abajo) y las descripciones de `diccionario.json`. El resto lo reescribe el importador.
+No editar estos archivos a mano, salvo las notas manuales de `propios/notas.json`, la unión de personas de `propios/personas.json` (ver abajo), los nombres conocidos de `propios/partidos.json` y las descripciones de `diccionario.json`. El resto lo reescribe el importador.
 
 ## Archivos
 
@@ -24,6 +24,7 @@ No editar estos archivos a mano, salvo las notas manuales de `propios/notas.json
 | `fuente/{período}/autores.json` y `.csv` | Autores de cada proyecto con ley (`idProyecto` + `legislador`), en el orden que publica la API. |
 | `propios/personas.json` | Identificador estable (slug) de cada persona y sus `idLegislador` por período. |
 | `propios/notas.json` | Problemas detectados en la fuente: fechas mal formadas, totales que no coinciden, votos faltantes, etc. |
+| `propios/partidos.json` | Nombre por el que se conoce a un partido cuando difiere del nombre oficial (`partidoPolitico`), con su fundamento. El sitio lo muestra entre paréntesis, señalado como agregado propio; el nombre oficial no cambia. |
 
 ## Convenciones
 
@@ -47,3 +48,4 @@ Todos los campos, oficiales y propios, están descritos en el [diccionario de da
 - **`diccionario.json`**: si la API agrega un campo, el importador lo avisa en su resumen (`AVISO: Campo sin describir…`). Se agrega su descripción y se regenera `diccionario.md` con `python -m importador.abiertos`.
 - **`propios/notas.json`**: se pueden agregar notas con `"origen": "manual"`. El importador reemplaza solo las notas con `"origen": "importador"` del período que importa.
 - **`propios/personas.json`**: el importador asigna un slug a cada legislador nuevo y nunca cambia uno existente. Para unir a una misma persona entre legislaturas (Fase 5), se agrega su nuevo `idLegislador` a la entrada existente.
+- **`propios/partidos.json`**: se edita a mano. Cada entrada tiene el `partidoPolitico` exacto de la API, el `nombreConocido` y el `fundamento` (de dónde sale ese nombre, preferentemente de un dato oficial).

@@ -4,7 +4,13 @@ import { test } from "node:test";
 
 import { leyes } from "../../src/lib/catalogo.js";
 import { interpretarCsv } from "../../src/lib/datos.js";
-import { agruparPorCamara, detalleDeRegistro, ordenarCategorias, proporcion } from "../../src/lib/ficha.js";
+import {
+  agruparPorCamara,
+  detalleDeRegistro,
+  nombreConocido,
+  ordenarCategorias,
+  proporcion,
+} from "../../src/lib/ficha.js";
 
 const detalles = (numero) => leyes().find((l) => l.numero === numero).registros.map(detalleDeRegistro);
 const todos = () => leyes().flatMap((l) => l.registros.map((r) => ({ numero: l.numero, d: detalleDeRegistro(r) })));
@@ -142,4 +148,16 @@ test("en el Senado, solo los 45 miembros con voto que figuran en cada votación 
       assert.ok(v.registrados <= 45, `Votación ${v.id}: ${v.registrados}`);
     }
   }
+});
+
+test("nombre conocido de un partido, aparte del nombre oficial", () => {
+  assert.equal(nombreConocido("Movimiento Conciencia Democrática Nacional"), "Yo Creo");
+  assert.equal(nombreConocido("Asociación Nacional Republicana ANR"), null);
+  const [d] = detalles("7235");
+  const fila = d.votaciones.indice[0].porPartido.find((g) => g.nombreConocido);
+  assert.equal(fila.nombre, "Movimiento Conciencia Democrática Nacional");
+  assert.equal(fila.nombreConocido, "Yo Creo");
+  assert.ok(d.conNombreConocido);
+  // Las bancadas no reciben nombre conocido.
+  assert.ok(d.votaciones.indice[0].porBancada.every((g) => g.nombreConocido === null));
 });

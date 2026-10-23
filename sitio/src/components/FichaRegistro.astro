@@ -39,6 +39,14 @@ const datos = [
     }
   </dl>
   {detalle.notas.map((n: string) => <p class="nota chico lectura">Nota del Observatorio: {n}</p>)}
+  {
+    detalle.conNombreConocido && (
+      <p class="chico texto-suave lectura">
+        Entre paréntesis, el nombre por el que se conoce a un partido (por ejemplo, «Yo Creo»). Es un
+        agregado de este sitio: el nombre que va antes es el oficial.
+      </p>
+    )
+  }
   <Autores detalle={detalle} nivel={nivel} />
   <Subtitulo>Enlaces oficiales</Subtitulo>
   <ul>

@@ -21,7 +21,7 @@ const { titulo, grupo, categorias, filas } = Astro.props;
     </thead>
     <tbody>
       {/* Filas en una sola línea: con compressHTML desactivado, la sangría se copia en cada celda. */}
-      {filas.map((f) => <tr><th scope="row" class={f.nombre ? undefined : "texto-suave"}>{f.nombre ?? "Sin dato"}</th>{f.celdas.map((c: any) => <td class={c.cantidad ? undefined : "texto-suave"}>{c.fraccion} <span class="porcentaje">{c.porcentajeTexto}</span></td>)}</tr>)}
+      {filas.map((f) => <tr><th scope="row" class={f.nombre ? undefined : "texto-suave"}>{f.nombre ?? "Sin dato"}{f.nombreConocido && <span class="texto-suave"> ({f.nombreConocido})</span>}</th>{f.celdas.map((c: any) => <td class={c.cantidad ? undefined : "texto-suave"}>{c.fraccion} <span class="porcentaje">{c.porcentajeTexto}</span></td>)}</tr>)}
     </tbody>
   </table>
 </div>

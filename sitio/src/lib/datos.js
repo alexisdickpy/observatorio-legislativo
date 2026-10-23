@@ -58,6 +58,7 @@ export const periodos = () => leerJson("periodos.json").periodos;
 export const estado = () => leerJson("estado.json");
 export const diccionario = () => leerJson("diccionario.json");
 export const notas = () => leerJson("propios/notas.json").notas;
+export const partidosConocidos = () => leerJson("propios/partidos.json").partidos;
 
 /** Un archivo de un período tal como está en datos/fuente/{período}/. */
 export const fuente = (periodo, archivo) =>

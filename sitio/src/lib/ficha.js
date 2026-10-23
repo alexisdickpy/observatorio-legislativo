@@ -10,10 +10,12 @@
 //   categorías sin total publicado (MOCIÓN 1, 2…) se cuentan desde los votos individuales y se
 //   señalan como recuento propio.
 // - Partido y bancada de cada votante: los de legisladores.json, que la API da por período.
+// - Nombre conocido de un partido (datos/propios/partidos.json): se agrega aparte, para mostrarlo
+//   entre paréntesis y señalado como propio. El nombre oficial no cambia.
 // - Porcentajes sobre todos los legisladores del grupo registrados en la votación (incluidos
 //   AUSENTE y NO VOTA), con el denominador escrito.
 
-import { fuente, notas } from "./datos.js";
+import { fuente, notas, partidosConocidos } from "./datos.js";
 import * as rutas from "./rutas.js";
 import { recortar } from "./texto.js";
 
@@ -76,6 +78,11 @@ function indice(periodo) {
   return i;
 }
 
+/** Nombre conocido de un partido oficial, o null. */
+export function nombreConocido(partidoOficial) {
+  return partidosConocidos().find((p) => p.partidoPolitico === partidoOficial)?.nombreConocido ?? null;
+}
+
 const nombreDe = (l) => [valor(l.nombres), valor(l.apellidos)].filter(Boolean).join(" ") || null;
 
 function prepararAutor(a, periodo) {
@@ -84,6 +91,7 @@ function prepararAutor(a, periodo) {
     nombre: nombreDe(l),
     url: valor(l.appURL),
     partido: valor(l.partidoPolitico),
+    partidoConocido: nombreConocido(l.partidoPolitico),
     bancada: valor(l.bancada),
     camara: valor(l.camaraParlamentario),
     legislatura: valor(l.periodoLegislativo),
@@ -102,6 +110,7 @@ function desglose(votos, campo, categorias) {
   return [...grupos.entries()]
     .map(([nombre, lista]) => ({
       nombre,
+      nombreConocido: campo === "partido" ? nombreConocido(nombre) : null,
       total: lista.length,
       celdas: categorias.map((categoria) =>
         proporcion(lista.filter((v) => v.sentido === categoria).length, lista.length),
@@ -120,6 +129,7 @@ function prepararVotacion(v, i) {
         nombre: nombreDe(l),
         apellidos: valor(l.apellidos) ?? "",
         partido: valor(l.partidoPolitico),
+        partidoConocido: nombreConocido(l.partidoPolitico),
         bancada: valor(l.bancada),
         sentido: voto.sentidoVotacion,
         observacion: valor(voto.observacion),
@@ -201,8 +211,12 @@ export function detalleDeRegistro({ periodo, idLey }) {
     .sort((a, b) => (a._propio?.orden ?? 0) - (b._propio?.orden ?? 0))
     .map((a) => prepararAutor(a, periodo));
   const enlaces = (ids) => (ids ?? []).map((id) => ({ id, url: rutas.votacionSilpy(id) }));
+  const conNombreConocido =
+    autores.some((a) => a.partidoConocido) ||
+    votaciones.some((v) => v.porPartido.some((g) => g.nombreConocido));
   return {
     periodo,
+    conNombreConocido,
     iniciativa: valor(p.iniciativa),
     ministerios: (p.ministerios ?? []).filter((m) => valor(m)),
     autores,

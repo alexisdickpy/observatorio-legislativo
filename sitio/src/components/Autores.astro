@@ -34,7 +34,7 @@ const sinDato = "Sin dato";
         <li>
           {a.url ? <a href={a.url}>{a.nombre ?? sinDato}</a> : <span>{a.nombre ?? sinDato}</span>}
           <span class="chico texto-suave">
-            {" "}— Partido: {a.partido ?? sinDato} · Bancada: {a.bancada ?? sinDato} · {a.camara ?? sinDato}
+            {" "}— Partido: {a.partido ?? sinDato}{a.partidoConocido && ` (${a.partidoConocido})`} · Bancada: {a.bancada ?? sinDato} · {a.camara ?? sinDato}
             {!a.delPeriodo && <strong> · Legislatura {a.legislatura ?? sinDato}</strong>}
           </span>
         </li>
