@@ -39,7 +39,7 @@ const formato = (ruta) => ruta.split(".").pop().toUpperCase();
 
 const CALCULADOS = {
   [NOMBRE_VOTACIONES_NOMINALES]:
-    "Por legislador, las votaciones nominales en que figura como AUSENTE, NO VOTA y ABSTENCIÓN/BLANCO, cada una por separado, sobre todas las votaciones nominales en cuya lista figura. Es la tabla de la vista comparativa.",
+    "Por legislador, las votaciones nominales en que figura como AUSENTE, NO VOTA y ABSTENCIÓN/BLANCO, cada una por separado, sobre todas las votaciones nominales en cuya lista figura, y las votaciones en que votó distinto a la mayoría de su bancada y de su partido, sobre las votaciones comparables de cada grupo. Es la tabla de la vista comparativa.",
 };
 
 /** Archivos que genera la compilación (lib/calculados.js), agrupados por período y nombre. */

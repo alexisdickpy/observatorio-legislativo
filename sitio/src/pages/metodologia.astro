@@ -159,6 +159,54 @@ const anclas = rutas.anclasMetodologia;
       descargar en <a href={rutas.datosAbiertos()}>datos abiertos</a>, como cálculo propio de este sitio.
     </p>
 
+    <h2 id={anclas.mayoria}>Votos distintos a la mayoría de su bancada o de su partido</h2>
+    <p>
+      Cada ficha muestra en cuántas votaciones nominales el legislador votó distinto a la mayoría de su
+      bancada y, por separado, de su partido. Se calcula sobre todas las votaciones nominales del período
+      en cuya lista oficial figura, de cualquier tipo de expediente, como las ausencias.
+    </p>
+    <p>
+      La mayoría de un grupo en una votación es la categoría con más votos entre los votos emitidos de
+      sus miembros en esa votación, incluido el del propio legislador. Son votos emitidos SI, NO,
+      ABSTENCIÓN/BLANCO y, en las votaciones entre propuestas alternativas, MOCIÓN 1, 2 o 3. AUSENTE y NO
+      VOTA no son votos emitidos, así que esas votaciones no cuentan para el legislador ni para formar la
+      mayoría.
+    </p>
+    <p>
+      Una votación es comparable cuando el legislador emitió voto y su grupo tuvo una mayoría. Quedan
+      fuera dos casos, y la ficha dice cuántas votaciones son.
+    </p>
+    <ul>
+      <li>
+        <strong>Empate.</strong> Dos o más categorías empatan en el primer lugar, por ejemplo dos miembros
+        que votan SI y dos que votan NO. No hay mayoría con la que comparar.
+      </li>
+      <li>
+        <strong>Único votante.</strong> Fue el único de su grupo que emitió voto en esa votación, así que
+        la mayoría sería su propio voto.
+      </li>
+    </ul>
+    <p>
+      La cifra es las votaciones en que su voto difiere de la mayoría, divididas por las votaciones
+      comparables, por 100, y se muestra con su denominador. Por eso un partido o una bancada de un solo
+      legislador en su cámara no tiene votaciones comparables.
+      En un grupo en que solo votan dos, votar distinto es un empate, así que un voto distinto solo puede
+      aparecer cuando votan tres o más. La ficha lista las votaciones en que votó
+      distinto a una u otra mayoría, con la fecha, el expediente, la etapa, su voto y el de cada mayoría.
+    </p>
+    <p>
+      Partido y bancada son los textos oficiales que la API registra para el legislador en el período, sin
+      fecha, así que el cálculo no refleja cambios de bancada durante el período. Cada votación es de una
+      sola cámara, de modo que el grupo reúne a sus miembros de esa cámara. Dentro de cada cámara cada
+      partido figura con un único texto oficial, así que no es necesario unificar nombres. Quien no tiene
+      bancada registrada no tiene esta cifra para la bancada y no cuenta en la mayoría de ninguna.
+    </p>
+    <p>
+      Votar distinto a la mayoría no es bueno ni malo, y la cifra no lo califica. El sentido de cada voto
+      depende de lo que se votaba en ese trámite. La <a href={rutas.votacionesNominales()}>vista
+      comparativa</a> y su tabla descargable incluyen estas dos cifras.
+    </p>
+
     <h2 id={anclas.afiliacion}>Partido y bancada</h2>
     <p>
       La API publica un único partido y una única bancada por legislador y período, sin fecha. Si un
@@ -212,7 +260,7 @@ const anclas = rutas.anclasMetodologia;
     <h2 id="limitaciones">Limitaciones conocidas</h2>
     <ul>
       <li>La API no informa cuándo se modificó un registro, así que los cambios se detectan comparando cada copia con la anterior.</li>
-      <li>Partido y bancada son un único valor por período, sin fecha.</li>
+      <li>Partido y bancada son un único valor por período, sin fecha. Por eso los votos distintos a la mayoría se calculan con el grupo registrado para el período.</li>
       <li>«AUSENTE» indica ausencia en la votación y no informa si el legislador estaba en la sesión.</li>
       <li>
         Solo se publican las votaciones nominales, es decir, las que registran el voto de cada legislador.

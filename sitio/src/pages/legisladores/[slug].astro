@@ -1,13 +1,15 @@
 ---
 // Ficha de un legislador: datos oficiales del cargo, resumen e historial de sus votos en las
-// votaciones nominales sobre proyectos de ley, ausencias, NO VOTA y abstenciones en todas las
-// votaciones nominales y leyes de su autoría (preparado por lib/legisladores.js).
+// votaciones nominales sobre proyectos de ley, ausencias, NO VOTA, abstenciones y votos distintos a la
+// mayoría de su bancada y de su partido en todas las votaciones nominales y leyes de su autoría
+// (preparado por lib/legisladores.js).
 import Base from "../../layouts/Base.astro";
 import AusenciasVotaciones from "../../components/AusenciasVotaciones.astro";
 import FiltroVotos from "../../components/FiltroVotos.astro";
 import HistorialVotos from "../../components/HistorialVotos.astro";
 import NoVotaAbstencion from "../../components/NoVotaAbstencion.astro";
 import ResumenVotos from "../../components/ResumenVotos.astro";
+import VotosDistintos from "../../components/VotosDistintos.astro";
 import { ficha, legisladores } from "../../lib/legisladores.js";
 import * as rutas from "../../lib/rutas.js";
 import { datosDeLegislador, descripcionDeLegislador, imagenDe } from "../../lib/seo.js";
@@ -105,6 +107,15 @@ const descripcion = descripcionDeLegislador(f, sinDato);
                 <Fragment>
                   <Titulo>NO VOTA y abstenciones en votaciones nominales</Titulo>
                   <NoVotaAbstencion noVota={b.noVota} abstencion={b.abstencion} periodo={b.periodo} />
+                </Fragment>
+              )
+            }
+
+            {
+              b.mayoria.emitidos > 0 && (
+                <Fragment>
+                  <Titulo>Votos distintos a la mayoría de su bancada y de su partido</Titulo>
+                  <VotosDistintos mayoria={b.mayoria} periodo={b.periodo} />
                 </Fragment>
               )
             }

@@ -19,6 +19,10 @@
 // - NO VOTA y ABSTENCIÓN/BLANCO (alcance acordado en #38): votaciones en que figura con cada una de esas
 //   categorías, sobre el mismo denominador que las ausencias. Son dos cifras separadas, nunca sumadas
 //   entre sí ni con las ausencias. La vista comparativa las reúne por cámara, sin calificar a nadie.
+// - Votos distintos a la mayoría (alcance acordado en #39): en todas las votaciones nominales de su
+//   lista, su voto emitido comparado con la categoría más votada entre los votos emitidos de su bancada
+//   y, por separado, de su partido (texto oficial del período, dentro de su cámara). Fuera del cálculo
+//   los empates, las votaciones en que fue el único votante del grupo y AUSENTE y NO VOTA.
 // - Autoría: leyes sancionadas del período de cuyo proyecto figura como autor (autores.json,
 //   registros con _propio.delPeriodo).
 // - Partido y bancada: los que la API registra para el período, no por fecha.
@@ -163,6 +167,125 @@ const cifraDe = (todas, categoria) => proporcion(todas.filter((x) => x.sentido =
 /** NO VOTA y ABSTENCIÓN/BLANCO, cada una por separado. */
 function participacionDe(todas) {
   return { noVota: cifraDe(todas, NO_VOTA), abstencion: cifraDe(todas, ABSTENCION) };
+}
+
+/** Si un voto fue emitido: toda categoría oficial salvo AUSENTE y NO VOTA (SI, NO, ABSTENCIÓN/BLANCO, MOCIÓN n). */
+export const esVotoEmitido = (sentido) => Boolean(valor(sentido)) && sentido !== AUSENTE && sentido !== NO_VOTA;
+
+/**
+ * Mayoría de un grupo en una votación, a partir de los votos emitidos de sus miembros: la categoría
+ * con más votos, o null si dos o más empatan en el primer lugar. votantes = cantidad de votos emitidos.
+ */
+export function mayoriaDe(sentidos) {
+  const cuenta = new Map();
+  for (const s of sentidos.filter(esVotoEmitido)) cuenta.set(s, (cuenta.get(s) ?? 0) + 1);
+  const orden = [...cuenta.entries()].sort((a, b) => b[1] - a[1]);
+  const empate = orden.length > 1 && orden[0][1] === orden[1][1];
+  return { mayoria: orden.length && !empate ? orden[0][0] : null, votantes: [...cuenta.values()].reduce((n, c) => n + c, 0) };
+}
+
+/** Grupos de la comparación con la mayoría (alcance acordado en #39): campo del legislador en la API. */
+export const GRUPOS_MAYORIA = [
+  { grupo: "bancada", campoOficial: "bancada" },
+  { grupo: "partido", campoOficial: "partidoPolitico" },
+];
+
+/** Bancada y partido oficiales de un legislador del período, o null si no tiene registro o el texto está vacío. */
+const gruposDe = (l) => Object.fromEntries(GRUPOS_MAYORIA.map((g) => [g.grupo, l ? valor(l[g.campoOficial]) : null]));
+
+// Mayoría de cada bancada y de cada partido en cada votación nominal, por período. Cada votación es de
+// una sola cámara, así que cada grupo reúne a sus miembros de esa cámara.
+const mayoriasPorPeriodo = new Map();
+function mayoriasDelPeriodo(periodo) {
+  if (mayoriasPorPeriodo.has(periodo)) return mayoriasPorPeriodo.get(periodo);
+  const i = indice(periodo);
+  const porVotacion = new Map();
+  for (const [idVotacion, votos] of i.votos) {
+    const sentidos = Object.fromEntries(GRUPOS_MAYORIA.map((g) => [g.grupo, new Map()]));
+    for (const voto of votos) {
+      const grupos = gruposDe(i.legisladores.get(Number(voto.idLegislador)));
+      for (const g of GRUPOS_MAYORIA) {
+        const texto = grupos[g.grupo];
+        if (!texto) continue;
+        if (!sentidos[g.grupo].has(texto)) sentidos[g.grupo].set(texto, []);
+        sentidos[g.grupo].get(texto).push(voto.sentidoVotacion);
+      }
+    }
+    porVotacion.set(
+      idVotacion,
+      Object.fromEntries(
+        GRUPOS_MAYORIA.map((g) => [g.grupo, new Map([...sentidos[g.grupo]].map(([texto, s]) => [texto, mayoriaDe(s)]))]),
+      ),
+    );
+  }
+  mayoriasPorPeriodo.set(periodo, porVotacion);
+  return porVotacion;
+}
+
+/**
+ * Comparación de un voto con la mayoría de su grupo: "distinto" o "igual" si cuenta, y si no,
+ * "empate" (el grupo no tiene mayoría), "unico" (fue el único del grupo que emitió voto) o
+ * "sin-grupo" (la API no le registra bancada o partido).
+ */
+function comparacion(sentido, m) {
+  if (!m) return { estado: "sin-grupo", mayoria: null };
+  if (m.votantes < 2) return { estado: "unico", mayoria: null };
+  if (!m.mayoria) return { estado: "empate", mayoria: null };
+  return { estado: sentido === m.mayoria ? "igual" : "distinto", mayoria: m.mayoria };
+}
+
+/**
+ * Votos distintos a la mayoría de su bancada y de su partido (alcance acordado en #39): en cada grupo,
+ * votaciones en que su voto emitido difiere de la mayoría del grupo, sobre las votaciones en que emitió
+ * voto y el grupo tuvo mayoría con al menos dos votantes. Los empates y las votaciones en que fue el
+ * único votante del grupo quedan fuera y se cuentan aparte. La lista reúne las votaciones en que votó
+ * distinto a una u otra mayoría, con las dos comparaciones.
+ */
+function votosDistintosDe(id, todas, periodo) {
+  const i = indice(periodo);
+  const grupos = gruposDe(i.legisladores.get(id));
+  const mayorias = mayoriasDelPeriodo(periodo);
+  const emitidos = todas
+    .filter((x) => esVotoEmitido(x.sentido))
+    .map((x) => {
+      const m = mayorias.get(x.votacion.idVotacion);
+      const porGrupo = Object.fromEntries(
+        GRUPOS_MAYORIA.map((g) => [g.grupo, comparacion(x.sentido, grupos[g.grupo] && m[g.grupo].get(grupos[g.grupo]))]),
+      );
+      return { ...x, porGrupo };
+    });
+  const cifras = Object.fromEntries(
+    GRUPOS_MAYORIA.map(({ grupo }) => {
+      const cuenta = (estado) => emitidos.filter((x) => x.porGrupo[grupo].estado === estado).length;
+      const distintos = cuenta("distinto");
+      return [
+        grupo,
+        {
+          grupo: grupos[grupo],
+          ...proporcion(distintos, distintos + cuenta("igual")),
+          empates: cuenta("empate"),
+          unico: cuenta("unico"),
+        },
+      ];
+    }),
+  );
+  const lista = emitidos
+    .filter((x) => GRUPOS_MAYORIA.some(({ grupo }) => x.porGrupo[grupo].estado === "distinto"))
+    .map(({ votacion: v, sentido, porGrupo }) => {
+      const t = v.tramitacion ?? {};
+      return {
+        id: v.idVotacion,
+        fecha: valor(t.fechaTramite),
+        fechaIso: t._propio?.fechaTramite ?? null,
+        expediente: valor(v.proyecto?.expedienteCamara),
+        etapa: valor(t.descripcionEtapa),
+        url: valor(v.appURL),
+        sentido,
+        ...porGrupo,
+      };
+    })
+    .sort(masRecientePrimero);
+  return { emitidos: emitidos.length, ...cifras, lista };
 }
 
 function historialDeVotos(lista, i, estados) {
@@ -348,7 +471,8 @@ function votosDe(todas, periodo) {
 
 /**
  * Ficha de una persona: por período, sus datos, el resumen y el historial de sus votos, sus ausencias,
- * NO VOTA y abstenciones en votaciones nominales y sus leyes.
+ * NO VOTA y abstenciones en votaciones nominales, sus votos distintos a la mayoría de su bancada y de su
+ * partido y sus leyes.
  */
 export function ficha(persona) {
   const bloques = persona.registros.map((r) => {
@@ -360,6 +484,7 @@ export function ficha(persona) {
       votos: votosDe(todas, r.periodo),
       ausencias: ausenciasDe(todas),
       ...participacionDe(todas),
+      mayoria: votosDistintosDe(r.id, todas, r.periodo),
       autoria: leyesDeSuAutoria(r.id, r.periodo, i),
     };
   });
@@ -378,11 +503,18 @@ export const CIFRAS_COMPARATIVAS = [
   { campo: "abstencion", categoria: ABSTENCION, titulo: "ABSTENCIÓN/BLANCO" },
 ];
 
+/** Cifras de votos distintos a la mayoría en la vista comparativa, en el orden de sus columnas. */
+export const CIFRAS_MAYORIA = [
+  { campo: "mayoriaBancada", grupo: "bancada", titulo: "Votos distintos a la mayoría de su bancada" },
+  { campo: "mayoriaPartido", grupo: "partido", titulo: "Votos distintos a la mayoría de su partido" },
+];
+
 const comparativas = new Map();
 
 /**
  * Vista comparativa de un período: por cámara, cada legislador que figura en al menos una votación
- * nominal, con sus ausencias, NO VOTA y abstenciones por separado (cantidad, total y porcentaje).
+ * nominal, con sus ausencias, NO VOTA y abstenciones por separado (cantidad, total y porcentaje) y sus
+ * votos distintos a la mayoría de su bancada y de su partido, cada uno con su propio denominador.
  * Mismo orden que el listado: por cámara y, dentro, por apellido.
  */
 export function comparativa(periodo) {
@@ -393,6 +525,8 @@ export function comparativa(periodo) {
     .map((r) => {
       const todas = porLegislador.get(r.id) ?? [];
       const cifras = Object.fromEntries(CIFRAS_COMPARATIVAS.map((c) => [c.campo, cifraDe(todas, c.categoria)]));
+      const mayoria = votosDistintosDe(r.id, todas, periodo);
+      for (const c of CIFRAS_MAYORIA) cifras[c.campo] = mayoria[c.grupo];
       return { id: r.id, slug: r.slug, url: r.url, nombre: r.nombre, apellidos: r.apellidos, camara: r.camara, vigente: r.vigente, ...cifras };
     })
     .filter((f) => f.ausencias.total > 0)
@@ -421,14 +555,32 @@ export const COLUMNAS_TABLA = [
   "porcentajeNoVota",
   "abstencionBlanco",
   "porcentajeAbstencionBlanco",
+  "bancada",
+  "votacionesComparablesBancada",
+  "distintasBancada",
+  "porcentajeDistintasBancada",
+  "partido",
+  "votacionesComparablesPartido",
+  "distintasPartido",
+  "porcentajeDistintasPartido",
 ];
 
 /** Porcentaje con un decimal (0,1234 → 12.3). */
 const redondear = (p) => Math.round(p * 1000) / 10;
 
+/** Columnas de un grupo en la tabla descargable; sin votaciones comparables, cantidad y porcentaje vacíos. */
+const columnasMayoria = (c, sufijo) => ({
+  [sufijo.toLowerCase()]: c.grupo,
+  [`votacionesComparables${sufijo}`]: c.total,
+  [`distintas${sufijo}`]: c.total ? c.cantidad : null,
+  [`porcentajeDistintas${sufijo}`]: c.total ? redondear(c.porcentaje) : null,
+});
+
 /**
  * Tabla descargable de la vista comparativa: una fila por legislador, con la cantidad y el porcentaje
- * de cada cifra sobre el mismo denominador (votacionesEnSuLista). Cálculo propio, no oficial.
+ * de cada cifra sobre el mismo denominador (votacionesEnSuLista), y los votos distintos a la mayoría de
+ * su bancada y de su partido sobre las votaciones comparables de cada grupo (vacíos si la API no le
+ * registra el grupo o no hay ninguna comparable). Cálculo propio, no oficial.
  */
 export function tablaComparativa(periodo) {
   return comparativa(periodo).camaras.flatMap(({ filas }) =>
@@ -446,6 +598,8 @@ export function tablaComparativa(periodo) {
       porcentajeNoVota: redondear(f.noVota.porcentaje),
       abstencionBlanco: f.abstencion.cantidad,
       porcentajeAbstencionBlanco: redondear(f.abstencion.porcentaje),
+      ...columnasMayoria(f.mayoriaBancada, "Bancada"),
+      ...columnasMayoria(f.mayoriaPartido, "Partido"),
     })),
   );
 }

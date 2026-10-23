@@ -8,6 +8,8 @@ export const ORDENES = [
   { valor: "ausencias", etiqueta: "Ausencias en votaciones nominales (de mayor a menor %)", campo: "ausencias" },
   { valor: "no-vota", etiqueta: "NO VOTA (de mayor a menor %)", campo: "noVota" },
   { valor: "abstencion", etiqueta: "ABSTENCIÓN/BLANCO (de mayor a menor %)", campo: "abstencion" },
+  { valor: "bancada", etiqueta: "Votos distintos a la mayoría de su bancada (de mayor a menor %)", campo: "mayoriaBancada" },
+  { valor: "partido", etiqueta: "Votos distintos a la mayoría de su partido (de mayor a menor %)", campo: "mayoriaPartido" },
 ];
 
 /** Orden pedido en la dirección; uno desconocido vuelve al orden por nombre. */
@@ -18,7 +20,8 @@ export function leerOrden(parametros, nombre) {
 
 /**
  * Entradas en el orden pedido. Cada entrada: { slug, posicion (orden por nombre), ausencias, noVota,
- * abstencion } con los porcentajes como números entre 0 y 1.
+ * abstencion, mayoriaBancada, mayoriaPartido } con los porcentajes como números entre 0 y 1; -1 para
+ * quien no tiene votaciones comparables, que queda al final.
  */
 export function ordenar(entradas, valor) {
   const campo = ORDENES.find((o) => o.valor === valor)?.campo;
