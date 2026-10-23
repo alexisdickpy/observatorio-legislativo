@@ -22,6 +22,7 @@ No editar estos archivos a mano, salvo las notas manuales de `propios/notas.json
 | `fuente/{período}/votos.csv` | Un voto individual por fila: `idVotacion`, `idDetalleVotacion`, `idLegislador`, `idSentidoVotacion`, `sentidoVotacion`, `observacion`. |
 | `fuente/{período}/legisladores.json` y `.csv` | Legisladores del período, vigentes o no. |
 | `fuente/{período}/autores.json` y `.csv` | Autores de cada proyecto con ley (`idProyecto` + `legislador`), en el orden que publica la API. |
+| `fotos/{período}/{idLegislador}.jpg` | Copia de la foto que publica el Congreso en el `fotoURL` de cada legislador, sin cambios. No figura en el diccionario: no es una tabla. |
 | `propios/personas.json` | Identificador estable (slug) de cada persona y sus `idLegislador` por período. |
 | `propios/notas.json` | Problemas detectados en la fuente: fechas mal formadas, totales que no coinciden, votos faltantes, etc. |
 | `propios/partidos.json` | Nombre por el que se conoce a un partido cuando difiere del nombre oficial (`partidoPolitico`), con su fundamento. El sitio lo muestra entre paréntesis, señalado como agregado propio; el nombre oficial no cambia. |

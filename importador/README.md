@@ -58,6 +58,7 @@ python -m unittest discover -s importador/pruebas -t .
 | `ley` (paginado) | Histórico completo, para verificar que los números de ley no se repiten en otras legislaturas |
 | `proyecto/{id}/tramitaciones` | Autores, ministerios y tramitaciones del proyecto de cada ley |
 | `proyecto/{id}/adjuntos` | Archivos adjuntos (texto de la ley, iniciativa, sanción) |
+| `fotoURL` de cada legislador | Copia propia de su foto en `datos/fotos/{período}/` (fuera de la API, en el servidor de SILpy). La incremental descarga solo las que faltan; la completa, todas, y reescribe las que cambiaron. Si una falla, se conserva la anterior y se avisa |
 | `legislador?idCamara=A` | Legisladores del período, vigentes o no |
 | `legislador/camara/{S\|D}` | Legisladores en ejercicio |
 | `votacion` (paginado) | Votaciones nominales con sus votos individuales |
