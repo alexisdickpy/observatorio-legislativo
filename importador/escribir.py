@@ -1,7 +1,7 @@
 """Serialización determinista: los mismos datos producen exactamente los mismos bytes.
 
 - JSON en UTF-8, con claves ordenadas, sangría de 2 espacios y salto de línea final.
-- CSV en UTF-8, con saltos de línea \\n y columnas fijas.
+- CSV en UTF-8 con BOM (así Excel reconoce los acentos), con saltos de línea \\n y columnas fijas.
 - Un archivo solo se reescribe si su contenido cambió.
 """
 
@@ -22,7 +22,7 @@ def csv_bytes(columnas, filas):
     escritor.writeheader()
     for fila in filas:
         escritor.writerow({c: "" if fila.get(c) is None else fila[c] for c in columnas})
-    return salida.getvalue().encode("utf-8")
+    return salida.getvalue().encode("utf-8-sig")
 
 
 def leer_json(ruta, por_defecto=None):
