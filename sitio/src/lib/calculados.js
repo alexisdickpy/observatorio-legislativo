@@ -6,6 +6,7 @@
 // línea \n y columnas fijas; JSON con sangría de 2 espacios y salto de línea final.
 
 import { periodos } from "./datos.js";
+import { COLUMNAS_COINCIDENCIA, tablaCoincidencia } from "./coincidencia.js";
 import { COLUMNAS_TABLA, tablaComparativa } from "./legisladores.js";
 import * as rutas from "./rutas.js";
 
@@ -25,19 +26,28 @@ export function csv(columnas, filas) {
 const json = (filas) => JSON.stringify(filas, null, 2) + "\n";
 
 export const NOMBRE_VOTACIONES_NOMINALES = "votaciones-nominales-por-legislador";
+export const NOMBRE_COINCIDENCIA = "coincidencia-de-votos-entre-grupos";
+
+/** Tablas calculadas: nombre del archivo, columnas y filas de un período. */
+const TABLAS = [
+  { nombre: NOMBRE_VOTACIONES_NOMINALES, columnas: COLUMNAS_TABLA, filas: tablaComparativa },
+  { nombre: NOMBRE_COINCIDENCIA, columnas: COLUMNAS_COINCIDENCIA, filas: tablaCoincidencia },
+];
 
 /** Archivos calculados de cada período: ruta publicada, formato y contenido. */
 export function archivosCalculados() {
-  return periodos().flatMap((p) => {
-    const filas = tablaComparativa(p.id);
-    return [
-      { periodo: p.id, formato: "CSV", contenido: csv(COLUMNAS_TABLA, filas) },
-      { periodo: p.id, formato: "JSON", contenido: json(filas) },
-    ].map((a) => ({
-      ...a,
-      nombre: NOMBRE_VOTACIONES_NOMINALES,
-      url: rutas.archivoCalculado(p.id, NOMBRE_VOTACIONES_NOMINALES, a.formato.toLowerCase()),
-      bytes: Buffer.byteLength(a.contenido, "utf-8"),
-    }));
-  });
+  return periodos().flatMap((p) =>
+    TABLAS.flatMap((t) => {
+      const filas = t.filas(p.id);
+      return [
+        { periodo: p.id, formato: "CSV", contenido: csv(t.columnas, filas) },
+        { periodo: p.id, formato: "JSON", contenido: json(filas) },
+      ].map((a) => ({
+        ...a,
+        nombre: t.nombre,
+        url: rutas.archivoCalculado(p.id, t.nombre, a.formato.toLowerCase()),
+        bytes: Buffer.byteLength(a.contenido, "utf-8"),
+      }));
+    }),
+  );
 }

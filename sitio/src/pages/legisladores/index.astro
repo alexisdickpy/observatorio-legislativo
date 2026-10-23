@@ -35,6 +35,10 @@ const conNombreConocido = todos.some((l) => l.partidoConocido);
       ausencias, NO VOTA, abstenciones y votos distintos a la mayoría de su bancada y de su partido de
       todos los legisladores, cada cifra con su denominador.
     </p>
+    <p>
+      <a href={rutas.coincidencia()}>Coincidencia de votos entre partidos y bancadas</a>, qué tan seguido
+      votó igual cada grupo que cada uno de los demás de su cámara.
+    </p>
   </div>
   <FiltroLegisladores entradas={todos.map((l) => l.filtro)} opciones={opcionesDelListado(periodo)} />
   <section data-filtro-legisladores>

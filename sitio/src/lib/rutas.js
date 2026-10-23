@@ -35,6 +35,7 @@ export const anclasMetodologia = {
   mayoria: "votos-distintos-a-la-mayoria",
   afiliacion: "partido-y-bancada",
   partidoUnificado: "partido-unificado",
+  coincidencia: "coincidencia-de-votos",
   observaciones: "observaciones-sobre-los-datos",
 };
 
@@ -54,6 +55,11 @@ export const archivoCalculado = (periodo, nombre, extension) => `/datos/calculad
 export const votacionesNominales = () => "/legisladores/votaciones-nominales/";
 /** Parámetro de la dirección de la vista comparativa (?orden=…). */
 export const parametroOrdenComparativa = "orden";
+
+/** Coincidencia de votos entre partidos y entre bancadas; con grupo, la dirección que lo muestra (?grupo=…). */
+export const coincidencia = (grupo) => (grupo ? `/coincidencia-de-votos/?grupo=${encodeURIComponent(grupo)}` : "/coincidencia-de-votos/");
+/** Parámetro de la dirección de la coincidencia de votos (?grupo=…). */
+export const parametroGrupoCoincidencia = "grupo";
 
 /** Parámetros de la dirección del catálogo de leyes (?q=…&anio=…&camara=…&orden=…). */
 export const parametrosCatalogo = { texto: "q", anio: "anio", camara: "camara", orden: "orden" };
