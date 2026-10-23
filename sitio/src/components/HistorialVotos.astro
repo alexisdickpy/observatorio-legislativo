@@ -1,0 +1,59 @@
+---
+// Voto de un legislador en cada votación nominal vinculada a una ley, de la más reciente a la más
+// antigua, con enlace a la votación en la ficha de la ley. Recibe el historial de lib/legisladores.js.
+// Filas en una sola línea y estilos globales con prefijo de clase (ver TablaLegisladores).
+interface Props {
+  historial: any[];
+}
+const { historial } = Astro.props;
+const sinDato = "Sin dato";
+---
+
+<div class="historial-desplazable">
+  <table class="historial-votos">
+    <caption class="solo-lectores">Voto en cada votación nominal</caption>
+    <thead>
+      <tr>
+        <th scope="col">Fecha</th>
+        <th scope="col">Ley</th>
+        <th scope="col">Trámite</th>
+        <th scope="col">Resultado</th>
+        <th scope="col">Su voto</th>
+      </tr>
+    </thead>
+    <tbody>
+      {historial.map((h) => <tr><td>{h.fecha ?? sinDato}</td><td>{h.leyes.map((l: any) => <p><a href={l.url}>Ley {l.numero}</a>{l.tituloCorto && <span class="texto-suave"> {l.tituloCorto}</span>}</p>)}</td><td>{h.etapa ?? sinDato}</td><td>{h.resultado ?? sinDato}</td><td class="voto"><span class={`cuadro ${h.clase}`}></span>{h.sentido}{h.observacion && <span class="texto-suave"> ({h.observacion})</span>}</td></tr>)}
+    </tbody>
+  </table>
+</div>
+
+<style is:global>
+  .historial-desplazable {
+    overflow-x: auto;
+  }
+  .historial-votos {
+    border-collapse: collapse;
+    font-size: var(--tamano-chico);
+    min-width: 100%;
+  }
+  .historial-votos th,
+  .historial-votos td {
+    text-align: left;
+    vertical-align: top;
+    padding: var(--espacio-1) var(--espacio-2);
+    border-bottom: var(--borde-ancho) solid var(--color-borde);
+  }
+  .historial-votos thead th {
+    border-bottom-width: var(--foco-ancho);
+  }
+  .historial-votos p {
+    margin: 0;
+  }
+  .historial-votos td:first-child,
+  .historial-votos .voto {
+    white-space: nowrap;
+  }
+  .historial-votos td:nth-child(2) {
+    min-width: var(--ancho-nombre-barra);
+  }
+</style>

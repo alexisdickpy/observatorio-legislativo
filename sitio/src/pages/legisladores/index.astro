@@ -1,0 +1,51 @@
+---
+// Listado de legisladores del período vigente: en ejercicio y, aparte, los que ya no ejercen.
+import Base from "../../layouts/Base.astro";
+import FiltroLegisladores from "../../components/FiltroLegisladores.astro";
+import TablaLegisladores from "../../components/TablaLegisladores.astro";
+import { periodos } from "../../lib/datos.js";
+import { listado, opcionesDelListado } from "../../lib/legisladores.js";
+
+const periodo = periodos().find((p) => p.vigente).id;
+const { enEjercicio, noEjercen } = listado(periodo);
+const todos = [...enEjercicio, ...noEjercen];
+const conNombreConocido = todos.some((l) => l.partidoConocido);
+---
+
+<Base
+  titulo="Legisladores"
+  descripcion={`Senadores y diputados del Congreso Nacional del Paraguay en el período legislativo ${periodo}, con su partido, su bancada, sus votos en las votaciones nominales y las leyes de su autoría.`}
+>
+  <h1>Legisladores</h1>
+  <div class="lectura">
+    <p>
+      {enEjercicio.length} legisladores en ejercicio en el período legislativo {periodo}: primero la
+      Cámara de Senadores y luego la de Diputados, por apellido. Cada nombre lleva a su ficha, con sus
+      votos y las leyes de su autoría.
+    </p>
+    <p class="chico texto-suave">
+      Los datos son los que publica el Congreso. Partido y bancada son los que la API registra para
+      cada legislador en el período, no necesariamente los de cada fecha. Los senadores se eligen en
+      una circunscripción nacional: la API registra su departamento como NACIONAL.
+      {conNombreConocido && " Entre paréntesis, el nombre por el que se conoce a un partido: es un agregado de este sitio."}
+    </p>
+  </div>
+  <FiltroLegisladores entradas={todos.map((l) => l.filtro)} opciones={opcionesDelListado(periodo)} />
+  <section data-filtro-legisladores>
+    <h2 class="solo-lectores">En ejercicio</h2>
+    <TablaLegisladores titulo="Legisladores en ejercicio" filas={enEjercicio} />
+  </section>
+  {
+    noEjercen.length > 0 && (
+      <section data-filtro-legisladores>
+        <h2>Ya no ejercen en el período</h2>
+        <p class="chico texto-suave lectura">
+          {noEjercen.length} legisladores del período {periodo} que ya no figuran entre los que están en
+          ejercicio según la API (por ejemplo, por renuncia, pérdida de investidura o fin de una
+          suplencia). Sus fichas conservan sus votos y sus leyes.
+        </p>
+        <TablaLegisladores titulo="Legisladores que ya no ejercen" filas={noEjercen} />
+      </section>
+    )
+  }
+</Base>

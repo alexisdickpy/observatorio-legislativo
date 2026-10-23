@@ -4,8 +4,9 @@ Regla de fidelidad: ningún valor oficial se modifica. Todo lo que calcula el pr
 (fechas en ISO, totales recalculados, enlaces, slugs) va dentro de una clave `_propio`
 del objeto al que se refiere. Lo que está fuera de `_propio` es tal cual lo publica la API.
 
-Las únicas omisiones son el correo y el teléfono de los legisladores, que el sitio no usa,
-y la lista de votos individuales dentro de cada votación, que se guarda aparte en votos.csv.
+El correo y el teléfono de los legisladores se guardan una sola vez, en su registro de
+legisladores.json; se omiten en las copias del legislador que la API repite dentro de autores,
+leyes y votaciones. La lista de votos individuales de cada votación se guarda aparte en votos.csv.
 """
 
 import copy
@@ -14,6 +15,7 @@ from collections import Counter, defaultdict
 from .fechas import a_iso
 
 PROPIO = "_propio"
+# Datos de contacto: solo en legisladores.json (decidido en #8).
 CAMPOS_CONTACTO = {"emailParlamentario", "telefonoParlamentario"}
 
 # Miembros con voto de cada cámara. Los senadores vitalicios tienen voz pero no voto.
@@ -50,7 +52,8 @@ class Notas:
 
 
 def sin_contacto(obj):
-    """Copia del objeto sin correos ni teléfonos, a cualquier profundidad."""
+    """Copia del objeto sin correos ni teléfonos, a cualquier profundidad (para las copias del
+    legislador dentro de otras entidades)."""
     if isinstance(obj, dict):
         return {k: sin_contacto(v) for k, v in obj.items() if k not in CAMPOS_CONTACTO}
     if isinstance(obj, list):
@@ -150,7 +153,7 @@ def transformar_votacion(votacion, periodo_legislativo, notas):
                           f"El voto {voto.get('idDetalleVotacion')} no identifica al legislador.")
         else:
             vistos[id_legislador] += 1
-            legisladores.setdefault(id_legislador, sin_contacto(legislador))
+            legisladores.setdefault(id_legislador, copy.deepcopy(legislador))
         por_codigo[voto.get("idSentidoVotacion")] += 1
         por_sentido[voto.get("sentidoVotacion") or ""] += 1
         filas.append({
@@ -195,7 +198,7 @@ def transformar_votacion(votacion, periodo_legislativo, notas):
 
 
 def transformar_legislador(legislador, vigente, slug, fuente_registro):
-    registro = sin_contacto(copy.deepcopy(legislador))
+    registro = copy.deepcopy(legislador)
     registro = con_fechas_iso(registro, "legislador", registro.get("idLegislador"), Notas())
     registro.setdefault(PROPIO, {}).update({
         "vigente": vigente,

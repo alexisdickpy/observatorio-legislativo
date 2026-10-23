@@ -5,6 +5,12 @@
 export const inicio = () => "/";
 export const leyes = () => "/leyes/";
 export const ley = (numeroLey) => `/leyes/${encodeURIComponent(numeroLey)}/`;
+/** Ancla (id) de cada votación dentro de la ficha de su ley. */
+export const anclaVotacion = (idVotacion) => `votacion-${idVotacion}`;
+export const votacionEnLey = (numeroLey, idVotacion) => `${ley(numeroLey)}#${anclaVotacion(idVotacion)}`;
+export const legisladores = () => "/legisladores/";
+/** Ficha de una persona, con el slug de datos/propios/personas.json. */
+export const legislador = (slug) => `/legisladores/${encodeURIComponent(slug)}/`;
 export const buscar = () => "/buscar/";
 export const datosAbiertos = () => "/datos/";
 
@@ -13,6 +19,18 @@ export const archivoDatos = (ruta) => `/datos/${ruta}`;
 
 /** Parámetros de la dirección del catálogo de leyes (?q=…&anio=…&camara=…&orden=…). */
 export const parametrosCatalogo = { texto: "q", anio: "anio", camara: "camara", orden: "orden" };
+
+/** Foto de un legislador reducida para su ficha (scripts/reducir-fotos.js). La original está en archivoDatos. */
+export const fotoLegislador = (periodo, idLegislador) => `/fotos/${periodo}/${idLegislador}.jpg`;
+
+/** Parámetros de la dirección del listado de legisladores (?q=…&camara=…&partido=……). */
+export const parametrosLegisladores = {
+  texto: "q",
+  camara: "camara",
+  partido: "partido",
+  bancada: "bancada",
+  departamento: "departamento",
+};
 
 /** Parámetro de la dirección de la búsqueda (?q=…). */
 export const parametroBusqueda = "q";

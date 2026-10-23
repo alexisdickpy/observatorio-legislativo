@@ -19,7 +19,7 @@ from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
-from . import abiertos
+from . import abiertos, fotos
 from .api import BASE, Cliente, ErrorAPI, ListadoCambiado
 from .escribir import csv_bytes, escribir_si_cambia, json_bytes, leer_json
 from .fechas import a_iso
@@ -334,6 +334,15 @@ def importar(cliente, salida, id_periodo=None, ahora=None, progreso=print, permi
     derivados, avisos_derivados = abiertos.generar(salida)
     cambiados += derivados
     avisos += avisos_derivados
+
+    # Copia propia de las fotos oficiales. Sin red no se descargan.
+    descargar = None if getattr(cliente, "sin_red", False) else getattr(cliente, "archivo", None)
+    if descargar:
+        fotos_cambiadas, avisos_fotos = fotos.sincronizar(
+            legisladores, salida / "fotos" / nombre, descargar, completo=not getattr(cliente, "incremental", False))
+        progreso(f"Fotos: {len(fotos_cambiadas)} nuevas, cambiadas o borradas")
+        cambiados += fotos_cambiadas
+        avisos += avisos_fotos
 
     cambiados = [str(r.relative_to(salida)).replace("\\", "/") for r in cambiados]
     por_id = {l["idLey"]: l for l in leyes}

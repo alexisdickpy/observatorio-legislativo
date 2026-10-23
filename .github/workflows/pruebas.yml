@@ -34,7 +34,7 @@ jobs:
           cache-dependency-path: sitio/package-lock.json
       - name: Instalar dependencias
         run: npm ci
-      - name: Pruebas del filtro de leyes
+      - name: Pruebas unitarias del sitio
         run: npm test
       - name: Compilar el sitio
         run: npm run build

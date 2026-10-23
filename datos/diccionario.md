@@ -176,7 +176,7 @@ Archivos: `fuente/{período}/votos.csv` · 82680 registros en total.
 
 ## legisladores
 
-Un registro por legislador del período, vigente o no. Sin correo ni teléfono.
+Un registro por legislador del período, vigente o no. Es la única tabla con el correo y el teléfono que la API publica para cada legislador.
 
 Archivos: `fuente/{período}/legisladores.json`, `fuente/{período}/legisladores.csv` · 143 registros en total.
 
@@ -189,11 +189,13 @@ Archivos: `fuente/{período}/legisladores.json`, `fuente/{período}/legisladores
 | `camaraParlamentario` | oficial | texto | Cámara: CAMARA DE SENADORES o CAMARA DE DIPUTADOS. |
 | `cargoBancada` | oficial | texto | Cargo en la bancada (MIEMBRO, LIDER, VICELIDER…). Puede estar vacío. |
 | `departamento` | oficial | texto | Departamento por el que fue electo; NACIONAL para el Senado. |
+| `emailParlamentario` | oficial | texto | Correo que la API publica para el legislador. Puede estar vacío. |
 | `fotoURL` | oficial | URL | Foto oficial. |
 | `idLegislador` | oficial | entero | Identificador oficial. Cambia en cada legislatura: no identifica a una persona entre períodos. |
 | `nombres` | oficial | texto | Nombres. |
 | `partidoPolitico` | oficial | texto | Partido político. La API da el valor actual por legislador y período, no el partido en cada fecha. |
 | `periodoLegislativo` | oficial | texto | Período legislativo del registro. |
+| `telefonoParlamentario` | oficial | texto | Teléfono que la API publica para el legislador. Puede estar vacío. |
 | `tipoParlamentario` | oficial | texto | TITULAR, SUPLENTE o VITALICIO (los senadores vitalicios tienen voz pero no voto). |
 | `_propio.fuenteRegistro` | propio | texto | De dónde se tomó el registro: el listado histórico (`legislador?idCamara=A`), el de vigentes (`legislador/camara/{S\|D}`) o, si no figura en ninguno, el voto que lo incluye (`votacion`). |
 | `_propio.slug` | propio | texto | Identificador estable de la persona (ver `personas`). Forma la URL de su ficha. |

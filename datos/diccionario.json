@@ -775,7 +775,7 @@
       ]
     },
     "legisladores": {
-      "descripcion": "Un registro por legislador del período, vigente o no. Sin correo ni teléfono.",
+      "descripcion": "Un registro por legislador del período, vigente o no. Es la única tabla con el correo y el teléfono que la API publica para cada legislador.",
       "archivos": [
         "fuente/{período}/legisladores.json",
         "fuente/{período}/legisladores.csv"
@@ -824,6 +824,12 @@
           "descripcion": "Departamento por el que fue electo; NACIONAL para el Senado."
         },
         {
+          "campo": "emailParlamentario",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Correo que la API publica para el legislador. Puede estar vacío."
+        },
+        {
           "campo": "fotoURL",
           "origen": "oficial",
           "tipo": "URL",
@@ -852,6 +858,12 @@
           "origen": "oficial",
           "tipo": "texto",
           "descripcion": "Período legislativo del registro."
+        },
+        {
+          "campo": "telefonoParlamentario",
+          "origen": "oficial",
+          "tipo": "texto",
+          "descripcion": "Teléfono que la API publica para el legislador. Puede estar vacío."
         },
         {
           "campo": "tipoParlamentario",

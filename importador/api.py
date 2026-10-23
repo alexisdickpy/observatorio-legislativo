@@ -146,10 +146,19 @@ class Cliente:
             raise ErrorAPI(f"{ruta}: codigoEstado inesperado {estado}")
         return respuesta
 
+    def archivo(self, url):
+        """Descarga un archivo que no es una respuesta de la API (una foto). No se guarda en la caché."""
+        if self.sin_red:
+            raise ErrorAPI(f"No se puede descargar {url} en modo sin red")
+        return self._descargar_url(url, json_404=False)
+
     def _descargar(self, ruta, params):
         url = f"{BASE}/{ruta.strip('/')}"
         if params:
             url += "?" + urllib.parse.urlencode(params)
+        return self._descargar_url(url, json_404=True)
+
+    def _descargar_url(self, url, json_404):
         ultimo_error = None
         for intento in range(self.reintentos):
             try:
@@ -160,7 +169,7 @@ class Cliente:
             except urllib.error.HTTPError as e:
                 # La API responde 404 con un cuerpo JSON válido cuando no hay datos.
                 cuerpo = e.read()
-                if e.code == 404 and cuerpo.strip().startswith(b"{"):
+                if json_404 and e.code == 404 and cuerpo.strip().startswith(b"{"):
                     break
                 ultimo_error = e
             # OSError cubre URLError, TimeoutError y ConnectionError; HTTPException, las

@@ -171,14 +171,24 @@ class Importar(unittest.TestCase):
         legislador = [l for l in self.leer("fuente/2023-2028/legisladores.json") if l["idLegislador"] == 101534][0]
         self.assertEqual(legislador["_propio"]["slug"], "mario-abdo")
 
-    def test_sin_correos_ni_telefonos_en_ningun_archivo(self):
+    def test_correo_y_telefono_solo_en_legisladores(self):
         api = ApiSimulada()
-        api.rutas["legislador/camara/S"][0]["emailParlamentario"] = "secreto@senado.gov.py"
-        api.rutas["legislador?idCamara=A"][0]["telefonoParlamentario"] = "000-0000"
+        vigente = api.rutas["legislador?idCamara=A"][0]
+        vigente["emailParlamentario"] = "oficina@senado.gov.py"
+        vigente["telefonoParlamentario"] = "000-0000"
+        # El mismo legislador, repetido dentro de la votación, con sus datos de contacto.
+        for voto in api.rutas["votacion"][0]["votaciones"]:
+            voto["legislador"]["emailParlamentario"] = "copia@congreso.gov.py"
         self.correr(api)
-        for contenido in self.foto().values():
-            self.assertNotIn(b"emailParlamentario", contenido)
-            self.assertNotIn(b"telefonoParlamentario", contenido)
+        legisladores = {l["idLegislador"]: l for l in self.leer("fuente/2023-2028/legisladores.json")}
+        self.assertEqual(legisladores[vigente["idLegislador"]]["emailParlamentario"], "oficina@senado.gov.py")
+        self.assertEqual(legisladores[vigente["idLegislador"]]["telefonoParlamentario"], "000-0000")
+        for ruta, contenido in self.foto().items():
+            # El diccionario describe los campos; los valores solo están en legisladores.
+            if ruta.name.startswith(("legisladores.", "diccionario.")):
+                continue
+            self.assertNotIn(b"emailParlamentario", contenido, ruta)
+            self.assertNotIn(b"telefonoParlamentario", contenido, ruta)
 
     def test_api_sin_leyes_no_escribe_nada(self):
         antes = self.foto()

@@ -262,7 +262,7 @@ El período legislativo es un dato, no algo fijo en el código.
 ## Privacidad y licencias
 
 - El sitio no usa cookies ni recoge datos personales de visitantes. Las estadísticas son de Cloudflare Web Analytics, sin cookies.
-- La API incluye correo y teléfono institucionales de los legisladores. Si el sitio los muestra se decide en #8.
+- La API incluye correo y teléfono institucionales de los legisladores. Decidido en #8: el sitio los muestra en la ficha de cada legislador; se guardan solo en `legisladores.json`.
 - Código bajo AGPL-3.0. Datos derivados bajo CC BY 4.0, con la cita "Origen de los datos: Datos Abiertos Poder Legislativo" y la fecha de actualización tomada de `datos/estado.json`.
 
 ## Consecuencias

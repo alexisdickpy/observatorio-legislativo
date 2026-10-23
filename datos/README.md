@@ -22,6 +22,7 @@ No editar estos archivos a mano, salvo las notas manuales de `propios/notas.json
 | `fuente/{período}/votos.csv` | Un voto individual por fila: `idVotacion`, `idDetalleVotacion`, `idLegislador`, `idSentidoVotacion`, `sentidoVotacion`, `observacion`. |
 | `fuente/{período}/legisladores.json` y `.csv` | Legisladores del período, vigentes o no. |
 | `fuente/{período}/autores.json` y `.csv` | Autores de cada proyecto con ley (`idProyecto` + `legislador`), en el orden que publica la API. |
+| `fotos/{período}/{idLegislador}.jpg` | Copia de la foto que publica el Congreso en el `fotoURL` de cada legislador, sin cambios. No figura en el diccionario: no es una tabla. |
 | `propios/personas.json` | Identificador estable (slug) de cada persona y sus `idLegislador` por período. |
 | `propios/notas.json` | Problemas detectados en la fuente: fechas mal formadas, totales que no coinciden, votos faltantes, etc. |
 | `propios/partidos.json` | Nombre por el que se conoce a un partido cuando difiere del nombre oficial (`partidoPolitico`), con su fundamento. El sitio lo muestra entre paréntesis, señalado como agregado propio; el nombre oficial no cambia. |
@@ -37,7 +38,7 @@ No editar estos archivos a mano, salvo las notas manuales de `propios/notas.json
   - Los objetos anidados se aplanan con puntos en el nombre de la columna (`proyecto.acapite`). Las listas de valores se unen con ` | `. Las listas de objetos (los archivos adjuntos de cada ley) quedan solo en el JSON.
   - Las columnas propias conservan `_propio` en el nombre (`_propio.fechaSancion`) y van después de las oficiales.
   - Verdadero y falso se escriben `true` y `false`; un valor nulo queda vacío.
-- **Sin datos de contacto.** No se guardan el correo ni el teléfono de los legisladores.
+- **Datos de contacto.** El correo y el teléfono que publica la API para cada legislador se guardan solo en `legisladores.json` y `.csv`; se omiten en las copias del legislador dentro de autores, leyes y votaciones.
 
 ## Campos propios
 

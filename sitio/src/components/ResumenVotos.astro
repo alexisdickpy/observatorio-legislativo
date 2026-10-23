@@ -1,0 +1,47 @@
+---
+// Resumen de los votos de un legislador: barra y cantidad por categoría oficial, con su
+// denominador. Recibe los valores ya calculados por lib/legisladores.js.
+import BarraVotos from "./BarraVotos.astro";
+
+interface Props {
+  votos: any;
+  periodo: string;
+}
+const { votos: v, periodo } = Astro.props;
+---
+
+<div class="resumen-votos">
+  <p class="chico texto-suave lectura">
+    Sobre las {v.total} votaciones nominales de leyes sancionadas del período {periodo} en cuya lista
+    oficial figura:
+  </p>
+  <BarraVotos barra={v.barra} />
+  <ul class="totales">
+    {v.totales.map((t: any) => <li class={t.cantidad ? undefined : "texto-suave"}><span class={`cuadro ${t.clase}`}></span><span class="categoria">{t.categoria}</span> {t.texto}</li>)}
+  </ul>
+  <p class="lectura">
+    <strong>Ausencias en votaciones nominales:</strong> {v.ausencias.texto}.
+  </p>
+</div>
+
+<style is:global>
+  .resumen-votos .totales {
+    margin-top: var(--espacio-2);
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espacio-2) var(--espacio-4);
+  }
+  .resumen-votos .categoria {
+    font-weight: var(--peso-fuerte);
+  }
+  .cuadro {
+    display: inline-block;
+    width: var(--tamano-cuadro-voto);
+    height: var(--tamano-cuadro-voto);
+    margin-right: var(--espacio-1);
+    border-radius: var(--radio);
+    vertical-align: middle;
+  }
+</style>

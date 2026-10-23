@@ -60,6 +60,8 @@
   --columna-fecha: 7rem;
   --ancho-campo-filtro: 11rem;
   --alto-barra-votos: 1.25rem;
+  --tamano-cuadro-voto: 0.75rem;
+  --tamano-foto-legislador: 10rem;
   --ancho-nombre-barra: 16rem;
   --punto-quiebre-movil: 48rem; /* referencia: las media queries no aceptan variables */
 }

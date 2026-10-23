@@ -8,7 +8,7 @@ Portal independiente de datos abiertos para explorar las **leyes aprobadas por e
 
 - Catálogo de leyes sancionadas en el período legislativo 2023-2028, con enlaces a la fuente oficial.
 - Ficha de cada ley: quién la presentó, sus votaciones nominales y el voto de cada legislador, partido y bancada.
-- Ficha de cada legislador vigente con su historial de votos.
+- Ficha de cada legislador del período: partido, bancada, sus votos en las votaciones nominales de leyes y las leyes de su autoría.
 - Datos abiertos descargables.
 
 Más adelante: clasificación por temas, indicadores de participación en votaciones, un test de afinidad basado en votaciones reales y avisos por Telegram cuando se sancione una nueva ley.

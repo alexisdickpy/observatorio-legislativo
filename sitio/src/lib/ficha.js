@@ -29,7 +29,7 @@ const TOTALES_OFICIALES = [
 ];
 const CATEGORIAS_FINALES = ["NO VOTA", "AUSENTE"];
 
-const valor = (v) => (v === undefined || v === null || String(v).trim() === "" ? null : v);
+export const valor = (v) => (v === undefined || v === null || String(v).trim() === "" ? null : v);
 const porNombre = (a, b) => a.localeCompare(b, "es");
 
 const formatoPorcentaje = new Intl.NumberFormat("es-PY", { style: "percent", maximumFractionDigits: 1 });
@@ -76,9 +76,9 @@ export function barra(categorias, celdas) {
   return { segmentos, etiqueta: segmentos.map((x) => x.texto).join("; ") };
 }
 
-// Índices por período, armados una sola vez.
+// Índices por período, armados una sola vez. También los usa legisladores.js.
 const indices = new Map();
-function indice(periodo) {
+export function indice(periodo) {
   if (indices.has(periodo)) return indices.get(periodo);
   const agrupar = (lista, clave) => {
     const m = new Map();
@@ -107,19 +107,24 @@ export function nombreConocido(partidoOficial) {
   return partidosConocidos().find((p) => p.partidoPolitico === partidoOficial)?.nombreConocido ?? null;
 }
 
-const nombreDe = (l) => [valor(l.nombres), valor(l.apellidos)].filter(Boolean).join(" ") || null;
+export const nombreDe = (l) => [valor(l.nombres), valor(l.apellidos)].filter(Boolean).join(" ") || null;
+
+/** Ficha propia de un legislador del período (con slug), o null. */
+const fichaDe = (slug) => (slug ? rutas.legislador(slug) : null);
 
 function prepararAutor(a, periodo) {
   const l = a.legislador ?? {};
+  const delPeriodo = a._propio?.delPeriodo ?? l.periodoLegislativo === periodo;
   return {
     nombre: nombreDe(l),
     url: valor(l.appURL),
+    ficha: delPeriodo ? fichaDe(a._propio?.slug) : null,
     partido: valor(l.partidoPolitico),
     partidoConocido: nombreConocido(l.partidoPolitico),
     bancada: valor(l.bancada),
     camara: valor(l.camaraParlamentario),
     legislatura: valor(l.periodoLegislativo),
-    delPeriodo: a._propio?.delPeriodo ?? l.periodoLegislativo === periodo,
+    delPeriodo,
   };
 }
 
@@ -155,6 +160,7 @@ function prepararVotacion(v, i) {
       const l = i.legisladores.get(Number(voto.idLegislador)) ?? {};
       return {
         nombre: nombreDe(l),
+        ficha: fichaDe(l._propio?.slug),
         apellidos: valor(l.apellidos) ?? "",
         partido: valor(l.partidoPolitico),
         partidoConocido: nombreConocido(l.partidoPolitico),
@@ -177,7 +183,7 @@ function prepararVotacion(v, i) {
   });
   return {
     id: v.idVotacion,
-    ancla: `votacion-${v.idVotacion}`,
+    ancla: rutas.anclaVotacion(v.idVotacion),
     url: valor(v.appURL) ?? rutas.votacionSilpy(v.idVotacion),
     fecha: valor(t.fechaTramite),
     fechaIso: t._propio?.fechaTramite ?? null,
@@ -212,12 +218,12 @@ function prepararVotacion(v, i) {
 }
 
 /** De la más reciente a la más antigua; a igual fecha, la de mayor id primero. */
-const masRecientePrimero = (a, b) =>
+export const masRecientePrimero = (a, b) =>
   (b.fechaIso ?? "").localeCompare(a.fechaIso ?? "") || b.id - a.id;
 
 /** Orden de las cámaras: primero la cámara alta. Las demás, por nombre. */
 const ORDEN_CAMARAS = ["CAMARA DE SENADORES", "CAMARA DE DIPUTADOS"];
-const posicionCamara = (c) => (ORDEN_CAMARAS.includes(c) ? ORDEN_CAMARAS.indexOf(c) : ORDEN_CAMARAS.length);
+export const posicionCamara = (c) => (ORDEN_CAMARAS.includes(c) ? ORDEN_CAMARAS.indexOf(c) : ORDEN_CAMARAS.length);
 
 /** Agrupa por cámara (Senadores, luego Diputados); dentro, de la más reciente a la más antigua. */
 export function agruparPorCamara(votaciones) {

@@ -1,2 +1,4 @@
 # Los datos generados usan siempre saltos de línea LF, en cualquier sistema operativo.
 datos/** text eol=lf
+# Las fotos son binarias: Git no debe tocar sus bytes.
+*.jpg binary
