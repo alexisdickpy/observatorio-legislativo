@@ -3,15 +3,19 @@ import Base from "../layouts/Base.astro";
 import { cita, actualizacion } from "../lib/catalogo.js";
 import { descargas } from "../lib/descargas.js";
 import * as rutas from "../lib/rutas.js";
+import { datosAbiertos } from "../lib/seo.js";
 
 const grupos = descargas();
 const fuente = cita();
 const fecha = actualizacion();
+const descripcion =
+  "Descarga de los datos del Congreso Nacional del Paraguay que usa este sitio, en CSV y JSON, con su diccionario de datos.";
 ---
 
 <Base
   titulo="Datos abiertos"
-  descripcion="Descarga de los datos del Congreso Nacional del Paraguay que usa este sitio, en CSV y JSON, con su diccionario de datos."
+  descripcion={descripcion}
+  datos={datosAbiertos(descripcion)}
 >
   <h1>Datos abiertos</h1>
   <div class="lectura">

@@ -2,6 +2,11 @@
 // dirección a este módulo y nunca la escriben a mano (ver docs/decisiones/0001-arquitectura.md).
 // Si una URL publicada cambia, agregar una redirección permanente en public/_redirects.
 
+/** Dirección pública del sitio. Es el único lugar que cambia al mudarlo a otro dominio (docs/seo.md). */
+export const sitio = "https://congreso.alexisdick.com";
+/** Dirección completa de una ruta del sitio, para etiquetas de buscadores y redes sociales. */
+export const absoluta = (ruta) => new URL(ruta, sitio).href;
+
 export const inicio = () => "/";
 export const leyes = () => "/leyes/";
 export const ley = (numeroLey) => `/leyes/${encodeURIComponent(numeroLey)}/`;
@@ -14,6 +19,11 @@ export const legislador = (slug) => `/legisladores/${encodeURIComponent(slug)}/`
 export const buscar = () => "/buscar/";
 export const datosAbiertos = () => "/datos/";
 export const privacidad = () => "/privacidad/";
+export const sitemap = () => "/sitemap.xml";
+/** Archivos internos del buscador (Pagefind), que los rastreadores no necesitan leer. */
+export const archivosBuscador = () => "/pagefind/";
+/** Imagen general de la vista previa al compartir (scripts/imagen-compartir.js). */
+export const imagenCompartir = () => "/compartir.png";
 /** Metodología; con sección, el ancla de esa parte (anclasMetodologia). */
 export const metodologia = (seccion) => (seccion ? `/metodologia/#${seccion}` : "/metodologia/");
 /** Secciones de la metodología a las que enlazan las fichas. */

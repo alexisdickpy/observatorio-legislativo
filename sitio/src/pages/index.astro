@@ -3,6 +3,7 @@ import Base from "../layouts/Base.astro";
 import { leyes } from "../lib/catalogo.js";
 import { periodos } from "../lib/datos.js";
 import * as rutas from "../lib/rutas.js";
+import { datosDelSitio } from "../lib/seo.js";
 
 const vigente = periodos().find((p) => p.vigente);
 const cantidad = leyes().length;
@@ -11,6 +12,7 @@ const cantidad = leyes().length;
 <Base
   titulo="Observatorio Legislativo"
   descripcion={`Leyes sancionadas por el Congreso Nacional del Paraguay en el período legislativo ${vigente.id}, con datos abiertos.`}
+  datos={datosDelSitio()}
 >
   <div class="lectura">
     <h1>Observatorio Legislativo</h1>

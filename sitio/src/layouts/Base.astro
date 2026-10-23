@@ -1,16 +1,29 @@
 ---
-// Estructura común de todas las páginas.
+// Estructura común de todas las páginas, con las etiquetas para buscadores y redes sociales
+// (preparadas por lib/seo.js).
 import "../estilos/tokens.css";
 import "../estilos/base.css";
 import Encabezado from "../components/Encabezado.astro";
 import PiePagina from "../components/PiePagina.astro";
+import { imagenDe, nombreSitio } from "../lib/seo.js";
+import * as rutas from "../lib/rutas.js";
 
 interface Props {
   titulo: string;
   descripcion: string;
+  /** Imagen de la vista previa al compartir (seo.imagenDe); si falta, la general. */
+  imagen?: { url: string; ancho: number; alto: number; alt: string; grande: boolean };
+  /** Datos estructurados de schema.org (seo.datosDe…). */
+  datos?: object;
+  tipo?: "website" | "profile";
+  /** false en páginas que no deben aparecer en buscadores (la 404). */
+  indexar?: boolean;
 }
-const { titulo, descripcion } = Astro.props;
-const nombreSitio = "Observatorio Legislativo";
+const { titulo, descripcion, imagen = imagenDe(null, nombreSitio), datos, tipo = "website", indexar = true } = Astro.props;
+const tituloCompleto = titulo === nombreSitio ? titulo : `${titulo} · ${nombreSitio}`;
+const canonica = rutas.absoluta(Astro.url.pathname);
+// "<" escapado para que ningún texto oficial pueda cerrar la etiqueta <script>.
+const json = datos && JSON.stringify(datos).replace(/</g, "\\u003c");
 ---
 
 <!doctype html>
@@ -18,9 +31,23 @@ const nombreSitio = "Observatorio Legislativo";
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{titulo === nombreSitio ? titulo : `${titulo} · ${nombreSitio}`}</title>
+    <title>{tituloCompleto}</title>
     <meta name="description" content={descripcion} />
+    {indexar ? <link rel="canonical" href={canonica} /> : <meta name="robots" content="noindex" />}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href={rutas.sitemap()} />
+    <meta property="og:site_name" content={nombreSitio} />
+    <meta property="og:locale" content="es_PY" />
+    <meta property="og:type" content={tipo} />
+    <meta property="og:title" content={tituloCompleto} />
+    <meta property="og:description" content={descripcion} />
+    {indexar && <meta property="og:url" content={canonica} />}
+    <meta property="og:image" content={imagen.url} />
+    <meta property="og:image:width" content={String(imagen.ancho)} />
+    <meta property="og:image:height" content={String(imagen.alto)} />
+    <meta property="og:image:alt" content={imagen.alt} />
+    <meta name="twitter:card" content={imagen.grande ? "summary_large_image" : "summary"} />
+    {json && <script type="application/ld+json" set:html={json} />}
   </head>
   <body>
     <a class="saltar" href="#contenido">Saltar al contenido</a>

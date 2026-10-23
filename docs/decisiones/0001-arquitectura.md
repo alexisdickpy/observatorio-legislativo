@@ -186,7 +186,7 @@ observatorio-legislativo-py/
 ├── sitio/                    # Astro: solo presentación
 │   ├── astro.config.mjs
 │   ├── package.json
-│   ├── public/               # Archivos fijos (favicon, robots.txt, _redirects)
+│   ├── public/               # Archivos fijos (favicon, imagen para compartir, _redirects)
 │   └── src/
 │       ├── estilos/
 │       │   ├── tokens.css    # Colores, tipografías, espaciados: único lugar del aspecto visual
