@@ -17,6 +17,17 @@
   --color-foco: #f2a900;
   --color-marca: #fff4c2;
 
+  /* Colores de las categorías de voto (barras de las votaciones) */
+  --color-voto-si: #2e7d32;
+  --color-voto-no: #c62828;
+  --color-voto-abstencion: #f2a900;
+  --color-voto-no-vota: #7b5ea7;
+  --color-voto-ausente: #b4bac1;
+  --color-voto-mocion-1: #1565c0;
+  --color-voto-mocion-2: #00897b;
+  --color-voto-mocion-3: #e65100;
+  --color-voto-otro: #8d6e63;
+
   /* Tipografía */
   --fuente-texto: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --fuente-mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
@@ -48,6 +59,8 @@
   --columna-numero: 5.5rem;
   --columna-fecha: 7rem;
   --ancho-campo-filtro: 11rem;
+  --alto-barra-votos: 1.25rem;
+  --ancho-nombre-barra: 16rem;
   --punto-quiebre-movil: 48rem; /* referencia: las media queries no aceptan variables */
 }
 
@@ -63,5 +76,9 @@
     --color-acento: #7cb7f0;
     --color-sobre-acento: #0f1215;
     --color-marca: #4a3f10;
+    --color-voto-si: #4caf50;
+    --color-voto-no: #ef5350;
+    --color-voto-ausente: #5f666e;
+    --color-voto-mocion-1: #64a8f0;
   }
 }

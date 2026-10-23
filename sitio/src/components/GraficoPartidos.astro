@@ -1,0 +1,57 @@
+---
+// Gráfico de una votación: leyenda de colores y una barra por partido. Los números exactos
+// están en la tabla que va debajo (TablaDesglose).
+import BarraVotos from "./BarraVotos.astro";
+
+interface Props {
+  votacion: any;
+}
+const { votacion: v } = Astro.props;
+---
+
+<div class="grafico-partidos">
+  <ul class="leyenda chico">
+    {v.leyenda.map((l: any) => <li><span class={`muestra ${l.clase}`}></span>{l.categoria}</li>)}
+  </ul>
+  <ul class="barras">
+    {v.porPartido.map((g: any) => <li><span class="nombre chico">{g.nombre ?? "Sin dato"}{g.nombreConocido && ` (${g.nombreConocido})`} <span class="texto-suave">({g.total})</span></span><BarraVotos barra={g.barra} /></li>)}
+  </ul>
+</div>
+
+<style is:global>
+  .grafico-partidos .leyenda {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espacio-1) var(--espacio-4);
+  }
+  .grafico-partidos .leyenda li {
+    display: flex;
+    align-items: center;
+    gap: var(--espacio-1);
+  }
+  .grafico-partidos .muestra {
+    display: inline-block;
+    width: var(--espacio-4);
+    height: var(--espacio-4);
+    border-radius: var(--radio);
+  }
+  .grafico-partidos .barras {
+    list-style: none;
+    padding: 0;
+  }
+  .grafico-partidos .barras li {
+    display: grid;
+    grid-template-columns: var(--ancho-nombre-barra) 1fr;
+    gap: var(--espacio-1) var(--espacio-3);
+    align-items: center;
+    margin-bottom: var(--espacio-2);
+  }
+  /* Móvil: el nombre arriba de la barra. 48rem = --punto-quiebre-movil. */
+  @media (max-width: 48rem) {
+    .grafico-partidos .barras li {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

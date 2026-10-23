@@ -6,6 +6,7 @@ import { leyes } from "../../src/lib/catalogo.js";
 import { interpretarCsv } from "../../src/lib/datos.js";
 import {
   agruparPorCamara,
+  claseDeCategoria,
   detalleDeRegistro,
   nombreConocido,
   ordenarCategorias,
@@ -160,4 +161,27 @@ test("nombre conocido de un partido, aparte del nombre oficial", () => {
   assert.ok(d.conNombreConocido);
   // Las bancadas no reciben nombre conocido.
   assert.ok(d.votaciones.indice[0].porBancada.every((g) => g.nombreConocido === null));
+});
+
+test("barras: un segmento por categoría con votos, que suman el 100 %, con su color", () => {
+  assert.equal(claseDeCategoria("SI"), "voto-si");
+  assert.equal(claseDeCategoria("ABSTENCIÓN/BLANCO"), "voto-abstencion");
+  assert.equal(claseDeCategoria("NO VOTA"), "voto-no-vota");
+  assert.equal(claseDeCategoria("MOCIÓN 2"), "voto-mocion-2");
+  assert.equal(claseDeCategoria("CATEGORÍA NUEVA"), "voto-otro");
+  for (const { d } of todos()) {
+    for (const v of d.votaciones.indice) {
+      for (const b of [v.barraTotal, ...v.porPartido.map((g) => g.barra)]) {
+        const suma = b.segmentos.reduce((s, x) => s + x.ancho, 0);
+        assert.ok(Math.abs(suma - 100) < 0.1, `Votación ${v.id}: ${suma}`);
+        assert.ok(b.segmentos.every((x) => x.ancho > 0));
+      }
+    }
+  }
+  const v = detalles("7363")[0].votaciones.indice.find((x) => x.id === 105935);
+  assert.deepEqual(
+    v.leyenda.map((l) => l.categoria),
+    ["ABSTENCIÓN/BLANCO", "MOCIÓN 1", "MOCIÓN 2", "MOCIÓN 3", "AUSENTE"],
+  );
+  assert.equal(v.barraTotal.segmentos[1].texto, "MOCIÓN 1: 31 de 45 (68,9%)");
 });

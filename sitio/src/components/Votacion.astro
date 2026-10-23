@@ -2,6 +2,8 @@
 // Una votación nominal: textos oficiales, totales, desglose por partido y bancada y voto de
 // cada legislador. Recibe los valores ya calculados por lib/ficha.js.
 // Estilos globales con prefijo de clase: los estilos con alcance agregan un atributo a cada celda.
+import BarraVotos from "./BarraVotos.astro";
+import GraficoPartidos from "./GraficoPartidos.astro";
 import TablaDesglose from "./TablaDesglose.astro";
 
 interface Props {
@@ -10,6 +12,7 @@ interface Props {
 }
 const { votacion: v, nivel } = Astro.props;
 const Titulo = `h${nivel}`;
+const Subtitulo = `h${Math.min(nivel + 1, 6)}`;
 const sinDato = "Sin dato";
 ---
 
@@ -24,6 +27,7 @@ const sinDato = "Sin dato";
   {v.observacion && <p class="lectura chico">Observación: {v.observacion}</p>}
 
   <p class="chico texto-suave">Totales sobre {v.registrados} legisladores registrados en la votación:</p>
+  <BarraVotos barra={v.barraTotal} />
   <ul class="totales">
     {
       v.totales.map((t: any) => (
@@ -55,7 +59,9 @@ const sinDato = "Sin dato";
     En cada partido y bancada, el total ("de …") son sus legisladores que figuran en la lista oficial
     de esta votación, incluidos los suplentes en ejercicio y los ausentes.
   </p>
-  <TablaDesglose titulo="Por partido" grupo="Partido" categorias={v.categorias} filas={v.porPartido} />
+  <Subtitulo class="subtitulo">Por partido</Subtitulo>
+  <GraficoPartidos votacion={v} />
+  <TablaDesglose titulo="Por partido, en números" grupo="Partido" categorias={v.categorias} filas={v.porPartido} />
 
   <details>
     <summary>Ver por bancada</summary>
@@ -91,7 +97,12 @@ const sinDato = "Sin dato";
     border-top: var(--borde-ancho) solid var(--color-borde);
     padding-top: var(--espacio-2);
   }
+  .votacion .subtitulo {
+    font-size: var(--tamano-base);
+    margin-top: var(--espacio-4);
+  }
   .votacion .totales {
+    margin-top: var(--espacio-2);
     list-style: none;
     padding: 0;
     display: flex;

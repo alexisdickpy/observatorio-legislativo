@@ -17,7 +17,7 @@
 
 import { fuente, notas, partidosConocidos } from "./datos.js";
 import * as rutas from "./rutas.js";
-import { recortar } from "./texto.js";
+import { recortar, slug } from "./texto.js";
 
 /** Categorías con total publicado por el Congreso, en el orden en que se muestran. */
 const TOTALES_OFICIALES = [
@@ -50,6 +50,30 @@ export function ordenarCategorias(categorias) {
     .filter((c) => !TOTALES_OFICIALES.some(([o]) => o === c))
     .sort(porNombre);
   return [...fijas, ...otras, ...CATEGORIAS_FINALES];
+}
+
+/** Clase de color de una categoría (los colores están en tokens.css: --color-voto-…). */
+const CLASES_CONOCIDAS = ["si", "no", "abstencion", "no-vota", "ausente", "mocion-1", "mocion-2", "mocion-3"];
+export function claseDeCategoria(categoria) {
+  const s = slug(categoria).replace(/^abstencion-blanco$/, "abstencion");
+  return `voto-${CLASES_CONOCIDAS.includes(s) ? s : "otro"}`;
+}
+
+/**
+ * Barra apilada: un segmento por categoría con votos, con su ancho en porcentaje.
+ * `celdas` son proporciones en el mismo orden que `categorias`.
+ */
+export function barra(categorias, celdas) {
+  const segmentos = categorias
+    .map((categoria, i) => ({ categoria, ...celdas[i] }))
+    .filter((c) => c.cantidad > 0)
+    .map((c) => ({
+      categoria: c.categoria,
+      clase: claseDeCategoria(c.categoria),
+      ancho: Math.round(c.porcentaje * 10000) / 100,
+      texto: `${c.categoria}: ${c.texto}`,
+    }));
+  return { segmentos, etiqueta: segmentos.map((x) => x.texto).join("; ") };
 }
 
 // Índices por período, armados una sola vez.
@@ -108,14 +132,18 @@ function desglose(votos, campo, categorias) {
     grupos.get(nombre).push(v);
   }
   return [...grupos.entries()]
-    .map(([nombre, lista]) => ({
-      nombre,
-      nombreConocido: campo === "partido" ? nombreConocido(nombre) : null,
-      total: lista.length,
-      celdas: categorias.map((categoria) =>
+    .map(([nombre, lista]) => {
+      const celdas = categorias.map((categoria) =>
         proporcion(lista.filter((v) => v.sentido === categoria).length, lista.length),
-      ),
-    }))
+      );
+      return {
+        nombre,
+        nombreConocido: campo === "partido" ? nombreConocido(nombre) : null,
+        total: lista.length,
+        celdas,
+        barra: barra(categorias, celdas),
+      };
+    })
     .sort((a, b) => b.total - a.total || porNombre(a.nombre ?? "", b.nombre ?? ""));
 }
 
@@ -168,7 +196,11 @@ function prepararVotacion(v, i) {
     },
     registrados: votos.length,
     categorias,
+    leyenda: totales
+      .filter((t) => t.cantidad > 0)
+      .map((t) => ({ categoria: t.categoria, clase: claseDeCategoria(t.categoria) })),
     totales,
+    barraTotal: barra(categorias, totales),
     hayRecuentoPropio: totales.some((x) => x.recuentoPropio),
     totalesCoinciden: v._propio?.totalesCoinciden ?? true,
     recalculados: categorias.map((c) => ({ categoria: c, cantidad: recuento(c) })),
