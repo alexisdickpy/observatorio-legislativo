@@ -131,7 +131,7 @@ test("fotos: la original en /datos/fotos/ y la reducida en /fotos/", () => {
 function todasLasPaginas(carpeta = dist, base = "/") {
   const urls = [];
   for (const e of readdirSync(carpeta, { withFileTypes: true })) {
-    if (e.isDirectory() && !["datos", "fotos", "pagefind", "_astro"].includes(e.name)) {
+    if (e.isDirectory() && !["fotos", "pagefind", "_astro"].includes(e.name)) {
       urls.push(...todasLasPaginas(join(carpeta, e.name), `${base}${e.name}/`));
     } else if (e.name === "index.html") urls.push(base);
   }
@@ -191,5 +191,77 @@ test("las fichas enlazan a la metodología", () => {
   for (const ley of leyes()) {
     const conVotaciones = ley.registros.some((r) => detalleDeRegistro(r).votaciones.cantidad > 0);
     if (conVotaciones) assert.ok(leer(ley.url).includes(afiliacion), `Falta el enlace a la metodología en ${ley.url}`);
+  }
+});
+
+// --- Buscadores y vista previa al compartir (#10) ---
+
+/** Valor de la primera coincidencia, con las entidades HTML que usa Astro ya convertidas. */
+const etiqueta = (html, patron) =>
+  html.match(patron)?.[1]?.replaceAll("&#39;", "'").replaceAll("&quot;", '"').replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&");
+const metaPropiedad = (html, propiedad) => etiqueta(html, new RegExp(`<meta property="${propiedad}" content="([^"]*)"`));
+const datosEstructurados = (url) => JSON.parse(etiqueta(leer(url), /<script type="application\/ld\+json">(.*?)<\/script>/s));
+const archivoDe = (direccion) => join(dist, decodeURIComponent(new URL(direccion).pathname));
+
+test("cada página tiene título y descripción únicos, URL canónica e imagen para compartir", () => {
+  const titulos = new Map();
+  const descripciones = new Map();
+  for (const url of todasLasPaginas()) {
+    const html = leer(url);
+    const titulo = etiqueta(html, /<title>([^<]*)<\/title>/);
+    const descripcion = etiqueta(html, /<meta name="description" content="([^"]*)"/);
+    assert.ok(titulo && descripcion, `Faltan título o descripción en ${url}`);
+    assert.ok(!titulos.has(titulo), `Título repetido en ${url} y ${titulos.get(titulo)}`);
+    assert.ok(!descripciones.has(descripcion), `Descripción repetida en ${url} y ${descripciones.get(descripcion)}`);
+    titulos.set(titulo, url);
+    descripciones.set(descripcion, url);
+    assert.equal(etiqueta(html, /<link rel="canonical" href="([^"]*)"/), rutas.absoluta(url));
+    assert.equal(metaPropiedad(html, "og:title"), titulo);
+    assert.equal(metaPropiedad(html, "og:url"), rutas.absoluta(url));
+    const imagen = metaPropiedad(html, "og:image");
+    assert.ok(imagen?.startsWith(rutas.sitio) && existsSync(archivoDe(imagen)), `Imagen inexistente en ${url}`);
+  }
+});
+
+test("la foto oficial como vista previa de cada legislador que la tiene", () => {
+  for (const persona of legisladores()) {
+    const foto = ficha(persona).bloques[0].foto;
+    const esperada = rutas.absoluta(foto ?? rutas.imagenCompartir());
+    assert.equal(metaPropiedad(leer(persona.url), "og:image"), esperada, persona.url);
+  }
+});
+
+test("datos estructurados válidos en leyes, legisladores, datos abiertos e inicio", () => {
+  for (const ley of leyes()) assert.equal(datosEstructurados(ley.url)["@type"], "Legislation", ley.url);
+  for (const persona of legisladores()) assert.equal(datosEstructurados(persona.url)["@type"], "Person", persona.url);
+  const conjunto = datosEstructurados(rutas.datosAbiertos());
+  assert.equal(conjunto["@type"], "Dataset");
+  for (const a of conjunto.distribution) assert.ok(existsSync(archivoDe(a.contentUrl)), a.contentUrl);
+  assert.equal(datosEstructurados(rutas.inicio())["@type"], "WebSite");
+});
+
+test("sitemap.xml con todas las páginas indexables y robots.txt que lo anuncia", () => {
+  const sitemap = readFileSync(join(dist, "sitemap.xml"), "utf-8");
+  const enSitemap = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+  const paginas = todasLasPaginas().filter((u) => u !== rutas.buscar()).map(rutas.absoluta);
+  assert.deepEqual([...enSitemap].sort(), [...paginas].sort());
+  const robots = readFileSync(join(dist, "robots.txt"), "utf-8");
+  assert.ok(robots.includes(`Sitemap: ${rutas.absoluta(rutas.sitemap())}`));
+  assert.ok(robots.includes(`Disallow: ${rutas.archivosBuscador()}`));
+  assert.ok(!/Disallow: \/\s*$/m.test(robots), "robots.txt no debe bloquear todo el sitio");
+});
+
+test("página 404 propia, fuera de los buscadores", () => {
+  const html = readFileSync(join(dist, "404.html"), "utf-8");
+  assert.ok(html.includes('<meta name="robots" content="noindex">'));
+  assert.ok(!html.includes('rel="canonical"'));
+});
+
+test("sin herramientas de seguimiento con cookies", () => {
+  for (const url of todasLasPaginas()) {
+    const html = leer(url);
+    for (const rastreador of ["googletagmanager", "google-analytics", "gtag(", "facebook.net", "hotjar"]) {
+      assert.ok(!html.includes(rastreador), `${rastreador} en ${url}`);
+    }
   }
 });

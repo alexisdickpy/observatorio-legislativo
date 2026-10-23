@@ -5,19 +5,16 @@ import FichaRegistro from "../../components/FichaRegistro.astro";
 import { leyes } from "../../lib/catalogo.js";
 import { detalleDeRegistro } from "../../lib/ficha.js";
 import * as rutas from "../../lib/rutas.js";
+import { datosDeLey, descripcionDeLey, tituloDeLey } from "../../lib/seo.js";
 
 export function getStaticPaths() {
   return leyes().map((ley) => ({ params: { numero: ley.numero }, props: { ley } }));
 }
 
 const { ley } = Astro.props;
-const resumen = ley.titulos[0] ?? "";
 ---
 
-<Base
-  titulo={`Ley ${ley.numero}`}
-  descripcion={`Ley ${ley.numero} del Paraguay${ley.fechasSancion[0] ? `, sancionada el ${ley.fechasSancion[0]}` : ""}. ${resumen}`.slice(0, 300)}
->
+<Base titulo={tituloDeLey(ley)} descripcion={descripcionDeLey(ley)} datos={datosDeLey(ley)}>
   <p class="chico"><a href={rutas.leyes()}>← Todas las leyes</a></p>
   <article data-pagefind-body>
     <h1 data-pagefind-meta="title">Ley {ley.numero}</h1>

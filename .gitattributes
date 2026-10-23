@@ -2,3 +2,4 @@
 datos/** text eol=lf
 # Las fotos son binarias: Git no debe tocar sus bytes.
 *.jpg binary
+*.png binary

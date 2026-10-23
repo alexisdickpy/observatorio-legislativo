@@ -6,6 +6,7 @@ import HistorialVotos from "../../components/HistorialVotos.astro";
 import ResumenVotos from "../../components/ResumenVotos.astro";
 import { ficha, legisladores } from "../../lib/legisladores.js";
 import * as rutas from "../../lib/rutas.js";
+import { datosDeLegislador, descripcionDeLegislador, imagenDe } from "../../lib/seo.js";
 
 export function getStaticPaths() {
   return legisladores().map((persona) => ({ params: { slug: persona.slug }, props: { persona } }));
@@ -17,10 +18,16 @@ const varios = f.bloques.length > 1;
 const Titulo = varios ? "h3" : "h2";
 const sinDato = "Sin dato";
 const actual = f.bloques[0];
-const descripcion = `${f.nombre ?? sinDato}: ${actual.camara ?? sinDato}, período legislativo ${actual.periodo}. Partido: ${actual.partido ?? sinDato}. Sus votos en ${actual.votos.total} votaciones nominales de leyes y ${actual.autoria.length} leyes de su autoría.`;
+const descripcion = descripcionDeLegislador(f, sinDato);
 ---
 
-<Base titulo={f.nombre ?? sinDato} descripcion={descripcion}>
+<Base
+  titulo={f.nombre ?? sinDato}
+  descripcion={descripcion}
+  imagen={imagenDe(actual.foto, f.nombre ?? sinDato)}
+  datos={datosDeLegislador(f, persona.url)}
+  tipo="profile"
+>
   <p class="chico"><a href={rutas.legisladores()}>← Todos los legisladores</a></p>
   <article data-pagefind-body>
     <h1 data-pagefind-meta="title">{f.nombre ?? sinDato}</h1>
