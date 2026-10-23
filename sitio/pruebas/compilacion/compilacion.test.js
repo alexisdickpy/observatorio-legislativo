@@ -177,7 +177,7 @@ test("la privacidad dice que no se recogen datos personales ni se usan cookies",
   const html = texto(rutas.privacidad());
   assert.ok(html.includes("no recoge datos personales"));
   assert.ok(html.includes("sin cookies") || html.includes("no usan cookies"));
-  // Nombra todo lo que mide Cloudflare Web Analytics (docs/publicacion.md).
+  // Nombra todo lo que mide Cloudflare Web Analytics.
   for (const medida of ["dirección IP", "el sitio desde el que se llegó", "el navegador", "el tiempo de carga"]) {
     assert.ok(html.includes(medida), `Falta «${medida}» en la privacidad`);
   }

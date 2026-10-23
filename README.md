@@ -35,7 +35,7 @@ Se pueden reutilizar libremente bajo [CC BY 4.0](LICENSE-DATOS.md), citando "Ori
 
 El sitio está en [`sitio/`](sitio/): Astro con salida estática y búsqueda con Pagefind, sin servidor ni base de datos. Cómo compilarlo y cómo está organizado: [`sitio/README.md`](sitio/README.md).
 
-Se publica en [congreso.alexisdick.com](https://congreso.alexisdick.com) con Cloudflare Pages, que lo compila y publica solo con cada cambio en `main`. La configuración está en [`docs/publicacion.md`](docs/publicacion.md).
+Se publica en [congreso.alexisdick.com](https://congreso.alexisdick.com) con Cloudflare Pages conectado al repositorio, que lo compila y publica solo con cada cambio en `main`.
 
 ## Privacidad
 
