@@ -6,8 +6,9 @@ import { test } from "node:test";
 
 import { estado, fuente, periodos, personas } from "../../src/lib/datos.js";
 import { escribirFiltros, filtrar, leerFiltros } from "../../src/lib/filtroLegisladores.js";
-import { ficha, legisladores, listado, opcionesDelListado } from "../../src/lib/legisladores.js";
-import { parametrosLegisladores as nombres } from "../../src/lib/rutas.js";
+import { escribirEstado, filtrarPorEstado, leerEstado, textoResultado } from "../../src/lib/filtroVotos.js";
+import { esDeProyectoDeLey, ficha, legisladores, listado, opcionesDelListado } from "../../src/lib/legisladores.js";
+import { parametroEstadoVotos, parametrosLegisladores as nombres } from "../../src/lib/rutas.js";
 
 const PERIODO = "2023-2028";
 const de = (slug) => ficha(legisladores().find((p) => p.slug === slug)).bloques[0];
@@ -100,7 +101,9 @@ test("votos: el resumen coincide con un recuento hecho aparte en votos.csv", () 
   for (const slug of ["silvio-adalberto-ovelar-benitez", "maria-rocio-abed-de-zacarias"]) {
     const b = de(slug);
     const propios = fuente(PERIODO, "votos.csv").filter(
-      (v) => Number(v.idLegislador) === b.id && votaciones.get(Number(v.idVotacion))._propio.idLeyes.length,
+      (v) =>
+        Number(v.idLegislador) === b.id &&
+        votaciones.get(Number(v.idVotacion)).proyecto.tipoProyecto === "PROYECTO DE LEY",
     );
     assert.equal(b.votos.total, propios.length);
     for (const t of b.votos.totales) {
@@ -111,7 +114,64 @@ test("votos: el resumen coincide con un recuento hecho aparte en votos.csv", () 
     assert.equal(b.votos.historial.length, propios.length);
     const fechas = b.votos.historial.map((h) => h.fechaIso);
     assert.deepEqual(fechas, [...fechas].sort().reverse());
+    // Un resumen por estado oficial del proyecto, que suman el total.
+    assert.equal(b.votos.porEstado.reduce((n, e) => n + e.total, 0), b.votos.total);
+    for (const e of b.votos.porEstado) {
+      const deEste = propios.filter((v) => votaciones.get(Number(v.idVotacion)).proyecto.estadoProyecto === e.estado);
+      assert.equal(e.total, deEste.length, `${slug} ${e.estado}`);
+      assert.equal(b.votos.historial.filter((h) => h.proyecto.estadoFiltro === e.filtro).length, deEste.length);
+    }
   }
+});
+
+test("votos: todas las votaciones nominales sobre proyectos de ley y ninguna de otro tipo", () => {
+  const votaciones = fuente(PERIODO, "votaciones.json");
+  const deLey = new Set(votaciones.filter(esDeProyectoDeLey).map((v) => v.idVotacion));
+  assert.ok(votaciones.filter((v) => v._propio.idLeyes.length).every((v) => deLey.has(v.idVotacion)));
+  assert.ok(deLey.size > votaciones.filter((v) => v._propio.idLeyes.length).length);
+  assert.ok(deLey.size < votaciones.length);
+  const esperados = fuente(PERIODO, "votos.csv").filter((v) => deLey.has(Number(v.idVotacion))).length;
+  const enFichas = legisladores()
+    .flatMap((p) => ficha(p).bloques)
+    .filter((b) => b.periodo === PERIODO)
+    .reduce((n, b) => n + b.votos.historial.length, 0);
+  assert.equal(enFichas, esperados);
+  const ids = new Set(legisladores().flatMap((p) => ficha(p).bloques.flatMap((b) => b.votos.historial.map((h) => h.id))));
+  assert.deepEqual([...ids].sort(), [...deLey].sort());
+});
+
+test("historial: un proyecto sin ley sancionada enlaza a su expediente oficial, con su estado", () => {
+  const b = de("silvio-adalberto-ovelar-benitez");
+  const sinLey = b.votos.historial.filter((h) => !h.leyes.length);
+  assert.ok(sinLey.length > 0);
+  const votaciones = new Map(fuente(PERIODO, "votaciones.json").map((v) => [v.idVotacion, v]));
+  for (const h of sinLey) {
+    const oficial = votaciones.get(h.id).proyecto;
+    assert.equal(h.proyecto.url, oficial.appURL);
+    assert.ok(h.proyecto.url.startsWith("https://silpy.congreso.gov.py/expediente/"));
+    assert.equal(h.proyecto.expediente, oficial.expedienteCamara);
+    assert.equal(h.proyecto.estado, oficial.estadoProyecto);
+    assert.ok(h.etapa);
+  }
+  assert.ok(sinLey.some((h) => h.proyecto.estado === "ARCHIVADO"));
+  assert.deepEqual(
+    b.votos.porEstado.map((e) => [e.estado, e.filtro]).sort(),
+    [["ARCHIVADO", "archivado"], ["EN TRAMITE", "en-tramite"], ["PUBLICADO", "publicado"]],
+  );
+});
+
+test("filtro de votos por estado: dirección, filas y texto del resultado", () => {
+  const opciones = ["publicado", "archivado"];
+  assert.equal(leerEstado(new URLSearchParams("estado=archivado"), parametroEstadoVotos, opciones), "archivado");
+  assert.equal(leerEstado(new URLSearchParams("estado=otro"), parametroEstadoVotos, opciones), "");
+  assert.equal(escribirEstado(new URLSearchParams("x=1"), parametroEstadoVotos, "publicado").toString(), "x=1&estado=publicado");
+  assert.equal(escribirEstado(new URLSearchParams("estado=publicado"), parametroEstadoVotos, "").toString(), "");
+  const filas = [{ estado: "publicado" }, { estado: "archivado" }, { estado: "publicado" }];
+  assert.equal(filtrarPorEstado(filas, "publicado").length, 2);
+  assert.equal(filtrarPorEstado(filas, "").length, 3);
+  assert.equal(textoResultado(3, 3), "Se muestran las 3 votaciones.");
+  assert.equal(textoResultado(2, 3), "Se muestran 2 de 3 votaciones.");
+  assert.equal(textoResultado(0, 3), "Ninguna votación cumple este filtro.");
 });
 
 test("historial: cada voto enlaza a la votación dentro de la ficha de su ley", () => {
@@ -126,8 +186,11 @@ test("quien ya no ejerce: ficha completa y cantidades cerradas", () => {
   const b = de("kattya-mabel-gonzalez-villanueva");
   assert.equal(b.vigente, false);
   assert.equal(b.periodoVigente, true);
-  assert.equal(b.votos.total, 37);
-  assert.equal(b.votos.ausencias.texto, "12 de 37 (32,4%)");
+  assert.equal(b.votos.total, 55);
+  assert.equal(b.votos.ausencias.texto, "16 de 55 (29,1%)");
+  const publicado = b.votos.porEstado.find((e) => e.estado === "PUBLICADO");
+  assert.equal(publicado.ausencias.texto, "12 de 37 (32,4%)");
+  assert.equal(b.votos.porEstado.find((e) => e.estado === "ARCHIVADO").total, 18);
   assert.deepEqual(b.autoria.map((l) => l.numero), ["7256", "7239", "7190"]);
   assert.ok(todas().noEjercen.some((l) => l.slug === "kattya-mabel-gonzalez-villanueva"));
 });

@@ -90,6 +90,13 @@ test("una ficha por legislador, con su historial enlazado a las fichas de ley", 
       for (const l of b.autoria) assert.ok(html.includes(`href="${l.url}"`), `Falta la ley ${l.numero} en ${persona.url}`);
       for (const h of b.votos.historial) {
         for (const l of h.leyes) assert.ok(html.includes(`href="${l.url}"`), `Falta ${l.url} en ${persona.url}`);
+        if (!h.leyes.length) assert.ok(html.includes(`href="${h.proyecto.url}"`), `Falta ${h.proyecto.url} en ${persona.url}`);
+      }
+      const filas = html.match(/<tr data-estado=/g)?.length ?? 0;
+      assert.equal(filas, b.votos.historial.length, `Filas del historial en ${persona.url}`);
+      if (b.votos.porEstado.length > 1) {
+        assert.ok(html.includes("data-filtro-votos"), `Falta el filtro por estado en ${persona.url}`);
+        for (const e of b.votos.porEstado) assert.ok(html.includes(`data-resumen-estado="${e.filtro}"`), `${persona.url} ${e.filtro}`);
       }
     }
     const bytes = statSync(pagina(persona.url)).size;

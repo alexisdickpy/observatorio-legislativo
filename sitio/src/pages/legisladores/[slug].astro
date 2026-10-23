@@ -1,7 +1,8 @@
 ---
 // Ficha de un legislador: datos oficiales del cargo, resumen e historial de sus votos en las
-// votaciones nominales de leyes y leyes de su autoría (preparado por lib/legisladores.js).
+// votaciones nominales sobre proyectos de ley y leyes de su autoría (preparado por lib/legisladores.js).
 import Base from "../../layouts/Base.astro";
+import FiltroVotos from "../../components/FiltroVotos.astro";
 import HistorialVotos from "../../components/HistorialVotos.astro";
 import ResumenVotos from "../../components/ResumenVotos.astro";
 import { ficha, legisladores } from "../../lib/legisladores.js";
@@ -72,15 +73,18 @@ const descripcion = descripcionDeLegislador(f, sinDato);
           </p>
           {b.urlSilpy && <p class="chico"><a href={b.urlSilpy}>Ficha oficial en SILpy</a></p>}
 
-          <div data-pagefind-ignore="all">
-            <Titulo>Sus votos en votaciones nominales de leyes</Titulo>
+          <div data-pagefind-ignore="all" data-votos>
+            <Titulo>Sus votos en votaciones nominales sobre proyectos de ley</Titulo>
             {
               b.votos.total === 0 ? (
                 <p class="lectura">
-                  No figura en ninguna votación nominal de leyes sancionadas del período {b.periodo}.
+                  No figura en ninguna votación nominal sobre proyectos de ley del período {b.periodo}.
                 </p>
               ) : (
-                <ResumenVotos votos={b.votos} periodo={b.periodo} />
+                <Fragment>
+                  {b.votos.porEstado.length > 1 && <FiltroVotos porEstado={b.votos.porEstado} total={b.votos.total} periodo={b.periodo} />}
+                  <ResumenVotos votos={b.votos} periodo={b.periodo} />
+                </Fragment>
               )
             }
 
@@ -108,7 +112,10 @@ const descripcion = descripcionDeLegislador(f, sinDato);
                   <Titulo>Historial de votos ({b.votos.total})</Titulo>
                   <p class="chico texto-suave lectura">
                     De la más reciente a la más antigua. Cada ley lleva a la votación dentro de su ficha,
-                    con los totales y el voto de cada legislador.
+                    con los totales y el voto de cada legislador. Los proyectos que no son leyes
+                    sancionadas del período llevan a su expediente oficial en SILpy. El trámite indica
+                    qué se votó, así que un NO no significa siempre oponerse al proyecto.{" "}
+                    <a href={rutas.metodologia(rutas.anclasMetodologia.votosLegislador)}>Más información</a>
                   </p>
                   <HistorialVotos historial={b.votos.historial} />
                 </Fragment>

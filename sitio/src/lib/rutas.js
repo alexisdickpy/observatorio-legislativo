@@ -59,6 +59,9 @@ export const parametrosLegisladores = {
   departamento: "departamento",
 };
 
+/** Parámetro de la dirección del historial de votos de una ficha de legislador (?estado=…). */
+export const parametroEstadoVotos = "estado";
+
 /** Parámetro de la dirección de la búsqueda (?q=…). */
 export const parametroBusqueda = "q";
 

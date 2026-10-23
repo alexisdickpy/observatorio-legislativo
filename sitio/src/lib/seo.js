@@ -44,7 +44,7 @@ export function descripcionDeLegislador(f, sinDato) {
   const b = f.bloques[0];
   return (
     `Ficha de ${f.nombre ?? sinDato} en la ${b.camara ?? sinDato}, período legislativo ${b.periodo} ` +
-    `(${b.partido ?? sinDato}). Sus votos en ${b.votos.total} votaciones nominales de leyes y ` +
+    `(${b.partido ?? sinDato}). Sus votos en ${b.votos.total} votaciones nominales sobre proyectos de ley y ` +
     `${b.autoria.length} leyes de su autoría.`
   );
 }
