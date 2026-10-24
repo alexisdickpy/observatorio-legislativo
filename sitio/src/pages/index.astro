@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import AnalisisPortada from "../components/AnalisisPortada.astro";
 import { leyes } from "../lib/catalogo.js";
 import { periodos } from "../lib/datos.js";
 import * as rutas from "../lib/rutas.js";
@@ -27,4 +28,5 @@ const cantidad = leyes().length;
       <li><a href={rutas.datosAbiertos()}>Descargar los datos abiertos</a></li>
     </ul>
   </div>
+  <AnalisisPortada periodo={vigente.id} />
 </Base>

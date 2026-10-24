@@ -541,9 +541,13 @@ export function comparativa(periodo) {
   if (comparativas.has(periodo)) return comparativas.get(periodo);
   const { enEjercicio, noEjercen } = listado(periodo);
   const porLegislador = votosDelPeriodo(periodo);
+  /** Votaciones nominales distintas de cada cámara (cada votación es de una sola cámara). */
+  const votacionesDe = new Map();
   const filas = [...enEjercicio, ...noEjercen]
     .map((r) => {
       const todas = porLegislador.get(r.id) ?? [];
+      if (!votacionesDe.has(r.camara)) votacionesDe.set(r.camara, new Set());
+      for (const t of todas) votacionesDe.get(r.camara).add(t.votacion);
       const cifras = Object.fromEntries(CIFRAS_COMPARATIVAS.map((c) => [c.campo, cifraDe(todas, c.categoria)]));
       const mayoria = votosDistintosDe(r.id, todas, periodo);
       for (const c of CIFRAS_MAYORIA) cifras[c.campo] = mayoria[c.grupo];
@@ -553,6 +557,7 @@ export function comparativa(periodo) {
     .sort(porCamaraYApellido);
   const camaras = [...new Set(filas.map((f) => f.camara))].map((camara) => ({
     camara,
+    votaciones: votacionesDe.get(camara).size,
     filas: filas.filter((f) => f.camara === camara),
   }));
   const resultado = { periodo, camaras };

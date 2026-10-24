@@ -11,6 +11,8 @@ import { archivosCalculados } from "../../src/lib/calculados.js";
 import { coincidencia, textoDeCoincidencia } from "../../src/lib/coincidencia.js";
 import { comparativa, ficha, legisladores, listado } from "../../src/lib/legisladores.js";
 import { observacionesDeLosDatos } from "../../src/lib/metodologia.js";
+import { menuPrincipal, vistasDeAnalisis } from "../../src/lib/navegacion.js";
+import { vistaPrevia } from "../../src/lib/portada.js";
 import * as rutas from "../../src/lib/rutas.js";
 
 const dist = resolve(process.cwd(), "dist");
@@ -416,4 +418,25 @@ test("los textos propios de las páginas generales no usan dos puntos", () => {
     const encontrado = visible.match(/.{0,40}[\p{L})*]: .{0,20}/u);
     assert.ok(!encontrado, `Dos puntos en ${url}, en «${encontrado?.[0]}»`);
   }
+});
+
+test("el menú y la portada enlazan a cada vista de análisis", () => {
+  const menu = (url) => leer(url).match(/<nav aria-label="Principal"[\s\S]*?<\/nav>/)?.[0] ?? "";
+  const unaLey = rutas.ley(leyes()[0].numero);
+  const unLegislador = rutas.legislador(legisladores()[0].slug);
+  for (const url of [rutas.inicio(), rutas.leyes(), unaLey, rutas.legisladores(), unLegislador, rutas.votacionesNominales(), rutas.coincidencia(), rutas.buscar(), rutas.datosAbiertos(), rutas.metodologia()]) {
+    const nav = menu(url);
+    for (const e of menuPrincipal()) assert.ok(nav.includes(`href="${e.url}"`), `El menú de ${url} no enlaza ${e.url}`);
+    assert.ok((nav.match(/aria-current="page"/g) ?? []).length <= 1, `Más de una entrada actual en ${url}`);
+  }
+  assert.ok(menu(rutas.votacionesNominales()).includes(`href="${rutas.votacionesNominales()}" aria-current="page"`), "La tabla comparativa no marca su entrada del menú");
+  const portada = leer(rutas.inicio()).replace(/<header[\s\S]*?<\/header>/, " ");
+  for (const v of vistasDeAnalisis()) {
+    assert.ok(portada.includes(`href="${v.url}"`), `La portada no enlaza ${v.url}`);
+    assert.ok(portada.includes(`data-analisis="${v.clave}"`), `Falta la vista previa de ${v.clave}`);
+  }
+  const previa = vistaPrevia(periodos().find((p) => p.vigente).id);
+  const html = texto(rutas.inicio());
+  for (const c of previa.coincidencia) assert.ok(html.includes(c.mayor.fraccion) && html.includes(c.menor.fraccion), `Falta la coincidencia de ${c.camara}`);
+  for (const c of previa.votacionesNominales) assert.ok(html.includes(`${c.legisladores.toLocaleString("es-PY")} legisladores para comparar`), `Faltan los legisladores de ${c.camara}`);
 });

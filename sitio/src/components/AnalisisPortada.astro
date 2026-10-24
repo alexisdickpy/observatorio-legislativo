@@ -1,0 +1,85 @@
+---
+// Apartado de la portada con cada vista de análisis (lib/navegacion.js): su enlace, una línea sobre
+// qué muestra y una vista previa con datos por cámara, sin nombres de personas (lib/portada.js,
+// alcance acordado en #51). Una vista sin vista previa propia muestra solo el enlace y la línea.
+import { vistasDeAnalisis } from "../lib/navegacion.js";
+import { vistaPrevia } from "../lib/portada.js";
+
+interface Props {
+  periodo: string;
+}
+const { periodo } = Astro.props;
+const previa = vistaPrevia(periodo);
+const numero = (n: number) => n.toLocaleString("es-PY");
+const plural = (n: number, singular: string, varios: string) => `${numero(n)} ${n === 1 ? singular : varios}`;
+---
+
+<section class="analisis" aria-labelledby="titulo-analisis">
+  <h2 id="titulo-analisis">Análisis</h2>
+  <div class="tarjetas">
+    {
+      vistasDeAnalisis().map((v) => (
+        <article class="tarjeta" data-analisis={v.clave}>
+          <h3>
+            <a href={v.url}>{v.titulo}</a>
+          </h3>
+          <p class="chico">{v.descripcion}</p>
+          {v.clave === "coincidencia" && (
+            <ul class="chico">
+              {previa.coincidencia.map((c) => (
+                <li>
+                  <strong>{c.camara}</strong>, {plural(c.votaciones, "votación nominal", "votaciones nominales")} sobre proyectos de ley.
+                  {c.mayor && (
+                    <>
+                      {" "}Más coincidencia entre {c.mayor.a} y {c.mayor.b}, con la misma posición en {c.mayor.fraccion} votaciones ({c.mayor.porcentajeTexto}).
+                      Menos coincidencia entre {c.menor.a} y {c.menor.b}, en {c.menor.fraccion} ({c.menor.porcentajeTexto}).
+                    </>
+                  )}
+                </li>
+              ))}
+            </ul>
+          )}
+          {v.clave === "votacionesNominales" && (
+            <ul class="chico">
+              {previa.votacionesNominales.map((c) => (
+                <li>
+                  <strong>{c.camara}</strong>, {plural(c.votaciones, "votación nominal", "votaciones nominales")} y{" "}
+                  {plural(c.legisladores, "legislador", "legisladores")} para comparar.
+                </li>
+              ))}
+            </ul>
+          )}
+          <p class="chico">
+            <a href={v.url}>Ver {v.titulo.toLowerCase()}</a>
+          </p>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .analisis {
+    margin-top: var(--espacio-6);
+  }
+  .tarjetas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    gap: var(--espacio-4);
+  }
+  .tarjeta {
+    border: var(--borde-ancho) solid var(--color-borde);
+    border-radius: var(--radio);
+    background: var(--color-superficie);
+    padding: var(--espacio-4);
+  }
+  .tarjeta h3 {
+    margin-top: 0;
+  }
+  .tarjeta ul {
+    padding-left: var(--espacio-4);
+  }
+  .tarjeta li + li {
+    margin-top: var(--espacio-2);
+  }
+</style>
