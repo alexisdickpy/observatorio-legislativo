@@ -18,16 +18,18 @@ test("el menú tiene una entrada por cada vista de análisis, con direcciones de
   for (const v of vistasDeAnalisis()) assert.ok(urls.includes(v.url), `Falta ${v.url} en el menú`);
   assert.deepEqual(
     menuPrincipal().map((e) => e.texto),
-    ["Leyes", "Legisladores", "Votaciones", "Partidos", "Rankings", "Votos distintos", "Buscar", "Datos abiertos"],
+    ["Leyes", "Legisladores", "Votaciones", "Partidos", "Rankings", "Buscar", "Datos abiertos"],
   );
-  assert.ok(urls.includes(rutas.coincidencia()) && urls.includes(rutas.votacionesNominales()));
+  assert.ok(urls.includes(rutas.coincidencia()) && urls.includes(rutas.rankings()));
+  // La tabla de votaciones nominales ya no tiene entrada propia; marca «Rankings» (siguiente prueba).
+  assert.ok(!urls.includes(rutas.votacionesNominales()));
   assert.equal(new Set(urls).size, urls.length, "Direcciones repetidas en el menú");
-  // La tabla de votaciones nominales está en el menú pero no en la portada.
+  // Todas las vistas de análisis tienen tarjeta en la portada.
   assert.deepEqual(
     vistasDeAnalisis()
       .filter((v) => v.portada === false)
       .map((v) => v.clave),
-    ["votacionesNominales"],
+    [],
   );
 });
 
@@ -37,7 +39,7 @@ test("la entrada actual es la de ruta más larga que contiene la dirección", ()
   assert.equal(entradaActual(menu, rutas.legisladores()).texto, "Legisladores");
   assert.equal(entradaActual(menu, rutas.legislador("alguien")).texto, "Legisladores");
   assert.equal(entradaActual(menu, rutas.coincidencia()).texto, "Partidos");
-  assert.equal(entradaActual(menu, rutas.votosDistintosAlPartido()).texto, "Votos distintos");
+  assert.equal(entradaActual(menu, rutas.rankings()).texto, "Rankings");
   assert.equal(entradaActual(menu, rutas.votaciones()).texto, "Votaciones");
   assert.equal(entradaActual(menu, rutas.votaciones("2025")).texto, "Votaciones");
   assert.equal(entradaActual(menu, rutas.inicio()), undefined);

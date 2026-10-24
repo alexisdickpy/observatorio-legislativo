@@ -34,6 +34,7 @@ export const anclasMetodologia = {
   noVotaAbstencion: "no-vota-y-abstenciones",
   mayoria: "votos-distintos-a-la-mayoria",
   cuadroVotosDistintos: "cuadro-de-votos-distintos",
+  cuadroAusencias: "cuadro-de-ausencias",
   afiliacion: "partido-y-bancada",
   partidoUnificado: "partido-unificado",
   coincidencia: "coincidencia-de-votos",
@@ -61,8 +62,16 @@ export const parametroOrdenComparativa = "orden";
 /** Vista comparativa ordenada por una cifra (lib/ordenComparativa.js, ORDENES). */
 export const votacionesNominalesOrdenadas = (orden) => `${votacionesNominales()}?${parametroOrdenComparativa}=${encodeURIComponent(orden)}`;
 
-/** Cuadro de legisladores con más votos distintos a la mayoría de su partido (#54). */
-export const votosDistintosAlPartido = () => "/legisladores/votos-distintos-al-partido/";
+/** Rankings de más «rebeldes» y más «ausentes» (#57); con sección, el ancla de esa lista (anclasRankings). */
+export const rankings = (seccion) => (seccion ? `/rankings/#${seccion}` : "/rankings/");
+/** Anclas (id) de cada lista de la página de rankings. */
+export const anclasRankings = { rebeldes: "mas-rebeldes", ausentes: "mas-ausentes" };
+
+/**
+ * Direcciones publicadas que cambiaron, cada una con su redirección permanente en public/_redirects (la
+ * compilación comprueba que estén). El cuadro de más «rebeldes» (#54) pasó a la página de rankings (#57).
+ */
+export const redireccionesPermanentes = () => [{ desde: "/legisladores/votos-distintos-al-partido/", hacia: rankings() }];
 
 /** Votaciones con la posición de cada partido (#44); con año, la página de ese año. */
 export const votaciones = (anio) => (anio ? `/votaciones/${encodeURIComponent(anio)}/` : "/votaciones/");

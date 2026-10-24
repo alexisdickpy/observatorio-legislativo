@@ -7,8 +7,9 @@ import { periodos } from "../lib/datos.js";
 import { observacionesDeLosDatos } from "../lib/metodologia.js";
 import { tablaDePartidos } from "../lib/partidos.js";
 import * as rutas from "../lib/rutas.js";
+import { CANTIDAD_RANKING, MINIMO_VOTACIONES_AUSENCIAS } from "../lib/rankings.js";
 import { CANTIDAD_AJUSTADAS, CANTIDAD_ULTIMAS_PORTADA } from "../lib/votaciones.js";
-import { CANTIDAD_CUADRO, CANTIDAD_PORTADA, MINIMO_COMPARABLES } from "../lib/votosDistintos.js";
+import { CANTIDAD_PORTADA, MINIMO_COMPARABLES } from "../lib/votosDistintos.js";
 
 const fuente = cita();
 const partidos = tablaDePartidos();
@@ -141,6 +142,22 @@ const anclas = rutas.anclasMetodologia;
       cámara y de la otra no se comparan directamente. La API tampoco informa si un legislador AUSENTE
       tenía permiso o licencia, ni el motivo.
     </p>
+    <h3 id={anclas.cuadroAusencias}>Lista de más «ausentes»</h3>
+    <p>
+      La página de <a href={rutas.rankings(rutas.anclasRankings.ausentes)}>rankings</a> muestra, por cámara, los
+      {" "}{CANTIDAD_RANKING} legisladores con mayor porcentaje de ausencias en votaciones nominales, con la misma
+      cifra de cada ficha y de la vista comparativa, sin recalcularla. Solo entran quienes figuran en al
+      menos {MINIMO_VOTACIONES_AUSENCIAS} votaciones nominales, para que no encabecen la lista suplentes o
+      reemplazos con pocas votaciones. A igual porcentaje va primero quien figura en más votaciones y,
+      después, por apellido. Incluye a quienes ya no ejercen, señalados como tales, y se informa cuántos
+      figuran en menos votaciones que el mínimo.
+    </p>
+    <p>
+      La fuente no dice el motivo de cada ausencia. Una licencia, una representación oficial o haber salido
+      del recinto en el momento de votar cuentan igual, y figurar como AUSENTE en una votación no es lo
+      mismo que no ir a la sesión. Esta lista no va en la portada. «Ausentes» va entre comillas porque es un
+      apodo, no una calificación del sitio.
+    </p>
 
     <h2 id={anclas.noVotaAbstencion}>NO VOTA y abstenciones en votaciones nominales</h2>
     <p>
@@ -212,9 +229,10 @@ const anclas = rutas.anclasMetodologia;
       depende de lo que se votaba en ese trámite. La <a href={rutas.votacionesNominales()}>vista
       comparativa</a> y su tabla descargable incluyen estas dos cifras.
     </p>
-    <h3 id={anclas.cuadroVotosDistintos}>Cuadro de más «rebeldes»</h3>
+    <h3 id={anclas.cuadroVotosDistintos}>Lista de más «rebeldes»</h3>
     <p>
-      El cuadro <a href={rutas.votosDistintosAlPartido()}>Más «rebeldes»</a> muestra, por cámara, los {CANTIDAD_CUADRO}
+      La lista <a href={rutas.rankings(rutas.anclasRankings.rebeldes)}>Más «rebeldes»</a>, en la página de
+      rankings, muestra, por cámara, los {CANTIDAD_RANKING}
       legisladores con mayor porcentaje de votos distintos a la mayoría de su partido, con la misma cifra
       de la vista comparativa. Solo entran quienes tienen al menos {MINIMO_COMPARABLES} votaciones
       comparables, para que un porcentaje alto sobre muy pocas votaciones no encabece la lista. A igual
@@ -223,7 +241,7 @@ const anclas = rutas.anclasMetodologia;
       mayoría de la bancada se ordenan en la vista comparativa.
     </p>
     <p>
-      Debajo de cada cuadro se nombra a quienes no tienen ninguna votación comparable porque en todas las
+      Debajo de cada lista se nombra a quienes no tienen ninguna votación comparable porque en todas las
       que votaron fueron los únicos de su partido en emitir voto en su cámara, y se informa cuántos tienen
       menos votaciones comparables que el mínimo. La portada muestra los {CANTIDAD_PORTADA} primeros de cada
       cámara. «Rebeldes» va entre comillas porque es un apodo, no una calificación del sitio.

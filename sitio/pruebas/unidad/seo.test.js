@@ -96,7 +96,7 @@ test("el sitemap tiene cada ley y cada legislador una vez, sin la búsqueda", ()
   assert.ok(urls.includes(rutas.absoluta(rutas.votaciones())));
   for (const a of anios) assert.ok(urls.includes(rutas.absoluta(a.url)), a.url);
   assert.ok(urls.includes(rutas.absoluta(rutas.votacionesNominales())));
-  assert.ok(urls.includes(rutas.absoluta(rutas.votosDistintosAlPartido())));
+  assert.ok(urls.includes(rutas.absoluta(rutas.rankings())));
   assert.ok(urls.includes(rutas.absoluta(rutas.coincidencia())));
   assert.ok(!urls.includes(rutas.absoluta(rutas.buscar())));
   for (const u of urls) assert.ok(u.startsWith(`${rutas.sitio}/`) && u.endsWith("/"), u);
