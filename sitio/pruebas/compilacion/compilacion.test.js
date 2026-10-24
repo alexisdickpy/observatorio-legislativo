@@ -264,6 +264,8 @@ function votacionCompleta(item, v) {
   const comoTexto = (t) => escapar(t).replaceAll("'", "&#39;");
   return (
     titulos.every((t) => item.includes(`<span class="titulo texto-suave"> ${comoTexto(t)}</span>`)) &&
+    v.autores.every((a) => item.includes(`<span title="${comoTexto(a.nombre)}"><b>${comoTexto(a.sigla)}</b> ${a.cantidad}</span>`)) &&
+    (v.autores.length || !v.iniciativa || item.includes(`Iniciativa del <span>${v.iniciativa}</span>`)) &&
     enlaces.every((u) => !u || item.includes(`href="${u}"`)) &&
     item.includes(`(de ${v.registrados} legisladores registrados)`) &&
     v.totales.every((t) => item.includes(`${t.categoria} ${t.cantidad}`)) &&

@@ -10,12 +10,17 @@
 // - Posición de cada partido: la categoría con más votos entre los votos emitidos de sus miembros
 //   (ficha.js, posicionesDePartidos), con la sigla propia. Partido = texto oficial dentro de la cámara
 //   de la votación, que equivale al partido unificado (#42).
+// - Autores por partido: los autores legisladores del proyecto (autores.json) contados por partido
+//   unificado, con la sigla propia. Solo hay autores en la fuente para parte de los proyectos (sobre
+//   todo los que llegaron a ser ley); sin autores, se muestra la iniciativa oficial si no es
+//   parlamentaria. El título oficial no cambia.
 // - Portada: las votaciones más recientes de las dos cámaras.
 // - Más ajustadas: por cámara, de menor a mayor diferencia entre los totales oficiales de SI y NO; a
 //   igual diferencia, la más reciente primero. Fuera las votaciones sin votos SI ni NO.
 
 import { barra, indice, masRecientePrimero, posicionCamara, posicionesDePartidos, totalesDe, valor } from "./ficha.js";
 import { esDeProyectoDeLey, estadosDelPeriodo, leyesDeVotacion, proyectoDeVotacion, valoresUnicos } from "./legisladores.js";
+import { nombreConocido, partidoUnificado, siglaDe } from "./partidos.js";
 import * as rutas from "./rutas.js";
 import { slug } from "./texto.js";
 
@@ -34,6 +39,33 @@ export function diferenciaSiNo(v) {
   const si = Number(v.totalSI) || 0;
   const no = Number(v.totalNO) || 0;
   return si + no > 0 ? Math.abs(si - no) : null;
+}
+
+const PARLAMENTARIA = "PARLAMENTARIA";
+/** Texto del grupo de los autores sin partido registrado. */
+const SIN_PARTIDO = "Sin partido registrado";
+
+/**
+ * Autores legisladores de un proyecto ({ partido, idLegislador }, partido = texto oficial), cada uno una
+ * sola vez, contados por partido unificado: sigla, textos oficiales y cantidad. De más a menos autores
+ * y, a igualdad, por sigla.
+ */
+export function autoresPorPartido(autores) {
+  const vistos = new Set();
+  const grupos = new Map();
+  for (const a of autores) {
+    if (vistos.has(a.idLegislador)) continue;
+    vistos.add(a.idLegislador);
+    const texto = valor(a.partido);
+    const id = texto ? partidoUnificado(texto).id : SIN_PARTIDO;
+    const g = grupos.get(id) ?? { sigla: texto ? siglaDe(texto) : SIN_PARTIDO, textos: new Set(), cantidad: 0 };
+    if (texto) g.textos.add(nombreConocido(texto) ? `${texto} (${nombreConocido(texto)})` : texto);
+    g.cantidad++;
+    grupos.set(id, g);
+  }
+  return [...grupos.values()]
+    .map((g) => ({ sigla: g.sigla, nombre: [...g.textos].join(" / ") || SIN_PARTIDO, cantidad: g.cantidad }))
+    .sort((a, b) => b.cantidad - a.cantidad || porTexto(a.sigla, b.sigla));
 }
 
 /** Una votación lista para la página: textos oficiales, totales, barra y posición de cada partido. */
@@ -58,6 +90,11 @@ function prepararVotacion(v, i, valores) {
     resultado,
     resultadoFiltro: valores.resultados.get(resultado) ?? SIN_DATO,
     proyecto: proyectoDeVotacion(v, valores.estados),
+    autores: autoresPorPartido(
+      (i.autores.get(v.proyecto?.idProyecto) ?? []).map((a) => ({ partido: a.legislador?.partidoPolitico, idLegislador: a.legislador?.idLegislador })),
+    ),
+    // Iniciativa oficial, solo si no es parlamentaria (Poder Ejecutivo, Corte Suprema de Justicia…).
+    iniciativa: valor(v.proyecto?.iniciativa) && v.proyecto.iniciativa !== PARLAMENTARIA ? v.proyecto.iniciativa : null,
     leyes,
     // Con ley, la votación dentro de su ficha; sin ley, la votación oficial en SILpy.
     url: leyes[0]?.url ?? valor(v.appURL) ?? rutas.votacionSilpy(v.idVotacion),

@@ -11,6 +11,7 @@ import { siglaDe } from "../../src/lib/partidos.js";
 import * as rutas from "../../src/lib/rutas.js";
 import {
   CANTIDAD_AJUSTADAS,
+  autoresPorPartido,
   diferenciaSiNo,
   masAjustadas,
   votacionesDelAnio,
@@ -207,4 +208,26 @@ test("valores de filtro: los mismos textos oficiales tienen el mismo valor y cad
     else assert.match(v.url, /^https:\/\/silpy\.congreso\.gov\.py\/votacion\/\d+$/);
   }
   assert.equal(new Set(valores.values()).size, valores.size, "Dos resultados con el mismo valor de filtro");
+});
+
+test("autores por partido: cada legislador una vez, por partido unificado, con su sigla y de más a menos", () => {
+  const r = autoresPorPartido([
+    { partido: "Partido Liberal Radical Auténtico PLRA", idLegislador: 1 },
+    { partido: "Asociación Nacional Republicana ANR", idLegislador: 2 },
+    { partido: "Asociación Nacional Republicana ANR", idLegislador: 3 },
+    { partido: "Asociación Nacional Republicana ANR", idLegislador: 3 },
+    { partido: "CRUZADA NACIONAL", idLegislador: 4 },
+    { partido: "Partido Cruzada Nacional", idLegislador: 5 },
+    { partido: "", idLegislador: 6 },
+  ]);
+  assert.deepEqual(
+    r.map((a) => [a.sigla, a.cantidad]),
+    [["ANR", 2], ["CN", 2], ["PLRA", 1], ["Sin partido registrado", 1]],
+  );
+  assert.equal(r[1].nombre, "CRUZADA NACIONAL / Partido Cruzada Nacional");
+  assert.deepEqual(autoresPorPartido([]), []);
+  // Los proyectos sin autores en la fuente y de iniciativa no parlamentaria muestran su iniciativa.
+  const { votaciones } = votacionesDelPeriodo(PERIODO);
+  assert.ok(votaciones.some((v) => v.autores.length) && votaciones.some((v) => !v.autores.length && v.iniciativa === "PODER EJECUTIVO"));
+  assert.ok(votaciones.every((v) => v.iniciativa !== "PARLAMENTARIA"));
 });
