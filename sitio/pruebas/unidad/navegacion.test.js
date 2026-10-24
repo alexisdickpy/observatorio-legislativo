@@ -65,6 +65,33 @@ test("barras del gráfico: coincidencia con el partido de la primera fila, prime
     ["D", "C", "B"],
   );
   assert.deepEqual(barrasDeReferencia({ filas: [] }), { referencia: null, barras: [] });
+  assert.deepEqual(barrasDeReferencia(cuadro, "otro"), { referencia: null, barras: [] });
+});
+
+test("vista previa: un gráfico por partido elegible en cada cámara, empezando por el de más legisladores", () => {
+  const previa = vistaPrevia(PERIODO);
+  const c = coincidencia(PERIODO);
+  assert.deepEqual(
+    previa.partidos.map((p) => p.id),
+    c.partidos.map((p) => p.id),
+  );
+  assert.match(previa.partidos[0].nombre, /Asociación Nacional Republicana/);
+  for (const camara of previa.coincidencia) {
+    assert.deepEqual(
+      camara.graficos.map((g) => g.id),
+      previa.partidos.map((p) => p.id),
+    );
+    const cuadro = c.cuadros.find((x) => x.camara === camara.camara);
+    for (const g of camara.graficos) {
+      const fila = cuadro.filas.find((f) => f.id === g.id);
+      assert.equal(g.referencia, fila?.nombre ?? null);
+      for (const b of g.barras) {
+        const celda = fila.celdas[cuadro.filas.findIndex((f) => f.nombre === b.nombre)];
+        assert.equal(b.cantidad, celda.cantidad);
+        assert.equal(b.total, celda.total);
+      }
+    }
+  }
 });
 
 test("vista previa por cámara, con las mismas cifras que las páginas de cada vista", () => {

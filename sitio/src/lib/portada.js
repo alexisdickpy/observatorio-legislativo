@@ -23,14 +23,16 @@ export function paresConPorcentaje(cuadro) {
 }
 
 /**
- * Barras del gráfico de una cámara: la coincidencia de cada partido con el de más legisladores en
- * ejercicio en esa cámara (la primera fila del cuadro). Primero los que tienen porcentaje, de mayor a
- * menor; después, los que no alcanzan el umbral (sin barra, solo las cantidades).
+ * Barras del gráfico de una cámara: la coincidencia de cada partido con el partido de referencia
+ * (por su id; sin id, el de más legisladores en ejercicio en esa cámara, la primera fila del cuadro).
+ * Primero los que tienen porcentaje, de mayor a menor; después, los que no alcanzan el umbral (sin
+ * barra, solo las cantidades). Sin el partido en la cámara, referencia null y sin barras.
  */
-export function barrasDeReferencia(cuadro) {
-  const [referencia, ...otros] = cuadro.filas;
+export function barrasDeReferencia(cuadro, id = cuadro.filas[0]?.id) {
+  const referencia = cuadro.filas.find((f) => f.id === id);
   if (!referencia) return { referencia: null, barras: [] };
-  const barras = otros
+  const barras = cuadro.filas
+    .filter((f) => f !== referencia)
     .map((f) => ({ ...referencia.celdas[cuadro.filas.indexOf(f)], nombre: f.nombre, nombres: f.nombre }))
     .filter((b) => b.total > 0)
     .sort((a, b) => Number(b.suficiente) - Number(a.suficiente) || porMayorCoincidencia(a, b));
@@ -39,14 +41,17 @@ export function barrasDeReferencia(cuadro) {
 
 /**
  * Vista previa de un período.
+ * - partidos: los partidos que se pueden elegir en el gráfico, de más a menos legisladores en ejercicio
+ *   en el Congreso. El primero es el que se muestra al abrir la portada.
  * - coincidencia: por cámara, sus votaciones sobre proyectos de ley, el par de partidos con más y con
- *   menos coincidencia (null si la cámara no tiene al menos dos pares con porcentaje) y las barras del
- *   gráfico (barrasDeReferencia).
+ *   menos coincidencia (null si la cámara no tiene al menos dos pares con porcentaje) y un gráfico
+ *   por partido (barrasDeReferencia), en el orden de `partidos`.
  * - votacionesNominales: por cámara, cuántas votaciones nominales tiene y cuántos legisladores se comparan.
  */
 export function vistaPrevia(periodo) {
   const c = coincidencia(periodo);
   return {
+    partidos: c.partidos.map((p) => ({ id: p.id, nombre: p.nombre })),
     coincidencia: c.cuadros.map((cuadro) => {
       const pares = paresConPorcentaje(cuadro);
       return {
@@ -54,7 +59,7 @@ export function vistaPrevia(periodo) {
         votaciones: c.camaras.find((x) => x.camara === cuadro.camara).votaciones,
         mayor: pares.length > 1 ? pares[0] : null,
         menor: pares.length > 1 ? pares.at(-1) : null,
-        ...barrasDeReferencia(cuadro),
+        graficos: c.partidos.map((p) => ({ id: p.id, ...barrasDeReferencia(cuadro, p.id) })),
       };
     }),
     votacionesNominales: comparativa(periodo).camaras.map((x) => ({

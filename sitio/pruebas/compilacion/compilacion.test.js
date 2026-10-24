@@ -439,9 +439,14 @@ test("el menú y la portada enlazan a cada vista de análisis", () => {
   const html = texto(rutas.inicio());
   for (const c of previa.coincidencia) {
     assert.ok(html.includes(c.mayor.porcentajeTexto) && html.includes(c.menor.porcentajeTexto), `Falta la coincidencia de ${c.camara}`);
-    assert.ok(c.barras.length > 0, `Sin barras en ${c.camara}`);
-    for (const b of c.barras) assert.ok(html.includes(b.fraccion), `Falta la barra de ${b.nombre} en ${c.camara}`);
+    assert.ok(c.graficos[0].barras.length > 0, `Sin barras en ${c.camara}`);
+    for (const g of c.graficos) for (const b of g.barras) assert.ok(html.includes(b.fraccion), `Falta la barra de ${b.nombre} con ${g.referencia} en ${c.camara}`);
   }
+  // Un gráfico por partido y cámara; al abrir se ve solo el del primer partido.
+  const graficos = [...html.matchAll(/<div data-grafico-partido="([^"]+)"( hidden)?/g)];
+  assert.equal(graficos.length, previa.partidos.length * previa.coincidencia.length);
+  for (const [, id, oculto] of graficos) assert.equal(Boolean(oculto), id !== String(previa.partidos[0].id), `Gráfico ${id}`);
+  assert.ok(html.includes('id="selector-partido-portada"'), "Falta el selector de partido en la portada");
   assert.ok(html.includes('class="barras-coincidencia'), "Falta el gráfico de coincidencia en la portada");
   for (const c of previa.votacionesNominales) assert.ok(html.includes(`${c.legisladores.toLocaleString("es-PY")} legisladores para comparar`), `Faltan los legisladores de ${c.camara}`);
 });
