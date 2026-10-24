@@ -11,6 +11,13 @@ import * as rutas from "./rutas.js";
  */
 export const vistasDeAnalisis = () => [
   {
+    clave: "votaciones",
+    url: rutas.votaciones(),
+    menu: "Votaciones",
+    titulo: "Votaciones y posición de cada partido",
+    descripcion: "Las votaciones nominales sobre proyectos de ley con su resultado oficial y lo que votó la mayoría de cada partido. Aquí, las más ajustadas de cada cámara.",
+  },
+  {
     clave: "coincidencia",
     url: rutas.coincidencia(),
     menu: "Partidos",

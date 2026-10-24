@@ -5,6 +5,7 @@
 // personas (#54). Una vista sin vista previa propia muestra solo el enlace y la línea. En
 // la coincidencia se elige el partido del gráfico; al abrir, el de más legisladores en ejercicio.
 import BarrasCoincidencia from "./BarrasCoincidencia.astro";
+import ListaVotaciones from "./ListaVotaciones.astro";
 import ListaVotosDistintos from "./ListaVotosDistintos.astro";
 import { vistasDeAnalisis } from "../lib/navegacion.js";
 import { vistaPrevia } from "../lib/portada.js";
@@ -62,6 +63,15 @@ const plural = (n: number, singular: string, varios: string) => `${numero(n)} ${
                     entre {c.menor.a} y {c.menor.b} ({c.menor.porcentajeTexto}).
                   </p>
                 )}
+              </div>
+            ))
+          )}
+          {v.clave === "votaciones" && (
+            previa.votaciones.map((c) => (
+              <div class="camara">
+                <h4 class="chico">{c.camara}</h4>
+                <p class="chico texto-suave">Menor diferencia entre SI y NO, de {plural(c.total, "votación", "votaciones")}.</p>
+                <ListaVotaciones votaciones={c.votaciones} diferencia />
               </div>
             ))
           )}

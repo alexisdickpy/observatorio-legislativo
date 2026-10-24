@@ -8,6 +8,7 @@ import { comparativa } from "../../src/lib/legisladores.js";
 import { entradaActual, menuPrincipal, vistasDeAnalisis } from "../../src/lib/navegacion.js";
 import { barrasDeReferencia, paresConPorcentaje, vistaPrevia } from "../../src/lib/portada.js";
 import * as rutas from "../../src/lib/rutas.js";
+import { CANTIDAD_AJUSTADAS_PORTADA, masAjustadas } from "../../src/lib/votaciones.js";
 import { CANTIDAD_PORTADA, votosDistintosAlPartido } from "../../src/lib/votosDistintos.js";
 
 const PERIODO = "2023-2028";
@@ -17,7 +18,7 @@ test("el menú tiene una entrada por cada vista de análisis, con direcciones de
   for (const v of vistasDeAnalisis()) assert.ok(urls.includes(v.url), `Falta ${v.url} en el menú`);
   assert.deepEqual(
     menuPrincipal().map((e) => e.texto),
-    ["Leyes", "Legisladores", "Partidos", "Rankings", "Votos distintos", "Buscar", "Datos abiertos"],
+    ["Leyes", "Legisladores", "Votaciones", "Partidos", "Rankings", "Votos distintos", "Buscar", "Datos abiertos"],
   );
   assert.ok(urls.includes(rutas.coincidencia()) && urls.includes(rutas.votacionesNominales()));
   assert.equal(new Set(urls).size, urls.length, "Direcciones repetidas en el menú");
@@ -37,6 +38,8 @@ test("la entrada actual es la de ruta más larga que contiene la dirección", ()
   assert.equal(entradaActual(menu, rutas.legislador("alguien")).texto, "Legisladores");
   assert.equal(entradaActual(menu, rutas.coincidencia()).texto, "Partidos");
   assert.equal(entradaActual(menu, rutas.votosDistintosAlPartido()).texto, "Votos distintos");
+  assert.equal(entradaActual(menu, rutas.votaciones()).texto, "Votaciones");
+  assert.equal(entradaActual(menu, rutas.votaciones("2025")).texto, "Votaciones");
   assert.equal(entradaActual(menu, rutas.inicio()), undefined);
 });
 
@@ -131,6 +134,22 @@ test("vista previa de votos distintos: los primeros del cuadro de cada cámara, 
     assert.deepEqual(
       c.filas.map((f) => f.slug),
       cuadro.camaras[i].filas.slice(0, CANTIDAD_PORTADA).map((f) => f.slug),
+    );
+  }
+});
+
+test("vista previa de votaciones: las más ajustadas de cada cámara, las primeras de la página de votaciones", () => {
+  const previa = vistaPrevia(PERIODO);
+  const pagina = masAjustadas(PERIODO);
+  assert.deepEqual(
+    previa.votaciones.map((c) => c.camara),
+    ["CAMARA DE SENADORES", "CAMARA DE DIPUTADOS"],
+  );
+  for (const [i, c] of previa.votaciones.entries()) {
+    assert.equal(c.votaciones.length, CANTIDAD_AJUSTADAS_PORTADA);
+    assert.deepEqual(
+      c.votaciones.map((v) => v.id),
+      pagina[i].votaciones.slice(0, CANTIDAD_AJUSTADAS_PORTADA).map((v) => v.id),
     );
   }
 });
