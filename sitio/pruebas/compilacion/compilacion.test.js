@@ -8,6 +8,7 @@ import { leyes } from "../../src/lib/catalogo.js";
 import { archivosDeDatos, estado, periodos } from "../../src/lib/datos.js";
 import { detalleDeRegistro } from "../../src/lib/ficha.js";
 import { archivosCalculados } from "../../src/lib/calculados.js";
+import { coincidencia, textoDeCoincidencia } from "../../src/lib/coincidencia.js";
 import { comparativa, ficha, legisladores, listado } from "../../src/lib/legisladores.js";
 import { observacionesDeLosDatos } from "../../src/lib/metodologia.js";
 import * as rutas from "../../src/lib/rutas.js";
@@ -48,7 +49,7 @@ test("tamaño razonable de las fichas", () => {
 });
 
 test("páginas fijas", () => {
-  for (const url of [rutas.inicio(), rutas.leyes(), rutas.legisladores(), rutas.buscar(), rutas.datosAbiertos(), rutas.metodologia(), rutas.privacidad()]) {
+  for (const url of [rutas.inicio(), rutas.leyes(), rutas.legisladores(), rutas.coincidencia(), rutas.buscar(), rutas.datosAbiertos(), rutas.metodologia(), rutas.privacidad()]) {
     assert.ok(existsSync(pagina(url)), `Falta ${url}`);
   }
 });
@@ -172,6 +173,36 @@ test("vista comparativa: una fila por legislador con sus cinco cifras, fórmulas
   assert.ok(texto(rutas.legisladores()).includes(`href="${rutas.votacionesNominales()}"`));
 });
 
+test("coincidencia de votos: un bloque por grupo, cifras con su denominador, fórmula y títulos neutrales", () => {
+  const periodo = periodos().find((p) => p.vigente).id;
+  const r = coincidencia(periodo);
+  const html = texto(rutas.coincidencia());
+  assert.ok(html.includes("Coincidencia = votaciones en que los dos grupos tuvieron la misma posición"));
+  assert.ok(html.includes(`href="${rutas.metodologia(rutas.anclasMetodologia.coincidencia)}"`));
+  assert.ok(leer(rutas.metodologia()).includes(`id="${rutas.anclasMetodologia.coincidencia}"`));
+  for (const cuadro of r.cuadros) {
+    for (const f of cuadro.filas) for (const c of f.celdas) if (c) assert.ok(html.includes(c.fraccion), `${cuadro.camara} ${f.id}`);
+  }
+  assert.equal(html.match(/<tr data-cuadro-fila=/g)?.length ?? 0, r.cuadros.reduce((n, c) => n + c.filas.length, 0));
+  const grupos = [...r.partidos, ...r.bancadas.flatMap((b) => b.grupos)];
+  assert.equal(html.match(/ data-grupo="/g)?.length ?? 0, grupos.length);
+  assert.equal(html.match(/<option value="/g)?.length ?? 0, grupos.length);
+  const escapar = (t) => t.replaceAll("&", "&amp;").replaceAll('"', "&quot;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+  for (const g of grupos) {
+    const bloque = html.match(new RegExp(`<section class="grupo-coincidencia[^"]*" id="${g.valor}"[^]*?</table>`))?.[0] ?? "";
+    assert.ok(bloque, `Falta el bloque ${g.valor}`);
+    assert.equal(bloque.match(/<tr data-coincidencia/g)?.length ?? 0, g.filas.length, g.valor);
+    for (const f of g.filas) {
+      for (const c of f.celdas ?? [f]) assert.ok(bloque.includes(escapar(textoDeCoincidencia(c))), `${g.valor} / ${f.nombre}`);
+    }
+  }
+  const visible = html.replace(/<(script|style)[\s\S]*?<\/\1>/g, " ").replace(/<[^>]+>/g, " ");
+  const calificativo = visible.match(/.{0,30}\b(mejor|peor|ranking|puesto|campe[oó]n|aliado|enemigo|traici[oó]n|leal)\b.{0,20}/i);
+  assert.ok(!calificativo, `«${calificativo?.[0]}»`);
+  assert.ok(texto(rutas.legisladores()).includes(`href="${rutas.coincidencia()}"`));
+  assert.ok(texto(rutas.votacionesNominales()).includes(`href="${rutas.coincidencia()}"`));
+});
+
 test("tabla calculada servida y enlazada desde datos abiertos", () => {
   const html = leer(rutas.datosAbiertos());
   for (const a of archivosCalculados()) {
@@ -187,7 +218,7 @@ test("ningún texto propio presenta AUSENTE como asistencia, faltas o inasistenc
   // pueden tratar de asistencia social y se muestran sin cambios). La firma dice «con asistencia de
   // IA», el único uso permitido de la palabra.
   const prohibidas = /inasistencia|asistencia(?! de IA)|\bfalta|\bfaltó|días ausente/i;
-  const urls = [rutas.inicio(), rutas.metodologia(), rutas.legisladores(), rutas.votacionesNominales(), ...legisladores().map((p) => p.url)];
+  const urls = [rutas.inicio(), rutas.metodologia(), rutas.legisladores(), rutas.votacionesNominales(), rutas.coincidencia(), ...legisladores().map((p) => p.url)];
   for (const url of urls) {
     const visible = leer(url)
       .replace(/<(script|style)[\s\S]*?<\/\1>/g, " ")
@@ -375,7 +406,7 @@ test("sin herramientas de seguimiento con cookies", () => {
 test("los textos propios de las páginas generales no usan dos puntos", () => {
   // Solo páginas sin valores oficiales; la cita obligatoria se mantiene textual.
   const { cita } = estado().fuente;
-  const urls = [rutas.inicio(), rutas.metodologia(), rutas.privacidad(), rutas.datosAbiertos(), rutas.buscar(), rutas.votacionesNominales()];
+  const urls = [rutas.inicio(), rutas.metodologia(), rutas.privacidad(), rutas.datosAbiertos(), rutas.buscar(), rutas.votacionesNominales(), rutas.coincidencia()];
   for (const url of urls) {
     const visible = leer(url)
       .replace(/<(script|style)[\s\S]*?<\/\1>/g, " ")

@@ -1,0 +1,30 @@
+---
+// Tabla de coincidencia de un partido o una bancada con cada uno de los demás grupos: una fila por
+// grupo y una columna por cámara (partidos) o una sola columna (bancadas). Cada celda lleva su
+// numerador y su denominador. Recibe las filas de lib/coincidencia.js. Usa los estilos globales de
+// la tabla comparativa (TablaComparativa).
+import { textoDeCoincidencia } from "../lib/coincidencia.js";
+
+interface Props {
+  titulo: string;
+  grupo: string;
+  columnas: string[];
+  filas: { nombre: string; celdas: any[] }[];
+}
+const { titulo, grupo, columnas, filas } = Astro.props;
+---
+
+<div class="tabla-comparativa-desplazable">
+  <table class="tabla-comparativa">
+    <caption class="solo-lectores">{titulo}</caption>
+    <thead>
+      <tr>
+        <th scope="col">{grupo}</th>
+        {columnas.map((c) => <th scope="col">{c}</th>)}
+      </tr>
+    </thead>
+    <tbody>
+      {filas.map((f) => <tr data-coincidencia><th scope="row">{f.nombre}</th>{f.celdas.map((c, n) => <td data-etiqueta={columnas[n]}>{textoDeCoincidencia(c)}</td>)}</tr>)}
+    </tbody>
+  </table>
+</div>

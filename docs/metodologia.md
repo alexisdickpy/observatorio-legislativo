@@ -37,7 +37,7 @@ Decisión de alcance (#42). La API publica el partido (`partidoPolitico`) como t
 
 - **Solo se agrupa lo seguro.** Se reúnen dos textos únicamente si un dato oficial muestra que son el mismo partido. Los demás quedan solos, con su propio identificador.
 - **Ningún valor oficial cambia.** El texto oficial se sigue mostrando en todas las páginas. El partido unificado es un dato propio y se señala como tal.
-- **No suma cámaras.** Unificar solo dice qué textos son el mismo partido. Todas las cifras (votos distintos a la mayoría, ausencias, NO VOTA, abstenciones) se calculan dentro de cada cámara, y nunca se suman senadores y diputados. El partido unificado sirve para poner lado a lado lo que hizo un mismo partido en cada cámara, cada uno con su cifra (#43, #37).
+- **No suma cámaras.** Unificar solo dice qué textos son el mismo partido. Todas las cifras (votos distintos a la mayoría, ausencias, NO VOTA, abstenciones) se calculan dentro de cada cámara, y nunca se suman senadores y diputados. El partido unificado sirve para poner lado a lado lo que hizo un mismo partido en cada cámara, cada uno con su cifra (por ejemplo, la coincidencia de votos de #43).
 
 Agrupaciones del período 2023-2028 (12 textos oficiales, 11 partidos unificados).
 
@@ -139,6 +139,28 @@ La ficha muestra cada cifra con su denominador y la lista de las votaciones en q
 La **vista comparativa** agrega dos columnas, "Votos distintos a la mayoría de su bancada" y "de su partido", y se puede ordenar por ellas (`?orden=bancada` o `?orden=partido`); quien no tiene votaciones comparables queda al final. La **tabla descargable** agrega las columnas `bancada` y `partido` (textos oficiales), `votacionesComparablesBancada` y `votacionesComparablesPartido` (denominadores), `distintasBancada` y `distintasPartido` (cantidades) y `porcentajeDistintasBancada` y `porcentajeDistintasPartido` (un decimal), vacías cuando no hay votaciones comparables.
 
 Comprobación. Las pruebas recalculan a mano 12 votaciones de 3 bancadas a partir de `votos.csv` y `legisladores.json`, además de casos sintéticos de mayoría, empate, único votante y mociones.
+
+## Coincidencia de votos entre partidos y entre bancadas
+
+Decisión de alcance (#43). La página `/coincidencia-de-votos/` muestra qué tan seguido tuvieron la misma posición dos partidos o dos bancadas en las votaciones nominales.
+
+- **Votaciones.** Las nominales del período sobre un proyecto de ley, las mismas del historial de votos de la ficha (#28): 211 en la Cámara de Senadores y 793 en la de Diputados en 2023-2028. Sin filtro por estado del proyecto.
+- **Posición de un grupo en una votación.** La misma mayoría que en los votos distintos a la mayoría (#39, `mayoriaDe`). Es la categoría con más votos entre los votos emitidos de sus miembros (`SI`, `NO`, `ABSTENCIÓN/BLANCO` y, si las hay, `MOCIÓN 1`, `MOCIÓN 2` o `MOCIÓN 3`). `AUSENTE` y `NO VOTA` no son votos emitidos. Si ningún miembro emitió voto, el grupo no tiene posición. A diferencia de #39, un grupo en que votó una sola persona sí tiene posición, que es su voto, porque aquí no se compara a esa persona consigo misma sino con otro grupo.
+- **Empate.** Si dos o más categorías empatan en el primer lugar, el grupo no tiene posición en esa votación, y esa votación no cuenta para ninguno de sus pares. La página dice en cuántas votaciones tuvo posición cada grupo y en cuántas empató.
+- **Grupos.** Partido = partido unificado (#42), con el texto oficial de cada cámara a la vista. Bancada = texto oficial de `bancada`, dentro de su cámara. Los legisladores con `bancada` vacía no forman parte de ninguna bancada. Partido y bancada son los que la API registra para el período, sin fecha.
+- **Cámaras.** Cada votación es de una sola cámara, así que cada cifra se calcula dentro de una cámara y nunca se suman senadores y diputados. En la vista por partido, cada fila tiene una columna por cámara, cada una con su propia cifra (lado a lado). Si alguno de los dos partidos no tiene legisladores en una cámara, esa celda lo dice. Las bancadas solo se comparan con las de su cámara.
+
+> coincidencia = votaciones en que los dos grupos tuvieron la misma posición ÷ votaciones en que los dos tuvieron posición × 100
+
+- **Umbral.** Con menos de 20 votaciones en común no se muestra el porcentaje, solo las cantidades, porque una sola votación lo movería mucho. Esos pares van al final de la lista. En 2023-2028 quedan bajo el umbral algunos pares de bancadas del Senado con pocos miembros.
+- **Orden.** Se elige un partido o una bancada en un menú (parámetro `?grupo=`, con `partido-{partidoUnificado}` o `bancada-{cámara}-{slug de la bancada}`) y se ven los demás grupos de mayor a menor porcentaje. En la vista por partido se ordena por la mayor de las cifras de las dos cámaras. Sin JavaScript se ven todos los grupos, cada uno con su ancla.
+- **Cuadro de todos los pares.** Arriba de la página, un cuadro por cámara con todos los partidos de esa cámara en filas y columnas (la diagonal queda vacía). Cada celda lleva el porcentaje y las cantidades, con un sombreado de un solo tono (el color de acento mezclado con el fondo, hasta `--sombreado-maximo-cuadro` de `tokens.css`) proporcional al porcentaje. No se usan colores como verde y rojo, que califican. Las celdas bajo el umbral no llevan sombreado. Para las bancadas no hay cuadro, porque en el Senado son más de 20 y no se lee en el celular; se consultan con el menú.
+- **Orden de los grupos.** De más a menos legisladores en ejercicio (`_propio.vigente`), y a igualdad por nombre. En cada cuadro y en las bancadas se cuentan los de esa cámara; en el menú de partidos, los del Congreso. Es solo un orden y no cambia ninguna cifra. Cada cuadro muestra la cantidad junto al nombre.
+- **Títulos neutrales.** Coincidir o no coincidir no se presenta como bueno ni malo.
+
+**Descarga.** `/datos/calculados/{período}/coincidencia-de-votos-entre-grupos.csv` y `.json`, generados en cada compilación. Una fila por par de grupos y cámara, cada par una sola vez, con las columnas `periodo`, `camara`, `tipoGrupo` (`partido` o `bancada`), `grupoA` y `grupoB` (partido unificado o slug de la bancada), `textoOficialA` y `textoOficialB`, `votacionesEnComun` (el denominador), `coincidencias` (el numerador) y `porcentajeCoincidencia` (un decimal, vacío bajo el umbral). Es un cálculo propio, no un dato oficial.
+
+Comprobación. Las pruebas recalculan a mano 3 pares en 12 votaciones cada uno a partir de `votos.csv` y `legisladores.json` (dos bancadas de Diputados, ANR y PLRA en el Senado, y dos partidos de un solo senador), además de casos sintéticos de posición, empate y grupos sin votos emitidos.
 
 ## Números de ley
 

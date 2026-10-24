@@ -1,0 +1,77 @@
+---
+// Menú para elegir un partido o una bancada en la página de coincidencia de votos. Sin JavaScript
+// queda oculto y se ven todos los grupos, cada uno con su ancla. Con JavaScript muestra solo el
+// bloque [data-grupo] elegido (y los contenedores [data-bloque] que lo incluyen) y refleja la
+// elección en la dirección. La lógica está en lib/grupoCoincidencia.js.
+import { parametroGrupoCoincidencia } from "../lib/rutas.js";
+
+interface Props {
+  secciones: { etiqueta: string; opciones: { valor: string; etiqueta: string }[] }[];
+}
+const { secciones } = Astro.props;
+---
+
+<form class="selector-coincidencia" id="selector-coincidencia" hidden>
+  <label for="grupo-coincidencia">Partido o bancada</label>
+  <select id="grupo-coincidencia" name={parametroGrupoCoincidencia}>
+    {
+      secciones.map((s) => (
+        <optgroup label={s.etiqueta}>
+          {s.opciones.map((o) => (
+            <option value={o.valor}>{o.etiqueta}</option>
+          ))}
+        </optgroup>
+      ))
+    }
+  </select>
+</form>
+
+<script>
+  import { escribirGrupo, leerGrupo } from "../lib/grupoCoincidencia.js";
+  import { parametroGrupoCoincidencia as nombre } from "../lib/rutas.js";
+
+  const form = document.getElementById("selector-coincidencia") as HTMLFormElement;
+  const select = form.querySelector("select")!;
+  const validos = [...select.options].map((o) => o.value);
+  const grupos = [...document.querySelectorAll<HTMLElement>("[data-grupo]")];
+  const bloques = [...document.querySelectorAll<HTMLElement>("[data-bloque]")];
+
+  function aplicar(valor: string, actualizarDireccion: boolean) {
+    let elegido: HTMLElement | undefined;
+    for (const g of grupos) {
+      g.hidden = g.dataset.grupo !== valor;
+      if (!g.hidden) elegido = g;
+    }
+    for (const b of bloques) b.hidden = !elegido || !b.contains(elegido);
+    if (actualizarDireccion) {
+      const consulta = escribirGrupo(new URLSearchParams(location.search), nombre, valor, validos).toString();
+      history.replaceState(null, "", consulta ? `?${consulta}` : location.pathname);
+    }
+  }
+
+  select.value = leerGrupo(new URLSearchParams(location.search), nombre, validos);
+  form.hidden = false;
+  aplicar(select.value, false);
+  select.addEventListener("change", () => aplicar(select.value, true));
+  form.addEventListener("submit", (e) => e.preventDefault());
+</script>
+
+<style>
+  .selector-coincidencia {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espacio-2) var(--espacio-3);
+    align-items: center;
+    padding: var(--espacio-3) var(--espacio-4);
+    margin-bottom: var(--espacio-4);
+    background: var(--color-superficie);
+    border: var(--borde-ancho) solid var(--color-borde);
+    border-radius: var(--radio);
+  }
+  .selector-coincidencia[hidden] {
+    display: none;
+  }
+  .selector-coincidencia select {
+    max-width: 100%;
+  }
+</style>

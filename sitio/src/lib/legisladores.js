@@ -199,9 +199,10 @@ export const GRUPOS_MAYORIA = [
 const gruposDe = (l) => Object.fromEntries(GRUPOS_MAYORIA.map((g) => [g.grupo, l ? valor(l[g.campoOficial]) : null]));
 
 // Mayoría de cada bancada y de cada partido en cada votación nominal, por período. Cada votación es de
-// una sola cámara, así que cada grupo reúne a sus miembros de esa cámara.
+// una sola cámara, así que cada grupo reúne a sus miembros de esa cámara. La usa también la
+// coincidencia de votos entre grupos (lib/coincidencia.js).
 const mayoriasPorPeriodo = new Map();
-function mayoriasDelPeriodo(periodo) {
+export function mayoriasDelPeriodo(periodo) {
   if (mayoriasPorPeriodo.has(periodo)) return mayoriasPorPeriodo.get(periodo);
   const i = indice(periodo);
   const porVotacion = new Map();

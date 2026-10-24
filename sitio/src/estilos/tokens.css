@@ -63,6 +63,8 @@
   --tamano-cuadro-voto: 0.75rem;
   --tamano-foto-legislador: 10rem;
   --ancho-nombre-barra: 16rem;
+  --sombreado-maximo-cuadro: 45%; /* mezcla máxima del color de acento en el cuadro de coincidencia */
+  --ancho-celda-cuadro: 4.75rem;
   --punto-quiebre-movil: 48rem; /* referencia: las media queries no aceptan variables */
 }
 

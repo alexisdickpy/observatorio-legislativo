@@ -1,0 +1,164 @@
+---
+// Coincidencia de votos entre partidos y entre bancadas del período vigente (lib/coincidencia.js,
+// alcance acordado en #43). Se elige un grupo y se ve su coincidencia con cada uno de los demás, de
+// mayor a menor, con numerador y denominador. Los partidos se ponen lado a lado por cámara, sin sumar
+// senadores y diputados; las bancadas, dentro de su cámara. Títulos neutrales y fórmula visible.
+import Base from "../layouts/Base.astro";
+import CuadroCoincidencia from "../components/CuadroCoincidencia.astro";
+import SelectorCoincidencia from "../components/SelectorCoincidencia.astro";
+import TablaCoincidencia from "../components/TablaCoincidencia.astro";
+import { NOMBRE_COINCIDENCIA } from "../lib/calculados.js";
+import { coincidencia } from "../lib/coincidencia.js";
+import { periodos } from "../lib/datos.js";
+import * as rutas from "../lib/rutas.js";
+
+const periodo = periodos().find((p) => p.vigente).id;
+const { camaras, partidos, bancadas, cuadros, umbral } = coincidencia(periodo);
+const columnas = camaras.map((c) => c.camara);
+const plural = (n: number, singular: string, varios: string) => `${n.toLocaleString("es-PY")} ${n === 1 ? singular : varios}`;
+/** Resumen de un grupo en una cámara: en cuántas votaciones tuvo posición y cuántos empates. */
+const resumen = (g: any, votaciones: number) =>
+  `${plural(g.legisladores, "legislador", "legisladores")} en ejercicio, ` +
+  `tuvo posición en ${g.conPosicion.toLocaleString("es-PY")} de ${plural(votaciones, "votación", "votaciones")}` +
+  (g.empates ? ` y empató en ${plural(g.empates, "votación", "votaciones")}` : "");
+const secciones = [
+  { etiqueta: "Partidos", opciones: partidos.map((p: any) => ({ valor: p.valor, etiqueta: p.nombre })) },
+  ...bancadas.map((b: any) => ({
+    etiqueta: `Bancadas (${b.camara})`,
+    opciones: b.grupos.map((g: any) => ({ valor: g.valor, etiqueta: g.nombre })),
+  })),
+];
+---
+
+<Base
+  titulo="Coincidencia de votos entre partidos y bancadas"
+  descripcion={`Qué tan seguido votaron igual los partidos y las bancadas del Congreso Nacional del Paraguay en las votaciones nominales sobre proyectos de ley del período legislativo ${periodo}, cada cámara por separado y con numerador y denominador.`}
+>
+  <p class="chico"><a href={rutas.legisladores()}>← Todos los legisladores</a></p>
+  <h1>Coincidencia de votos entre partidos y bancadas</h1>
+  <div class="lectura">
+    <p>
+      Para cada partido y cada bancada del período legislativo {periodo}, en cuántas votaciones nominales
+      sobre proyectos de ley tuvo la misma posición que cada uno de los demás grupos de su cámara.
+    </p>
+    <p class="formula">
+      Coincidencia = votaciones en que los dos grupos tuvieron la misma posición ÷ votaciones en que los
+      dos tuvieron posición × 100
+    </p>
+    <ul class="chico">
+      <li>
+        <strong>Posición de un grupo.</strong> La opción con más votos entre los votos emitidos de sus
+        miembros en esa votación (SI, NO, ABSTENCIÓN/BLANCO o una moción). AUSENTE y NO VOTA no son
+        votos emitidos. En un grupo en que votó una sola persona, la posición es su voto.
+      </li>
+      <li>
+        <strong>Empate.</strong> Si dos o más opciones empatan en el primer lugar, el grupo no tiene
+        posición en esa votación y esa votación no cuenta para sus pares.
+      </li>
+      <li>
+        <strong>Pocas votaciones en común.</strong> Con menos de {umbral} votaciones en común se muestran
+        las cantidades sin porcentaje, porque una sola votación lo cambiaría mucho.
+      </li>
+      <li>
+        Coincidir o no coincidir no es bueno ni malo. Es un dato para comparar cómo votan los grupos
+        entre sí.
+      </li>
+    </ul>
+    <p class="chico texto-suave">
+      Cada votación es de una sola cámara, así que todo se calcula dentro de cada cámara y nunca se suman
+      senadores y diputados. Los partidos se identifican con el
+      <a href={rutas.metodologia(rutas.anclasMetodologia.partidoUnificado)}>partido unificado</a>, que
+      permite poner lado a lado lo que hizo el mismo partido en cada cámara, cada una con su propia
+      cifra. Las bancadas se muestran con su nombre oficial, dentro de su cámara. Partido y bancada son
+      los que la API registra para el período, no necesariamente los de la fecha de cada votación.{" "}
+      <a href={rutas.metodologia(rutas.anclasMetodologia.coincidencia)}>Cómo se calcula la coincidencia</a>
+      {" · "}
+      <a href={rutas.archivoCalculado(periodo, NOMBRE_COINCIDENCIA, "csv")} download>Descargar la tabla (CSV)</a>
+    </p>
+  </div>
+
+  <section>
+    <h2>Todos los pares de partidos</h2>
+    <p class="chico texto-suave">
+      Cada celda es la coincidencia entre el partido de la fila y el de la columna, en esa cámara. El
+      tono más oscuro indica más coincidencia y no califica. Con menos de {umbral} votaciones en común,
+      la celda muestra solo las cantidades. Los partidos van de más a menos legisladores en ejercicio en
+      esa cámara. En el menú de abajo, los partidos van de más a menos legisladores en ejercicio en el
+      Congreso y las bancadas, en su cámara. Es solo un orden y ninguna cifra suma las dos cámaras. El nombre entre paréntesis es el nombre por el que se conoce a un
+      partido, un agregado de este sitio.
+    </p>
+    {
+      cuadros.map((c: any) => (
+        <Fragment>
+          <h3>{c.camara}</h3>
+          <CuadroCoincidencia titulo={`Coincidencia entre todos los pares de partidos, ${c.camara}`} filas={c.filas} />
+        </Fragment>
+      ))
+    }
+  </section>
+
+  <h2>Un partido o una bancada con cada uno de los demás</h2>
+  <SelectorCoincidencia secciones={secciones} />
+
+  <section data-bloque>
+    <h3>Por partido</h3>
+    {
+      partidos.map((p: any) => (
+        <section class="grupo-coincidencia" id={p.valor} data-grupo={p.valor}>
+          <h4>{p.nombre}</h4>
+          <ul class="chico texto-suave">
+            {p.porCamara.map((g: any, n: number) =>
+              g ? (
+                <li>
+                  {columnas[n]}, con el texto oficial «{g.texto}», {resumen(g, camaras[n].votaciones)}.
+                </li>
+              ) : (
+                <li>{columnas[n]}, sin legisladores de este partido.</li>
+              ),
+            )}
+          </ul>
+          <TablaCoincidencia
+            titulo={`Coincidencia de ${p.nombre} con los demás partidos, por cámara`}
+            grupo="Partido"
+            columnas={columnas}
+            filas={p.filas}
+          />
+        </section>
+      ))
+    }
+  </section>
+
+  {
+    bancadas.map((b: any) => (
+      <section data-bloque>
+        <h3>Por bancada, {b.camara}</h3>
+        {b.grupos.map((g: any) => (
+          <section class="grupo-coincidencia" id={g.valor} data-grupo={g.valor}>
+            <h4>{g.nombre}</h4>
+            <p class="chico texto-suave">En la {b.camara}, {resumen(g, camaras.find((c: any) => c.camara === b.camara).votaciones)}.</p>
+            <TablaCoincidencia
+              titulo={`Coincidencia de ${g.nombre} con las demás bancadas de la ${b.camara}`}
+              grupo="Bancada"
+              columnas={["Coincidencia"]}
+              filas={g.filas.map((f: any) => ({ nombre: f.nombre, celdas: [f] }))}
+            />
+          </section>
+        ))}
+      </section>
+    ))
+  }
+</Base>
+
+<style>
+  .formula {
+    padding: var(--espacio-3) var(--espacio-4);
+    background: var(--color-superficie);
+    border-left: var(--foco-ancho) solid var(--color-acento);
+  }
+  .grupo-coincidencia {
+    margin-bottom: var(--espacio-5);
+  }
+  .grupo-coincidencia h4 {
+    font-size: var(--tamano-titulo-3);
+  }
+</style>
