@@ -6,7 +6,7 @@ import { test } from "node:test";
 import { coincidencia } from "../../src/lib/coincidencia.js";
 import { comparativa } from "../../src/lib/legisladores.js";
 import { entradaActual, menuPrincipal, vistasDeAnalisis } from "../../src/lib/navegacion.js";
-import { paresConPorcentaje, vistaPrevia } from "../../src/lib/portada.js";
+import { barrasDeReferencia, paresConPorcentaje, vistaPrevia } from "../../src/lib/portada.js";
 import * as rutas from "../../src/lib/rutas.js";
 
 const PERIODO = "2023-2028";
@@ -45,6 +45,26 @@ test("pares de partidos con porcentaje, de mayor a menor, sin la diagonal ni los
     pares.map((p) => `${p.a}-${p.b}`),
     ["A-B", "A-C"],
   );
+});
+
+test("barras del gráfico: coincidencia con el partido de la primera fila, primero las que tienen porcentaje", () => {
+  const celda = (cantidad, total) => ({ cantidad, total, porcentaje: cantidad / total, suficiente: total >= 20 });
+  const cuadro = {
+    filas: [
+      { nombre: "A", celdas: [null, celda(5, 10), celda(30, 40), celda(18, 20), celda(0, 0)] },
+      { nombre: "B", celdas: [] },
+      { nombre: "C", celdas: [] },
+      { nombre: "D", celdas: [] },
+      { nombre: "E", celdas: [] },
+    ],
+  };
+  const { referencia, barras } = barrasDeReferencia(cuadro);
+  assert.equal(referencia, "A");
+  assert.deepEqual(
+    barras.map((b) => b.nombre),
+    ["D", "C", "B"],
+  );
+  assert.deepEqual(barrasDeReferencia({ filas: [] }), { referencia: null, barras: [] });
 });
 
 test("vista previa por cámara, con las mismas cifras que las páginas de cada vista", () => {

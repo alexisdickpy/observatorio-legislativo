@@ -1,0 +1,75 @@
+---
+// Gráfico de barras de la portada: la coincidencia de cada partido de una cámara con el de más
+// legisladores en ejercicio (lib/portada.js, barrasDeReferencia). Un solo tono, sin colores que
+// califiquen, y el porcentaje con sus cantidades siempre a la vista. Sin porcentaje (pocas votaciones
+// en común), solo las cantidades y sin barra.
+interface Props {
+  referencia: string;
+  barras: any[];
+}
+const { referencia, barras } = Astro.props;
+---
+
+<figure class="barras-coincidencia">
+  <figcaption class="chico texto-suave">Votaciones en que cada partido tuvo la misma posición que {referencia}</figcaption>
+  <ul>
+    {
+      barras.map((b) => (
+        <li>
+          <span class="encabezado chico">
+            <span>{b.nombre}</span>
+            {b.suficiente ? (
+              <span class="valor">
+                <strong>{b.porcentajeTexto}</strong> <span class="texto-suave">{b.fraccion}</span>
+              </span>
+            ) : (
+              <span class="valor texto-suave">{b.fraccion}, sin %</span>
+            )}
+          </span>
+          {b.suficiente && (
+            <span class="pista" aria-hidden="true">
+              <span class="relleno" style={`--porcentaje: ${b.porcentaje}`} />
+            </span>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</figure>
+
+<style>
+  .barras-coincidencia {
+    margin: var(--espacio-3) 0;
+  }
+  ul {
+    list-style: none;
+    margin: var(--espacio-2) 0 0;
+    padding: 0;
+  }
+  li + li {
+    margin-top: var(--espacio-2);
+  }
+  .encabezado {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0 var(--espacio-2);
+  }
+  .pista {
+    display: block;
+    height: var(--alto-barra-votos);
+    background: var(--color-fondo);
+    border: var(--borde-ancho) solid var(--color-borde);
+    border-radius: var(--radio);
+    overflow: hidden;
+  }
+  .relleno {
+    display: block;
+    height: 100%;
+    width: calc(var(--porcentaje) * 100%);
+    background: var(--color-acento);
+  }
+  .valor {
+    white-space: nowrap;
+  }
+</style>

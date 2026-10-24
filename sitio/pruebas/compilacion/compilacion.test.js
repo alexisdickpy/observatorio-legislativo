@@ -437,6 +437,11 @@ test("el menú y la portada enlazan a cada vista de análisis", () => {
   }
   const previa = vistaPrevia(periodos().find((p) => p.vigente).id);
   const html = texto(rutas.inicio());
-  for (const c of previa.coincidencia) assert.ok(html.includes(c.mayor.fraccion) && html.includes(c.menor.fraccion), `Falta la coincidencia de ${c.camara}`);
+  for (const c of previa.coincidencia) {
+    assert.ok(html.includes(c.mayor.porcentajeTexto) && html.includes(c.menor.porcentajeTexto), `Falta la coincidencia de ${c.camara}`);
+    assert.ok(c.barras.length > 0, `Sin barras en ${c.camara}`);
+    for (const b of c.barras) assert.ok(html.includes(b.fraccion), `Falta la barra de ${b.nombre} en ${c.camara}`);
+  }
+  assert.ok(html.includes('class="barras-coincidencia'), "Falta el gráfico de coincidencia en la portada");
   for (const c of previa.votacionesNominales) assert.ok(html.includes(`${c.legisladores.toLocaleString("es-PY")} legisladores para comparar`), `Faltan los legisladores de ${c.camara}`);
 });
