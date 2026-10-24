@@ -8,7 +8,7 @@ import { comparativa } from "../../src/lib/legisladores.js";
 import { entradaActual, menuPrincipal, vistasDeAnalisis } from "../../src/lib/navegacion.js";
 import { barrasDeReferencia, paresConPorcentaje, vistaPrevia } from "../../src/lib/portada.js";
 import * as rutas from "../../src/lib/rutas.js";
-import { CANTIDAD_AJUSTADAS_PORTADA, masAjustadas } from "../../src/lib/votaciones.js";
+import { CANTIDAD_ULTIMAS_PORTADA, votacionesDelPeriodo } from "../../src/lib/votaciones.js";
 import { CANTIDAD_PORTADA, votosDistintosAlPartido } from "../../src/lib/votosDistintos.js";
 
 const PERIODO = "2023-2028";
@@ -138,18 +138,19 @@ test("vista previa de votos distintos: los primeros del cuadro de cada cámara, 
   }
 });
 
-test("vista previa de votaciones: las más ajustadas de cada cámara, las primeras de la página de votaciones", () => {
+test("vista previa de votaciones: las más recientes de las dos cámaras, al final de la portada", () => {
   const previa = vistaPrevia(PERIODO);
-  const pagina = masAjustadas(PERIODO);
+  const { votaciones } = votacionesDelPeriodo(PERIODO);
   assert.deepEqual(
-    previa.votaciones.map((c) => c.camara),
-    ["CAMARA DE SENADORES", "CAMARA DE DIPUTADOS"],
+    previa.votaciones.map((v) => v.id),
+    votaciones.slice(0, CANTIDAD_ULTIMAS_PORTADA).map((v) => v.id),
   );
-  for (const [i, c] of previa.votaciones.entries()) {
-    assert.equal(c.votaciones.length, CANTIDAD_AJUSTADAS_PORTADA);
-    assert.deepEqual(
-      c.votaciones.map((v) => v.id),
-      pagina[i].votaciones.slice(0, CANTIDAD_AJUSTADAS_PORTADA).map((v) => v.id),
-    );
-  }
+  assert.equal(previa.votaciones.length, CANTIDAD_ULTIMAS_PORTADA);
+  assert.ok(previa.votaciones.every((v) => v.fechaIso >= votaciones[CANTIDAD_ULTIMAS_PORTADA].fechaIso));
+  assert.deepEqual(
+    vistasDeAnalisis()
+      .filter((v) => v.portadaAlFinal)
+      .map((v) => v.clave),
+    ["votaciones"],
+  );
 });

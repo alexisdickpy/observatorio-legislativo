@@ -10,6 +10,7 @@
 // - Posición de cada partido: la categoría con más votos entre los votos emitidos de sus miembros
 //   (ficha.js, posicionesDePartidos), con la sigla propia. Partido = texto oficial dentro de la cámara
 //   de la votación, que equivale al partido unificado (#42).
+// - Portada: las votaciones más recientes de las dos cámaras.
 // - Más ajustadas: por cámara, de menor a mayor diferencia entre los totales oficiales de SI y NO; a
 //   igual diferencia, la más reciente primero. Fuera las votaciones sin votos SI ni NO.
 
@@ -20,7 +21,8 @@ import { slug } from "./texto.js";
 
 /** Votaciones más ajustadas por cámara en la página de votaciones y en la portada. */
 export const CANTIDAD_AJUSTADAS = 10;
-export const CANTIDAD_AJUSTADAS_PORTADA = 5;
+/** Votaciones más recientes en la portada, de las dos cámaras. */
+export const CANTIDAD_ULTIMAS_PORTADA = 5;
 
 /** Valor de filtro de las votaciones sin dato en un campo. */
 const SIN_DATO = "sin-dato";
@@ -131,6 +133,9 @@ export function votacionesDelAnio(periodo, anio) {
     },
   };
 }
+
+/** Las `cantidad` votaciones más recientes del período, de las dos cámaras (masRecientePrimero). */
+export const ultimasVotaciones = (periodo, cantidad = CANTIDAD_ULTIMAS_PORTADA) => votacionesDelPeriodo(periodo).votaciones.slice(0, cantidad);
 
 /** De menor a mayor diferencia entre SI y NO; a igual diferencia, la más reciente primero. */
 const porMasAjustada = (a, b) => a.diferencia - b.diferencia || masRecientePrimero(a, b);

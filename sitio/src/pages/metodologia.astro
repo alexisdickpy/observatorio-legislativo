@@ -7,7 +7,7 @@ import { periodos } from "../lib/datos.js";
 import { observacionesDeLosDatos } from "../lib/metodologia.js";
 import { tablaDePartidos } from "../lib/partidos.js";
 import * as rutas from "../lib/rutas.js";
-import { CANTIDAD_AJUSTADAS, CANTIDAD_AJUSTADAS_PORTADA } from "../lib/votaciones.js";
+import { CANTIDAD_AJUSTADAS, CANTIDAD_ULTIMAS_PORTADA } from "../lib/votaciones.js";
 import { CANTIDAD_CUADRO, CANTIDAD_PORTADA, MINIMO_COMPARABLES } from "../lib/votosDistintos.js";
 
 const fuente = cita();
@@ -296,7 +296,8 @@ const anclas = rutas.anclasMetodologia;
     <p>
       Son las votaciones con menor diferencia entre los totales oficiales de SI y de NO, de menor a mayor
       diferencia y, a igual diferencia, primero la más reciente. Se muestran las {CANTIDAD_AJUSTADAS} de cada
-      cámara en la página de votaciones y las {CANTIDAD_AJUSTADAS_PORTADA} primeras en la portada. No se
+      cámara en la página de votaciones. La portada muestra, en cambio, las {CANTIDAD_ULTIMAS_PORTADA} votaciones más
+      recientes de las dos cámaras. No se
       cuentan las votaciones sin votos SI ni NO. La diferencia no dice si se alcanzó la mayoría que exige el
       reglamento. El resultado que vale es el oficial.
     </p>

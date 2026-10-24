@@ -616,6 +616,10 @@ test("el menú y la portada enlazan a cada vista de análisis", () => {
   assert.ok(html.includes('class="barras-coincidencia'), "Falta el gráfico de coincidencia en la portada");
   for (const c of previa.votosDistintos) for (const f of c.filas) assert.ok(itemVotosDistintos(html, f), `Falta ${f.slug} en la portada`);
   const enPortada = [...html.matchAll(/<li data-votacion="(\d+)"/g)].map((m) => Number(m[1]));
-  assert.deepEqual(enPortada, previa.votaciones.flatMap((c) => c.votaciones.map((v) => v.id)), "Votaciones más ajustadas de la portada");
+  assert.deepEqual(enPortada, previa.votaciones.map((v) => v.id), "Últimas votaciones de la portada");
+  // La tarjeta de votaciones va después de las demás.
+  const posiciones = vistasDeAnalisis().filter((v) => v.portada !== false).map((v) => [v.clave, html.indexOf(`data-analisis="${v.clave}"`)]);
+  const votaciones = posiciones.find(([clave]) => clave === "votaciones")[1];
+  assert.ok(posiciones.every(([clave, n]) => clave === "votaciones" || n < votaciones), "La tarjeta de votaciones no está al final");
   assert.equal(html.match(/<li data-votos-distintos=/g)?.length ?? 0, previa.votosDistintos.reduce((n, c) => n + c.filas.length, 0));
 });

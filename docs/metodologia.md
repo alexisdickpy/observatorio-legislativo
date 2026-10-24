@@ -188,11 +188,11 @@ Decisión de alcance (#44). La página `/votaciones/` reúne las votaciones nomi
 - **Presentación.** Cada etiqueta lleva la sigla, un cuadro del color de la categoría (los mismos colores de la barra, en `tokens.css`) y la categoría escrita, para que no dependa solo del color. Las posiciones sin categoría llevan un cuadro sin relleno. Etiquetas de más a menos legisladores del partido en la lista de la votación.
 - **Filtros.** En cada año, por cámara, estado oficial del proyecto y resultado oficial (`?camara=…&estado=…&resultado=…`, con el slug del texto oficial). Sin JavaScript se ven todas las votaciones del año.
 - **Ficha de ley.** Junto a los totales de cada votación, los partidos agrupados por su posición (qué partidos tuvieron `SI` como categoría más votada, cuáles `NO`, cuáles otra categoría, los empates y los que no emitieron voto), cada uno con sus votos de esa categoría sobre sus votos emitidos. El desglose por partido y por bancada sigue igual.
-- **Menú y portada.** Entrada «Votaciones» en el menú. La portada muestra las 5 votaciones más ajustadas de cada cámara.
+- **Menú y portada.** Entrada «Votaciones» en el menú. La portada muestra, a lo ancho y debajo de las demás tarjetas de análisis, las 5 votaciones más recientes de las dos cámaras (`portadaAlFinal` en `vistasDeAnalisis`).
 
 ### Votaciones más ajustadas
 
-En `/votaciones/`, las **10** votaciones de cada cámara con menor diferencia entre los totales oficiales de `SI` y de `NO`; en la portada, las **5** primeras.
+En `/votaciones/`, las **10** votaciones de cada cámara con menor diferencia entre los totales oficiales de `SI` y de `NO`. No están en la portada.
 
 > diferencia = | total oficial de SI − total oficial de NO |
 
