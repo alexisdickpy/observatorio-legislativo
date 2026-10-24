@@ -2,13 +2,14 @@
 // Cuadro de coincidencia de todos los pares de partidos de una cámara: filas y columnas con los
 // mismos partidos, y en cada celda el porcentaje con su numerador y su denominador. El sombreado es
 // de un solo tono (más oscuro = más coincidencia), sin colores que califiquen; la intensidad viene de
-// lib/coincidencia.js y la mezcla máxima de tokens.css. Con pocas votaciones en común, solo las
+// lib/coincidencia.js y la mezcla máxima de tokens.css. Filas y columnas van de más a menos
+// legisladores en ejercicio en esa cámara. Con pocas votaciones en común, solo las
 // cantidades y sin sombreado.
 import { intensidadDe } from "../lib/coincidencia.js";
 
 interface Props {
   titulo: string;
-  filas: { id: string; nombre: string; celdas: any[] }[];
+  filas: { id: string; nombre: string; legisladores: number; celdas: any[] }[];
 }
 const { titulo, filas } = Astro.props;
 ---
@@ -23,7 +24,7 @@ const { titulo, filas } = Astro.props;
       </tr>
     </thead>
     <tbody>
-      {filas.map((f) => <tr data-cuadro-fila={f.id}><th scope="row">{f.nombre}</th>{f.celdas.map((c) => !c ? <td class="diagonal"><span aria-hidden="true">—</span><span class="solo-lectores">Mismo partido</span></td> : c.suficiente ? <td style={`--intensidad: ${intensidadDe(c)}`}><span class="porcentaje">{c.porcentajeTexto}</span> <span class="fraccion">{c.fraccion}</span></td> : <td class="sin-porcentaje"><span class="fraccion">{c.fraccion}</span> <span class="fraccion">sin %</span></td>)}</tr>)}
+      {filas.map((f) => <tr data-cuadro-fila={f.id}><th scope="row">{f.nombre}<span class="bancas">{f.legisladores} {f.legisladores === 1 ? "legislador" : "legisladores"} en ejercicio</span></th>{f.celdas.map((c) => !c ? <td class="diagonal"><span aria-hidden="true">—</span><span class="solo-lectores">Mismo partido</span></td> : c.suficiente ? <td style={`--intensidad: ${intensidadDe(c)}`}><span class="porcentaje">{c.porcentajeTexto}</span> <span class="fraccion">{c.fraccion}</span></td> : <td class="sin-porcentaje"><span class="fraccion">{c.fraccion}</span> <span class="fraccion">sin %</span></td>)}</tr>)}
     </tbody>
   </table>
 </div>
@@ -81,6 +82,10 @@ const { titulo, filas } = Astro.props;
   .fraccion {
     display: block;
     white-space: nowrap;
+  }
+  .bancas {
+    display: block;
+    color: var(--color-texto-suave);
   }
   .sin-porcentaje {
     color: var(--color-texto-suave);

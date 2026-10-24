@@ -278,3 +278,22 @@ test("cuadro de partidos: por cámara, simétrico, sin la diagonal, mismas cifra
   assert.equal(intensidadDe({ suficiente: false, porcentaje: 0.9 }), 0);
   assert.equal(intensidadDe({ suficiente: true, porcentaje: 0.834 }), 0.83);
 });
+
+test("orden de los grupos: de más a menos legisladores en ejercicio, ANR primero y PLRA segundo", () => {
+  const r = coincidencia(PERIODO);
+  const vigentes = fuente(PERIODO, "legisladores.json").filter((l) => l._propio?.vigente);
+  for (const cuadro of r.cuadros) {
+    const deCamara = vigentes.filter((l) => l.camaraParlamentario === cuadro.camara);
+    for (const f of cuadro.filas) {
+      assert.equal(f.legisladores, deCamara.filter((l) => partidoUnificado(l.partidoPolitico)?.id === f.id).length, f.id);
+    }
+    const bancas = cuadro.filas.map((f) => f.legisladores);
+    assert.deepEqual(bancas, [...bancas].sort((a, b) => b - a));
+    assert.deepEqual(cuadro.filas.slice(0, 2).map((f) => f.nombre), [ANR, PLRA]);
+  }
+  assert.deepEqual(r.partidos.slice(0, 2).map((p) => p.nombre), [ANR, PLRA]);
+  for (const { grupos } of r.bancadas) {
+    const miembros = grupos.map((g) => g.legisladores);
+    assert.deepEqual(miembros, [...miembros].sort((a, b) => b - a));
+  }
+});

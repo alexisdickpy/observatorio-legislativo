@@ -18,6 +18,7 @@ const columnas = camaras.map((c) => c.camara);
 const plural = (n: number, singular: string, varios: string) => `${n.toLocaleString("es-PY")} ${n === 1 ? singular : varios}`;
 /** Resumen de un grupo en una cámara: en cuántas votaciones tuvo posición y cuántos empates. */
 const resumen = (g: any, votaciones: number) =>
+  `${plural(g.legisladores, "legislador", "legisladores")} en ejercicio, ` +
   `tuvo posición en ${g.conPosicion.toLocaleString("es-PY")} de ${plural(votaciones, "votación", "votaciones")}` +
   (g.empates ? ` y empató en ${plural(g.empates, "votación", "votaciones")}` : "");
 const secciones = [
@@ -81,7 +82,9 @@ const secciones = [
     <p class="chico texto-suave">
       Cada celda es la coincidencia entre el partido de la fila y el de la columna, en esa cámara. El
       tono más oscuro indica más coincidencia y no califica. Con menos de {umbral} votaciones en común,
-      la celda muestra solo las cantidades.
+      la celda muestra solo las cantidades. Los partidos van de más a menos legisladores en ejercicio en
+      esa cámara. En el menú de abajo, los partidos van de más a menos legisladores en ejercicio en el
+      Congreso y las bancadas, en su cámara. Es solo un orden y ninguna cifra suma las dos cámaras.
     </p>
     {
       cuadros.map((c: any) => (

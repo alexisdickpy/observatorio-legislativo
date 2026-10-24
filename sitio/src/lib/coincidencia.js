@@ -83,7 +83,8 @@ export const valorDeBancada = (camara, texto) => `bancada-${slug(camara ?? "")}-
 /**
  * Posiciones de cada cámara en las votaciones sobre proyectos de ley de un período: por cámara, la
  * cantidad de votaciones y, para partidos y bancadas, un Map grupo → posición por votación. Los
- * partidos se identifican por su partido unificado; las bancadas, por su texto oficial.
+ * partidos se identifican por su partido unificado; las bancadas, por su texto oficial. También, para
+ * ordenar, cuántos legisladores en ejercicio tiene cada partido y cada bancada en esa cámara.
  */
 const posicionesPorPeriodo = new Map();
 export function posicionesDelPeriodo(periodo) {
@@ -116,6 +117,18 @@ export function posicionesDelPeriodo(periodo) {
     c.partido.push(partido);
     c.bancada.push(bancada);
   }
+  for (const c of camaras.values()) {
+    c.legisladoresPartido = new Map();
+    c.legisladoresBancada = new Map();
+  }
+  for (const l of i.legisladores.values()) {
+    const c = camaras.get(valor(l.camaraParlamentario));
+    if (!c || !l._propio?.vigente) continue;
+    const partido = partidoUnificado(l.partidoPolitico)?.id;
+    const bancada = valor(l.bancada);
+    if (partido) c.legisladoresPartido.set(partido, (c.legisladoresPartido.get(partido) ?? 0) + 1);
+    if (bancada) c.legisladoresBancada.set(bancada, (c.legisladoresBancada.get(bancada) ?? 0) + 1);
+  }
   const resultado = [...camaras.values()].sort((a, b) => posicionCamara(a.camara) - posicionCamara(b.camara));
   posicionesPorPeriodo.set(periodo, resultado);
   return resultado;
@@ -135,13 +148,21 @@ const resultados = new Map();
  * - bancadas: por cámara, un bloque por bancada con una fila por cada otra bancada de esa cámara.
  * - cuadros: por cámara, el cuadro de todos los pares de partidos de esa cámara (filas y columnas en
  *   el mismo orden, celda null en la diagonal).
+ * Orden de los grupos: de más a menos legisladores en ejercicio (en el cuadro y las bancadas, en su
+ * cámara; en el menú de partidos, en el Congreso), y a igualdad por nombre. Es solo un orden: ninguna
+ * cifra suma cámaras.
  */
 export function coincidencia(periodo) {
   if (resultados.has(periodo)) return resultados.get(periodo);
   const porCamara = posicionesDelPeriodo(periodo);
   const nombreDePartido = new Map();
   for (const c of porCamara) for (const [id, texto] of c.textosPartido) nombreDePartido.set(id, partidoUnificado(texto).nombre);
-  const idsPartido = [...nombreDePartido.keys()].sort((a, b) => porTexto(nombreDePartido.get(a), nombreDePartido.get(b)));
+  /** Legisladores en ejercicio de un partido en cada cámara y en el Congreso (solo para ordenar). */
+  const bancasDe = (id) => porCamara.map((c) => c.legisladoresPartido.get(id) ?? 0);
+  const total = (id) => bancasDe(id).reduce((n, x) => n + x, 0);
+  const idsPartido = [...nombreDePartido.keys()].sort(
+    (a, b) => total(b) - total(a) || porTexto(nombreDePartido.get(a), nombreDePartido.get(b)),
+  );
 
   const celda = (c, a, b) => (c.textosPartido.has(a) && c.textosPartido.has(b) ? coincidenciaEntre(c.partido, a, b) : null);
   /** Cifra para ordenar las filas de un partido: la celda con mayor porcentaje (o más votaciones) de las que hay. */
@@ -156,19 +177,23 @@ export function coincidencia(periodo) {
       id,
       nombre: nombreDePartido.get(id),
       porCamara: porCamara.map((c) =>
-        c.textosPartido.has(id) ? { camara: c.camara, texto: c.textosPartido.get(id), ...resumenDeGrupo(c.partido, id) } : null,
+        c.textosPartido.has(id)
+          ? { camara: c.camara, texto: c.textosPartido.get(id), legisladores: c.legisladoresPartido.get(id) ?? 0, ...resumenDeGrupo(c.partido, id) }
+          : null,
       ),
       filas: filas.sort(porCoincidencia(mejorCelda)),
     };
   });
 
   const bancadas = porCamara.map((c) => {
-    const textos = gruposDe(c.bancada).sort(porTexto);
+    const miembros = (t) => c.legisladoresBancada.get(t) ?? 0;
+    const textos = gruposDe(c.bancada).sort((a, b) => miembros(b) - miembros(a) || porTexto(a, b));
     return {
       camara: c.camara,
       grupos: textos.map((texto) => ({
         valor: valorDeBancada(c.camara, texto),
         nombre: texto,
+        legisladores: miembros(texto),
         ...resumenDeGrupo(c.bancada, texto),
         filas: textos
           .filter((otro) => otro !== texto)
@@ -179,13 +204,17 @@ export function coincidencia(periodo) {
   });
 
   const cuadros = porCamara.map((c) => {
-    const ids = idsPartido.filter((id) => c.textosPartido.has(id));
+    const bancas = (id) => c.legisladoresPartido.get(id) ?? 0;
+    const ids = idsPartido
+      .filter((id) => c.textosPartido.has(id))
+      .sort((a, b) => bancas(b) - bancas(a) || porTexto(nombreDePartido.get(a), nombreDePartido.get(b)));
     return {
       camara: c.camara,
       filas: ids.map((id) => ({
         id,
         nombre: nombreDePartido.get(id),
         texto: c.textosPartido.get(id),
+        legisladores: bancas(id),
         celdas: ids.map((otro) => (otro === id ? null : coincidenciaEntre(c.partido, id, otro))),
       })),
     };
