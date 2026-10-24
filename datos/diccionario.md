@@ -203,7 +203,7 @@ Se publica en `fuente/{período}/legisladores.json` y `fuente/{período}/legisla
 
 ## autores
 
-Un registro por autor de cada proyecto con ley, en el orden que publica la API. El autor puede ser legislador de otra legislatura.
+Un registro por autor de cada proyecto con ley y de cada proyecto de ley con votaciones en el período, en el orden que publica la API. El autor puede ser legislador de otra legislatura.
 
 Se publica en `fuente/{período}/autores.json` y `fuente/{período}/autores.csv`, con 1386 registros en total.
 
