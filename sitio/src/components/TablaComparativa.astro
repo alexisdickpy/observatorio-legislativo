@@ -3,7 +3,8 @@
 // en votaciones nominales y sus votos distintos a la mayoría de su bancada y de su partido, cada cifra
 // por separado con su denominador. Sin votaciones comparables, dice por qué. Recibe las filas de
 // lib/legisladores.js (comparativa). Los atributos data-* los usa OrdenComparativa para reordenar.
-// Filas en una sola línea y estilos globales con prefijo de clase (ver TablaLegisladores).
+// Filas en una sola línea; los estilos están en estilos/tabla-comparativa.css.
+import "../estilos/tabla-comparativa.css";
 import { CIFRAS_COMPARATIVAS, CIFRAS_MAYORIA } from "../lib/legisladores.js";
 
 interface Props {
@@ -36,63 +37,3 @@ const ordenMayoria = (c: any) => (c.total ? c.porcentaje : -1);
     </tbody>
   </table>
 </div>
-
-<style is:global>
-  .tabla-comparativa-desplazable {
-    overflow-x: auto;
-  }
-  .tabla-comparativa {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: var(--tamano-chico);
-  }
-  .tabla-comparativa th,
-  .tabla-comparativa td {
-    text-align: left;
-    vertical-align: top;
-    padding: var(--espacio-2);
-    border-bottom: var(--borde-ancho) solid var(--color-borde);
-  }
-  .tabla-comparativa td {
-    white-space: nowrap;
-  }
-  .tabla-comparativa thead th {
-    border-bottom-width: var(--foco-ancho);
-  }
-  .tabla-comparativa tbody th {
-    font-weight: var(--peso-normal);
-  }
-
-  /* Móvil: cada legislador como una tarjeta. 48rem = --punto-quiebre-movil. */
-  @media (max-width: 48rem) {
-    .tabla-comparativa thead {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-      clip-path: inset(50%);
-    }
-    .tabla-comparativa tr,
-    .tabla-comparativa th,
-    .tabla-comparativa td {
-      display: block;
-    }
-    .tabla-comparativa tbody tr {
-      border-bottom: var(--borde-ancho) solid var(--color-borde);
-      padding: var(--espacio-3) 0;
-    }
-    .tabla-comparativa tbody th,
-    .tabla-comparativa tbody td {
-      border: 0;
-      padding: var(--espacio-1) 0;
-      white-space: normal;
-    }
-    .tabla-comparativa tbody th {
-      font-size: var(--tamano-base);
-    }
-    .tabla-comparativa tbody td::before {
-      content: attr(data-etiqueta) " ";
-      color: var(--color-texto-suave);
-    }
-  }
-</style>

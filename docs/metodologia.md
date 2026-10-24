@@ -140,6 +140,17 @@ La **vista comparativa** agrega dos columnas, "Votos distintos a la mayoría de 
 
 Comprobación. Las pruebas recalculan a mano 12 votaciones de 3 bancadas a partir de `votos.csv` y `legisladores.json`, además de casos sintéticos de mayoría, empate, único votante y mociones.
 
+### Cuadro de más votos distintos a la mayoría de su partido
+
+Decisión de alcance (#54). La página `/legisladores/votos-distintos-al-partido/` muestra, por cámara, los **10** legisladores con mayor porcentaje de votos distintos a la mayoría de su **partido**, con la misma cifra de la vista comparativa (`mayoriaPartido`, sin recalcular), el numerador, el denominador y el enlace a su ficha. El cálculo está en `sitio/src/lib/votosDistintos.js`.
+
+- **Mínimo.** Entran solo quienes tienen al menos **50 votaciones comparables** con la mayoría de su partido, para que un porcentaje alto sobre muy pocas votaciones no encabece la lista. En 2023-2028 los diez primeros de cada cámara son los mismos con un mínimo de 20 o de 50; el mínimo deja fuera sobre todo a suplentes y reemplazos con pocas votaciones.
+- **Orden.** De mayor a menor porcentaje; a igual porcentaje, primero quien tiene más votaciones comparables y, después, por apellido. Incluye a quienes ya no ejercen, señalados como tales.
+- **Solo por partido.** No hay cuadro por bancada; la vista comparativa se puede ordenar por bancada (`?orden=bancada`) y el cuadro la enlaza.
+- **Sin votaciones comparables.** Debajo de cada cuadro se nombra, con enlace a su ficha, a quienes tienen partido registrado y ninguna votación comparable, porque en todas las que votaron fueron los únicos de su partido en emitir voto en su cámara. En 2023-2028 son 5 senadores y 5 diputados, y según la API todos están también solos en su bancada (o, en el caso del PEN en el Senado, compartieron bancada con alguien que los reemplazó y nunca votaron juntos), así que la comparación por bancada tampoco aplica. Aparte se informa cuántos tienen entre 1 y 49 votaciones comparables y, si los hubiera, cuántos no tienen partido registrado.
+- **Portada.** La tarjeta del cuadro muestra los **5** primeros de cada cámara, con su cifra y enlace a su ficha, y el enlace al cuadro completo. Es la única vista previa de la portada con nombres de personas.
+- **Textos.** Título neutral ("Más votos distintos a la mayoría de su partido"), sin posiciones ni calificativos.
+
 ## Coincidencia de votos entre partidos y entre bancadas
 
 Decisión de alcance (#43). La página `/coincidencia-de-votos/` muestra qué tan seguido tuvieron la misma posición dos partidos o dos bancadas en las votaciones nominales.

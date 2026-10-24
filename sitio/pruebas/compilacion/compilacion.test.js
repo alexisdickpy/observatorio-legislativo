@@ -14,6 +14,7 @@ import { observacionesDeLosDatos } from "../../src/lib/metodologia.js";
 import { menuPrincipal, vistasDeAnalisis } from "../../src/lib/navegacion.js";
 import { vistaPrevia } from "../../src/lib/portada.js";
 import * as rutas from "../../src/lib/rutas.js";
+import { votosDistintosAlPartido } from "../../src/lib/votosDistintos.js";
 
 const dist = resolve(process.cwd(), "dist");
 const pagina = (url) => join(dist, decodeURIComponent(url), "index.html");
@@ -205,6 +206,37 @@ test("coincidencia de votos: un bloque por grupo, cifras con su denominador, fó
   assert.ok(texto(rutas.votacionesNominales()).includes(`href="${rutas.coincidencia()}"`));
 });
 
+test("cuadro de votos distintos a la mayoría de su partido: cifras con su denominador, enlaces, mínimo y títulos neutrales", () => {
+  const periodo = periodos().find((p) => p.vigente).id;
+  const { camaras, minimo } = votosDistintosAlPartido(periodo);
+  const html = texto(rutas.votosDistintosAlPartido());
+  assert.ok(html.includes("Votos distintos = votaciones en que su voto difiere de la mayoría de su partido"));
+  assert.ok(html.includes(`al menos ${minimo} votaciones comparables`));
+  assert.ok(html.includes(`href="${rutas.metodologia(rutas.anclasMetodologia.cuadroVotosDistintos)}"`));
+  assert.ok(leer(rutas.metodologia()).includes(`id="${rutas.anclasMetodologia.cuadroVotosDistintos}"`));
+  assert.ok(html.includes(`href="${rutas.votacionesNominalesOrdenadas("partido")}"`));
+  assert.equal(html.match(/<section data-camara-votos-distintos/g)?.length ?? 0, camaras.length);
+  assert.equal(html.match(/<tr data-votos-distintos /g)?.length ?? 0, camaras.reduce((n, c) => n + c.filas.length, 0));
+  const filas = [...html.matchAll(/<tr data-votos-distintos data-slug="([^"]+)"[^]*?<\/tr>/g)];
+  for (const c of camaras) {
+    for (const f of c.filas) {
+      const fila = filas.find((x) => x[1] === f.slug)?.[0] ?? "";
+      assert.ok(fila.includes(`href="${f.url}"`) && fila.includes(f.mayoriaPartido.texto), f.slug);
+    }
+    for (const f of c.sinComparables) {
+      const item = html.match(new RegExp(`<li data-sin-comparables="${f.slug}"[^]*?</li>`))?.[0] ?? "";
+      assert.ok(item.includes(`href="${f.url}"`), `Falta ${f.slug} entre quienes no tienen votaciones comparables`);
+    }
+  }
+  // El orden de las filas en la página es el del cuadro.
+  const orden = [...html.matchAll(/<tr data-votos-distintos data-slug="([^"]+)"/g)].map((m) => m[1]);
+  assert.deepEqual(orden, camaras.flatMap((c) => c.filas.map((f) => f.slug)));
+  const visible = html.replace(/<(script|style)[\s\S]*?<\/\1>/g, " ").replace(/<[^>]+>/g, " ");
+  const calificativo = visible.match(/.{0,30}\b(mejor|peor|ranking|puesto|campe[oó]n|rebelde|d[ií]scolo|traici[oó]n|leal)\b.{0,20}/i);
+  assert.ok(!calificativo, `«${calificativo?.[0]}»`);
+  assert.ok(texto(rutas.votacionesNominales()).includes(`href="${rutas.votosDistintosAlPartido()}"`));
+});
+
 test("tabla calculada servida y enlazada desde datos abiertos", () => {
   const html = leer(rutas.datosAbiertos());
   for (const a of archivosCalculados()) {
@@ -220,7 +252,7 @@ test("ningún texto propio presenta AUSENTE como asistencia, faltas o inasistenc
   // pueden tratar de asistencia social y se muestran sin cambios). La firma dice «con asistencia de
   // IA», el único uso permitido de la palabra.
   const prohibidas = /inasistencia|asistencia(?! de IA)|\bfalta|\bfaltó|días ausente/i;
-  const urls = [rutas.inicio(), rutas.metodologia(), rutas.legisladores(), rutas.votacionesNominales(), rutas.coincidencia(), ...legisladores().map((p) => p.url)];
+  const urls = [rutas.inicio(), rutas.metodologia(), rutas.legisladores(), rutas.votacionesNominales(), rutas.coincidencia(), rutas.votosDistintosAlPartido(), ...legisladores().map((p) => p.url)];
   for (const url of urls) {
     const visible = leer(url)
       .replace(/<(script|style)[\s\S]*?<\/\1>/g, " ")
@@ -408,7 +440,7 @@ test("sin herramientas de seguimiento con cookies", () => {
 test("los textos propios de las páginas generales no usan dos puntos", () => {
   // Solo páginas sin valores oficiales; la cita obligatoria se mantiene textual.
   const { cita } = estado().fuente;
-  const urls = [rutas.inicio(), rutas.metodologia(), rutas.privacidad(), rutas.datosAbiertos(), rutas.buscar(), rutas.votacionesNominales(), rutas.coincidencia()];
+  const urls = [rutas.inicio(), rutas.metodologia(), rutas.privacidad(), rutas.datosAbiertos(), rutas.buscar(), rutas.votacionesNominales(), rutas.coincidencia(), rutas.votosDistintosAlPartido()];
   for (const url of urls) {
     const visible = leer(url)
       .replace(/<(script|style)[\s\S]*?<\/\1>/g, " ")
@@ -424,7 +456,7 @@ test("el menú y la portada enlazan a cada vista de análisis", () => {
   const menu = (url) => leer(url).match(/<nav aria-label="Principal"[\s\S]*?<\/nav>/)?.[0] ?? "";
   const unaLey = rutas.ley(leyes()[0].numero);
   const unLegislador = rutas.legislador(legisladores()[0].slug);
-  for (const url of [rutas.inicio(), rutas.leyes(), unaLey, rutas.legisladores(), unLegislador, rutas.votacionesNominales(), rutas.coincidencia(), rutas.buscar(), rutas.datosAbiertos(), rutas.metodologia()]) {
+  for (const url of [rutas.inicio(), rutas.leyes(), unaLey, rutas.legisladores(), unLegislador, rutas.votacionesNominales(), rutas.coincidencia(), rutas.votosDistintosAlPartido(), rutas.buscar(), rutas.datosAbiertos(), rutas.metodologia()]) {
     const nav = menu(url);
     for (const e of menuPrincipal()) assert.ok(nav.includes(`href="${e.url}"`), `El menú de ${url} no enlaza ${e.url}`);
     assert.ok((nav.match(/aria-current="page"/g) ?? []).length <= 1, `Más de una entrada actual en ${url}`);
@@ -449,4 +481,11 @@ test("el menú y la portada enlazan a cada vista de análisis", () => {
   assert.ok(html.includes('id="selector-partido-portada"'), "Falta el selector de partido en la portada");
   assert.ok(html.includes('class="barras-coincidencia'), "Falta el gráfico de coincidencia en la portada");
   for (const c of previa.votacionesNominales) assert.ok(html.includes(`${c.legisladores.toLocaleString("es-PY")} legisladores para comparar`), `Faltan los legisladores de ${c.camara}`);
+  for (const c of previa.votosDistintos) {
+    for (const f of c.filas) {
+      const item = html.match(new RegExp(`<li data-votos-distintos-portada="${f.slug}"[^]*?</li>`))?.[0] ?? "";
+      assert.ok(item.includes(`href="${f.url}"`) && item.includes(`${f.mayoriaPartido.fraccion} votaciones comparables`), `Falta ${f.slug} en la portada`);
+    }
+  }
+  assert.equal(html.match(/<li data-votos-distintos-portada=/g)?.length ?? 0, previa.votosDistintos.reduce((n, c) => n + c.filas.length, 0));
 });

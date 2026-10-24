@@ -1,7 +1,7 @@
 // Menú principal y vistas de análisis. Único lugar donde se arman (alcance acordado en #51): el
 // encabezado y la portada leen estas listas, de modo que el rediseño de la Fase 4 (#14) cambie el menú
 // sin tocar las páginas. Las direcciones salen de lib/rutas.js. Cada vista de análisis nueva (#37, #44,
-// #45) se agrega a VISTAS_DE_ANALISIS y queda en el menú y en la portada.
+// #45, #54) se agrega a VISTAS_DE_ANALISIS y queda en el menú y en la portada.
 
 import * as rutas from "./rutas.js";
 
@@ -23,6 +23,13 @@ export const vistasDeAnalisis = () => [
     menu: "Rankings",
     titulo: "Votaciones nominales por legislador",
     descripcion: "Una tabla para comparar a todos los legisladores de cada cámara por sus ausencias en votaciones nominales, NO VOTA, abstenciones y votos distintos a la mayoría de su bancada y de su partido.",
+  },
+  {
+    clave: "votosDistintos",
+    url: rutas.votosDistintosAlPartido(),
+    menu: "Votos distintos",
+    titulo: "Más votos distintos a la mayoría de su partido",
+    descripcion: "Los legisladores de cada cámara que más veces votaron distinto a la mayoría de su partido en las votaciones nominales, cada uno con su cifra y su denominador.",
   },
 ];
 

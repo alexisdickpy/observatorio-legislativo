@@ -1,7 +1,7 @@
 ---
 // Apartado de la portada con cada vista de análisis (lib/navegacion.js): su enlace, una línea sobre
-// qué muestra y una vista previa con datos por cámara, sin nombres de personas (lib/portada.js,
-// alcance acordado en #51). Una vista sin vista previa propia muestra solo el enlace y la línea. En
+// qué muestra y una vista previa con datos por cámara (lib/portada.js, alcance acordado en #51). Solo
+// la de votos distintos a la mayoría de su partido lleva nombres de personas (#54). Una vista sin vista previa propia muestra solo el enlace y la línea. En
 // la coincidencia se elige el partido del gráfico; al abrir, el de más legisladores en ejercicio.
 import BarrasCoincidencia from "./BarrasCoincidencia.astro";
 import { vistasDeAnalisis } from "../lib/navegacion.js";
@@ -71,6 +71,21 @@ const plural = (n: number, singular: string, varios: string) => `${numero(n)} ${
               ))}
             </ul>
           )}
+          {v.clave === "votosDistintos" && (
+            previa.votosDistintos.map((c) => (
+              <div class="camara">
+                <h4 class="chico">{c.camara}</h4>
+                <ol class="chico">
+                  {c.filas.map((f) => (
+                    <li data-votos-distintos-portada={f.slug}>
+                      <a href={f.url}>{f.nombre}</a> ({f.mayoriaPartido.grupo}), {f.mayoriaPartido.porcentajeTexto},{" "}
+                      {f.mayoriaPartido.fraccion} votaciones comparables
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            ))
+          )}
           <p class="chico">
             <a href={v.url}>Ver {v.titulo.toLowerCase()}</a>
           </p>
@@ -127,7 +142,8 @@ const plural = (n: number, singular: string, varios: string) => `${numero(n)} ${
   .tarjeta h3 {
     margin-top: 0;
   }
-  .tarjeta ul {
+  .tarjeta ul,
+  .tarjeta ol {
     padding-left: var(--espacio-4);
   }
   .tarjeta li + li {

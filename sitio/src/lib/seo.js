@@ -141,6 +141,7 @@ export function direccionesDelSitemap() {
     rutas.legisladores(),
     rutas.votacionesNominales(),
     rutas.coincidencia(),
+    rutas.votosDistintosAlPartido(),
     ...legisladores().map((p) => p.url),
     rutas.datosAbiertos(),
     rutas.metodologia(),

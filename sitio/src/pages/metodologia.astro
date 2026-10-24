@@ -7,6 +7,7 @@ import { periodos } from "../lib/datos.js";
 import { observacionesDeLosDatos } from "../lib/metodologia.js";
 import { tablaDePartidos } from "../lib/partidos.js";
 import * as rutas from "../lib/rutas.js";
+import { CANTIDAD_CUADRO, CANTIDAD_PORTADA, MINIMO_COMPARABLES } from "../lib/votosDistintos.js";
 
 const fuente = cita();
 const partidos = tablaDePartidos();
@@ -209,6 +210,22 @@ const anclas = rutas.anclasMetodologia;
       Votar distinto a la mayoría no es bueno ni malo, y la cifra no lo califica. El sentido de cada voto
       depende de lo que se votaba en ese trámite. La <a href={rutas.votacionesNominales()}>vista
       comparativa</a> y su tabla descargable incluyen estas dos cifras.
+    </p>
+    <h3 id={anclas.cuadroVotosDistintos}>Cuadro de más votos distintos a la mayoría de su partido</h3>
+    <p>
+      El <a href={rutas.votosDistintosAlPartido()}>cuadro</a> muestra, por cámara, los {CANTIDAD_CUADRO}
+      legisladores con mayor porcentaje de votos distintos a la mayoría de su partido, con la misma cifra
+      de la vista comparativa. Solo entran quienes tienen al menos {MINIMO_COMPARABLES} votaciones
+      comparables, para que un porcentaje alto sobre muy pocas votaciones no encabece la lista. A igual
+      porcentaje va primero quien tiene más votaciones comparables y, después, por apellido. Incluye a
+      quienes ya no ejercen, señalados como tales. Se hace solo por partido; los votos distintos a la
+      mayoría de la bancada se ordenan en la vista comparativa.
+    </p>
+    <p>
+      Debajo de cada cuadro se nombra a quienes no tienen ninguna votación comparable porque en todas las
+      que votaron fueron los únicos de su partido en emitir voto en su cámara, y se informa cuántos tienen
+      menos votaciones comparables que el mínimo. La portada muestra los {CANTIDAD_PORTADA} primeros de cada
+      cámara.
     </p>
 
     <h2 id={anclas.coincidencia}>Coincidencia de votos entre partidos y bancadas</h2>

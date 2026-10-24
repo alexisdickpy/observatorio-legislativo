@@ -1,0 +1,112 @@
+---
+// Cuadro del período vigente con los legisladores de cada cámara que más votaron distinto a la
+// mayoría de su partido (lib/votosDistintos.js, alcance acordado en #54). Cifras de la vista
+// comparativa (#39), con numerador y denominador, un mínimo de votaciones comparables y título
+// neutral. Debajo de cada cuadro se nombra a quienes no tienen con quién compararse.
+import Base from "../../layouts/Base.astro";
+import CuadroVotosDistintos from "../../components/CuadroVotosDistintos.astro";
+import { periodos } from "../../lib/datos.js";
+import * as rutas from "../../lib/rutas.js";
+import { CANTIDAD_CUADRO, votosDistintosAlPartido } from "../../lib/votosDistintos.js";
+
+const periodo = periodos().find((p) => p.vigente).id;
+const { camaras, minimo } = votosDistintosAlPartido(periodo);
+const numero = (n: number) => n.toLocaleString("es-PY");
+const plural = (n: number, singular: string, varios: string) => `${numero(n)} ${n === 1 ? singular : varios}`;
+---
+
+<Base
+  titulo="Más votos distintos a la mayoría de su partido"
+  descripcion={`Los ${CANTIDAD_CUADRO} senadores y los ${CANTIDAD_CUADRO} diputados del período legislativo ${periodo} que más veces votaron distinto a la mayoría de su partido en las votaciones nominales de su cámara, cada uno con su cifra y su denominador.`}
+>
+  <p class="chico"><a href={rutas.legisladores()}>← Todos los legisladores</a></p>
+  <h1>Más votos distintos a la mayoría de su partido</h1>
+  <div class="lectura">
+    <p>
+      Por cámara, los {CANTIDAD_CUADRO} legisladores del período legislativo {periodo} con mayor porcentaje de
+      votaciones nominales en que votaron distinto a la mayoría de su partido, de mayor a menor.
+    </p>
+    <p class="formula">
+      Votos distintos = votaciones en que su voto difiere de la mayoría de su partido ÷ votaciones
+      comparables × 100
+    </p>
+    <ul class="chico">
+      <li>
+        <strong>Mayoría del partido.</strong> La categoría con más votos entre los votos emitidos de los
+        miembros de su partido en su cámara, en esa votación, contando también el suyo.
+      </li>
+      <li>
+        <strong>Votaciones comparables.</strong> Las votaciones en que emitió voto y su partido tuvo una
+        mayoría. No cuentan los empates en el primer lugar ni las votaciones en que fue el único de su
+        partido que emitió voto.
+      </li>
+      <li>
+        <strong>Mínimo.</strong> Entran al cuadro quienes tienen al menos {minimo} votaciones comparables,
+        para que nadie encabece la lista con muy pocas votaciones. A igual porcentaje, primero quien tiene
+        más votaciones comparables.
+      </li>
+      <li>
+        Votar distinto a la mayoría no es bueno ni malo. Es un dato para comparar cómo vota cada
+        legislador respecto de su partido, y el sentido de cada voto depende de lo que se votaba.
+      </li>
+    </ul>
+    <p class="chico texto-suave">
+      Las cámaras se muestran por separado porque el Senado publica muchas menos votaciones nominales que
+      Diputados. Partido es el que la API registra para el período, no necesariamente el de la fecha de
+      cada votación. La ficha de cada legislador lista las votaciones en que votó distinto.{" "}
+      <a href={rutas.metodologia(rutas.anclasMetodologia.cuadroVotosDistintos)}>Cómo se arma este cuadro</a>
+      {" · "}
+      <a href={rutas.votacionesNominalesOrdenadas("partido")}>Todos los legisladores, por votos distintos a su partido</a>
+      {" · "}
+      <a href={rutas.votacionesNominalesOrdenadas("bancada")}>Por votos distintos a su bancada</a>
+    </p>
+  </div>
+  {
+    camaras.map((c: any) => (
+      <section data-camara-votos-distintos>
+        <h2>{c.camara ?? "Sin dato"}</h2>
+        <p class="chico texto-suave">{plural(c.votaciones, "votación nominal", "votaciones nominales")} en esta cámara.</p>
+        <CuadroVotosDistintos titulo={`${c.camara ?? "Sin dato"}, más votos distintos a la mayoría de su partido`} filas={c.filas} />
+        <div class="lectura chico notas">
+          {c.sinComparables.length > 0 && (
+            <>
+              <p>
+                No están en el cuadro, porque no tienen ninguna votación comparable. En todas las votaciones en
+                que votaron fueron los únicos de su partido en emitir voto en esta cámara, así que no hay una
+                mayoría de su partido con la cual comparar.
+              </p>
+              <ul>
+                {c.sinComparables.map((f: any) => (
+                  <li data-sin-comparables={f.slug}>
+                    <a href={f.url}>{f.nombre}</a> ({f.mayoriaPartido.grupo}){!f.vigente && <span class="texto-suave">, ya no ejerce</span>}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+          {c.bajoMinimo > 0 && (
+            <p>
+              {plural(c.bajoMinimo, "legislador tiene", "legisladores tienen")} menos de {minimo} votaciones
+              comparables y no {c.bajoMinimo === 1 ? "entra" : "entran"} al cuadro. Sus cifras están en la{" "}
+              <a href={rutas.votacionesNominalesOrdenadas("partido")}>tabla de votaciones nominales</a>.
+            </p>
+          )}
+          {c.sinPartido > 0 && (
+            <p>{plural(c.sinPartido, "legislador no tiene", "legisladores no tienen")} partido registrado en la API.</p>
+          )}
+        </div>
+      </section>
+    ))
+  }
+</Base>
+
+<style>
+  .formula {
+    padding: var(--espacio-3) var(--espacio-4);
+    background: var(--color-superficie);
+    border-left: var(--foco-ancho) solid var(--color-acento);
+  }
+  .notas {
+    margin-top: var(--espacio-3);
+  }
+</style>
