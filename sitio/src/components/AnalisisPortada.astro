@@ -1,9 +1,11 @@
 ---
-// Apartado de la portada con cada vista de análisis (lib/navegacion.js): su enlace, una línea sobre
-// qué muestra y una vista previa con datos por cámara, sin nombres de personas (lib/portada.js,
-// alcance acordado en #51). Una vista sin vista previa propia muestra solo el enlace y la línea. En
+// Apartado de la portada con cada vista de análisis (lib/navegacion.js) que no lleva `portada: false`:
+// su enlace, una línea sobre qué muestra y una vista previa con datos por cámara (lib/portada.js,
+// alcance acordado en #51). Solo la de votos distintos a la mayoría de su partido lleva nombres de
+// personas (#54). Una vista sin vista previa propia muestra solo el enlace y la línea. En
 // la coincidencia se elige el partido del gráfico; al abrir, el de más legisladores en ejercicio.
 import BarrasCoincidencia from "./BarrasCoincidencia.astro";
+import ListaVotosDistintos from "./ListaVotosDistintos.astro";
 import { vistasDeAnalisis } from "../lib/navegacion.js";
 import { vistaPrevia } from "../lib/portada.js";
 
@@ -20,7 +22,9 @@ const plural = (n: number, singular: string, varios: string) => `${numero(n)} ${
   <h2 id="titulo-analisis">Análisis</h2>
   <div class="tarjetas">
     {
-      vistasDeAnalisis().map((v) => (
+      vistasDeAnalisis()
+        .filter((v) => v.portada !== false)
+        .map((v) => (
         <article class="tarjeta" data-analisis={v.clave}>
           <h3>
             <a href={v.url}>{v.titulo}</a>
@@ -61,15 +65,13 @@ const plural = (n: number, singular: string, varios: string) => `${numero(n)} ${
               </div>
             ))
           )}
-          {v.clave === "votacionesNominales" && (
-            <ul class="chico">
-              {previa.votacionesNominales.map((c) => (
-                <li>
-                  <strong>{c.camara}</strong>, {plural(c.votaciones, "votación nominal", "votaciones nominales")} y{" "}
-                  {plural(c.legisladores, "legislador", "legisladores")} para comparar.
-                </li>
-              ))}
-            </ul>
+          {v.clave === "votosDistintos" && (
+            previa.votosDistintos.map((c) => (
+              <div class="camara">
+                <h4 class="chico">{c.camara}</h4>
+                <ListaVotosDistintos filas={c.filas} />
+              </div>
+            ))
           )}
           <p class="chico">
             <a href={v.url}>Ver {v.titulo.toLowerCase()}</a>
@@ -137,7 +139,7 @@ const plural = (n: number, singular: string, varios: string) => `${numero(n)} ${
     margin-top: var(--espacio-4);
   }
   .camara h4 {
-    margin: 0;
+    margin: 0 0 var(--espacio-2);
   }
   .camara p {
     margin: var(--espacio-1) 0;

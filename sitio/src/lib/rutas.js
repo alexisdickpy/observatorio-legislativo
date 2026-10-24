@@ -33,6 +33,7 @@ export const anclasMetodologia = {
   ausencias: "ausencias-en-votaciones-nominales",
   noVotaAbstencion: "no-vota-y-abstenciones",
   mayoria: "votos-distintos-a-la-mayoria",
+  cuadroVotosDistintos: "cuadro-de-votos-distintos",
   afiliacion: "partido-y-bancada",
   partidoUnificado: "partido-unificado",
   coincidencia: "coincidencia-de-votos",
@@ -55,6 +56,11 @@ export const archivoCalculado = (periodo, nombre, extension) => `/datos/calculad
 export const votacionesNominales = () => "/legisladores/votaciones-nominales/";
 /** Parámetro de la dirección de la vista comparativa (?orden=…). */
 export const parametroOrdenComparativa = "orden";
+/** Vista comparativa ordenada por una cifra (lib/ordenComparativa.js, ORDENES). */
+export const votacionesNominalesOrdenadas = (orden) => `${votacionesNominales()}?${parametroOrdenComparativa}=${encodeURIComponent(orden)}`;
+
+/** Cuadro de legisladores con más votos distintos a la mayoría de su partido (#54). */
+export const votosDistintosAlPartido = () => "/legisladores/votos-distintos-al-partido/";
 
 /** Coincidencia de votos entre partidos y entre bancadas; con grupo, la dirección que lo muestra (?grupo=…). */
 export const coincidencia = (grupo) => (grupo ? `/coincidencia-de-votos/?grupo=${encodeURIComponent(grupo)}` : "/coincidencia-de-votos/");

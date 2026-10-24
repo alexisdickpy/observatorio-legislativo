@@ -8,6 +8,7 @@ import { comparativa } from "../../src/lib/legisladores.js";
 import { entradaActual, menuPrincipal, vistasDeAnalisis } from "../../src/lib/navegacion.js";
 import { barrasDeReferencia, paresConPorcentaje, vistaPrevia } from "../../src/lib/portada.js";
 import * as rutas from "../../src/lib/rutas.js";
+import { CANTIDAD_PORTADA, votosDistintosAlPartido } from "../../src/lib/votosDistintos.js";
 
 const PERIODO = "2023-2028";
 
@@ -16,10 +17,17 @@ test("el menú tiene una entrada por cada vista de análisis, con direcciones de
   for (const v of vistasDeAnalisis()) assert.ok(urls.includes(v.url), `Falta ${v.url} en el menú`);
   assert.deepEqual(
     menuPrincipal().map((e) => e.texto),
-    ["Leyes", "Legisladores", "Partidos", "Rankings", "Buscar", "Datos abiertos"],
+    ["Leyes", "Legisladores", "Partidos", "Rankings", "Votos distintos", "Buscar", "Datos abiertos"],
   );
   assert.ok(urls.includes(rutas.coincidencia()) && urls.includes(rutas.votacionesNominales()));
   assert.equal(new Set(urls).size, urls.length, "Direcciones repetidas en el menú");
+  // La tabla de votaciones nominales está en el menú pero no en la portada.
+  assert.deepEqual(
+    vistasDeAnalisis()
+      .filter((v) => v.portada === false)
+      .map((v) => v.clave),
+    ["votacionesNominales"],
+  );
 });
 
 test("la entrada actual es la de ruta más larga que contiene la dirección", () => {
@@ -28,6 +36,7 @@ test("la entrada actual es la de ruta más larga que contiene la dirección", ()
   assert.equal(entradaActual(menu, rutas.legisladores()).texto, "Legisladores");
   assert.equal(entradaActual(menu, rutas.legislador("alguien")).texto, "Legisladores");
   assert.equal(entradaActual(menu, rutas.coincidencia()).texto, "Partidos");
+  assert.equal(entradaActual(menu, rutas.votosDistintosAlPartido()).texto, "Votos distintos");
   assert.equal(entradaActual(menu, rutas.inicio()), undefined);
 });
 
@@ -105,13 +114,23 @@ test("vista previa por cámara, con las mismas cifras que las páginas de cada v
     assert.ok(p.mayor.suficiente && p.menor.suficiente);
   }
   const comp = comparativa(PERIODO);
-  assert.deepEqual(
-    previa.votacionesNominales.map((x) => x.legisladores),
-    comp.camaras.map((x) => x.filas.length),
-  );
   for (const x of comp.camaras) {
     // Ningún legislador figura en más votaciones nominales que las de su cámara, y alguno figura en todas o casi.
     const maximo = Math.max(...x.filas.map((f) => f.ausencias.total));
     assert.ok(maximo <= x.votaciones && maximo > 0, `${x.camara}, ${maximo} de ${x.votaciones}`);
+  }
+});
+
+test("vista previa de votos distintos: los primeros del cuadro de cada cámara, en el mismo orden", () => {
+  const previa = vistaPrevia(PERIODO);
+  const cuadro = votosDistintosAlPartido(PERIODO);
+  assert.equal(previa.votosDistintos.length, cuadro.camaras.length);
+  for (const [i, c] of previa.votosDistintos.entries()) {
+    assert.equal(c.camara, cuadro.camaras[i].camara);
+    assert.equal(c.filas.length, CANTIDAD_PORTADA);
+    assert.deepEqual(
+      c.filas.map((f) => f.slug),
+      cuadro.camaras[i].filas.slice(0, CANTIDAD_PORTADA).map((f) => f.slug),
+    );
   }
 });

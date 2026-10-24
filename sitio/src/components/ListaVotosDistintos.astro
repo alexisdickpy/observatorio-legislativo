@@ -1,0 +1,102 @@
+---
+// Lista de una cámara con los legisladores de más votos distintos a la mayoría de su partido, en el
+// orden de lib/votosDistintos.js. Cada uno con su número de orden, su foto oficial (si la tiene), el
+// nombre con enlace a su ficha, el partido (texto oficial) y, a la derecha, el porcentaje con el
+// numerador y el denominador. La usan la página del cuadro y la portada.
+interface Props {
+  filas: any[];
+}
+const { filas } = Astro.props;
+---
+
+<ol class="lista-votos-distintos">
+  {
+    filas.map((f, n) => (
+      <li data-votos-distintos={f.slug}>
+        <span class="numero texto-suave">{n + 1}</span>
+        {f.foto ? <img src={f.foto} alt="" width="48" height="48" loading="lazy" /> : <span class="sin-foto" aria-hidden="true" />}
+        <span class="persona">
+          <a href={f.url}>{f.nombre}</a>
+          {!f.vigente && <span class="chico texto-suave"> (ya no ejerce)</span>}
+          <span class="partido chico texto-suave">{f.mayoriaPartido.grupo}</span>
+        </span>
+        <span class="cifra">
+          <strong>{f.mayoriaPartido.porcentajeTexto}</strong>
+          <span class="chico texto-suave">{f.mayoriaPartido.fraccion} votaciones</span>
+        </span>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .lista-votos-distintos {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: var(--borde-ancho) solid var(--color-borde);
+    border-radius: var(--radio);
+    background: var(--color-fondo);
+  }
+  li {
+    display: grid;
+    grid-template-columns: var(--ancho-numero-lista) var(--tamano-foto-lista) 1fr auto;
+    gap: var(--espacio-3);
+    align-items: center;
+    padding: var(--espacio-3);
+  }
+  li + li {
+    border-top: var(--borde-ancho) solid var(--color-borde);
+  }
+  .numero {
+    text-align: center;
+  }
+  img,
+  .sin-foto {
+    width: var(--tamano-foto-lista);
+    height: var(--tamano-foto-lista);
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--color-superficie);
+  }
+  .sin-foto {
+    display: block;
+  }
+  .persona {
+    min-width: 0;
+  }
+  .partido {
+    display: block;
+  }
+  .cifra {
+    text-align: right;
+  }
+  .cifra strong {
+    display: block;
+    font-size: var(--tamano-cifra-lista);
+  }
+  .cifra span {
+    white-space: nowrap;
+  }
+
+  /* Celular: la cifra pasa debajo del nombre para que el nombre tenga todo el ancho. 48rem = --punto-quiebre-movil. */
+  @media (max-width: 48rem) {
+    li {
+      grid-template-columns: var(--ancho-numero-lista) var(--tamano-foto-lista) 1fr;
+      row-gap: var(--espacio-1);
+    }
+    .numero,
+    img,
+    .sin-foto {
+      grid-row: span 2;
+    }
+    .cifra {
+      grid-column: 3;
+      text-align: left;
+    }
+    .cifra strong {
+      display: inline;
+      margin-right: var(--espacio-2);
+    }
+  }
+</style>
