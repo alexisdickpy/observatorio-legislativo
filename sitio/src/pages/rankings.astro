@@ -5,7 +5,8 @@
 //   cada lista se nombra a quienes no tienen con quién compararse.
 // - Más «ausentes» (lib/rankings.js), ausencias en votaciones nominales (#29), con la nota de que la
 //   fuente no dice el motivo y de que AUSENTE en una votación no es lo mismo que no ir a la sesión.
-// Los apodos van entre comillas, con una línea neutral debajo. La tabla completa sigue en
+// Las dos listas van lado a lado en pantallas anchas y una debajo de la otra en el celular. Los apodos
+// van entre comillas, con una línea neutral debajo. La tabla completa sigue en
 // /legisladores/votaciones-nominales/ y se enlaza desde aquí.
 import Base from "../layouts/Base.astro";
 import ListaRanking from "../components/ListaRanking.astro";
@@ -47,6 +48,7 @@ const tabla = rutas.votacionesNominales();
     </p>
   </div>
 
+  <div class="columnas">
   <section id={anclas.rebeldes} aria-labelledby="titulo-rebeldes">
     <h2 id="titulo-rebeldes">Más «rebeldes»</h2>
     <div class="lectura">
@@ -174,6 +176,7 @@ const tabla = rutas.votacionesNominales();
       ))
     }
   </section>
+  </div>
 </Base>
 
 <style>
@@ -189,7 +192,15 @@ const tabla = rutas.votacionesNominales();
   .notas {
     margin-top: var(--espacio-3);
   }
-  [id] > h2 {
+  /* Una columna por lista; en pantallas angostas pasan a una sola columna. */
+  .columnas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr));
+    gap: var(--espacio-5);
+    align-items: start;
     margin-top: var(--espacio-6);
+  }
+  .columnas > section > h2 {
+    margin-top: 0;
   }
 </style>
