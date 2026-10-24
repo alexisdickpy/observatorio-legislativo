@@ -18,7 +18,7 @@
 
 import { indice, posicionCamara, proporcion, valor } from "./ficha.js";
 import { esDeProyectoDeLey, mayoriasDelPeriodo } from "./legisladores.js";
-import { partidoUnificado } from "./partidos.js";
+import { nombreConocido, partidoUnificado } from "./partidos.js";
 import { slug } from "./texto.js";
 
 /** Votaciones en común por debajo de las cuales no se calcula el porcentaje. */
@@ -156,7 +156,17 @@ export function coincidencia(periodo) {
   if (resultados.has(periodo)) return resultados.get(periodo);
   const porCamara = posicionesDelPeriodo(periodo);
   const nombreDePartido = new Map();
-  for (const c of porCamara) for (const [id, texto] of c.textosPartido) nombreDePartido.set(id, partidoUnificado(texto).nombre);
+  // Nombre unificado y, si alguno de sus textos oficiales lo tiene, el nombre por el que se lo
+  // conoce entre paréntesis (dato propio, datos/propios/partidos.json).
+  const textosDe = new Map();
+  for (const c of porCamara) {
+    for (const [id, texto] of c.textosPartido) textosDe.set(id, [...(textosDe.get(id) ?? []), texto]);
+  }
+  for (const [id, textos] of textosDe) {
+    const nombre = partidoUnificado(textos[0]).nombre;
+    const conocido = textos.map(nombreConocido).find(Boolean);
+    nombreDePartido.set(id, conocido ? `${nombre} (${conocido})` : nombre);
+  }
   /** Legisladores en ejercicio de un partido en cada cámara y en el Congreso (solo para ordenar). */
   const bancasDe = (id) => porCamara.map((c) => c.legisladoresPartido.get(id) ?? 0);
   const total = (id) => bancasDe(id).reduce((n, x) => n + x, 0);

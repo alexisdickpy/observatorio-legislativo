@@ -292,6 +292,10 @@ test("orden de los grupos: de más a menos legisladores en ejercicio, ANR primer
     assert.deepEqual(cuadro.filas.slice(0, 2).map((f) => f.nombre), [ANR, PLRA]);
   }
   assert.deepEqual(r.partidos.slice(0, 2).map((p) => p.nombre), [ANR, PLRA]);
+  // El nombre conocido va entre paréntesis, en el menú y en los dos cuadros.
+  const yoCreo = "Movimiento Conciencia Democrática Nacional (Yo Creo)";
+  assert.ok(r.partidos.some((p) => p.nombre === yoCreo));
+  for (const cuadro of r.cuadros) assert.ok(cuadro.filas.some((f) => f.nombre === yoCreo), cuadro.camara);
   for (const { grupos } of r.bancadas) {
     const miembros = grupos.map((g) => g.legisladores);
     assert.deepEqual(miembros, [...miembros].sort((a, b) => b - a));
