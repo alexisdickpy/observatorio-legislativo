@@ -1,17 +1,13 @@
 ---
+import { entradaActual, menuPrincipal } from "../lib/navegacion.js";
 import * as rutas from "../lib/rutas.js";
 
 interface Props {
   nombreSitio: string;
 }
 const { nombreSitio } = Astro.props;
-const enlaces = [
-  { url: rutas.leyes(), texto: "Leyes" },
-  { url: rutas.legisladores(), texto: "Legisladores" },
-  { url: rutas.buscar(), texto: "Buscar" },
-  { url: rutas.datosAbiertos(), texto: "Datos abiertos" },
-];
-const actual = Astro.url.pathname;
+const enlaces = menuPrincipal();
+const actual = entradaActual(enlaces, Astro.url.pathname);
 ---
 
 <header class="encabezado">
@@ -22,7 +18,7 @@ const actual = Astro.url.pathname;
         {
           enlaces.map((e) => (
             <li>
-              <a href={e.url} aria-current={actual.startsWith(e.url) ? "page" : undefined}>
+              <a href={e.url} aria-current={e === actual ? "page" : undefined}>
                 {e.texto}
               </a>
             </li>

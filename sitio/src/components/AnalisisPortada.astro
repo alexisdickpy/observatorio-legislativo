@@ -1,0 +1,145 @@
+---
+// Apartado de la portada con cada vista de análisis (lib/navegacion.js): su enlace, una línea sobre
+// qué muestra y una vista previa con datos por cámara, sin nombres de personas (lib/portada.js,
+// alcance acordado en #51). Una vista sin vista previa propia muestra solo el enlace y la línea. En
+// la coincidencia se elige el partido del gráfico; al abrir, el de más legisladores en ejercicio.
+import BarrasCoincidencia from "./BarrasCoincidencia.astro";
+import { vistasDeAnalisis } from "../lib/navegacion.js";
+import { vistaPrevia } from "../lib/portada.js";
+
+interface Props {
+  periodo: string;
+}
+const { periodo } = Astro.props;
+const previa = vistaPrevia(periodo);
+const numero = (n: number) => n.toLocaleString("es-PY");
+const plural = (n: number, singular: string, varios: string) => `${numero(n)} ${n === 1 ? singular : varios}`;
+---
+
+<section class="analisis" aria-labelledby="titulo-analisis">
+  <h2 id="titulo-analisis">Análisis</h2>
+  <div class="tarjetas">
+    {
+      vistasDeAnalisis().map((v) => (
+        <article class="tarjeta" data-analisis={v.clave}>
+          <h3>
+            <a href={v.url}>{v.titulo}</a>
+          </h3>
+          <p class="chico">{v.descripcion}</p>
+          {v.clave === "coincidencia" && (
+            <form class="selector-partido chico" id="selector-partido-portada" hidden>
+              <label for="partido-portada">Comparar con</label>
+              <select id="partido-portada">
+                {previa.partidos.map((p) => <option value={p.id}>{p.nombre}</option>)}
+              </select>
+            </form>
+          )}
+          {v.clave === "coincidencia" && (
+            previa.coincidencia.map((c) => (
+              <div class="camara">
+                <h4 class="chico">{c.camara}</h4>
+                <p class="chico texto-suave">{plural(c.votaciones, "votación nominal", "votaciones nominales")} sobre proyectos de ley.</p>
+                {c.graficos.map((g, i) => (
+                  <div data-grafico-partido={g.id} hidden={i > 0}>
+                    {g.barras.length > 0 ? (
+                      <BarrasCoincidencia referencia={g.referencia} barras={g.barras} />
+                    ) : (
+                      <p class="chico texto-suave">
+                        {g.referencia
+                          ? `${g.referencia} no tiene votaciones en común con otros partidos en esta cámara.`
+                          : `${previa.partidos[i].nombre} no tiene legisladores en esta cámara.`}
+                      </p>
+                    )}
+                  </div>
+                ))}
+                {c.mayor && (
+                  <p class="chico">
+                    Entre todos los pares, más coincidencia entre {c.mayor.a} y {c.mayor.b} ({c.mayor.porcentajeTexto}) y menos
+                    entre {c.menor.a} y {c.menor.b} ({c.menor.porcentajeTexto}).
+                  </p>
+                )}
+              </div>
+            ))
+          )}
+          {v.clave === "votacionesNominales" && (
+            <ul class="chico">
+              {previa.votacionesNominales.map((c) => (
+                <li>
+                  <strong>{c.camara}</strong>, {plural(c.votaciones, "votación nominal", "votaciones nominales")} y{" "}
+                  {plural(c.legisladores, "legislador", "legisladores")} para comparar.
+                </li>
+              ))}
+            </ul>
+          )}
+          <p class="chico">
+            <a href={v.url}>Ver {v.titulo.toLowerCase()}</a>
+          </p>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<script>
+  // Sin JavaScript el selector queda oculto y se ve el gráfico del primer partido (el de más
+  // legisladores). Con JavaScript, muestra en cada cámara el gráfico del partido elegido.
+  const form = document.getElementById("selector-partido-portada") as HTMLFormElement | null;
+  if (form) {
+    const select = form.querySelector("select")!;
+    const graficos = [...document.querySelectorAll<HTMLElement>("[data-grafico-partido]")];
+    const aplicar = () => {
+      for (const g of graficos) g.hidden = g.dataset.graficoPartido !== select.value;
+    };
+    form.hidden = false;
+    aplicar();
+    select.addEventListener("change", aplicar);
+    form.addEventListener("submit", (e) => e.preventDefault());
+  }
+</script>
+
+<style>
+  .selector-partido {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espacio-2) var(--espacio-3);
+    align-items: center;
+  }
+  .selector-partido[hidden] {
+    display: none;
+  }
+  .selector-partido select {
+    max-width: 100%;
+  }
+  .analisis {
+    margin-top: var(--espacio-6);
+  }
+  .tarjetas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    gap: var(--espacio-4);
+  }
+  .tarjeta {
+    border: var(--borde-ancho) solid var(--color-borde);
+    border-radius: var(--radio);
+    background: var(--color-superficie);
+    padding: var(--espacio-4);
+  }
+  .tarjeta h3 {
+    margin-top: 0;
+  }
+  .tarjeta ul {
+    padding-left: var(--espacio-4);
+  }
+  .tarjeta li + li {
+    margin-top: var(--espacio-2);
+  }
+  .camara {
+    margin-top: var(--espacio-4);
+  }
+  .camara h4 {
+    margin: 0;
+  }
+  .camara p {
+    margin: var(--espacio-1) 0;
+  }
+</style>

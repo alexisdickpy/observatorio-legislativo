@@ -1,0 +1,71 @@
+// Vista previa de las vistas de análisis en la portada (alcance acordado en #51). Sin HTML. Solo
+// datos por cámara y sin nombres de personas; las cifras salen de los mismos cálculos que las páginas
+// de cada vista (lib/coincidencia.js y lib/legisladores.js), nunca se suman las cámaras.
+
+import { coincidencia } from "./coincidencia.js";
+import { comparativa } from "./legisladores.js";
+
+const porMayorCoincidencia = (a, b) => b.porcentaje - a.porcentaje || b.total - a.total || a.nombres.localeCompare(b.nombres, "es");
+
+/**
+ * Pares de partidos de una cámara con porcentaje (al menos UMBRAL votaciones en común), de mayor a
+ * menor coincidencia. A igual porcentaje, primero el de más votaciones en común.
+ */
+export function paresConPorcentaje(cuadro) {
+  const pares = [];
+  cuadro.filas.forEach((a, i) => {
+    cuadro.filas.forEach((b, j) => {
+      const c = a.celdas[j];
+      if (j > i && c?.suficiente) pares.push({ ...c, a: a.nombre, b: b.nombre, nombres: `${a.nombre} ${b.nombre}` });
+    });
+  });
+  return pares.sort(porMayorCoincidencia);
+}
+
+/**
+ * Barras del gráfico de una cámara: la coincidencia de cada partido con el partido de referencia
+ * (por su id; sin id, el de más legisladores en ejercicio en esa cámara, la primera fila del cuadro).
+ * Primero los que tienen porcentaje, de mayor a menor; después, los que no alcanzan el umbral (sin
+ * barra, solo las cantidades). Sin el partido en la cámara, referencia null y sin barras.
+ */
+export function barrasDeReferencia(cuadro, id = cuadro.filas[0]?.id) {
+  const referencia = cuadro.filas.find((f) => f.id === id);
+  if (!referencia) return { referencia: null, barras: [] };
+  const barras = cuadro.filas
+    .filter((f) => f !== referencia)
+    .map((f) => ({ ...referencia.celdas[cuadro.filas.indexOf(f)], nombre: f.nombre, nombres: f.nombre }))
+    .filter((b) => b.total > 0)
+    .sort((a, b) => Number(b.suficiente) - Number(a.suficiente) || porMayorCoincidencia(a, b));
+  return { referencia: referencia.nombre, barras };
+}
+
+/**
+ * Vista previa de un período.
+ * - partidos: los partidos que se pueden elegir en el gráfico, de más a menos legisladores en ejercicio
+ *   en el Congreso. El primero es el que se muestra al abrir la portada.
+ * - coincidencia: por cámara, sus votaciones sobre proyectos de ley, el par de partidos con más y con
+ *   menos coincidencia (null si la cámara no tiene al menos dos pares con porcentaje) y un gráfico
+ *   por partido (barrasDeReferencia), en el orden de `partidos`.
+ * - votacionesNominales: por cámara, cuántas votaciones nominales tiene y cuántos legisladores se comparan.
+ */
+export function vistaPrevia(periodo) {
+  const c = coincidencia(periodo);
+  return {
+    partidos: c.partidos.map((p) => ({ id: p.id, nombre: p.nombre })),
+    coincidencia: c.cuadros.map((cuadro) => {
+      const pares = paresConPorcentaje(cuadro);
+      return {
+        camara: cuadro.camara,
+        votaciones: c.camaras.find((x) => x.camara === cuadro.camara).votaciones,
+        mayor: pares.length > 1 ? pares[0] : null,
+        menor: pares.length > 1 ? pares.at(-1) : null,
+        graficos: c.partidos.map((p) => ({ id: p.id, ...barrasDeReferencia(cuadro, p.id) })),
+      };
+    }),
+    votacionesNominales: comparativa(periodo).camaras.map((x) => ({
+      camara: x.camara,
+      votaciones: x.votaciones,
+      legisladores: x.filas.length,
+    })),
+  };
+}
