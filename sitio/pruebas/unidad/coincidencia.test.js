@@ -8,6 +8,7 @@ import {
   UMBRAL,
   coincidencia,
   coincidenciaEntre,
+  intensidadDe,
   posicionDe,
   posicionesDelPeriodo,
   tablaCoincidencia,
@@ -251,4 +252,29 @@ test("grupo elegido en la dirección: uno desconocido vuelve al primero, que no 
   assert.equal(leerGrupo(new URLSearchParams(""), nombre, validos), primero);
   assert.equal(escribirGrupo(new URLSearchParams("x=1"), nombre, otro, validos).toString(), `x=1&${nombre}=${otro}`);
   assert.equal(escribirGrupo(new URLSearchParams(`${nombre}=${otro}`), nombre, primero, validos).toString(), "");
+});
+
+test("cuadro de partidos: por cámara, simétrico, sin la diagonal, mismas cifras que las listas", () => {
+  const r = coincidencia(PERIODO);
+  const camaras = posicionesDelPeriodo(PERIODO);
+  assert.deepEqual(r.cuadros.map((c) => c.camara), [SENADO, DIPUTADOS]);
+  for (const cuadro of r.cuadros) {
+    const c = camaras.find((x) => x.camara === cuadro.camara);
+    assert.deepEqual(cuadro.filas.map((f) => f.id).sort(), [...c.textosPartido.keys()].sort());
+    cuadro.filas.forEach((f, i) => {
+      assert.equal(f.texto, c.textosPartido.get(f.id));
+      assert.equal(f.celdas.length, cuadro.filas.length);
+      f.celdas.forEach((celda, j) => {
+        if (i === j) return assert.equal(celda, null);
+        const espejo = cuadro.filas[j].celdas[i];
+        assert.deepEqual([celda.cantidad, celda.total], [espejo.cantidad, espejo.total]);
+        const otra = coincidenciaEntre(c.partido, f.id, cuadro.filas[j].id);
+        assert.deepEqual([celda.cantidad, celda.total], [otra.cantidad, otra.total]);
+        assert.ok(intensidadDe(celda) >= 0 && intensidadDe(celda) <= 1);
+      });
+    });
+  }
+  assert.equal(intensidadDe(null), 0);
+  assert.equal(intensidadDe({ suficiente: false, porcentaje: 0.9 }), 0);
+  assert.equal(intensidadDe({ suficiente: true, porcentaje: 0.834 }), 0.83);
 });

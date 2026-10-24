@@ -1,0 +1,88 @@
+---
+// Cuadro de coincidencia de todos los pares de partidos de una cámara: filas y columnas con los
+// mismos partidos, y en cada celda el porcentaje con su numerador y su denominador. El sombreado es
+// de un solo tono (más oscuro = más coincidencia), sin colores que califiquen; la intensidad viene de
+// lib/coincidencia.js y la mezcla máxima de tokens.css. Con pocas votaciones en común, solo las
+// cantidades y sin sombreado.
+import { intensidadDe } from "../lib/coincidencia.js";
+
+interface Props {
+  titulo: string;
+  filas: { id: string; nombre: string; celdas: any[] }[];
+}
+const { titulo, filas } = Astro.props;
+---
+
+<div class="cuadro-coincidencia-desplazable">
+  <table class="cuadro-coincidencia">
+    <caption class="solo-lectores">{titulo}</caption>
+    <thead>
+      <tr>
+        <td></td>
+        {filas.map((f) => <th scope="col"><span class="vertical">{f.nombre}</span></th>)}
+      </tr>
+    </thead>
+    <tbody>
+      {filas.map((f) => <tr data-cuadro-fila={f.id}><th scope="row">{f.nombre}</th>{f.celdas.map((c) => !c ? <td class="diagonal"><span aria-hidden="true">—</span><span class="solo-lectores">Mismo partido</span></td> : c.suficiente ? <td style={`--intensidad: ${intensidadDe(c)}`}><span class="porcentaje">{c.porcentajeTexto}</span> <span class="fraccion">{c.fraccion}</span></td> : <td class="sin-porcentaje"><span class="fraccion">{c.fraccion}</span> <span class="fraccion">sin %</span></td>)}</tr>)}
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .cuadro-coincidencia-desplazable {
+    overflow-x: auto;
+    margin-bottom: var(--espacio-5);
+  }
+  .cuadro-coincidencia {
+    border-collapse: collapse;
+    font-size: var(--tamano-chico);
+  }
+  .cuadro-coincidencia th,
+  .cuadro-coincidencia td {
+    padding: var(--espacio-2);
+    border: var(--borde-ancho) solid var(--color-borde);
+  }
+  .cuadro-coincidencia thead th,
+  .cuadro-coincidencia thead td {
+    border-top: none;
+    vertical-align: bottom;
+  }
+  .cuadro-coincidencia thead td {
+    border-left: none;
+  }
+  .cuadro-coincidencia tbody th {
+    text-align: left;
+    font-weight: var(--peso-normal);
+    min-width: var(--ancho-nombre-barra);
+  }
+  .vertical {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    white-space: nowrap;
+    font-weight: var(--peso-normal);
+  }
+  .cuadro-coincidencia td {
+    width: var(--ancho-celda-cuadro);
+    min-width: var(--ancho-celda-cuadro);
+    text-align: center;
+    background: color-mix(
+      in srgb,
+      var(--color-acento) calc(var(--intensidad, 0) * var(--sombreado-maximo-cuadro)),
+      var(--color-fondo)
+    );
+  }
+  .cuadro-coincidencia td.diagonal {
+    background: var(--color-superficie);
+  }
+  .porcentaje {
+    display: block;
+    font-weight: var(--peso-fuerte);
+  }
+  .fraccion {
+    display: block;
+    white-space: nowrap;
+  }
+  .sin-porcentaje {
+    color: var(--color-texto-suave);
+  }
+</style>

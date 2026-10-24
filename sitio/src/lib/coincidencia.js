@@ -133,6 +133,8 @@ const resultados = new Map();
  *   con posición y empates por cámara y una fila por cada otro partido, con una celda por cámara
  *   (null si alguno de los dos no tiene legisladores en esa cámara). Nunca se suman las cámaras.
  * - bancadas: por cámara, un bloque por bancada con una fila por cada otra bancada de esa cámara.
+ * - cuadros: por cámara, el cuadro de todos los pares de partidos de esa cámara (filas y columnas en
+ *   el mismo orden, celda null en la diagonal).
  */
 export function coincidencia(periodo) {
   if (resultados.has(periodo)) return resultados.get(periodo);
@@ -176,7 +178,27 @@ export function coincidencia(periodo) {
     };
   });
 
-  const resultado = { periodo, umbral: UMBRAL, camaras: porCamara.map((c) => ({ camara: c.camara, votaciones: c.votaciones })), partidos, bancadas };
+  const cuadros = porCamara.map((c) => {
+    const ids = idsPartido.filter((id) => c.textosPartido.has(id));
+    return {
+      camara: c.camara,
+      filas: ids.map((id) => ({
+        id,
+        nombre: nombreDePartido.get(id),
+        texto: c.textosPartido.get(id),
+        celdas: ids.map((otro) => (otro === id ? null : coincidenciaEntre(c.partido, id, otro))),
+      })),
+    };
+  });
+
+  const resultado = {
+    periodo,
+    umbral: UMBRAL,
+    camaras: porCamara.map((c) => ({ camara: c.camara, votaciones: c.votaciones })),
+    partidos,
+    bancadas,
+    cuadros,
+  };
   resultados.set(periodo, resultado);
   return resultado;
 }
@@ -240,3 +262,9 @@ export function textoDeCoincidencia(c) {
   if (!c.total) return "Sin votaciones en común";
   return c.suficiente ? c.texto : `${c.fraccion} (menos de ${UMBRAL} votaciones en común, sin porcentaje)`;
 }
+
+/**
+ * Intensidad del sombreado de una celda del cuadro, entre 0 y 1: el porcentaje de coincidencia. Sin
+ * porcentaje (diagonal o pocas votaciones en común), 0. Un solo tono, sin colores que califiquen.
+ */
+export const intensidadDe = (c) => (c?.suficiente ? Math.round(c.porcentaje * 100) / 100 : 0);

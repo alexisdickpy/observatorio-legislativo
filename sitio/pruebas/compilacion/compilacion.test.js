@@ -180,6 +180,10 @@ test("coincidencia de votos: un bloque por grupo, cifras con su denominador, fó
   assert.ok(html.includes("Coincidencia = votaciones en que los dos grupos tuvieron la misma posición"));
   assert.ok(html.includes(`href="${rutas.metodologia(rutas.anclasMetodologia.coincidencia)}"`));
   assert.ok(leer(rutas.metodologia()).includes(`id="${rutas.anclasMetodologia.coincidencia}"`));
+  for (const cuadro of r.cuadros) {
+    for (const f of cuadro.filas) for (const c of f.celdas) if (c) assert.ok(html.includes(c.fraccion), `${cuadro.camara} ${f.id}`);
+  }
+  assert.equal(html.match(/<tr data-cuadro-fila=/g)?.length ?? 0, r.cuadros.reduce((n, c) => n + c.filas.length, 0));
   const grupos = [...r.partidos, ...r.bancadas.flatMap((b) => b.grupos)];
   assert.equal(html.match(/ data-grupo="/g)?.length ?? 0, grupos.length);
   assert.equal(html.match(/<option value="/g)?.length ?? 0, grupos.length);

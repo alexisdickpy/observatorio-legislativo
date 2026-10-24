@@ -4,6 +4,7 @@
 // mayor a menor, con numerador y denominador. Los partidos se ponen lado a lado por cámara, sin sumar
 // senadores y diputados; las bancadas, dentro de su cámara. Títulos neutrales y fórmula visible.
 import Base from "../layouts/Base.astro";
+import CuadroCoincidencia from "../components/CuadroCoincidencia.astro";
 import SelectorCoincidencia from "../components/SelectorCoincidencia.astro";
 import TablaCoincidencia from "../components/TablaCoincidencia.astro";
 import { NOMBRE_COINCIDENCIA } from "../lib/calculados.js";
@@ -12,7 +13,7 @@ import { periodos } from "../lib/datos.js";
 import * as rutas from "../lib/rutas.js";
 
 const periodo = periodos().find((p) => p.vigente).id;
-const { camaras, partidos, bancadas, umbral } = coincidencia(periodo);
+const { camaras, partidos, bancadas, cuadros, umbral } = coincidencia(periodo);
 const columnas = camaras.map((c) => c.camara);
 const plural = (n: number, singular: string, varios: string) => `${n.toLocaleString("es-PY")} ${n === 1 ? singular : varios}`;
 /** Resumen de un grupo en una cámara: en cuántas votaciones tuvo posición y cuántos empates. */
@@ -75,14 +76,32 @@ const secciones = [
     </p>
   </div>
 
+  <section>
+    <h2>Todos los pares de partidos</h2>
+    <p class="chico texto-suave">
+      Cada celda es la coincidencia entre el partido de la fila y el de la columna, en esa cámara. El
+      tono más oscuro indica más coincidencia y no califica. Con menos de {umbral} votaciones en común,
+      la celda muestra solo las cantidades.
+    </p>
+    {
+      cuadros.map((c: any) => (
+        <Fragment>
+          <h3>{c.camara}</h3>
+          <CuadroCoincidencia titulo={`Coincidencia entre todos los pares de partidos, ${c.camara}`} filas={c.filas} />
+        </Fragment>
+      ))
+    }
+  </section>
+
+  <h2>Un partido o una bancada con cada uno de los demás</h2>
   <SelectorCoincidencia secciones={secciones} />
 
   <section data-bloque>
-    <h2>Por partido</h2>
+    <h3>Por partido</h3>
     {
       partidos.map((p: any) => (
         <section class="grupo-coincidencia" id={p.valor} data-grupo={p.valor}>
-          <h3>{p.nombre}</h3>
+          <h4>{p.nombre}</h4>
           <ul class="chico texto-suave">
             {p.porCamara.map((g: any, n: number) =>
               g ? (
@@ -108,10 +127,10 @@ const secciones = [
   {
     bancadas.map((b: any) => (
       <section data-bloque>
-        <h2>Por bancada, {b.camara}</h2>
+        <h3>Por bancada, {b.camara}</h3>
         {b.grupos.map((g: any) => (
           <section class="grupo-coincidencia" id={g.valor} data-grupo={g.valor}>
-            <h3>{g.nombre}</h3>
+            <h4>{g.nombre}</h4>
             <p class="chico texto-suave">En la {b.camara}, {resumen(g, camaras.find((c: any) => c.camara === b.camara).votaciones)}.</p>
             <TablaCoincidencia
               titulo={`Coincidencia de ${g.nombre} con las demás bancadas de la ${b.camara}`}
@@ -135,7 +154,7 @@ const secciones = [
   .grupo-coincidencia {
     margin-bottom: var(--espacio-5);
   }
-  .grupo-coincidencia h3 {
+  .grupo-coincidencia h4 {
     font-size: var(--tamano-titulo-3);
   }
 </style>
