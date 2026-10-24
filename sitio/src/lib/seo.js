@@ -142,7 +142,7 @@ export function direccionesDelSitemap() {
     rutas.legisladores(),
     rutas.votacionesNominales(),
     rutas.coincidencia(),
-    rutas.votosDistintosAlPartido(),
+    rutas.rankings(),
     rutas.votaciones(),
     ...votacionesDelPeriodo(periodos().find((p) => p.vigente).id).anios.map((a) => a.url),
     ...legisladores().map((p) => p.url),

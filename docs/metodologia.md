@@ -106,6 +106,16 @@ La ficha muestra la cantidad con su denominador y su porcentaje, por ejemplo "23
 
 El Senado publica muchas menos votaciones nominales que Diputados, así que las cifras de las dos cámaras no se comparan directamente. La API no informa si un legislador `AUSENTE` tenía permiso o licencia. La vista comparativa (sección siguiente) usa este mismo cálculo.
 
+### Lista de más «ausentes»
+
+Decisión de alcance (#57). La página `/rankings/` muestra, además de la lista de más «rebeldes», la de más «ausentes» con la línea «Legisladores con más ausencias en votaciones nominales». Por cámara, los **10** legisladores con mayor porcentaje de votaciones en que figuran como `AUSENTE` sobre las votaciones nominales de su lista, con la misma cifra de la ficha y de la vista comparativa (`ausencias`, sin recalcular), el numerador, el denominador, la foto, el partido y el enlace a su ficha. El cálculo está en `sitio/src/lib/rankings.js` (`masAusentes`).
+
+- **Mínimo.** Entran solo quienes figuran en al menos **50 votaciones nominales**, para que no encabecen la lista suplentes o reemplazos con pocas votaciones. En 2023-2028 deja fuera a 6 senadores y 2 diputados; entre ellos, un senador que figura en 17 votaciones con 9 `AUSENTE` (52,9 %) y que sin el mínimo encabezaría la lista del Senado. Con un mínimo de 50 o de 100 los diez primeros de cada cámara son los mismos.
+- **Orden.** El mismo de la lista de más «rebeldes» (`masAltos`), de mayor a menor porcentaje; a igual porcentaje, primero quien figura en más votaciones y, después, por apellido. Incluye a quienes ya no ejercen, señalados como tales. Debajo de cada lista se informa cuántos figuran en menos votaciones que el mínimo.
+- **Notas.** La página aclara que la fuente no dice el motivo de cada ausencia (licencias, representaciones oficiales o salir del recinto cuentan igual) y que `AUSENTE` en una votación no es lo mismo que no ir a la sesión. Sin «faltas» ni «inasistencias».
+- **Portada.** Esta lista no va en la portada.
+- **Título.** "Más «ausentes»", con la palabra entre comillas porque es un apodo y no una calificación del sitio.
+
 ## NO VOTA y abstenciones en votaciones nominales
 
 Decisión de alcance (#38). Además de las ausencias, la ficha muestra otras dos cifras con **el mismo denominador**, todas las votaciones nominales del período en cuya lista oficial figura, de cualquier tipo de expediente.
@@ -142,14 +152,16 @@ Comprobación. Las pruebas recalculan a mano 12 votaciones de 3 bancadas a parti
 
 ### Cuadro de más «rebeldes»
 
-Decisión de alcance (#54). La página `/legisladores/votos-distintos-al-partido/` ("Más «rebeldes»") muestra, por cámara, los **10** legisladores con mayor porcentaje de votos distintos a la mayoría de su **partido**, con la misma cifra de la vista comparativa (`mayoriaPartido`, sin recalcular), el numerador, el denominador y el enlace a su ficha. El cálculo está en `sitio/src/lib/votosDistintos.js`.
+Decisión de alcance (#54). La lista "Más «rebeldes»" muestra, por cámara, los **10** legisladores con mayor porcentaje de votos distintos a la mayoría de su **partido**, con la misma cifra de la vista comparativa (`mayoriaPartido`, sin recalcular), el numerador, el denominador y el enlace a su ficha. El cálculo está en `sitio/src/lib/votosDistintos.js`, con el orden común de `sitio/src/lib/rankings.js` (`masAltos`).
+
+Desde #57 la lista está en la página `/rankings/`, junto a la de más «ausentes». Su dirección anterior, `/legisladores/votos-distintos-al-partido/`, redirige a `/rankings/` con una redirección permanente (`sitio/public/_redirects`, que la compilación comprueba con `redireccionesPermanentes` de `lib/rutas.js`), y la entrada «Votos distintos» salió del menú. La entrada «Rankings» lleva a `/rankings/` y también queda marcada en la tabla de votaciones nominales por legislador, que sigue en su dirección y se enlaza desde la página.
 
 - **Mínimo.** Entran solo quienes tienen al menos **50 votaciones comparables** con la mayoría de su partido, para que un porcentaje alto sobre muy pocas votaciones no encabece la lista. En 2023-2028 los diez primeros de cada cámara son los mismos con un mínimo de 20 o de 50; el mínimo deja fuera sobre todo a suplentes y reemplazos con pocas votaciones.
 - **Orden.** De mayor a menor porcentaje; a igual porcentaje, primero quien tiene más votaciones comparables y, después, por apellido. Incluye a quienes ya no ejercen, señalados como tales.
 - **Solo por partido.** No hay cuadro por bancada; la vista comparativa se puede ordenar por bancada (`?orden=bancada`) y el cuadro la enlaza.
 - **Sin votaciones comparables.** Debajo de cada cuadro se nombra, con enlace a su ficha, a quienes tienen partido registrado y ninguna votación comparable, porque en todas las que votaron fueron los únicos de su partido en emitir voto en su cámara. En 2023-2028 son 5 senadores y 5 diputados, y según la API todos están también solos en su bancada (o, en el caso del PEN en el Senado, compartieron bancada con alguien que los reemplazó y nunca votaron juntos), así que la comparación por bancada tampoco aplica. Aparte se informa cuántos tienen entre 1 y 49 votaciones comparables y, si los hubiera, cuántos no tienen partido registrado.
-- **Presentación.** Una lista por cámara con el número de orden, la foto oficial (si la hay), el nombre con enlace a la ficha, el partido (texto oficial) y, a la derecha, el porcentaje con el numerador y el denominador (`ListaVotosDistintos.astro`).
-- **Portada.** La tarjeta del cuadro muestra los **5** primeros de cada cámara con la misma lista y el enlace al cuadro completo. Es la única vista previa de la portada con nombres de personas. La tabla de votaciones nominales por legislador sigue en el menú («Rankings») pero ya no tiene tarjeta en la portada (`portada: false` en `vistasDeAnalisis`).
+- **Presentación.** Una lista por cámara con el número de orden, la foto oficial (si la hay), el nombre con enlace a la ficha, el partido (texto oficial) y, a la derecha, el porcentaje con el numerador y el denominador (`ListaRanking.astro`, la misma de la lista de más «ausentes»).
+- **Portada.** La tarjeta "Más «rebeldes»" muestra los **5** primeros de cada cámara con la misma lista y el enlace a `/rankings/`. Es la única vista previa de la portada con nombres de personas. La tabla de votaciones nominales por legislador no tiene tarjeta en la portada.
 - **Título.** "Más «rebeldes»", con la palabra entre comillas porque es un apodo y no una calificación del sitio, y debajo una línea descriptiva («Legisladores que más veces votaron distinto a la mayoría de su partido»). Ningún otro texto califica el voto.
 
 ## Coincidencia de votos entre partidos y entre bancadas

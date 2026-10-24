@@ -15,6 +15,7 @@ import { menuPrincipal, vistasDeAnalisis } from "../../src/lib/navegacion.js";
 import { vistaPrevia } from "../../src/lib/portada.js";
 import * as rutas from "../../src/lib/rutas.js";
 import { masAjustadas, votacionesDelAnio, votacionesDelPeriodo } from "../../src/lib/votaciones.js";
+import { MINIMO_VOTACIONES_AUSENCIAS, masAusentes } from "../../src/lib/rankings.js";
 import { votosDistintosAlPartido } from "../../src/lib/votosDistintos.js";
 
 const dist = resolve(process.cwd(), "dist");
@@ -206,22 +207,29 @@ test("coincidencia de votos: un bloque por grupo, cifras con su denominador, fó
   assert.ok(texto(rutas.votacionesNominales()).includes(`href="${rutas.coincidencia()}"`));
 });
 
-/** Si la lista de votos distintos tiene al legislador con su enlace, su foto (si la tiene) y su cifra. */
-function itemVotosDistintos(html, f) {
-  const item = html.match(new RegExp(`<li data-votos-distintos="${f.slug}"[^]*?</li>`))?.[0] ?? "";
+/** Si una lista de un ranking tiene al legislador con su enlace, su foto (si la tiene), su partido y su cifra. */
+function itemRanking(html, f, cifra = "mayoriaPartido") {
+  const atributo = cifra === "ausencias" ? "data-ausencias" : "data-votos-distintos";
+  const item = html.match(new RegExp(`<li ${atributo}="${f.slug}"[^]*?</li>`))?.[0] ?? "";
   return (
     item.includes(`href="${f.url}"`) &&
     (!f.foto || item.includes(`src="${f.foto}"`)) &&
-    item.includes(f.mayoriaPartido.porcentajeTexto) &&
-    item.includes(`${f.mayoriaPartido.fraccion} votaciones`)
+    item.includes(escapar(f.mayoriaPartido.grupo ?? "Sin partido registrado")) &&
+    item.includes(f[cifra].porcentajeTexto) &&
+    item.includes(`${f[cifra].fraccion} votaciones`)
   );
 }
+const itemVotosDistintos = (html, f) => itemRanking(html, f);
 
-test("cuadro de más «rebeldes»: cifras con su denominador, enlaces, fotos, mínimo y sin otros calificativos", () => {
+test("rankings, más «rebeldes»: cifras con su denominador, enlaces, fotos, mínimo y sin otros calificativos", () => {
   const periodo = periodos().find((p) => p.vigente).id;
   const { camaras, minimo } = votosDistintosAlPartido(periodo);
-  const html = texto(rutas.votosDistintosAlPartido());
-  assert.match(html, /<h1[^>]*>Más «rebeldes»<\/h1>/);
+  const completa = texto(rutas.rankings());
+  assert.match(completa, /<h1[^>]*>Rankings<\/h1>/);
+  assert.ok(completa.includes(`href="#${rutas.anclasRankings.rebeldes}"`) && completa.includes(`href="#${rutas.anclasRankings.ausentes}"`));
+  // Solo la parte de más «rebeldes».
+  const html = completa.match(new RegExp(`<section id="${rutas.anclasRankings.rebeldes}"[^]*?(?=<section id="${rutas.anclasRankings.ausentes}")`))?.[0] ?? "";
+  assert.match(html, /<h2[^>]*>Más «rebeldes»<\/h2>/);
   assert.ok(html.includes("Legisladores que más veces votaron distinto a la mayoría de su partido."));
   assert.ok(html.includes("Votos distintos = votaciones en que su voto difiere de la mayoría de su partido"));
   assert.ok(html.includes(`al menos ${minimo} votaciones comparables`));
@@ -241,11 +249,53 @@ test("cuadro de más «rebeldes»: cifras con su denominador, enlaces, fotos, m�
   // El orden de las filas en la página es el del cuadro.
   const orden = [...html.matchAll(/<li data-votos-distintos="([^"]+)"/g)].map((m) => m[1]);
   assert.deepEqual(orden, camaras.flatMap((c) => c.filas.map((f) => f.slug)));
-  // «rebeldes» solo entre comillas, como apodo en el título.
-  const visible = html.replace(/<(script|style)[\s\S]*?<\/\1>/g, " ").replace(/<[^>]+>/g, " ").replaceAll("«rebeldes»", " ");
-  const calificativo = visible.match(/.{0,30}\b(mejor|peor|ranking|puesto|campe[oó]n|rebelde|d[ií]scolo|traici[oó]n|leal)\b.{0,20}/i);
+  // «rebeldes» y «ausentes» solo entre comillas, como apodos en los títulos.
+  const visible = completa.replace(/<header[\s\S]*?<\/header>/, " ").replace(/<(script|style)[\s\S]*?<\/\1>/g, " ").replace(/<[^>]+>/g, " ").replaceAll("«rebeldes»", " ").replaceAll("«ausentes»", " ");
+  const calificativo = visible.match(/.{0,30}\b(mejor|peor|ranking|puesto|campe[oó]n|rebelde|d[ií]scolo|traici[oó]n|leal|vago|falt[oó]n)\b.{0,20}/i);
   assert.ok(!calificativo, `«${calificativo?.[0]}»`);
-  assert.ok(texto(rutas.votacionesNominales()).includes(`href="${rutas.votosDistintosAlPartido()}"`));
+  const ausentes = visible.match(/.{0,30}\bausentes\b.{0,20}/);
+  assert.ok(!ausentes, `«${ausentes?.[0]}»`);
+  assert.ok(texto(rutas.votacionesNominales()).includes(`href="${rutas.rankings()}"`));
+  assert.ok(completa.includes(`href="${rutas.votacionesNominales()}"`), "Rankings no enlaza la tabla completa");
+});
+
+test("rankings, más «ausentes»: cifras con su denominador, enlaces, fotos, mínimo y notas sobre el motivo", () => {
+  const periodo = periodos().find((p) => p.vigente).id;
+  const { camaras, minimo } = masAusentes(periodo);
+  assert.equal(minimo, MINIMO_VOTACIONES_AUSENCIAS);
+  const html = texto(rutas.rankings()).match(new RegExp(`<section id="${rutas.anclasRankings.ausentes}"[^]*$`))?.[0] ?? "";
+  assert.match(html, /<h2[^>]*>Más «ausentes»<\/h2>/);
+  assert.ok(html.includes("Legisladores con más ausencias en votaciones nominales."));
+  assert.ok(html.includes("Ausencias = votaciones nominales en que figura como AUSENTE"));
+  assert.ok(html.includes(`al menos ${minimo} votaciones nominales`));
+  assert.ok(html.includes("La fuente no dice por qué un legislador figura como AUSENTE."));
+  assert.ok(html.includes("Figurar como AUSENTE en una votación no es lo mismo que no ir a la sesión."));
+  assert.ok(html.includes(`href="${rutas.metodologia(rutas.anclasMetodologia.cuadroAusencias)}"`));
+  assert.ok(leer(rutas.metodologia()).includes(`id="${rutas.anclasMetodologia.cuadroAusencias}"`));
+  assert.ok(html.includes(`href="${rutas.votacionesNominalesOrdenadas("ausencias")}"`));
+  assert.equal(html.match(/<section data-camara-ausencias/g)?.length ?? 0, camaras.length);
+  assert.equal(html.match(/<li data-ausencias=/g)?.length ?? 0, camaras.reduce((n, c) => n + c.filas.length, 0));
+  assert.ok(camaras.some((c) => c.filas.some((f) => f.foto)), "Ningún legislador de la lista tiene foto");
+  for (const c of camaras) {
+    for (const f of c.filas) assert.ok(itemRanking(html, f, "ausencias"), f.slug);
+    if (c.bajoMinimo) assert.ok(html.includes(`en menos de ${minimo} votaciones nominales`), c.camara);
+  }
+  const orden = [...html.matchAll(/<li data-ausencias="([^"]+)"/g)].map((m) => m[1]);
+  assert.deepEqual(orden, camaras.flatMap((c) => c.filas.map((f) => f.slug)));
+  // La lista de ausentes no va en la portada.
+  assert.ok(!leer(rutas.inicio()).includes("data-ausencias="), "La portada muestra la lista de más «ausentes»");
+});
+
+test("las direcciones que cambiaron redirigen con una redirección permanente", () => {
+  const lineas = readFileSync(join(dist, "_redirects"), "utf-8").split(/\r?\n/).map((l) => l.trim().split(/\s+/));
+  for (const { desde, hacia } of rutas.redireccionesPermanentes()) {
+    for (const origen of [desde, desde.replace(/\/$/, "")]) {
+      assert.ok(lineas.some(([a, b, c]) => a === origen && b === hacia && c === "301"), `Falta la redirección de ${origen} a ${hacia}`);
+    }
+    assert.ok(!existsSync(pagina(desde)), `${desde} sigue publicada`);
+    assert.ok(existsSync(pagina(hacia)), `${hacia} no existe`);
+  }
+  assert.deepEqual(rutas.redireccionesPermanentes().map((r) => r.desde), ["/legisladores/votos-distintos-al-partido/"]);
 });
 
 /** Página principal de votaciones y la de cada año. */
@@ -347,6 +397,7 @@ test("votaciones: los estilos de las listas, las barras y las etiquetas se carga
       assert.ok(css.includes(selector), `Falta ${selector} en ${url}`);
     }
   }
+  for (const url of [rutas.rankings(), rutas.inicio()]) assert.ok(estilos(url).includes(".lista-ranking"), `Faltan los estilos de la lista de rankings en ${url}`);
   const ley = votacionesDelPeriodo(periodos().find((p) => p.vigente).id).votaciones.find((v) => v.leyes.length).leyes[0];
   assert.ok(estilos(rutas.ley(ley.numero)).includes(".posicion-sentido"), "Faltan los estilos de la posición por sentido en la ficha de ley");
 });
@@ -386,7 +437,7 @@ test("ningún texto propio presenta AUSENTE como asistencia, faltas o inasistenc
   // pueden tratar de asistencia social y se muestran sin cambios). La firma dice «con asistencia de
   // IA», el único uso permitido de la palabra.
   const prohibidas = /inasistencia|asistencia(?! de IA)|\bfalta|\bfaltó|días ausente/i;
-  const urls = [rutas.inicio(), rutas.metodologia(), rutas.legisladores(), rutas.votacionesNominales(), rutas.coincidencia(), rutas.votosDistintosAlPartido(), ...paginasDeVotaciones(), ...legisladores().map((p) => p.url)];
+  const urls = [rutas.inicio(), rutas.metodologia(), rutas.legisladores(), rutas.votacionesNominales(), rutas.coincidencia(), rutas.rankings(), ...paginasDeVotaciones(), ...legisladores().map((p) => p.url)];
   for (const url of urls) {
     const visible = leer(url)
       .replace(/<(script|style)[\s\S]*?<\/\1>/g, " ")
@@ -575,7 +626,7 @@ test("los textos propios de las páginas generales no usan dos puntos", () => {
   // Solo páginas sin valores oficiales; la cita obligatoria se mantiene textual.
   const { cita } = estado().fuente;
   // En las páginas de votaciones, los títulos oficiales de proyectos y leyes van en <span class="titulo">.
-  const urls = [rutas.inicio(), rutas.metodologia(), rutas.privacidad(), rutas.datosAbiertos(), rutas.buscar(), rutas.votacionesNominales(), rutas.coincidencia(), rutas.votosDistintosAlPartido(), ...paginasDeVotaciones()];
+  const urls = [rutas.inicio(), rutas.metodologia(), rutas.privacidad(), rutas.datosAbiertos(), rutas.buscar(), rutas.votacionesNominales(), rutas.coincidencia(), rutas.rankings(), ...paginasDeVotaciones()];
   for (const url of urls) {
     const visible = leer(url)
       .replace(/<(script|style)[\s\S]*?<\/\1>/g, " ")
@@ -592,12 +643,15 @@ test("el menú y la portada enlazan a cada vista de análisis", () => {
   const menu = (url) => leer(url).match(/<nav aria-label="Principal"[\s\S]*?<\/nav>/)?.[0] ?? "";
   const unaLey = rutas.ley(leyes()[0].numero);
   const unLegislador = rutas.legislador(legisladores()[0].slug);
-  for (const url of [rutas.inicio(), rutas.leyes(), unaLey, rutas.legisladores(), unLegislador, rutas.votacionesNominales(), rutas.coincidencia(), rutas.votosDistintosAlPartido(), ...paginasDeVotaciones(), rutas.buscar(), rutas.datosAbiertos(), rutas.metodologia()]) {
+  for (const url of [rutas.inicio(), rutas.leyes(), unaLey, rutas.legisladores(), unLegislador, rutas.votacionesNominales(), rutas.coincidencia(), rutas.rankings(), ...paginasDeVotaciones(), rutas.buscar(), rutas.datosAbiertos(), rutas.metodologia()]) {
     const nav = menu(url);
     for (const e of menuPrincipal()) assert.ok(nav.includes(`href="${e.url}"`), `El menú de ${url} no enlaza ${e.url}`);
     assert.ok((nav.match(/aria-current="page"/g) ?? []).length <= 1, `Más de una entrada actual en ${url}`);
   }
-  assert.ok(menu(rutas.votacionesNominales()).includes(`href="${rutas.votacionesNominales()}" aria-current="page"`), "La tabla comparativa no marca su entrada del menú");
+  for (const url of [rutas.rankings(), rutas.votacionesNominales()]) {
+    assert.ok(menu(url).includes(`href="${rutas.rankings()}" aria-current="page"`), `${url} no marca «Rankings» en el menú`);
+  }
+  assert.ok(!menu(rutas.inicio()).includes(rutas.votacionesNominales()), "La tabla comparativa sigue en el menú");
   for (const url of paginasDeVotaciones()) {
     assert.ok(menu(url).includes(`href="${rutas.votaciones()}" aria-current="page"`), `${url} no marca «Votaciones» en el menú`);
   }
