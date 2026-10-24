@@ -551,7 +551,7 @@ export function comparativa(periodo) {
       const cifras = Object.fromEntries(CIFRAS_COMPARATIVAS.map((c) => [c.campo, cifraDe(todas, c.categoria)]));
       const mayoria = votosDistintosDe(r.id, todas, periodo);
       for (const c of CIFRAS_MAYORIA) cifras[c.campo] = mayoria[c.grupo];
-      return { id: r.id, slug: r.slug, url: r.url, nombre: r.nombre, apellidos: r.apellidos, camara: r.camara, vigente: r.vigente, ...cifras };
+      return { id: r.id, slug: r.slug, url: r.url, nombre: r.nombre, apellidos: r.apellidos, camara: r.camara, vigente: r.vigente, foto: r.foto, ...cifras };
     })
     .filter((f) => f.ausencias.total > 0)
     .sort(porCamaraYApellido);

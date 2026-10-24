@@ -7,7 +7,7 @@ import * as rutas from "./rutas.js";
 
 /**
  * Vistas de análisis, en el orden del menú. `menu` es el nombre corto de su entrada; `titulo` y
- * `descripcion`, los de la portada.
+ * `descripcion`, los de la portada. Con `portada: false` la vista está en el menú y no en la portada.
  */
 export const vistasDeAnalisis = () => [
   {
@@ -23,13 +23,14 @@ export const vistasDeAnalisis = () => [
     menu: "Rankings",
     titulo: "Votaciones nominales por legislador",
     descripcion: "Una tabla para comparar a todos los legisladores de cada cámara por sus ausencias en votaciones nominales, NO VOTA, abstenciones y votos distintos a la mayoría de su bancada y de su partido.",
+    portada: false,
   },
   {
     clave: "votosDistintos",
     url: rutas.votosDistintosAlPartido(),
     menu: "Votos distintos",
-    titulo: "Más votos distintos a la mayoría de su partido",
-    descripcion: "Los legisladores de cada cámara que más veces votaron distinto a la mayoría de su partido en las votaciones nominales, cada uno con su cifra y su denominador.",
+    titulo: "Más «rebeldes»",
+    descripcion: "Legisladores que más veces votaron distinto a la mayoría de su partido en las votaciones nominales de su cámara.",
   },
 ];
 

@@ -21,6 +21,13 @@ test("el menú tiene una entrada por cada vista de análisis, con direcciones de
   );
   assert.ok(urls.includes(rutas.coincidencia()) && urls.includes(rutas.votacionesNominales()));
   assert.equal(new Set(urls).size, urls.length, "Direcciones repetidas en el menú");
+  // La tabla de votaciones nominales está en el menú pero no en la portada.
+  assert.deepEqual(
+    vistasDeAnalisis()
+      .filter((v) => v.portada === false)
+      .map((v) => v.clave),
+    ["votacionesNominales"],
+  );
 });
 
 test("la entrada actual es la de ruta más larga que contiene la dirección", () => {
@@ -107,10 +114,6 @@ test("vista previa por cámara, con las mismas cifras que las páginas de cada v
     assert.ok(p.mayor.suficiente && p.menor.suficiente);
   }
   const comp = comparativa(PERIODO);
-  assert.deepEqual(
-    previa.votacionesNominales.map((x) => x.legisladores),
-    comp.camaras.map((x) => x.filas.length),
-  );
   for (const x of comp.camaras) {
     // Ningún legislador figura en más votaciones nominales que las de su cámara, y alguno figura en todas o casi.
     const maximo = Math.max(...x.filas.map((f) => f.ausencias.total));

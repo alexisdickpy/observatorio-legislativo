@@ -206,32 +206,43 @@ test("coincidencia de votos: un bloque por grupo, cifras con su denominador, fó
   assert.ok(texto(rutas.votacionesNominales()).includes(`href="${rutas.coincidencia()}"`));
 });
 
-test("cuadro de votos distintos a la mayoría de su partido: cifras con su denominador, enlaces, mínimo y títulos neutrales", () => {
+/** Si la lista de votos distintos tiene al legislador con su enlace, su foto (si la tiene) y su cifra. */
+function itemVotosDistintos(html, f) {
+  const item = html.match(new RegExp(`<li data-votos-distintos="${f.slug}"[^]*?</li>`))?.[0] ?? "";
+  return (
+    item.includes(`href="${f.url}"`) &&
+    (!f.foto || item.includes(`src="${f.foto}"`)) &&
+    item.includes(f.mayoriaPartido.porcentajeTexto) &&
+    item.includes(`${f.mayoriaPartido.fraccion} votaciones`)
+  );
+}
+
+test("cuadro de más «rebeldes»: cifras con su denominador, enlaces, fotos, mínimo y sin otros calificativos", () => {
   const periodo = periodos().find((p) => p.vigente).id;
   const { camaras, minimo } = votosDistintosAlPartido(periodo);
   const html = texto(rutas.votosDistintosAlPartido());
+  assert.match(html, /<h1[^>]*>Más «rebeldes»<\/h1>/);
+  assert.ok(html.includes("Legisladores que más veces votaron distinto a la mayoría de su partido."));
   assert.ok(html.includes("Votos distintos = votaciones en que su voto difiere de la mayoría de su partido"));
   assert.ok(html.includes(`al menos ${minimo} votaciones comparables`));
   assert.ok(html.includes(`href="${rutas.metodologia(rutas.anclasMetodologia.cuadroVotosDistintos)}"`));
   assert.ok(leer(rutas.metodologia()).includes(`id="${rutas.anclasMetodologia.cuadroVotosDistintos}"`));
   assert.ok(html.includes(`href="${rutas.votacionesNominalesOrdenadas("partido")}"`));
   assert.equal(html.match(/<section data-camara-votos-distintos/g)?.length ?? 0, camaras.length);
-  assert.equal(html.match(/<tr data-votos-distintos /g)?.length ?? 0, camaras.reduce((n, c) => n + c.filas.length, 0));
-  const filas = [...html.matchAll(/<tr data-votos-distintos data-slug="([^"]+)"[^]*?<\/tr>/g)];
+  assert.equal(html.match(/<li data-votos-distintos=/g)?.length ?? 0, camaras.reduce((n, c) => n + c.filas.length, 0));
+  assert.ok(camaras.some((c) => c.filas.some((f) => f.foto)), "Ningún legislador del cuadro tiene foto");
   for (const c of camaras) {
-    for (const f of c.filas) {
-      const fila = filas.find((x) => x[1] === f.slug)?.[0] ?? "";
-      assert.ok(fila.includes(`href="${f.url}"`) && fila.includes(f.mayoriaPartido.texto), f.slug);
-    }
+    for (const f of c.filas) assert.ok(itemVotosDistintos(html, f), f.slug);
     for (const f of c.sinComparables) {
       const item = html.match(new RegExp(`<li data-sin-comparables="${f.slug}"[^]*?</li>`))?.[0] ?? "";
       assert.ok(item.includes(`href="${f.url}"`), `Falta ${f.slug} entre quienes no tienen votaciones comparables`);
     }
   }
   // El orden de las filas en la página es el del cuadro.
-  const orden = [...html.matchAll(/<tr data-votos-distintos data-slug="([^"]+)"/g)].map((m) => m[1]);
+  const orden = [...html.matchAll(/<li data-votos-distintos="([^"]+)"/g)].map((m) => m[1]);
   assert.deepEqual(orden, camaras.flatMap((c) => c.filas.map((f) => f.slug)));
-  const visible = html.replace(/<(script|style)[\s\S]*?<\/\1>/g, " ").replace(/<[^>]+>/g, " ");
+  // «rebeldes» solo entre comillas, como apodo en el título.
+  const visible = html.replace(/<(script|style)[\s\S]*?<\/\1>/g, " ").replace(/<[^>]+>/g, " ").replaceAll("«rebeldes»", " ");
   const calificativo = visible.match(/.{0,30}\b(mejor|peor|ranking|puesto|campe[oó]n|rebelde|d[ií]scolo|traici[oó]n|leal)\b.{0,20}/i);
   assert.ok(!calificativo, `«${calificativo?.[0]}»`);
   assert.ok(texto(rutas.votacionesNominales()).includes(`href="${rutas.votosDistintosAlPartido()}"`));
@@ -464,8 +475,9 @@ test("el menú y la portada enlazan a cada vista de análisis", () => {
   assert.ok(menu(rutas.votacionesNominales()).includes(`href="${rutas.votacionesNominales()}" aria-current="page"`), "La tabla comparativa no marca su entrada del menú");
   const portada = leer(rutas.inicio()).replace(/<header[\s\S]*?<\/header>/, " ");
   for (const v of vistasDeAnalisis()) {
-    assert.ok(portada.includes(`href="${v.url}"`), `La portada no enlaza ${v.url}`);
-    assert.ok(portada.includes(`data-analisis="${v.clave}"`), `Falta la vista previa de ${v.clave}`);
+    const enPortada = v.portada !== false;
+    assert.equal(portada.includes(`data-analisis="${v.clave}"`), enPortada, `Vista previa de ${v.clave}`);
+    if (enPortada) assert.ok(portada.includes(`href="${v.url}"`), `La portada no enlaza ${v.url}`);
   }
   const previa = vistaPrevia(periodos().find((p) => p.vigente).id);
   const html = texto(rutas.inicio());
@@ -480,12 +492,6 @@ test("el menú y la portada enlazan a cada vista de análisis", () => {
   for (const [, id, oculto] of graficos) assert.equal(Boolean(oculto), id !== String(previa.partidos[0].id), `Gráfico ${id}`);
   assert.ok(html.includes('id="selector-partido-portada"'), "Falta el selector de partido en la portada");
   assert.ok(html.includes('class="barras-coincidencia'), "Falta el gráfico de coincidencia en la portada");
-  for (const c of previa.votacionesNominales) assert.ok(html.includes(`${c.legisladores.toLocaleString("es-PY")} legisladores para comparar`), `Faltan los legisladores de ${c.camara}`);
-  for (const c of previa.votosDistintos) {
-    for (const f of c.filas) {
-      const item = html.match(new RegExp(`<li data-votos-distintos-portada="${f.slug}"[^]*?</li>`))?.[0] ?? "";
-      assert.ok(item.includes(`href="${f.url}"`) && item.includes(`${f.mayoriaPartido.fraccion} votaciones comparables`), `Falta ${f.slug} en la portada`);
-    }
-  }
-  assert.equal(html.match(/<li data-votos-distintos-portada=/g)?.length ?? 0, previa.votosDistintos.reduce((n, c) => n + c.filas.length, 0));
+  for (const c of previa.votosDistintos) for (const f of c.filas) assert.ok(itemVotosDistintos(html, f), `Falta ${f.slug} en la portada`);
+  assert.equal(html.match(/<li data-votos-distintos=/g)?.length ?? 0, previa.votosDistintos.reduce((n, c) => n + c.filas.length, 0));
 });
