@@ -33,6 +33,11 @@ class Reglas(unittest.TestCase):
                      "DEL MINISTERIO DE SALUD PÚBLICA Y BIENESTAR SOCIAL"),
             ["inmuebles"])
 
+    def test_deporte_aparte_de_cultura(self):
+        self.assertEqual(temas_de("De prevención, control y erradicación de la violencia en el deporte"), ["deporte", "seguridad"])
+        self.assertEqual(temas_de("Que establece el 26 de junio como Día Nacional del Taekwon-do paraguayo"), ["cultura", "deporte"])
+        self.assertEqual(temas_de("Que crea el Instituto Superior Nacional de Música"), ["educacion", "cultura"])
+
     def test_excepto(self):
         self.assertEqual(
             temas_de("QUE DECLARA EN SITUACIÓN DE EMERGENCIA TODOS LOS ESTABLECIMIENTOS PENITENCIARIOS Y CENTROS "

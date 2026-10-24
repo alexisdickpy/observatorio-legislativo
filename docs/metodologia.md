@@ -217,7 +217,7 @@ Comprobación. Las pruebas recalculan los totales con `votaciones.json` y las po
 
 ## Temas de las leyes
 
-Decisión de alcance (#36). Cada proyecto de ley del período lleva uno o más temas de una lista propia de 15. Es una clasificación de este proyecto, no un dato oficial: el Congreso no publica temas. Se clasifican los 556 proyectos con ley sancionada y los 238 proyectos de ley votados en el período sin ley (rechazados, archivados o en trámite), 794 en total en 2023-2028.
+Decisión de alcance (#36). Cada proyecto de ley del período lleva uno o más temas de una lista propia de 16. Es una clasificación de este proyecto, no un dato oficial: el Congreso no publica temas. Se clasifican los 556 proyectos con ley sancionada y los 238 proyectos de ley votados en el período sin ley (rechazados, archivados o en trámite), 794 en total en 2023-2028.
 
 | Tema | Identificador | Qué incluye |
 |---|---|---|
@@ -229,7 +229,8 @@ Decisión de alcance (#36). Cada proyecto de ley del período lleva uno o más t
 | Relaciones exteriores | `relaciones-exteriores` | Tratados, convenios, acuerdos y memorandos con otros países y organismos internacionales, incluido el Mercosur. |
 | Salud | `salud` | Salud pública, hospitales, profesiones de la salud, enfermedades, medicamentos y vacunas. |
 | Educación | `educacion` | Escuelas, colegios, universidades e institutos superiores, docentes, planes de estudio y alimentación escolar. |
-| Cultura, deporte y fechas conmemorativas | `cultura` | Cultura, música, literatura, patrimonio histórico, deporte, símbolos nacionales, homenajes, nombres de lugares, días nacionales y feriados. |
+| Cultura, símbolos y fechas conmemorativas | `cultura` | Cultura, música, literatura, patrimonio histórico, símbolos nacionales, homenajes, nombres de lugares, días nacionales y feriados. |
+| Deporte | `deporte` | Deporte y deportistas, entidades y eventos deportivos, y la seguridad en los espectáculos deportivos. |
 | Justicia | `justicia` | Juzgados y tribunales, Ministerio Público, Defensoría Pública, códigos y leyes penales, civiles y procesales, y procesos judiciales. |
 | Seguridad y defensa | `seguridad` | Policía, Fuerzas Armadas, defensa nacional, armas, cárceles, prevención del delito y personas desaparecidas. |
 | Ambiente | `ambiente` | Áreas protegidas, bosques, incendios forestales, biodiversidad, fauna y protección animal, ríos y cambio climático. |
@@ -242,7 +243,7 @@ La lista, las definiciones y las palabras clave están en `datos/propios/temas.j
 - **Reglas.** `importador/temas.py` busca las palabras clave de cada tema en el acápite oficial del proyecto, sin mayúsculas ni tildes. Antes quita el encabezado de los mensajes del Poder Ejecutivo («Mensaje N° …, Ministerio de …, por el cual remite»), porque el ministerio que envía el proyecto no es su tema, y la parte final «presentado por …». Cada palabra clave es el comienzo de una palabra (`tributari` encuentra «tributaria» y «tributario»). Un tema puede tener frases que no cuentan (`excepto`): «centros educativos» junto a «establecimientos penitenciarios» no es educación.
 - **Más de un tema.** Un proyecto toma todos los temas cuyas reglas se cumplen (una ampliación del presupuesto del Ministerio de Salud es presupuesto y salud). Pensiones graciables e inmuebles son exclusivos: dejan fuera a los demás, porque el oficio de quien recibe la pensión o el organismo que recibe el inmueble no es el tema de la ley.
 - **Pendiente.** Si ninguna regla se cumple, el proyecto queda «pendiente de clasificación», sin tema; nunca se fuerza uno.
-- **Revisión manual.** Las 794 clasificaciones se revisaron a mano una por una. La revisión ajustó las reglas y corrigió 20 proyectos (temas que sobraban o faltaban, y los 2 que ninguna regla clasificaba). Las entradas revisadas llevan `revisado: true` y no se recalculan. Cada tema guarda cómo se asignó: `regla`, con la palabra clave, o `revision`. Los proyectos nuevos de la actualización diaria toman tema por las reglas y quedan sin revisar (`revisado: false`) hasta la próxima revisión.
+- **Revisión manual.** Las 794 clasificaciones se revisaron a mano una por una. La revisión ajustó las reglas y corrigió 20 proyectos (temas que sobraban o faltaban, y los 2 que ninguna regla clasificaba). Después se separó Deporte de Cultura, y los 12 proyectos que alcanza su regla se reclasificaron con las reglas nuevas. Las entradas revisadas llevan `revisado: true` y no se recalculan. Cada tema guarda cómo se asignó: `regla`, con la palabra clave, o `revision`. Los proyectos nuevos de la actualización diaria toman tema por las reglas y quedan sin revisar (`revisado: false`) hasta la próxima revisión.
 - **Ley y votación.** Una ley toma los temas de su proyecto; una ley con más de un registro, los de todos sus proyectos. Una votación toma los del proyecto votado. Las votaciones que no son de un proyecto de ley (resoluciones, declaraciones, etc.) no se clasifican.
 - **Dónde se ve.** En el catálogo de leyes, el filtro «Tema» (`/leyes/?tema={identificador}`, o `tema=pendiente`). En la ficha de cada ley, los temas como «Tema según el Observatorio», cada uno con enlace al catálogo filtrado. En cada año de `/votaciones/`, el mismo filtro por tema (`?tema=…`), que incluye los proyectos rechazados y los que siguen en trámite.
 - **Descarga.** `datos/propios/clasificacion-temas.json` y `.csv` (un registro por proyecto, con `idProyecto`, `periodoLegislativo`, `temas`, `pendiente` y `revisado`) y `datos/propios/temas.json`, descritos en el diccionario de datos.

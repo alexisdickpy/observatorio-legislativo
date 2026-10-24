@@ -619,7 +619,7 @@
         {
           "origen": "regla",
           "palabraClave": "deport",
-          "tema": "cultura"
+          "tema": "deporte"
         }
       ]
     },
@@ -3081,7 +3081,7 @@
         {
           "origen": "regla",
           "palabraClave": "deport",
-          "tema": "cultura"
+          "tema": "deporte"
         },
         {
           "origen": "regla",
@@ -4237,6 +4237,11 @@
           "origen": "regla",
           "palabraClave": "capital nacional",
           "tema": "cultura"
+        },
+        {
+          "origen": "regla",
+          "palabraClave": "deport",
+          "tema": "deporte"
         }
       ]
     },
@@ -4280,7 +4285,7 @@
         {
           "origen": "regla",
           "palabraClave": "deport",
-          "tema": "cultura"
+          "tema": "deporte"
         }
       ]
     },
@@ -5998,7 +6003,7 @@
         {
           "origen": "regla",
           "palabraClave": "deport",
-          "tema": "cultura"
+          "tema": "deporte"
         }
       ]
     },
@@ -8331,7 +8336,7 @@
         {
           "origen": "regla",
           "palabraClave": "futbol",
-          "tema": "cultura"
+          "tema": "deporte"
         }
       ]
     },
@@ -8429,7 +8434,7 @@
         {
           "origen": "regla",
           "palabraClave": "deport",
-          "tema": "cultura"
+          "tema": "deporte"
         }
       ]
     },
@@ -8965,7 +8970,7 @@
         {
           "origen": "regla",
           "palabraClave": "deport",
-          "tema": "cultura"
+          "tema": "deporte"
         }
       ]
     },
@@ -9268,7 +9273,7 @@
         {
           "origen": "regla",
           "palabraClave": "deport",
-          "tema": "cultura"
+          "tema": "deporte"
         }
       ]
     },
@@ -10133,6 +10138,11 @@
           "origen": "regla",
           "palabraClave": "dia nacional",
           "tema": "cultura"
+        },
+        {
+          "origen": "regla",
+          "palabraClave": "taekwon",
+          "tema": "deporte"
         }
       ]
     },
@@ -10241,7 +10251,7 @@
         {
           "origen": "regla",
           "palabraClave": "antidopaje",
-          "tema": "cultura"
+          "tema": "deporte"
         }
       ]
     },
@@ -10321,7 +10331,7 @@
         {
           "origen": "regla",
           "palabraClave": "deport",
-          "tema": "cultura"
+          "tema": "deporte"
         },
         {
           "origen": "regla",

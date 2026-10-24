@@ -232,8 +232,8 @@
     },
     {
       "id": "cultura",
-      "nombre": "Cultura, deporte y fechas conmemorativas",
-      "definicion": "Cultura, música, literatura, patrimonio histórico, deporte, símbolos nacionales, homenajes, nombres de lugares, días nacionales y feriados.",
+      "nombre": "Cultura, símbolos y fechas conmemorativas",
+      "definicion": "Cultura, música, literatura, patrimonio histórico, símbolos nacionales, homenajes, nombres de lugares, días nacionales y feriados.",
       "palabrasClave": [
         "cultura",
         "music",
@@ -266,11 +266,6 @@
         "capital nacional",
         "capital ecologica",
         "ciudad de la",
-        "deport",
-        "futbol",
-        "paralimpic",
-        "antidopaje",
-        "juegos acuaticos",
         "ao po i",
         "filigrana",
         "denomina con",
@@ -280,6 +275,20 @@
         "escudo",
         "museo",
         "puesta en valor"
+      ]
+    },
+    {
+      "id": "deporte",
+      "nombre": "Deporte",
+      "definicion": "Deporte y deportistas, entidades y eventos deportivos, y la seguridad en los espectáculos deportivos.",
+      "palabrasClave": [
+        "deport",
+        "futbol",
+        "paralimpic",
+        "antidopaje",
+        "juegos acuaticos",
+        "taekwon",
+        "rally"
       ]
     },
     {
