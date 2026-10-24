@@ -1,6 +1,14 @@
 {
   "sincronizaciones": [
     {
+      "consultas": 0,
+      "error": "ErrorAPI: No se pudo obtener https://datosv2.congreso.gov.py/web/api/periodo: HTTP Error 503: Service Unavailable",
+      "fecha": "2026-10-24T12:06:33Z",
+      "modo": "incremental",
+      "periodo": null,
+      "resultado": "error"
+    },
+    {
       "archivosModificados": [
         "fuente/2023-2028/votaciones.json",
         "fuente/2023-2028/votaciones.csv",
