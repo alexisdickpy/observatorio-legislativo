@@ -257,10 +257,13 @@ const escapar = (t) => String(t).replaceAll("&", "&amp;").replaceAll('"', "&quot
 /** Elemento de la lista de votaciones de una votación, o "". */
 const itemVotacion = (html, id) => html.match(new RegExp(`<li data-votacion="${id}"[^]*?</ul>(?:<p class="chico"><a [^>]*>Votación en SILpy</a></p>)?</li>`))?.[0] ?? "";
 
-/** Si el elemento tiene el proyecto enlazado, los totales con su denominador y una etiqueta por partido con su sigla y posición. */
+/** Si el elemento tiene el proyecto enlazado con su título oficial completo, los totales con su denominador y una etiqueta por partido con su sigla y posición. */
 function votacionCompleta(item, v) {
   const enlaces = v.leyes.length ? v.leyes.map((l) => l.url) : [v.proyecto.url, v.url];
+  const titulos = (v.leyes.length ? v.leyes.map((l) => l.titulo) : [v.proyecto.titulo]).filter(Boolean);
+  const comoTexto = (t) => escapar(t).replaceAll("'", "&#39;");
   return (
+    titulos.every((t) => item.includes(`<span class="titulo texto-suave"> ${comoTexto(t)}</span>`)) &&
     enlaces.every((u) => !u || item.includes(`href="${u}"`)) &&
     item.includes(`(de ${v.registrados} legisladores registrados)`) &&
     v.totales.every((t) => item.includes(`${t.categoria} ${t.cantidad}`)) &&
@@ -317,7 +320,8 @@ test("votaciones: página principal con los años, las más ajustadas, fórmulas
   assert.deepEqual(orden, ajustadas.flatMap((c) => c.votaciones.map((v) => v.id)));
   for (const c of ajustadas) {
     for (const v of c.votaciones) {
-      const item = itemVotacion(html, v.id);
+      // Sin reducir los espacios, que los títulos oficiales conservan tal cual.
+      const item = itemVotacion(leer(rutas.votaciones()), v.id);
       assert.ok(votacionCompleta(item, v), `${c.camara} ${v.id}`);
       assert.ok(item.includes(`Diferencia entre SI y NO <strong>${v.diferencia}</strong>`), `${c.camara} ${v.id} diferencia`);
     }
